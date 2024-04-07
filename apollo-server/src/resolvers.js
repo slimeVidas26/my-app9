@@ -212,6 +212,16 @@ export const resolvers = {
         }
       },
 
+      createDepartment: async (_, { title }) => {
+        try {
+          const department = new Department({ title })
+          await department.save()
+          return department;
+        } catch (err) {
+          throw err
+        }
+      },
+
       createEdiOrder: async (_, { orderNumber , rows , quantity }) => {
         try {
           const ediOrder = new EdiOrder({ orderNumber  , rows , quantity})

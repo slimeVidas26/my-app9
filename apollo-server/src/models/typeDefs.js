@@ -36,7 +36,7 @@ export const typeDefs = gql`
   type Mutation {
     createAuthor(name: String!): Author!
     createEdiOrder(orderNumber: String! , rows:Int! ,quantity:Int!): EdiOrder!
-
+    createDepartment(title:String!): Department!
     createBook(name: String!, pages: Int, author: String!): Book!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
 
