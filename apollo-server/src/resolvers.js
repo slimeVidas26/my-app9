@@ -222,9 +222,9 @@ export const resolvers = {
         }
       },
 
-      createEdiOrder: async (_, { orderNumber , rows , quantity }) => {
+      createEdiOrder: async (_, {supplier,supplierNumber,edi,orderNumber,boxes,quantity,date }) => {
         try {
-          const ediOrder = new EdiOrder({ orderNumber  , rows , quantity})
+          const ediOrder = new EdiOrder({supplier,supplierNumber,edi,orderNumber,boxes,quantity,date})
           await ediOrder.save()
           return ediOrder;
         } catch (err) {

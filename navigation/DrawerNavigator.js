@@ -159,7 +159,7 @@ const DrawerNavigator = () => {
     <Drawer.Screen name="EDICertificate" component={EdiStackNavigator} 
     options={{headerLeft: () => (
 
-           <TouchableOpacity onPress={()=>handleOpenPopup} style={styles.headerLeft}>
+           <TouchableOpacity onPress={()=>navigation.navigate('EntryCertificate')} style={styles.headerLeft}>
           <Icon name="pencil-square-o" size={30} color="#fff" />  
           </TouchableOpacity> 
         ),}}

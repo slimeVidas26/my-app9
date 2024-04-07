@@ -385,7 +385,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
     marginBottom: 20,
   },
   icon: {
@@ -456,7 +455,7 @@ const styles = StyleSheet.create({
   },
   listItem: {
          marginTop: 10,
-         paddingVertical: 20,
+         paddingVertical: 0,
          //paddingHorizontal: 40,
         backgroundColor: '#fff',
          flexDirection: 'column',
@@ -471,10 +470,10 @@ const styles = StyleSheet.create({
             justifyContent: "space-between", // main axis
              //paddingTop: 10,
              //paddingBottom: 10,
-             marginLeft: 14,
-             marginRight: 14,
+             marginLeft: 10,
+             marginRight: 10,
              marginTop: 0,
-             marginBottom: 6,
+             marginBottom: 0,
            },
            text: {
                  fontSize:20,
