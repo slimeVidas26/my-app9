@@ -223,10 +223,10 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         <Text style={styles.textStyle}>Show Modal</Text>
       </Pressable> */}
       <Ionicons onPress={() => {Keyboard.dismiss();setModalVisible(true);setQuery('');setFullData([])}} name="search-circle-sharp" size={45} color="blue" />
-      <TouchableOpacity onPress={handleOpenPopup} style={styles.icon}>
-        {/* <Text style={styles.buttonText}>Open Pop-up</Text> */}
+      {/* <TouchableOpacity onPress={handleOpenPopup} style={styles.icon}>
+         <Text style={styles.buttonText}>Open Pop-up</Text> 
         <Icon name="pencil-square-o" size={35} color="blue" />  
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <AntDesign onPress={() => {navigation.navigate('Home')}} name="rightcircleo" size={33} color="blue" />
       </View>
     )
@@ -266,7 +266,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         </View>}
         
         {!loading && !error && data  &&
-        <FlatList 
+        <FlatList style = {{ width:'97%'}}
          ListHeaderComponent={renderHeader}
          ItemSeparatorComponent={renderSeparator}
          ListEmptyComponent={myListEmpty}
@@ -460,7 +460,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
          flexDirection: 'column',
          justifyContent:'space-around',
-         borderRadius:10
+         borderRadius:10,
       },
       metaInfo: {
             // elevation: 1,
