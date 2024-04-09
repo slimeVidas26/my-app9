@@ -294,14 +294,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           </Text>
         </View>}
         
-        {!loading && !error && data  &&
-        <FlatList style = {{ width:'97%'}}
-         ListHeaderComponent={renderHeader}
-         ItemSeparatorComponent={renderSeparator}
-         ListEmptyComponent={myListEmpty}
-         data={data.ediOrders}
-         keyExtractor={item => item.id}
-         renderItem={renderItem}/>}
+       
 
       {/* <Text style={styles.title}>Previous Screen Content</Text> */}
       {/* <TouchableOpacity onPress={handleOpenPopup} style={styles.button}>
@@ -313,7 +306,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 
 
 
-      { modalVisible == true && 
+      { modalVisible == true ? 
         <Modal
 
           animationType="fade"
@@ -346,7 +339,16 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 
           </TouchableOpacity>
         </Modal>
-      }
+        :
+        !loading && !error && data  &&
+          <FlatList style = {{ width:'97%'}}
+           ListHeaderComponent={renderHeader}
+           ItemSeparatorComponent={renderSeparator}
+           ListEmptyComponent={myListEmpty}
+           data={data.ediOrders}
+           keyExtractor={item => item.id}
+           renderItem={renderItem}/>}
+      
      </View>
      </>
    );
