@@ -5,10 +5,6 @@ import { Alert, Modal,View, Text  ,
   Image , TextInput , Dimensions} from 'react-native'
   import Icon from 'react-native-vector-icons/FontAwesome'
   import Constants from 'expo-constants';
-
-
-
-
   import filter from 'lodash.filter';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome , Ionicons  , AntDesign} from '@expo/vector-icons';
@@ -80,8 +76,7 @@ const EDICertificate = ({navigation}) => {
  
 
  const renderItem=({ item }) => (
-    <View style={styles.listItem}>
-        
+    query ? <View style={styles.queryListItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
           <Text style={[styles.title , styles.text]}>{`${item.supplier}`}</Text>
@@ -101,14 +96,37 @@ const EDICertificate = ({navigation}) => {
           <Text style={styles.title}>Order Number: {`${item.orderNumber}`}</Text>
 
         </View>
-      </View>
+      </View> :
+
+<View style={styles.listItem}>
+<View style={styles.metaInfo}>
+  <Text style={styles.title}></Text>
+  <Text style={[styles.title , styles.text]}>{`${item.supplier}`}</Text>
+</View>
+
+<View style={styles.metaInfo}>
+  <Text style={[styles.title , styles.text]}>Boxes:{`${item.boxes}`}</Text>
+  <Text style={styles.title}>Supplier Number:{`${item.supplierNumber}`}</Text>
+</View>
+<View style={styles.metaInfo}>
+  <Text style={[styles.title , styles.text]}>Quantity:{`${item.quantity}`}</Text>
+  <Text style={styles.title}>Edi:{`${item.edi}`}</Text>
+
+</View>
+<View style={styles.metaInfo}>
+  <Text style={styles.title}>{`${item.date}`}</Text>
+  <Text style={styles.title}>Order Number: {`${item.orderNumber}`}</Text>
+
+</View>
+</View>
+
    )
 
    const myListEmpty = () => {
     
       return (
     
-      <View style={{flex:1,alignItems: 'center' , justifyContent: 'center', height: screenHeight}}> 
+      <View style={{flex:1,  height: screenHeight}}> 
       <Text style={styles.item}>No Data Found</Text>
       {/* <ImageBackground 
       source={require('../../assets/noData.png')}
@@ -133,11 +151,12 @@ const EDICertificate = ({navigation}) => {
     // console.log('fullData before' , fullData)
 
      const formattedQuery = text.toLowerCase(); 
+     console.log(formattedQuery)
      const filteredData = filter(data.ediOrders, edi => {
        //console.log('user' , user)
        return contains(edi, formattedQuery);
      });
-     //console.log('filteredData' , filteredData);
+     console.log('filteredData' , filteredData);
      setModalVisible(true)
      setQuery(text);
      setFullData(filteredData)
@@ -162,25 +181,35 @@ const EDICertificate = ({navigation}) => {
     return(
       <>
       <View
+      // style = {{
+      //   padding:10,
+      //   marginVertical:5,
+      //   marginHorizontal:5,
+      //  //borderRadius: 20,
+      //   display:'flex',
+      //   flexDirection:'row',
+      //   alignItems: "center",
+      //   justifyContent: "center",
+      //   borderRadius: 30,
+      //   borderWidth: 0,
+      //   borderColor:'blue',
+
+       
+        
+      // }}
       style = {{
-        padding:10,
-        marginVertical:5,
-        marginHorizontal:5,
-       //borderRadius: 20,
+        //marginHorizontal:20,
         display:'flex',
         flexDirection:'row',
+        justifyContent:'space-between',
         alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 30,
-        borderWidth: 0,
-        borderColor:'blue'
-        
+        backgroundColor:'white'
       }}
       >
     
 
 <Pressable onPress={() => setModalVisible(!modalVisible)}>
-<Text  style={styles.inputIcon}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={30} color="blue" /></Text>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={30} color="blue" /></Text>
 </Pressable>
 
 <TextInput
@@ -192,7 +221,7 @@ autoCorrect={false}
 clearButtonMode="always"
 value={query}
 onChangeText={queryText => handleSearch(queryText)}
-style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 , marginHorizontal:15,borderRadius: 30,
+style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
         borderWidth: 1,
         borderColor:'blue' }}
 />
@@ -222,7 +251,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         onPress={() => setModalVisible(true)}>
         <Text style={styles.textStyle}>Show Modal</Text>
       </Pressable> */}
-      <Ionicons onPress={() => {Keyboard.dismiss();setModalVisible(true);setQuery('');setFullData([])}} name="search-circle-sharp" size={45} color="blue" />
+      <Ionicons onPress={() => {setModalVisible(true);setQuery('');setFullData([])}} name="search-circle-sharp" size={45} color="blue" />
       {/* <TouchableOpacity onPress={handleOpenPopup} style={styles.icon}>
          <Text style={styles.buttonText}>Open Pop-up</Text> 
         <Icon name="pencil-square-o" size={35} color="blue" />  
@@ -285,7 +314,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 
 
       { modalVisible == true && 
-        <Modal style={{marginTop: 100}}
+        <Modal
 
           animationType="fade"
           
@@ -299,7 +328,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           <TouchableOpacity  activeOpacity={1} onPress={handleClosePopup}>
 
           
-             {query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:58 , borderRadius:10}}
+             {query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:115 , borderRadius:10}}
            ListHeaderComponent={renderHeaderModal}
            data={fullData}
            keyExtractor={item => item.id}
@@ -307,7 +336,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            ListEmptyComponent= {myListEmpty}
            />}
 
-           {!query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:58 , borderRadius:10}}
+           {!query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:115 , borderRadius:10}}
            ListHeaderComponent={renderHeaderModal}
            data={null}
            keyExtractor={item => item.id}
@@ -318,48 +347,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           </TouchableOpacity>
         </Modal>
       }
-
-    
-
-      <Modal visible={isVisible} transparent={true} animationType="fade">
-        <TouchableOpacity style={styles.modalBackground} activeOpacity={1} onPress={handleClosePopup}>
-          <View style={styles.popupContainer}>
-          <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="*Number"
-          placeholderTextColor="#808080"
-          secureTextEntry={false}
-          onChangeText={(number) => setNumber(number)} 
-          keyboardType="numeric" 
-        />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="*Quantity"
-          placeholderTextColor="#808080"
-          secureTextEntry={false}
-          onChangeText={(quantity) => setQuantity(quantity)} 
-          keyboardType="numeric" 
-        />
-      </View>
-
-      <View style = {styles.btnZone}>
-      <TouchableOpacity style={styles.closeButton}
-        onPress={() => {setModalVisible(false);navigation.goBack()}}>
-        <Text style={styles.closeButtonText}>Next</Text> 
-      </TouchableOpacity>
-            <TouchableOpacity onPress={handleClosePopup} style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>Cancel</Text>
-            </TouchableOpacity>
-            </View>
-          </View>
-        </TouchableOpacity>
-        
-      </Modal>
-    
      </View>
      </>
    );
@@ -462,6 +449,16 @@ const styles = StyleSheet.create({
          justifyContent:'space-around',
          borderRadius:10,
       },
+
+      queryListItem: {
+        marginTop: 10,
+        paddingVertical: 0,
+        //paddingHorizontal: 40,
+       backgroundColor: '#CED0CE',
+        flexDirection: 'column',
+        justifyContent:'space-around',
+        borderRadius:10,
+     },
       metaInfo: {
             // elevation: 1,
              borderRadius: 2,
@@ -488,6 +485,14 @@ const styles = StyleSheet.create({
                 marginBottom: 20,
                 alignItems: "center",
                 marginHorizontal:50
+              },
+    item:{
+      fontSize:30,
+      color:'blue',
+        alignSelf: 'center',
+        marginTop:250
+
+        
               },
              
               TextInput: {
@@ -531,12 +536,7 @@ const styles = StyleSheet.create({
 //     flex: 1
 //   },
   
-//   item:{
-//     fontSize:30,
-//     color:'blue'
-//     // height: 'screenHeight', 
-//     // width: 'screenWidth', 
-//   },
+  
 //   text: {
 //     fontSize:20,
 //     color: 'blue',
