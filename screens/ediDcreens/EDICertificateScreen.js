@@ -67,8 +67,8 @@ const EDICertificate = ({navigation}) => {
   useEffect(() => {
     setInfo('No Data Found')
     //setTitle('Edi Certificate')
-    setQuery(query)
-    console.log(query)
+    //setQuery(query)
+    //console.log(query)
     console.log(info)
     console.log(title)
   }, [query , info , title]) 
@@ -181,22 +181,48 @@ const EDICertificate = ({navigation}) => {
     return(
       <>
       <View
-      // style = {{
-      //   padding:10,
-      //   marginVertical:5,
-      //   marginHorizontal:5,
-      //  //borderRadius: 20,
-      //   display:'flex',
-      //   flexDirection:'row',
-      //   alignItems: "center",
-      //   justifyContent: "center",
-      //   borderRadius: 30,
-      //   borderWidth: 0,
-      //   borderColor:'blue',
+      style = {{
+        //marginHorizontal:20,
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems: "center",
+        backgroundColor:'white'
+      }}
+      >
+    
 
-       
-        
-      // }}
+<Pressable onPress={() => setModalVisible(!modalVisible)}>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={35} color="#CED0CE" /></Text>
+</Pressable>
+
+<TextInput
+autoFocus={true}
+keyboardType='numeric'
+autoCapitalize="none"
+placeHolder='Search'
+autoCorrect={false}
+clearButtonMode="always"
+value={query}
+onChangeText={queryText => handleSearch(queryText)}
+style={{textAlign:"right",backgroundColor:'#CED0CE',borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:30 , paddingVertical:10 ,borderRadius: 30,
+        borderWidth: 0, elevation: 20,
+        shadowColor: '#52006A',
+        //borderColor:'blue' 
+      }}
+/>
+ </View>
+  <View style = {{display:'flex' ,height:50,  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+ </>
+      
+    )
+   
+
+  }
+  function renderHeaderEmptyModal(){
+    return(
+      <>
+      <View
       style = {{
         //marginHorizontal:20,
         display:'flex',
@@ -225,9 +251,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         borderWidth: 1,
         borderColor:'blue' }}
 />
-
  </View>
- {query  && fullData.length >0 && <View style = {{display:'flex' ,  alignItems:'flex-end' , paddingHorizontal:20 ,marginTop:20}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>}
  </>
       
     )
@@ -260,9 +284,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
       </View>
     )
   }
-
-
-  
   function renderSeparator() {
     return (
       <View
@@ -279,12 +300,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 
     return (
     <>
-    
-  
       <View style={styles.container}>
-     
-     
-
       {loading && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color="#5500dc" />
         </View>}
@@ -301,11 +317,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         <Text style={styles.buttonText}>Open Pop-up</Text>
       </TouchableOpacity> */}
       
-     
-
-
-
-
       { modalVisible == true ? 
         <Modal
 
@@ -321,8 +332,9 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           <TouchableOpacity  activeOpacity={1} onPress={handleClosePopup}>
 
           
-             {query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:115 , borderRadius:10}}
+             {query && <FlatList style = {{marginLeft:10,width:'95%' , marginTop:115 , borderRadius:50}}
            ListHeaderComponent={renderHeaderModal}
+           ItemSeparatorComponent={renderSeparator}
            data={fullData}
            keyExtractor={item => item.id}
            renderItem={renderItem}
@@ -330,7 +342,8 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            />}
 
            {!query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:115 , borderRadius:10}}
-           ListHeaderComponent={renderHeaderModal}
+           ListHeaderComponent={renderHeaderEmptyModal}
+           ItemSeparatorComponent={renderSeparator}
            data={null}
            keyExtractor={item => item.id}
            renderItem={renderItem}
@@ -354,12 +367,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
    );
    
   }
- 
-
- 
- 
-  
-
 
 export default EDICertificate
 
@@ -459,7 +466,7 @@ const styles = StyleSheet.create({
        backgroundColor: '#CED0CE',
         flexDirection: 'column',
         justifyContent:'space-around',
-        borderRadius:10,
+        borderRadius:20,
      },
       metaInfo: {
             // elevation: 1,
