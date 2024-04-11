@@ -2,7 +2,8 @@ import React , {useState , useEffect} from 'react'
 import { Alert, Modal,View, Text  ,
         ImageBackground,Keyboard, StyleSheet , Button ,Pressable,
         FlatList  ,ActivityIndicator,TouchableOpacity,
-  Image , TextInput , Dimensions} from 'react-native'
+  Image , TextInput , Dimensions,
+  ScrollView} from 'react-native'
   import Icon from 'react-native-vector-icons/FontAwesome'
   import Constants from 'expo-constants';
   import filter from 'lodash.filter';
@@ -76,7 +77,10 @@ const EDICertificate = ({navigation}) => {
  
 
  const renderItem=({ item }) => (
-    query ? <View style={styles.queryListItem}>
+    query ? 
+    <>
+
+    <View style={styles.queryListItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
           <Text style={[styles.title , styles.text]}>{`${item.supplier}`}</Text>
@@ -96,7 +100,9 @@ const EDICertificate = ({navigation}) => {
           <Text style={styles.title}>Order Number: {`${item.orderNumber}`}</Text>
 
         </View>
-      </View> :
+      </View>
+      </> 
+      :
 
 <View style={styles.listItem}>
 <View style={styles.metaInfo}>
@@ -183,6 +189,8 @@ const EDICertificate = ({navigation}) => {
       <View
       style = {{
         //marginHorizontal:20,
+        marginVertical:120,
+        
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
@@ -192,8 +200,8 @@ const EDICertificate = ({navigation}) => {
       >
     
 
-<Pressable onPress={() => setModalVisible(!modalVisible)}>
-<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={35} color="#CED0CE" /></Text>
+    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={40} color="blue" /></Text>
 </Pressable>
 
 <TextInput
@@ -205,14 +213,15 @@ autoCorrect={false}
 clearButtonMode="always"
 value={query}
 onChangeText={queryText => handleSearch(queryText)}
-style={{textAlign:"right",backgroundColor:'#CED0CE',borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:30 , paddingVertical:10 ,borderRadius: 30,
-        borderWidth: 0, elevation: 20,
-        shadowColor: '#52006A',
-        //borderColor:'blue' 
-      }}
+style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
+        borderWidth: 1,
+        borderColor:'blue' }}
 />
- </View>
-  <View style = {{display:'flex' ,height:50,  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+
+     </View>
+ <View style = {{display:'flex' ,height:50,  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+
+ 
  </>
       
     )
@@ -225,6 +234,7 @@ style={{textAlign:"right",backgroundColor:'#CED0CE',borderWidth:7,flex:1,fontSiz
       <View
       style = {{
         //marginHorizontal:20,
+        marginVertical:120,
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
@@ -235,7 +245,7 @@ style={{textAlign:"right",backgroundColor:'#CED0CE',borderWidth:7,flex:1,fontSiz
     
 
 <Pressable onPress={() => setModalVisible(!modalVisible)}>
-<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={30} color="blue" /></Text>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalVisible(!modalVisible)} name="closecircle" size={40} color="blue" /></Text>
 </Pressable>
 
 <TextInput
@@ -318,6 +328,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
       </TouchableOpacity> */}
       
       { modalVisible == true ? 
+       <View style={{maxHeight: Dimensions.get('window').height - 50}}>
         <Modal
 
           animationType="fade"
@@ -332,7 +343,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           <TouchableOpacity  activeOpacity={1} onPress={handleClosePopup}>
 
           
-             {query && <FlatList style = {{marginLeft:10,width:'95%' , marginTop:115 , borderRadius:50}}
+             {query && <FlatList
            ListHeaderComponent={renderHeaderModal}
            ItemSeparatorComponent={renderSeparator}
            data={fullData}
@@ -341,7 +352,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            ListEmptyComponent= {myListEmpty}
            />}
 
-           {!query && <FlatList style = {{backgroundColor:'#CED0CE' , marginTop:115 , borderRadius:10}}
+           {!query && <FlatList
            ListHeaderComponent={renderHeaderEmptyModal}
            ItemSeparatorComponent={renderSeparator}
            data={null}
@@ -352,6 +363,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 
           </TouchableOpacity>
         </Modal>
+        </View>
         :
         !loading && !error && data  &&
           <FlatList style = {{ width:'97%'}}
@@ -372,7 +384,7 @@ export default EDICertificate
 
 const styles = StyleSheet.create({
   container: {
-    
+    //backgroundColor:'red',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
