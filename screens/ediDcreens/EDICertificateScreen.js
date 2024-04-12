@@ -132,7 +132,7 @@ const EDICertificate = ({navigation}) => {
     
       return (
     
-      <View style={{flex:1,  height: screenHeight}}> 
+      <View style={{flex:1}}> 
       <Text style={styles.item}>No Data Found</Text>
       {/* <ImageBackground 
       source={require('../../assets/noData.png')}
@@ -183,14 +183,14 @@ const EDICertificate = ({navigation}) => {
      return false;
    };
 
-  function renderHeaderModal(){
+  const RenderHeaderModal=()=>{
     return(
       <>
+      <View>
       <View
       style = {{
         //marginHorizontal:20,
         marginVertical:120,
-        
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
@@ -215,11 +215,11 @@ value={query}
 onChangeText={queryText => handleSearch(queryText)}
 style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
         borderWidth: 1,
-        borderColor:'blue' }}
+borderColor:'blue' }}
 />
-
      </View>
- <View style = {{display:'flex' ,height:50,  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+     <View style = {{display:'flex' ,height:50,justifyContent:'flex-start',  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+     </View>
 
  
  </>
@@ -228,7 +228,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
    
 
   }
-  function renderHeaderEmptyModal(){
+  const RenderHeaderEmptyModal =()=>{
     return(
       <>
       <View
@@ -265,32 +265,33 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
  </>
       
     )
-   
-
   }
 
-  function renderHeader(){
+  
+
+  const RenderHeader = ()=>{
     return(
       <View
       style = {{
-        marginHorizontal:20,
-        display:'flex',
+        display: 'flex',
+        width:'100%',
+        height:60,
+        //position:'fixed',
+        //marginHorizontal:20,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
       }}
       >
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
-      <Ionicons onPress={() => {setModalVisible(true);setQuery('');setFullData([])}} name="search-circle-sharp" size={45} color="blue" />
-      {/* <TouchableOpacity onPress={handleOpenPopup} style={styles.icon}>
-         <Text style={styles.buttonText}>Open Pop-up</Text> 
-        <Icon name="pencil-square-o" size={35} color="blue" />  
-      </TouchableOpacity> */}
-      <AntDesign onPress={() => {navigation.navigate('Home')}} name="rightcircleo" size={33} color="blue" />
+      
+      <Ionicons onPress={() =>{
+        setModalVisible(true);setQuery('');setFullData([])}}
+          name="search-circle-sharp" size={45} color="blue" />
+     
+      <AntDesign onPress={() => {
+        navigation.navigate('Home')}} name="rightcircleo" 
+        size={33} color="blue" />
       </View>
     )
   }
@@ -320,19 +321,11 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           </Text>
         </View>}
         
-       
-
-      {/* <Text style={styles.title}>Previous Screen Content</Text> */}
-      {/* <TouchableOpacity onPress={handleOpenPopup} style={styles.button}>
-        <Text style={styles.buttonText}>Open Pop-up</Text>
-      </TouchableOpacity> */}
-      
       { modalVisible == true ? 
-       <View style={{maxHeight: Dimensions.get('window').height - 50}}>
+        <View>
         <Modal
 
           animationType="fade"
-          
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
@@ -340,39 +333,59 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
             setModalVisible(!modalVisible);
           }}>
           
-          <TouchableOpacity  activeOpacity={1} onPress={handleClosePopup}>
+          <TouchableOpacity   activeOpacity={1} onPress={handleClosePopup}>
+             {query && 
+             <>
+              <RenderHeaderModal/>
+             <View >
+             <View style={styles.popupContainer2}>
 
-          
-             {query && <FlatList
-           ListHeaderComponent={renderHeaderModal}
+             <FlatList
+           //ListHeaderComponent={renderHeaderModal}
            ItemSeparatorComponent={renderSeparator}
            data={fullData}
            keyExtractor={item => item.id}
            renderItem={renderItem}
            ListEmptyComponent= {myListEmpty}
-           />}
+           />
+           </View>
+           </View>
+           </>
+           }
 
-           {!query && <FlatList
-           ListHeaderComponent={renderHeaderEmptyModal}
+           {!query && 
+           <>
+            <RenderHeaderEmptyModal/>
+           <View style={styles.popupContainer}>
+          
+           <FlatList
+           //ListHeaderComponent={renderHeaderEmptyModal}
            ItemSeparatorComponent={renderSeparator}
            data={null}
            keyExtractor={item => item.id}
            renderItem={renderItem}
            ListEmptyComponent= {myListEmpty}
-           />}
-
+           />
+           </View>
+           </>
+           }
           </TouchableOpacity>
+          
         </Modal>
         </View>
         :
         !loading && !error && data  &&
-          <FlatList style = {{ width:'97%'}}
-           ListHeaderComponent={renderHeader}
+       <>
+           <RenderHeader/>
+          <FlatList style = {{ width:'96%'}}
+           //ListHeaderComponent={renderHeader}
            ItemSeparatorComponent={renderSeparator}
            ListEmptyComponent={myListEmpty}
            data={data.ediOrders}
            keyExtractor={item => item.id}
-           renderItem={renderItem}/>}
+           renderItem={renderItem}/>
+</>
+           }
       
      </View>
      </>
@@ -384,12 +397,37 @@ export default EDICertificate
 
 const styles = StyleSheet.create({
   container: {
-    //backgroundColor:'red',
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center'
+  }, 
+  popupContainer: {
+    marginTop:-100,
+    backgroundColor: 'orange',
+    borderRadius: 50,
     alignItems: 'center',
-    
-    
+    justifyContent:'center',
+    width: '90%',
+    height:630,
+    marginLeft:20
+
+  },
+
+  popupContainer2: {
+    marginTop:-100,
+    backgroundColor: 'lightBlue',
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent:'center',
+    width: '100%',
+    height:630,
+
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   title: {
     fontSize: 20,
@@ -417,22 +455,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  modalBackground: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    
-  },
-  popupContainer: {
-    marginTop:110,
-    backgroundColor: 'white',
-    padding: 50,
-    borderRadius: 50,
-    alignItems: 'center',
-    
-    
-  },
+  
+  // popupContainer: {
+  //   marginTop:110,
+  //   backgroundColor: 'white',
+  //   padding: 50,
+  //   borderRadius: 50,
+  //   alignItems: 'center', 
+  // },
   loginBtn: {
     width: "60%",
     borderRadius: 25,

@@ -193,7 +193,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    
   },
   popupContainer: {
     marginTop:120,
@@ -202,8 +201,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     width: '97%'
-    
-    
   },
   loginBtn: {
     width: "60%",
