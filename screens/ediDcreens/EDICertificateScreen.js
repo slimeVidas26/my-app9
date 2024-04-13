@@ -78,8 +78,6 @@ const EDICertificate = ({navigation}) => {
 
  const renderItem=({ item }) => (
     query ? 
-    <>
-
     <View style={styles.queryListItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
@@ -101,9 +99,7 @@ const EDICertificate = ({navigation}) => {
 
         </View>
       </View>
-      </> 
       :
-
 <View style={styles.listItem}>
 <View style={styles.metaInfo}>
   <Text style={styles.title}></Text>
@@ -179,21 +175,19 @@ const EDICertificate = ({navigation}) => {
        return true;
      }
     
-    
      return false;
    };
 
   const RenderHeaderModal=()=>{
     return(
       <>
-      <View>
       <View
       style = {{
         //marginHorizontal:20,
         marginVertical:120,
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'flex-start',
         alignItems: "center",
         backgroundColor:'white'
       }}
@@ -218,12 +212,8 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 borderColor:'blue' }}
 />
      </View>
-     <View style = {{display:'flex' ,height:50,justifyContent:'flex-start',  alignItems:'flex-end' , paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
-     </View>
-
- 
- </>
-      
+     <View style = {{display:'flex' ,position:'absolute' , top :180,right:30,height:50, paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
+     </> 
     )
    
 
@@ -262,6 +252,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         borderColor:'blue' }}
 />
  </View>
+
  </>
       
     )
@@ -324,7 +315,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
       { modalVisible == true ? 
         <View>
         <Modal
-
           animationType="fade"
           transparent={true}
           visible={modalVisible}
@@ -334,13 +324,12 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           }}>
           
           <TouchableOpacity   activeOpacity={1} onPress={handleClosePopup}>
-             {query && 
+             {query ? 
              <>
               <RenderHeaderModal/>
-             <View >
-             <View style={styles.popupContainer2}>
+              <View style={styles.popupContainer2}>
 
-             <FlatList
+             <FlatList style = {{ width:'96%'}}
            //ListHeaderComponent={renderHeaderModal}
            ItemSeparatorComponent={renderSeparator}
            data={fullData}
@@ -348,17 +337,15 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            renderItem={renderItem}
            ListEmptyComponent= {myListEmpty}
            />
-           </View>
+           
            </View>
            </>
-           }
-
-           {!query && 
+           :
            <>
             <RenderHeaderEmptyModal/>
            <View style={styles.popupContainer}>
           
-           <FlatList
+           <FlatList style = {{ width:'96%'}}
            //ListHeaderComponent={renderHeaderEmptyModal}
            ItemSeparatorComponent={renderSeparator}
            data={null}
@@ -403,24 +390,25 @@ const styles = StyleSheet.create({
   }, 
   popupContainer: {
     marginTop:-100,
-    backgroundColor: 'orange',
+    backgroundColor: '#CED0CE',
     borderRadius: 50,
     alignItems: 'center',
     justifyContent:'center',
-    width: '90%',
+    width: '96%',
     height:630,
-    marginLeft:20
+    marginLeft:10
 
   },
 
   popupContainer2: {
-    marginTop:-100,
-    backgroundColor: 'lightBlue',
+    marginTop:-50,
+   // backgroundColor: 'pink',
     borderRadius: 50,
     alignItems: 'center',
     justifyContent:'center',
-    width: '100%',
-    height:630,
+    width: '96%',
+    //height:630,
+    marginLeft:10
 
   },
   modalBackground: {
@@ -508,7 +496,7 @@ const styles = StyleSheet.create({
        backgroundColor: '#CED0CE',
         flexDirection: 'column',
         justifyContent:'space-around',
-        borderRadius:20,
+        borderRadius:10,
      },
       metaInfo: {
             // elevation: 1,
