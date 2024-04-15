@@ -1,12 +1,17 @@
 import React from 'react';
-import {View,StyleSheet , Button } from 'react-native'
+import {View,StyleSheet , Button,Dimensions } from 'react-native'
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Modal = ({ children, onClose }) =>{
   return (
     <View style={styles.overlay}>
       <View style={styles.modal}>
         {children}
-        <Button style={styles.closeButton} onPress={onClose}>X</Button>
+        {/* <Button title="X" style={styles.closeButton} onPress={onClose}/> */}
+        
+
       </View>
     </View>
   );
@@ -15,7 +20,7 @@ const Modal = ({ children, onClose }) =>{
 const styles = StyleSheet.create({
     overlay: {
         position: 'fixed',
-        top: 0,
+        top:-20,
         left: 0,
         right: 0,
         bottom: 0,
@@ -26,19 +31,21 @@ const styles = StyleSheet.create({
       },
       modal: {
         backgroundColor: 'white',
-        padding: '20px',
-        borderRadius: '8px',
+        marginTop:90,
+        //padding: 10,
+        borderRadius: 40,
         position: 'relative',
-        width: '80%',
-        maxWidth: '500px'
+        minWidth: '95%',
+        //maxWidth: 500
+        height: '100%',
       },
       closeButton: {
         position: 'absolute',
-        top: '10px',
-        right: '10px',
+        top: 10,
+        right: 10,
         background: 'transparent',
         border: 'none',
-        fontSize: '18px',
+        fontSize: 18,
         cursor: 'pointer'
       }
   });

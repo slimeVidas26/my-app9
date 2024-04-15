@@ -1,27 +1,635 @@
-import React, { useState } from 'react';
+import React , {useState , useEffect} from 'react'
 import Modal from "../../components/modals/Modal";
-import {  Button , Text } from 'react-native'
 
+import { Alert,View, Text  ,
+        ImageBackground,Keyboard, StyleSheet , Button ,Pressable,
+        FlatList  ,ActivityIndicator,TouchableOpacity,
+  Image , TextInput , Dimensions,
+  ScrollView} from 'react-native'
+  import Icon from 'react-native-vector-icons/FontAwesome'
+  import Constants from 'expo-constants';
+  import filter from 'lodash.filter';
+import { StatusBar } from 'expo-status-bar';
+import { FontAwesome , Ionicons  , AntDesign} from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import notFound from '../../assets/data-not-found.jpg'
+
+import { useQuery } from "@apollo/client";
+import { EDI_ORDERS_QUERY } from '../../gql/Query';
+
+const screenHeight = Dimensions.get('window').height; 
+const screenWidth = Dimensions.get('window').width; 
+
+console.log(screenWidth)
+
+// const data =  [{ id: '1', supplier: 'Sano' ,  supplierNumber:4723 ,  edi : 6004240, orderNumber:1443621, boxes:1, quantity:160,date:'29/02/24'},
+// { id: '2', supplier: 'Chaniv' ,supplierNumber:5800 ,   edi : 6001471, orderNumber:24013545, boxes:6, quantity:1160,date:'29/02/24'},
+// { id: '3', supplier: 'Fisher' ,supplierNumber:404643 , edi : 6002800, orderNumber:7140759523, boxes:22, quantity:391,date:'29/02/24'},
+// { id: '4', supplier: 'Fisher' ,supplierNumber:404643 , edi : 6002802, orderNumber:7140759585, boxes:9, quantity:872,date:'29/02/24'},
+// { id: '5', supplier: 'Densher' ,supplierNumber:467895 , edi : 6002803, orderNumber:7150965063, boxes:42, quantity:1738,date:'29/02/24'},
+// { id: '6', supplier: 'Densher' ,supplierNumber:467895 , edi : 6002801, orderNumber:7150965184, boxes:16, quantity:254,date:'29/02/24'},
+// { id: '7', supplier: 'Ossem' ,  supplierNumber:414798 , edi : 6003514, orderNumber:7075028846, boxes:25, quantity:974,date:'29/02/24'},
+// { id: '8', supplier: 'SuperTex' ,supplierNumber:405408 , edi : 6002365, orderNumber:5700895, boxes:13, quantity:585,date:'28/02/24'}
+// ];
+
+// console.log(data)
+
+  
+
+//const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`;
 
 
 
 const EDICertificate = ({navigation}) => {
 
-  const [isModalOpen, setModalOpen] = useState(true);
+
+  const [isModalOpen, setModalOpen] = useState(false);
 
 
-    <Button onPress={() => setModalOpen(true)}>Open the Modal</Button>
+  const handleOpenPopup = () => {
+    setModalOpen(true);
+  };
 
-    {isModalOpen && (
-      <Modal onClose={() => setModalOpen(false)}>
-        <Text>Modal Title</Text>
-        <Text>This is modal content.</Text>
-      </Modal>
-    )}
+  const handleClosePopup = () => {
+    //setModalOpen(false);
+  };
+  // const {data, error, loading} = useQuery(EDI_ORDERS_QUERY);
+  const {data ,error ,  loading} = useQuery(EDI_ORDERS_QUERY);
+  // console.log(data)
+  // console.log(loading)
+  //const [isLoading, setIsLoading] = useState(false);
+  //const [data, setData] = useState([]);
+  //const [error, setError] = useState(null);
+  const [query, setQuery] = useState('');
+  const [fullData, setFullData] = useState([]);
+  const [title , setTitle] = useState('')
+  const [info , setInfo] = useState('')
+
+  useEffect(() => {
+    setInfo('No Data Found')
+    //setTitle('Edi Certificate')
+    //setQuery(query)
+    //console.log(query)
+    console.log(info)
+    console.log(title)
+  }, [query , info , title]) 
 
  
 
-}
+ const renderItem=({ item }) => (
+    
+    <View style={styles.queryListItem}>
+        <View style={styles.metaInfo}>
+          <Text style={styles.title}></Text>
+          <Text style={[styles.title , styles.text]}>{`${item.supplier}`}</Text>
+        </View>
 
+        <View style={styles.metaInfo}>
+          <Text style={[styles.title , styles.text]}>Boxes:{`${item.boxes}`}</Text>
+          <Text style={styles.title}>Supplier Number:{`${item.supplierNumber}`}</Text>
+        </View>
+        <View style={styles.metaInfo}>
+          <Text style={[styles.title , styles.text]}>Quantity:{`${item.quantity}`}</Text>
+          <Text style={styles.title}>Edi:{`${item.edi}`}</Text>
+
+        </View>
+        <View style={styles.metaInfo}>
+          <Text style={styles.title}>{`${item.date}`}</Text>
+          <Text style={styles.title}>Order Number: {`${item.orderNumber}`}</Text>
+
+        </View>
+      </View>
+    
+
+
+   )
+
+   const myListEmpty = () => {
+    
+      return (
+    
+      <View style={{flex:1}}> 
+      <Text style={styles.item}>No Data Found</Text>
+      {/* <ImageBackground 
+      source={require('../../assets/noData.png')}
+        resizeMode="stretch"
+        style={styles.img}> 
+      </ImageBackground>  */}
+    </View> 
+
+      )
+    }
+   
+    
+
+    const myListNotEmpty = () => {
+      return (
+        <View style={{ alignItems: "center" }}>
+        <Text style={styles.item}>Entry Certificate</Text>
+        </View>
+      )}
+
+   const handleSearch = text => {
+    // console.log('fullData before' , fullData)
+
+     const formattedQuery = text.toLowerCase(); 
+     console.log(formattedQuery)
+     const filteredData = filter(data.ediOrders, edi => {
+       //console.log('user' , user)
+       return contains(edi, formattedQuery);
+     });
+     console.log('filteredData' , filteredData);
+     setModalOpen(true)
+     setQuery(text);
+     setFullData(filteredData)
+     setTitle('Edi Certificate')
+     
+    // console.log('fullData after' , fullData)
+      console.log('fullData.length',fullData.length)
+   };
+  
+   const contains = ({orderNumber }, query) => {
+     //const { first, last } = name;
+  console.log('contains' , contains)
+     if (orderNumber.includes(query)) {
+       return true;
+     }
+    
+     return false;
+   };
+
+  const renderHeaderModal=()=>{
+    return(
+      
+       <View
+      style = {{
+        display: 'flex',
+        width:'100%',
+        height:60,
+        //position:'fixed',
+        //marginHorizontal:20,
+        paddingHorizontal:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      }}
+      >
+    
+
+    <Pressable onPress={() => setModalOpen(!isModalOpen)}>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalOpen(!isModalOpen)} name="closecircle" size={40} color="blue" /></Text>
+</Pressable>
+
+<TextInput
+autoFocus={true}
+keyboardType='numeric'
+autoCapitalize="none"
+placeHolder='Search'
+autoCorrect={false}
+clearButtonMode="always"
+value={query}
+onChangeText={queryText => handleSearch(queryText)}
+style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
+        borderWidth: 1,
+borderColor:'blue' }}
+/>
+     </View>
+     
+    )
+   
+
+  }
+  const renderHeaderEmptyModal =()=>{
+    return(
+      <>
+       <View
+      style = {{
+        display: 'flex',
+        width:'100%',
+        height:60,
+        //position:'fixed',
+        //marginHorizontal:20,
+        paddingHorizontal:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      }}
+      >
+    
+
+<Pressable onPress={() => setModalOpen(!isModalOpen)}>
+<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalOpen(!isModalOpen)} name="closecircle" size={40} color="blue" /></Text>
+</Pressable>
+
+<TextInput
+autoFocus={true}
+keyboardType='numeric'
+autoCapitalize="none"
+placeHolder='Search'
+autoCorrect={false}
+clearButtonMode="always"
+value={query}
+onChangeText={queryText => handleSearch(queryText)}
+style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
+        borderWidth: 1,
+        borderColor:'blue' }}
+/>
+ </View>
+
+ </>
+      
+    )
+  }
+
+  
+
+  const renderHeader = ()=>{
+    return(
+      <View
+      style = {{
+        display: 'flex',
+        width:'100%',
+        height:60,
+        //position:'fixed',
+        //marginHorizontal:20,
+        paddingHorizontal:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      }}
+      >
+      
+      <Ionicons onPress={() =>{
+        setModalOpen(true);setQuery('');setFullData([])}}
+          name="search-circle-sharp" size={45} color="blue" />
+     
+      <AntDesign onPress={() => {
+        navigation.navigate('Home')}} name="rightcircleo" 
+        size={33} color="blue" />
+      </View>
+    )
+  }
+  function renderSeparator() {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '5%'
+        }}
+      />
+    )
+  }
+
+
+    return (
+    <>
+      <View style={styles.container}>
+      {loading && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" color="#5500dc" />
+        </View>}
+        {error &&  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 18}}>
+            Error fetching data... Check your network connection!
+          </Text>
+        </View>}
+        
+      { isModalOpen == true ? 
+        
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={isModalOpen}
+          // onRequestClose={() => {
+          //   Alert.alert('Modal has been closed.');
+          //   setModalOpen(!isModalOpen);
+          // }}
+          >
+          
+             {query ? 
+             
+             <FlatList style = {{ width:'95%'}}
+           ListHeaderComponent={renderHeaderModal}
+           ItemSeparatorComponent={renderSeparator}
+           data={fullData}
+           keyExtractor={item => item.id}
+           renderItem={renderItem}
+           ListEmptyComponent= {myListEmpty}
+           />
+           :
+           <FlatList style = {{ width:'95%'}}
+           ListHeaderComponent={renderHeaderEmptyModal}
+           ItemSeparatorComponent={renderSeparator}
+           data={null}
+           keyExtractor={item => item.id}
+           renderItem={renderItem}
+           ListEmptyComponent= {myListEmpty}
+           />
+           
+           }
+          
+        </Modal>
+        
+        :
+        !loading && !error && data  &&
+       <>
+           {/* <RenderHeader/> */}
+          <FlatList style = {{ width:'95%'}}
+           ListHeaderComponent={renderHeader}
+           ItemSeparatorComponent={renderSeparator}
+           ListEmptyComponent={myListEmpty}
+           data={data.ediOrders}
+           keyExtractor={item => item.id}
+           renderItem={renderItem}/>
+</>
+           }
+      
+     </View>
+     </>
+   );
+   
+  }
 
 export default EDICertificate
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }, 
+ 
+
+ 
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  icon: {
+    //backgroundColor:'green',
+    padding: 10,
+    borderRadius: 5,
+    position: 'relative',
+    overflow:'visible',
+    top:0,
+    zIndex: 5
+   
+   
+   
+  },
+  btnZone:{
+  flexDirection :'row',
+  justifyContent: 'space-around',
+  
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  
+  // popupContainer: {
+  //   marginTop:110,
+  //   backgroundColor: 'white',
+  //   padding: 50,
+  //   borderRadius: 50,
+  //   alignItems: 'center', 
+  // },
+  loginBtn: {
+    width: "60%",
+    borderRadius: 25,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    backgroundColor: "blue",
+    marginHorizontal:80
+   
+  },
+  popupTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  closeButton: {
+    width:120,
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  listItem: {
+         marginTop: 10,
+         paddingVertical: 0,
+         //paddingHorizontal: 40,
+        backgroundColor: '#fff',
+         flexDirection: 'column',
+         justifyContent:'space-around',
+         borderRadius:10,
+      },
+
+      queryListItem: {
+        marginTop: 10,
+        paddingVertical: 0,
+        //paddingHorizontal: 40,
+       backgroundColor: '#CED0CE',
+        flexDirection: 'column',
+        justifyContent:'space-around',
+        borderRadius:10,
+     },
+      metaInfo: {
+            // elevation: 1,
+             borderRadius: 2,
+             flex: 1,
+             flexDirection: "row", // main axis
+            justifyContent: "space-between", // main axis
+             //paddingTop: 10,
+             //paddingBottom: 10,
+             marginLeft: 10,
+             marginRight: 10,
+             marginTop: 0,
+             marginBottom: 0,
+           },
+           text: {
+                 fontSize:20,
+                 color: 'blue',
+                 //fontWeight: '700'
+               },
+               inputView: {
+                backgroundColor: "#d3d3d3",
+                borderRadius: 20,
+                width: 300,
+                height: 55,
+                marginBottom: 20,
+                alignItems: "center",
+                marginHorizontal:50
+              },
+    item:{
+      fontSize:30,
+      color:'blue',
+        alignSelf: 'center',
+        marginTop:250
+
+        
+              },
+             
+              TextInput: {
+                height: 60,
+                flex: 1,
+                padding: 5,
+                marginLeft: 10,
+                fontSize : 20,
+                borderRadius : 25,
+              },
+});
+
+
+
+// const styles = StyleSheet.create({
+  
+//   container: {
+//     // width : "100%",
+//      flex: 1,
+//     // backgroundColor: '#f8f8f8',
+//     // alignItems: 'center',
+//      marginTop: 14,
+//       //alignSelf: "stretch",
+//   },
+
+//   img: { 
+//     height: screenHeight, 
+//     width: screenWidth, 
+//     justifyContent: 'center', 
+//     alignItems: 'center', 
+//   }, 
+//   input: { 
+//     height: 40, 
+//     margin: 12, 
+//     borderWidth: 2, 
+//     padding: 10, 
+//   }, 
+  
+//   inputWithIcon :{
+//     border: 'none',
+//     flex: 1
+//   },
+  
+  
+//   text: {
+//     fontSize:20,
+//     color: 'blue',
+//     //fontWeight: '700'
+//   },
+//   listItem: {
+//     marginTop: 10,
+//     paddingVertical: 20,
+//     //paddingHorizontal: 40,
+//     backgroundColor: '#fff',
+//     flexDirection: 'column',
+//     justifyContent:'space-around',
+//     borderRadius:10
+//   },
+//   coverImage: {
+//     width: 100,
+//     height: 100,
+//     borderRadius: 8
+//   },
+//   metaInfo: {
+//    // elevation: 1,
+//     borderRadius: 2,
+//     flex: 1,
+//     flexDirection: "row", // main axis
+//     justifyContent: "space-between", // main axis
+//     //paddingTop: 10,
+//     //paddingBottom: 10,
+//     marginLeft: 14,
+//     marginRight: 14,
+//     marginTop: 0,
+//     marginBottom: 6,
+//   },
+  
+//   title: {
+//     fontSize: 20,
+//     //width: 200,
+//     //padding: 10,
+//     //backgroundColor: 'red',
+
+//   },
+//   image: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     // paddingBottom :200,
+  
+//     // width:' 15%',
+//     // height: '30%',
+//   //    backgroundColor: '#0553',
+//      //aspectRatio: 1, 
+//   //   marginBottom : 80,
+//      alignItems: 'center',
+//   //   position : 'relative',
+//   //   top:30,
+//   //   resizeMode: 'contain'
+//   },
+
+//   //MODAL
+//   centeredView: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     marginTop: 22,
+//   },
+//    modalView: {
+//      flex:1,
+//      margin: 20,
+//      backgroundColor: 'grey',
+//      borderRadius: 20,
+//      padding: 35,
+//      alignItems: 'stretch',
+//      shadowColor: '#000',
+//      shadowOffset: {
+//        width: 0,
+//        height: 2,
+//      },
+//      shadowOpacity: 0.25,
+//      shadowRadius: 4,
+//      elevation: 5,
+//    },
+//   button: {
+//     borderRadius: 20,
+//     padding: 10,
+//     elevation: 2,
+//   },
+//   buttonOpen: {
+//     backgroundColor: '#F194FF',
+//   },
+//   buttonClose: {
+//     backgroundColor: '#2196F3',
+//   },
+//   textStyle: {
+//     color: 'white',
+//     fontWeight: 'bold',
+//     textAlign: 'center',
+//   },
+//   modalText: {
+//     marginBottom: 15,
+//     textAlign: 'center',
+//   },
+// });
+
+
+
