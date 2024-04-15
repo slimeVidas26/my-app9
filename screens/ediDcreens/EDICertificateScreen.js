@@ -212,7 +212,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 borderColor:'blue' }}
 />
      </View>
-     <View style = {{display:'flex' ,position:'absolute' , top :180,right:30,height:50, paddingHorizontal:20 ,paddingVertical:10, backgroundColor:'white'}}><Text style = {{fontSize:20 , color:'blue'}}>{title}</Text></View>
      </> 
     )
    
@@ -269,10 +268,11 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
         height:60,
         //position:'fixed',
         //marginHorizontal:20,
+        paddingHorizontal:10,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: "center",
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
       }}
       >
       
@@ -327,6 +327,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
              {query ? 
              <>
               <RenderHeaderModal/>
+
               <View style={styles.popupContainer2}>
 
              <FlatList style = {{ width:'96%'}}
@@ -401,7 +402,7 @@ const styles = StyleSheet.create({
   },
 
   popupContainer2: {
-    marginTop:-50,
+    marginTop:-100,
    // backgroundColor: 'pink',
     borderRadius: 50,
     alignItems: 'center',
