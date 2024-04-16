@@ -20,7 +20,7 @@ const Modal = ({ children, onClose }) =>{
 const styles = StyleSheet.create({
     overlay: {
         position: 'fixed',
-        top:-20,
+        top:0,
         left: 0,
         right: 0,
         bottom: 0,
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
       },
       modal: {
-        backgroundColor: 'white',
-        marginTop:90,
+        backgroundColor: 'yellow',
+        //marginTop:30,
         //padding: 10,
         borderRadius: 40,
         position: 'relative',

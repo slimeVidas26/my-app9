@@ -160,7 +160,7 @@ const EDICertificate = ({navigation}) => {
 
   const renderHeaderModal=()=>{
     return(
-      
+      <>
        <View
       style = {{
         display: 'flex',
@@ -172,7 +172,7 @@ const EDICertificate = ({navigation}) => {
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: "center",
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        //backgroundColor: 'rgba(0, 0, 0, 0.2)',
       }}
       >
     
@@ -195,7 +195,8 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 borderColor:'blue' }}
 />
      </View>
-     
+     <View style = {{paddingLeft:250 ,paddingTop:8, height:40  }}><Text style = {{fontSize:20 , fontWeight:'bold' , color:'blue'}}>Edi Certificate</Text></View>
+     </>
     )
    
 
@@ -214,7 +215,7 @@ borderColor:'blue' }}
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: "center",
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        //backgroundColor: 'rgba(0, 0, 0, 0.2)',
       }}
       >
     
@@ -224,7 +225,7 @@ borderColor:'blue' }}
 </Pressable>
 
 <TextInput
-autoFocus={true}
+
 keyboardType='numeric'
 autoCapitalize="none"
 placeHolder='Search'
@@ -242,8 +243,6 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
       
     )
   }
-
-  
 
   const renderHeader = ()=>{
     return(
@@ -311,7 +310,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
           >
           
              {query ? 
-             
+             <>
              <FlatList style = {{ width:'95%'}}
            ListHeaderComponent={renderHeaderModal}
            ItemSeparatorComponent={renderSeparator}
@@ -320,6 +319,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            renderItem={renderItem}
            ListEmptyComponent= {myListEmpty}
            />
+           </>
            :
            <FlatList style = {{ width:'95%'}}
            ListHeaderComponent={renderHeaderEmptyModal}
