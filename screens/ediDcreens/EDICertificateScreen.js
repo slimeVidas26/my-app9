@@ -166,13 +166,10 @@ const EDICertificate = ({navigation}) => {
         display: 'flex',
         width:'100%',
         height:60,
-        //position:'fixed',
-        //marginHorizontal:20,
         paddingHorizontal:10,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: "center",
-        //backgroundColor: 'rgba(0, 0, 0, 0.2)',
       }}
       >
     
@@ -181,8 +178,11 @@ const EDICertificate = ({navigation}) => {
 <Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalOpen(!isModalOpen)} name="closecircle" size={40} color="blue" /></Text>
 </Pressable>
 
+
+
 <TextInput
 autoFocus={true}
+// {...(query ?  autoFocus = true  : autoFocus = false)} 
 keyboardType='numeric'
 autoCapitalize="none"
 placeHolder='Search'
@@ -195,54 +195,11 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
 borderColor:'blue' }}
 />
      </View>
-     <View style = {{paddingLeft:250 ,paddingTop:8, height:40  }}><Text style = {{fontSize:20 , fontWeight:'bold' , color:'blue'}}>Edi Certificate</Text></View>
+     {query && <View style = {{paddingLeft:250 ,paddingTop:8, height:40  }}><Text style = {{fontSize:20 , fontWeight:'bold' , color:'blue'}}>Edi Certificate</Text></View>}
      </>
     )
-   
-
   }
-  const renderHeaderEmptyModal =()=>{
-    return(
-      <>
-       <View
-      style = {{
-        display: 'flex',
-        width:'100%',
-        height:60,
-        //position:'fixed',
-        //marginHorizontal:20,
-        paddingHorizontal:10,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems: "center",
-        //backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      }}
-      >
-    
 
-<Pressable onPress={() => setModalOpen(!isModalOpen)}>
-<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalOpen(!isModalOpen)} name="closecircle" size={40} color="blue" /></Text>
-</Pressable>
-
-<TextInput
-
-keyboardType='numeric'
-autoCapitalize="none"
-placeHolder='Search'
-autoCorrect={false}
-clearButtonMode="always"
-value={query}
-onChangeText={queryText => handleSearch(queryText)}
-style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
-        borderWidth: 1,
-        borderColor:'blue' }}
-/>
- </View>
-
- </>
-      
-    )
-  }
 
   const renderHeader = ()=>{
     return(
@@ -322,7 +279,7 @@ style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddin
            </>
            :
            <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={renderHeaderEmptyModal}
+           ListHeaderComponent={renderHeaderModal}
            ItemSeparatorComponent={renderSeparator}
            data={null}
            keyExtractor={item => item.id}
