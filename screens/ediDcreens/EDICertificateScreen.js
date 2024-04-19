@@ -1,5 +1,6 @@
 import React , {useState , useEffect} from 'react'
 import Modal from "../../components/modals/Modal";
+import ModalHeader from '../../components/headers/ModalHeader';
 
 import { Alert,View, Text  ,
         ImageBackground,Keyboard, StyleSheet , Button ,Pressable,
@@ -10,7 +11,6 @@ import { Alert,View, Text  ,
   import Constants from 'expo-constants';
   import filter from 'lodash.filter';
 import { StatusBar } from 'expo-status-bar';
-import { FontAwesome , Ionicons  , AntDesign} from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import notFound from '../../assets/data-not-found.jpg'
 
@@ -53,9 +53,8 @@ const EDICertificate = ({navigation}) => {
   const handleClosePopup = () => {
     //setModalOpen(false);
   };
-  // const {data, error, loading} = useQuery(EDI_ORDERS_QUERY);
   const {data ,error ,  loading} = useQuery(EDI_ORDERS_QUERY);
-  // console.log(data)
+   console.log(data)
   // console.log(loading)
   //const [isLoading, setIsLoading] = useState(false);
   //const [data, setData] = useState([]);
@@ -158,48 +157,6 @@ const EDICertificate = ({navigation}) => {
      return false;
    };
 
-  const renderHeaderModal=()=>{
-    return(
-      <>
-       <View
-      style = {{
-        display: 'flex',
-        width:'100%',
-        height:60,
-        paddingHorizontal:10,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems: "center",
-      }}
-      >
-    
-
-    <Pressable onPress={() => setModalOpen(!isModalOpen)}>
-<Text  style={{ zIndex:1000}}><AntDesign onPress={() => setModalOpen(!isModalOpen)} name="closecircle" size={40} color="blue" /></Text>
-</Pressable>
-
-
-
-<TextInput
-autoFocus={true}
-// {...(query ?  autoFocus = true  : autoFocus = false)} 
-keyboardType='numeric'
-autoCapitalize="none"
-placeHolder='Search'
-autoCorrect={false}
-clearButtonMode="always"
-value={query}
-onChangeText={queryText => handleSearch(queryText)}
-style={{textAlign:"right",borderWidth:7,flex:1,fontSize:20 ,color:'#000' ,paddingHorizontal:20 , paddingVertical:10 ,borderRadius: 30,
-        borderWidth: 1,
-borderColor:'blue' }}
-/>
-     </View>
-     {query && <View style = {{paddingLeft:250 ,paddingTop:8, height:40  }}><Text style = {{fontSize:20 , fontWeight:'bold' , color:'blue'}}>Edi Certificate</Text></View>}
-     </>
-    )
-  }
-
 
   const renderHeader = ()=>{
     return(
@@ -265,11 +222,14 @@ borderColor:'blue' }}
           //   setModalOpen(!isModalOpen);
           // }}
           >
-          
              {query ? 
              <>
              <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={renderHeaderModal}
+           ListHeaderComponent={<ModalHeader
+             setModalOpen = {setModalOpen} 
+             isModalOpen = {isModalOpen}
+             query = {query}
+             handleSearch = {handleSearch}/>}
            ItemSeparatorComponent={renderSeparator}
            data={fullData}
            keyExtractor={item => item.id}
@@ -279,7 +239,11 @@ borderColor:'blue' }}
            </>
            :
            <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={renderHeaderModal}
+           ListHeaderComponent={<ModalHeader
+            setModalOpen = {setModalOpen} 
+            isModalOpen = {isModalOpen}
+            query = {query}
+            handleSearch = {handleSearch}/>}
            ItemSeparatorComponent={renderSeparator}
            data={null}
            keyExtractor={item => item.id}
