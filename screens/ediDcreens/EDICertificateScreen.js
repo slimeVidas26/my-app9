@@ -1,11 +1,11 @@
 import React , {useState , useEffect} from 'react'
 import Modal from "../../components/modals/Modal";
-import ModalHeader from '../../components/headers/ModalHeader';
+import { ModalHeader , EdiHeader } from '../../components/headers/Header';
 
-import { Alert,View, Text  ,
-        ImageBackground,Keyboard, StyleSheet , Button ,Pressable,
+import {View, Text ,
+        ImageBackground,Keyboard, StyleSheet , Button ,
         FlatList  ,ActivityIndicator,TouchableOpacity,
-  Image , TextInput , Dimensions,
+  Image  , Dimensions,
   ScrollView} from 'react-native'
   import Icon from 'react-native-vector-icons/FontAwesome'
   import Constants from 'expo-constants';
@@ -22,21 +22,7 @@ const screenWidth = Dimensions.get('window').width;
 
 console.log(screenWidth)
 
-// const data =  [{ id: '1', supplier: 'Sano' ,  supplierNumber:4723 ,  edi : 6004240, orderNumber:1443621, boxes:1, quantity:160,date:'29/02/24'},
-// { id: '2', supplier: 'Chaniv' ,supplierNumber:5800 ,   edi : 6001471, orderNumber:24013545, boxes:6, quantity:1160,date:'29/02/24'},
-// { id: '3', supplier: 'Fisher' ,supplierNumber:404643 , edi : 6002800, orderNumber:7140759523, boxes:22, quantity:391,date:'29/02/24'},
-// { id: '4', supplier: 'Fisher' ,supplierNumber:404643 , edi : 6002802, orderNumber:7140759585, boxes:9, quantity:872,date:'29/02/24'},
-// { id: '5', supplier: 'Densher' ,supplierNumber:467895 , edi : 6002803, orderNumber:7150965063, boxes:42, quantity:1738,date:'29/02/24'},
-// { id: '6', supplier: 'Densher' ,supplierNumber:467895 , edi : 6002801, orderNumber:7150965184, boxes:16, quantity:254,date:'29/02/24'},
-// { id: '7', supplier: 'Ossem' ,  supplierNumber:414798 , edi : 6003514, orderNumber:7075028846, boxes:25, quantity:974,date:'29/02/24'},
-// { id: '8', supplier: 'SuperTex' ,supplierNumber:405408 , edi : 6002365, orderNumber:5700895, boxes:13, quantity:585,date:'28/02/24'}
-// ];
 
-// console.log(data)
-
-  
-
-//const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`;
 
 
 
@@ -44,21 +30,8 @@ const EDICertificate = ({navigation}) => {
 
 
   const [isModalOpen, setModalOpen] = useState(false);
-
-
-  const handleOpenPopup = () => {
-    setModalOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    //setModalOpen(false);
-  };
   const {data ,error ,  loading} = useQuery(EDI_ORDERS_QUERY);
    console.log(data)
-  // console.log(loading)
-  //const [isLoading, setIsLoading] = useState(false);
-  //const [data, setData] = useState([]);
-  //const [error, setError] = useState(null);
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
   const [title , setTitle] = useState('')
@@ -66,9 +39,6 @@ const EDICertificate = ({navigation}) => {
 
   useEffect(() => {
     setInfo('No Data Found')
-    //setTitle('Edi Certificate')
-    //setQuery(query)
-    //console.log(query)
     console.log(info)
     console.log(title)
   }, [query , info , title]) 
@@ -77,7 +47,7 @@ const EDICertificate = ({navigation}) => {
 
  const renderItem=({ item }) => (
     
-    <View style={styles.queryListItem}>
+    <View style={styles.listItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
           <Text style={[styles.title , styles.text]}>{`${item.supplier}`}</Text>
@@ -104,37 +74,19 @@ const EDICertificate = ({navigation}) => {
    )
 
    const myListEmpty = () => {
-    
       return (
-    
       <View style={{flex:1}}> 
       <Text style={styles.item}>No Data Found</Text>
-      {/* <ImageBackground 
-      source={require('../../assets/noData.png')}
-        resizeMode="stretch"
-        style={styles.img}> 
-      </ImageBackground>  */}
     </View> 
 
       )
     }
    
-    
-
-    const myListNotEmpty = () => {
-      return (
-        <View style={{ alignItems: "center" }}>
-        <Text style={styles.item}>Entry Certificate</Text>
-        </View>
-      )}
-
+  
    const handleSearch = text => {
-    // console.log('fullData before' , fullData)
-
      const formattedQuery = text.toLowerCase(); 
      console.log(formattedQuery)
      const filteredData = filter(data.ediOrders, edi => {
-       //console.log('user' , user)
        return contains(edi, formattedQuery);
      });
      console.log('filteredData' , filteredData);
@@ -142,8 +94,6 @@ const EDICertificate = ({navigation}) => {
      setQuery(text);
      setFullData(filteredData)
      setTitle('Edi Certificate')
-     
-    // console.log('fullData after' , fullData)
       console.log('fullData.length',fullData.length)
    };
   
@@ -158,33 +108,7 @@ const EDICertificate = ({navigation}) => {
    };
 
 
-  const renderHeader = ()=>{
-    return(
-      <View
-      style = {{
-        display: 'flex',
-        width:'100%',
-        height:60,
-        //position:'fixed',
-        //marginHorizontal:20,
-        paddingHorizontal:10,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems: "center",
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      }}
-      >
-      
-      <Ionicons onPress={() =>{
-        setModalOpen(true);setQuery('');setFullData([])}}
-          name="search-circle-sharp" size={45} color="blue" />
-     
-      <AntDesign onPress={() => {
-        navigation.navigate('Home')}} name="rightcircleo" 
-        size={33} color="blue" />
-      </View>
-    )
-  }
+ 
   function renderSeparator() {
     return (
       <View
@@ -217,55 +141,53 @@ const EDICertificate = ({navigation}) => {
           animationType="fade"
           transparent={true}
           visible={isModalOpen}
-          // onRequestClose={() => {
-          //   Alert.alert('Modal has been closed.');
-          //   setModalOpen(!isModalOpen);
-          // }}
           >
              {query ? 
              <>
-             <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={<ModalHeader
-             setModalOpen = {setModalOpen} 
-             isModalOpen = {isModalOpen}
-             query = {query}
-             handleSearch = {handleSearch}/>}
-           ItemSeparatorComponent={renderSeparator}
-           data={fullData}
-           keyExtractor={item => item.id}
-           renderItem={renderItem}
-           ListEmptyComponent= {myListEmpty}
+             <FlatList style = {styles.flatList}
+                       ListHeaderComponent={<ModalHeader
+                       setModalOpen = {setModalOpen} 
+                       isModalOpen = {isModalOpen}
+                       query = {query}
+                       handleSearch = {handleSearch}/>}
+                       ItemSeparatorComponent={renderSeparator}
+                       data={fullData}
+                       keyExtractor={item => item.id}
+                       renderItem={renderItem}
+                       ListEmptyComponent= {myListEmpty}
            />
            </>
            :
-           <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={<ModalHeader
-            setModalOpen = {setModalOpen} 
-            isModalOpen = {isModalOpen}
-            query = {query}
-            handleSearch = {handleSearch}/>}
-           ItemSeparatorComponent={renderSeparator}
-           data={null}
-           keyExtractor={item => item.id}
-           renderItem={renderItem}
-           ListEmptyComponent= {myListEmpty}
+           <FlatList style = {styles.flatList}
+                       ListHeaderComponent={<ModalHeader
+                       setModalOpen = {setModalOpen} 
+                       isModalOpen = {isModalOpen}
+                       query = {query}
+                       handleSearch = {handleSearch}/>}
+                       ItemSeparatorComponent={renderSeparator}
+                       data={null}
+                       keyExtractor={item => item.id}
+                       renderItem={renderItem}
+                       ListEmptyComponent= {myListEmpty}
            />
            
            }
           
         </Modal>
-        
         :
         !loading && !error && data  &&
        <>
-           {/* <RenderHeader/> */}
-          <FlatList style = {{ width:'95%'}}
-           ListHeaderComponent={renderHeader}
-           ItemSeparatorComponent={renderSeparator}
-           ListEmptyComponent={myListEmpty}
-           data={data.ediOrders}
-           keyExtractor={item => item.id}
-           renderItem={renderItem}/>
+              <FlatList style = {styles.flatList}
+                        ListHeaderComponent={<EdiHeader
+                        setModalOpen = {setModalOpen} 
+                        setQuery = {setQuery} 
+                        setFullData ={setFullData}/>}
+                        ItemSeparatorComponent={renderSeparator}
+                        data={data.ediOrders}
+                        keyExtractor={item => item.id}
+                        renderItem={renderItem}
+                        ListEmptyComponent={myListEmpty}
+                        />
 </>
            }
       
@@ -283,6 +205,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }, 
+
+  flatList :{
+    width:'95%'
+  },
  
 
  
@@ -357,22 +283,13 @@ const styles = StyleSheet.create({
   listItem: {
          marginTop: 10,
          paddingVertical: 0,
-         //paddingHorizontal: 40,
         backgroundColor: '#fff',
          flexDirection: 'column',
          justifyContent:'space-around',
          borderRadius:10,
       },
 
-      queryListItem: {
-        marginTop: 10,
-        paddingVertical: 0,
-        //paddingHorizontal: 40,
-       backgroundColor: '#CED0CE',
-        flexDirection: 'column',
-        justifyContent:'space-around',
-        borderRadius:10,
-     },
+     
       metaInfo: {
             // elevation: 1,
              borderRadius: 2,
@@ -421,136 +338,5 @@ const styles = StyleSheet.create({
 
 
 
-// const styles = StyleSheet.create({
-  
-//   container: {
-//     // width : "100%",
-//      flex: 1,
-//     // backgroundColor: '#f8f8f8',
-//     // alignItems: 'center',
-//      marginTop: 14,
-//       //alignSelf: "stretch",
-//   },
 
-//   img: { 
-//     height: screenHeight, 
-//     width: screenWidth, 
-//     justifyContent: 'center', 
-//     alignItems: 'center', 
-//   }, 
-//   input: { 
-//     height: 40, 
-//     margin: 12, 
-//     borderWidth: 2, 
-//     padding: 10, 
-//   }, 
   
-//   inputWithIcon :{
-//     border: 'none',
-//     flex: 1
-//   },
-  
-  
-//   text: {
-//     fontSize:20,
-//     color: 'blue',
-//     //fontWeight: '700'
-//   },
-//   listItem: {
-//     marginTop: 10,
-//     paddingVertical: 20,
-//     //paddingHorizontal: 40,
-//     backgroundColor: '#fff',
-//     flexDirection: 'column',
-//     justifyContent:'space-around',
-//     borderRadius:10
-//   },
-//   coverImage: {
-//     width: 100,
-//     height: 100,
-//     borderRadius: 8
-//   },
-//   metaInfo: {
-//    // elevation: 1,
-//     borderRadius: 2,
-//     flex: 1,
-//     flexDirection: "row", // main axis
-//     justifyContent: "space-between", // main axis
-//     //paddingTop: 10,
-//     //paddingBottom: 10,
-//     marginLeft: 14,
-//     marginRight: 14,
-//     marginTop: 0,
-//     marginBottom: 6,
-//   },
-  
-//   title: {
-//     fontSize: 20,
-//     //width: 200,
-//     //padding: 10,
-//     //backgroundColor: 'red',
-
-//   },
-//   image: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     // paddingBottom :200,
-  
-//     // width:' 15%',
-//     // height: '30%',
-//   //    backgroundColor: '#0553',
-//      //aspectRatio: 1, 
-//   //   marginBottom : 80,
-//      alignItems: 'center',
-//   //   position : 'relative',
-//   //   top:30,
-//   //   resizeMode: 'contain'
-//   },
-
-//   //MODAL
-//   centeredView: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     marginTop: 22,
-//   },
-//    modalView: {
-//      flex:1,
-//      margin: 20,
-//      backgroundColor: 'grey',
-//      borderRadius: 20,
-//      padding: 35,
-//      alignItems: 'stretch',
-//      shadowColor: '#000',
-//      shadowOffset: {
-//        width: 0,
-//        height: 2,
-//      },
-//      shadowOpacity: 0.25,
-//      shadowRadius: 4,
-//      elevation: 5,
-//    },
-//   button: {
-//     borderRadius: 20,
-//     padding: 10,
-//     elevation: 2,
-//   },
-//   buttonOpen: {
-//     backgroundColor: '#F194FF',
-//   },
-//   buttonClose: {
-//     backgroundColor: '#2196F3',
-//   },
-//   textStyle: {
-//     color: 'white',
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-//   modalText: {
-//     marginBottom: 15,
-//     textAlign: 'center',
-//   },
-// });
-
-
-
