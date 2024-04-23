@@ -1,36 +1,40 @@
-import React, { useState, useEffect } from 'react'
+//const [title, setTitle] = useState('')
+//const [info, setInfo] = useState('')
+// useEffect(() => {
+// }, [query , info , title]) 
+//ImageBackground, Keyboard,Button,TouchableOpacity,Image,ScrollView
+//import Icon from 'react-native-vector-icons/FontAwesome'
+//import Constants from 'expo-constants';
+//import { StatusBar } from 'expo-status-bar';
+//import { Entypo } from '@expo/vector-icons';
+//import notFound from '../../assets/data-not-found.jpg'
+//const screenHeight = Dimensions.get('window').height;
+//const screenWidth = Dimensions.get('window').width;
+//console.log(screenWidth)
+//const { first, last } = name;
+// Dimensions
+// setTitle('Edi Certificate')
+
+
+
+
+
+
+import React, { useState } from 'react'
 import Modal from "../../components/modals/Modal";
 import { ModalHeader, EdiHeader } from '../../components/headers/Header';
-
-import {
-  View, Text,
-  ImageBackground, Keyboard, StyleSheet, Button,
-  FlatList, ActivityIndicator, TouchableOpacity,
-  Image, Dimensions,
-  ScrollView
-} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import Constants from 'expo-constants';
+import { View, Text, StyleSheet, FlatList  } from 'react-native'
 import filter from 'lodash.filter';
-import { StatusBar } from 'expo-status-bar';
-import { Entypo } from '@expo/vector-icons';
-import notFound from '../../assets/data-not-found.jpg'
 import { EDIcertificateItem } from '../../components/EDICertificate/EDIcertificateItem';
 import { MyListEmpty } from '../../components/EDICertificate/MyListEmpty';
 import { RenderSeparator } from '../../components/EDICertificate/RenderSeparator';
+import { Loading } from '../../components/EDICertificate/Loading';
+import { Error } from '../../components/EDICertificate/Error';
 import { useQuery } from "@apollo/client";
 import { EDI_ORDERS_QUERY } from '../../gql/Query';
 
-const screenHeight = Dimensions.get('window').height;
-const screenWidth = Dimensions.get('window').width;
 
-console.log(screenWidth)
-
-
-
-
-
-const EDICertificate = ({ navigation }) => {
+const EDICertificate = () => {
 
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -38,29 +42,22 @@ const EDICertificate = ({ navigation }) => {
   //console.log(data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
-  const [title, setTitle] = useState('')
-  const [info, setInfo] = useState('')
 
-  // useEffect(() => {
-  // }, [query , info , title]) 
 
   const handleSearch = text => {
     const formattedQuery = text.toLowerCase();
-    console.log(formattedQuery)
     const filteredData = filter(data.ediOrders, edi => {
+      console.log('edi' , edi)
+      // console.log('toto',contains(edi, formattedQuery));
       return contains(edi, formattedQuery);
     });
-    console.log('filteredData', filteredData);
     setModalOpen(true)
     setQuery(text);
     setFullData(filteredData)
-    setTitle('Edi Certificate')
   };
 
-  const contains = ({ orderNumber }, query) => {
-    //const { first, last } = name;
-    console.log('contains', contains)
-    if (orderNumber.includes(query)) {
+  const contains = ({ orderNumber , supplier , date }, query) => {
+    if (orderNumber.includes(query) || supplier.includes(query) || date.includes(query)) {
       return true;
     }
 
@@ -70,17 +67,10 @@ const EDICertificate = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        {loading && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size="large" color="#5500dc" />
-        </View>}
-        {error && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18 }}>
-            Error fetching data... Check your network connection!
-          </Text>
-        </View>}
+        {loading && <Loading/>}
+        {error && <Error/>}
 
         {isModalOpen == true ?
-
           <Modal
             animationType="fade"
             transparent={true}
@@ -98,30 +88,22 @@ const EDICertificate = ({ navigation }) => {
               renderItem={({ item }) => <EDIcertificateItem item={item} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}
             />
-
-
-
-
-
           </Modal>
           :
           !loading && !error && data &&
-          <>
-            <FlatList style={styles.flatList}
-              ListHeaderComponent={<EdiHeader
-                setModalOpen={setModalOpen}
-                setQuery={setQuery}
-                setFullData={setFullData} />}
-              ItemSeparatorComponent={<RenderSeparator />}
-              data={data.ediOrders}
-              keyExtractor={item => item.id}
-              //renderItem={<EDIcertificateItem/>}
-              renderItem={({ item }) => <EDIcertificateItem item={item} />}
-              ListEmptyComponent={<MyListEmpty message="No Data Found" />}
-            />
-          </>
-        }
 
+          <FlatList style={styles.flatList}
+            ListHeaderComponent={<EdiHeader
+              setModalOpen={setModalOpen}
+              setQuery={setQuery}
+              setFullData={setFullData} />}
+            ItemSeparatorComponent={<RenderSeparator />}
+            data={data.ediOrders}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => <EDIcertificateItem item={item} />}
+            ListEmptyComponent={<MyListEmpty message="No Data Found" />}
+          />
+        }
       </View>
     </>
   );
