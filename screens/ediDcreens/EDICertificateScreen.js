@@ -23,7 +23,7 @@
 import React, { useState } from 'react'
 import Modal from "../../components/modals/Modal";
 import { ModalHeader, EdiHeader } from '../../components/headers/Header';
-import { View, Text, StyleSheet, FlatList  } from 'react-native'
+import { View, StyleSheet, FlatList  } from 'react-native'
 import filter from 'lodash.filter';
 import { EDIcertificateItem } from '../../components/EDICertificate/EDIcertificateItem';
 import { MyListEmpty } from '../../components/EDICertificate/MyListEmpty';
@@ -39,25 +39,27 @@ const EDICertificate = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
-  //console.log(data)
+  console.log(data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 
 
   const handleSearch = text => {
     const formattedQuery = text.toLowerCase();
-    const filteredData = filter(data.ediOrders, edi => {
-      console.log('edi' , edi)
-      // console.log('toto',contains(edi, formattedQuery));
-      return contains(edi, formattedQuery);
+    console.log('formattedQuery' , formattedQuery)
+    const filteredData = filter(data.ediOrders, order => {
+      return contains(order, formattedQuery);
     });
     setModalOpen(true)
     setQuery(text);
     setFullData(filteredData)
   };
 
-  const contains = ({ orderNumber , supplier , date }, query) => {
-    if (orderNumber.includes(query) || supplier.includes(query) || date.includes(query)) {
+  const contains = ({  supplier ,supplierNumber , edi , orderNumber  }, query) => {
+    if ( supplier.toLowerCase().includes(query) ||
+          //supplierNumber.includes(query) ||
+         //edi.includes(query) ||
+          orderNumber.includes(query)) {
       return true;
     }
 
