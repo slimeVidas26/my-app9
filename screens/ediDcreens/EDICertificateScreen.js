@@ -56,9 +56,10 @@ const EDICertificate = () => {
   };
 
   const contains = ({  supplier ,supplierNumber , edi , orderNumber  }, query) => {
+    
     if ( supplier.toLowerCase().includes(query) ||
-          //supplierNumber.includes(query) ||
-         //edi.includes(query) ||
+          supplierNumber.includes(query) ||
+          //edi.includes(query) ||
           orderNumber.includes(query)) {
       return true;
     }
@@ -95,7 +96,7 @@ const EDICertificate = () => {
           !loading && !error && data &&
 
           <FlatList style={styles.flatList}
-            ListHeaderComponent={<EdiHeader
+            ListHeaderComponent={<EdiHeader 
               setModalOpen={setModalOpen}
               setQuery={setQuery}
               setFullData={setFullData} />}

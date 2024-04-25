@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   modal: {
-    backgroundColor: 'yellow',
+    backgroundColor: 'lightGrey',
     //marginTop:30,
     //padding: 10,
     borderRadius: 40,

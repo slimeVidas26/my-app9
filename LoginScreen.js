@@ -1,13 +1,8 @@
 //import { Image } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , Button ,
-  Image,
-  TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , Button ,Image,TextInput,TouchableOpacity } from 'react-native';
 import React, { useState } from "react";
 import { translation } from './i18n/supportedLanguages';
-
-
-
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 

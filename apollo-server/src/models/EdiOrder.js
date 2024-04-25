@@ -9,7 +9,7 @@ export const EdiOrder = mongoose.model('EdiOrder', {
   supplier:String,
   supplierNumber: String,
   edi :Number,
-  orderNumber: Number,
+  orderNumber: String,
   boxes: Number,
   quantity : Number,
   date:String,
