@@ -34,7 +34,7 @@ import { useQuery } from "@apollo/client";
 import { EDI_ORDERS_QUERY } from '../../gql/Query';
 
 
-const EDICertificate = () => {
+const EDICertificate = ({navigation}) => {
 
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -55,7 +55,7 @@ const EDICertificate = () => {
     setFullData(filteredData)
   };
 
-  const contains = ({  supplier ,supplierNumber , edi , orderNumber  }, query) => {
+  const contains = ({  supplier ,supplierNumber , orderNumber  }, query) => {
     
     if ( supplier.toLowerCase().includes(query) ||
           supplierNumber.includes(query) ||
@@ -79,33 +79,34 @@ const EDICertificate = () => {
             transparent={true}
             visible={isModalOpen}
           >
-            <FlatList style={styles.flatList}
-              ListHeaderComponent={<ModalHeader
+              <ModalHeader
                 setModalOpen={setModalOpen}
                 isModalOpen={isModalOpen}
                 query={query}
-                handleSearch={handleSearch} />}
+                handleSearch={handleSearch} />
+              <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
               data={query ? fullData : null}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <EDIcertificateItem item={item} />}
+              renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}
             />
           </Modal>
           :
           !loading && !error && data &&
+            <>
+            <EdiHeader setModalOpen={setModalOpen}
+                       setQuery={setQuery}
+                       setFullData={setFullData} />
 
           <FlatList style={styles.flatList}
-            ListHeaderComponent={<EdiHeader 
-              setModalOpen={setModalOpen}
-              setQuery={setQuery}
-              setFullData={setFullData} />}
             ItemSeparatorComponent={<RenderSeparator />}
             data={data.ediOrders}
             keyExtractor={item => item.id}
             renderItem={({ item }) => <EDIcertificateItem item={item} />}
             ListEmptyComponent={<MyListEmpty message="No Data Found" />}
           />
+         </>
         }
       </View>
     </>
@@ -118,12 +119,12 @@ export default EDICertificate
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    alignItems: 'stretch'
   },
 
   flatList: {
-    width: '95%'
+    width: '100%'
   }
 });
 
