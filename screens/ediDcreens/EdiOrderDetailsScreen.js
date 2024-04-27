@@ -1,17 +1,16 @@
-import React, { useState , useCallback, useEffect } from "react";
-import { AntDesign } from '@expo/vector-icons';
-import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { translation } from "../i18n/supportedLanguages";
-import * as Localization from 'expo-localization';
-import { I18n } from 'i18n-js';
-import Constants from 'expo-constants';
+import React from 'react'
+import { View, Text  ,TouchableOpacity,Dimensions, StyleSheet,FlatList , ImageBackground} from 'react-native'
+import { StatusBar } from 'expo-status-bar';
+import { EdiOrderDetailHeader } from '../../components/headers/Header';
 import { Card } from '@rneui/themed';
-import logo from '../assets/warehouse.png'
-
+import { I18n } from 'i18n-js';
+import { translation } from '../../i18n/supportedLanguages';
+import * as Localization from 'expo-localization';
 
 
 import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from "../gql/Query";
+import { DEPARTMENTS_QUERY } from '../../gql/Query';
+
 const i18n = new I18n(translation)
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
@@ -20,21 +19,11 @@ i18n.enableFallback = true;
 // To see the fallback mechanism uncomment line below to force app to use Japanese language.
 // i18n.locale = 'ja';
 
-
-// const Square = ({ text}) => (
-//   <View >
-//     <Text style={styles.text}>{text}</Text>
-//   </View>
-// );
-
 const spacing = 5;
 const width = (Dimensions.get('window').width - 2 * 10) / 2;
-// const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
- //const image = require('../assets/logo-og.png');
 
 
-
-export  function GridScreen({navigation}) {
+const EdiOrderDetailsScreen = ({navigation}) =>  {
 
   const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
   //console.log('data' , data)
@@ -60,10 +49,41 @@ return(
 
 };
 
+  // const EdiOrderItem = ({ department}) => {
+  //   const { title , id } = department; 
+  //   console.log( title , id)
+  //   return (
+  //     <TouchableOpacity onPress={() => navigation.navigate('EdiOrderDetails')}>
+  //       <View style={styles.listItem}>
+  //         <View style={styles.metaInfo}>
+  //           <Text style={styles.title}></Text>
+  //           <Text style={styles.blueText}>{`${'item.supplier'}`}</Text>
+  //         </View>
+  
+  //         <View style={styles.metaInfo}>
+  //           <Text style={styles.blueText}>Boxes:{`${'item.boxes'}`}</Text>
+  //           <Text style={styles.title}>Supplier Number:{`${'item.supplierNumber'}`}</Text>
+  //         </View>
+  
+  //         <View style={styles.metaInfo}>
+  //           <Text style={styles.blueText}>Quantity:{`${'item.quantity'}`}</Text>
+  //           <Text style={styles.title}>Edi:{`${'item.edi'}`}</Text>
+  //         </View>
+  
+  //         <View style={styles.metaInfo}>
+  //           <Text style={styles.title}>{`${'item.date'}`}</Text>
+  //           <Text style={styles.title}>Order Number: {`${'item.orderNumber'}`}</Text>
+  //         </View>
+  //       </View>
+  //     </TouchableOpacity>
+  //   )
+  
+  // };
+  
   return (
     <View style={styles.container}>
 
-  
+<EdiOrderDetailHeader/>
 
     {/* <View style = {styles.image}>
     <Image  source={require('../assets/today.jpg')}
@@ -74,9 +94,9 @@ return(
 
     {/* <View style = {styles.placeholder}></View> */}
 
-    <ImageBackground source={logo} resizeMode="cover" style={styles.image}>
+    {/* <ImageBackground source={logo} resizeMode="cover" style={styles.image}> */}
       {/* <Text style={styles.logoText}>What We Will Do Today ?</Text> */}
-    </ImageBackground>
+    {/* </ImageBackground> */}
 
     {loading && <Text>Loading...</Text>}
       {error && <Text>Check console for error logs</Text>}
@@ -87,13 +107,16 @@ return(
           <DepartmentItem department={item} />)}
         //keyExtractor={(item, index) => index}
         keyExtractor = {(item) => item.id}
-        //style={styles.container}
         numColumns={2}
         columnWrapperStyle={styles.column}
       />}
     </View>
   );
 }
+
+
+
+export default EdiOrderDetailsScreen
 
 const styles = StyleSheet.create({
   container: {

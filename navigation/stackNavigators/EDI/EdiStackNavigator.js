@@ -1,8 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import EDICertificateStackNavigator from './EDICertificateStackNavigator';
-import EdiItemsStackNavigator from './EdiItemsStackNavigator';
-import EdiItemDetailsStackNavigator from './EdiItemDetailsStackNavigator';
+import EdiOrderDetailsStackNavigator from './EdiOrderDetailsStackNavigator';
 import EntryCertificateStackNavigator from './EntryCertificateStackNavigator';
 import PopUpScreen from '../../../screens/ediDcreens/PopUpScreen1';
 import { useRoute } from '@react-navigation/native';
@@ -26,10 +25,7 @@ const EdiStackNavigator = () => {
       <Stack.Screen name="EDICertificate" component={EDICertificateStackNavigator} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       <Stack.Screen name="PopUp" component={PopUpScreen} />
-
-      <Stack.Screen  name="EdiItems" component={EdiItemsStackNavigator}
- />
-      <Stack.Screen name="EdiItemDetails" component={EdiItemDetailsStackNavigator} />
+      <Stack.Screen name="EdiOrderDetails" component={EdiOrderDetailsStackNavigator} />
 
 
     </Stack.Navigator>
