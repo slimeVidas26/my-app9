@@ -1,11 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import EdiOrderDetails from '../../../screens/ediDcreens/EdiOrderDetailsScreen';
+import { EdiOrderDetailsScreen } from '../../../screens/ediDcreens/EdiOrderDetailsScreen'
 
 const Stack = createStackNavigator()
-
-
-
 
 
 const EdiOrderDetailsStackNavigator = () => {
@@ -14,13 +11,13 @@ const EdiOrderDetailsStackNavigator = () => {
       headerShown: false,
     }}>
      
-      <Stack.Screen name="EdiItemDetails" component={EdiOrderDetails} />
+      <Stack.Screen name="EdiOrderDetails" component={EdiOrderDetailsScreen} />
 
     </Stack.Navigator>
   )
 }
 
-export default EdiOrderDetailsStackNavigator
+export default EdiOrderDetailsStackNavigator;
 
 
 

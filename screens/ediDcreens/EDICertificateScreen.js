@@ -84,6 +84,7 @@ const EDICertificate = ({navigation}) => {
                 isModalOpen={isModalOpen}
                 query={query}
                 handleSearch={handleSearch} />
+                
               <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
               data={query ? fullData : null}
