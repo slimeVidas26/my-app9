@@ -7,6 +7,7 @@ import { I18n } from 'i18n-js';
 import Constants from 'expo-constants';
 import { Card } from '@rneui/themed';
 //import logo from '../assets/warehouse.png'
+import { Feather } from '@expo/vector-icons';
 
 
 
@@ -50,20 +51,19 @@ return(
   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
  <View style={styles.listItem}>
         <View style={styles.metaInfo}>
-         
-        <Text style={styles.title}>boites</Text>   
-    <Image style = {styles.image}  source={require('../../assets/gamadim.png')}
+        <Text style={[styles.title]}>12</Text>   
+        <Feather name="box" size={26} color="black" />
+    <Image style = {[styles.image , {marginLeft:40}]}  source={require('../../assets/gamadim.png')}
     placeholder={"rami-levi"}
-        contentFit="cover"
-        transition={1000} />
-       
-
+        //contentFit="cover"
+        //transition={1000} 
+        />
         </View>
 
         <View style={styles.metaInfo2}>
           <Text style={styles.title}>quantity:48</Text>
-          <Text style={styles.title}>reference</Text>
-          <Text style={styles.blueText}>729000145784</Text>
+          <Text style={styles.blueText}>reference</Text>
+          <Text style={styles.barcode}>729000145784</Text>
 
         </View>
         </View>
@@ -120,25 +120,32 @@ const styles = StyleSheet.create({
   listItem: {
     width: width,
     margin: spacing,
-    
+    backgroundColor:'grey',
     marginTop: 10,
     paddingVertical: 0,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    //justifyContent: 'space-around',
     borderRadius: 10,
   },
   metaInfo: {
-    borderRadius: 2,
     flex: 1,
+
+    //backgroundColor:'yellow',
+     alignItems:'center',
+     justifyContent:'space-between',
+    borderRadius: 2,
     flexDirection: "row", // main axis
-    justifyContent: "space-between", // main axis
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 0,
-    marginBottom: 0,
+    //justifyContent: "space-between", // main axis
+    //marginLeft: 10,
+    //marginRight: 10,
+    marginTop: 15,
+    //marginBottom: 0,
+        paddingBottom:40
+
   },
   metaInfo2: {
+    //backgroundColor:'pink',
     borderRadius: 2,
     flex: 1,
     flexDirection: "column", // main axis
@@ -151,29 +158,35 @@ const styles = StyleSheet.create({
   },
 
   blueText: {
-    fontSize: 20,
+    fontSize: 24,
     color: 'blue',
+    marginBottom: 10,
+
   },
 
   title: {
     fontSize: 20,
     marginBottom: 20,
   },
+  barcode: {
+    fontSize: 16,
+    marginBottom: 20,
+  },
 
   image: {
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'space-between',
     //paddingBottom :200,
   
-  //   //  width : null,
-    height : 220,
-  //    backgroundColor: '#0553',
-     aspectRatio: 1, 
+     //  width : null,
+    //height : 220,
+      //backgroundColor: '#0553',
+     aspectRatio: 1.2, 
   //   marginBottom : 80,
-     alignItems: 'flex-end',
-     position : 'relative',
+     //alignItems: 'flex-end',
+     //position : 'relative',
      //top:30,
-     resizeMode: 'contain'
+     //resizeMode: 'contain'
   },
 
   placeholder :{

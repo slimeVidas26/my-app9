@@ -85,24 +85,26 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
 
 const styles = StyleSheet.create({
   header: {
+    backgroundColor:'green',
     display: 'flex',
     //width: '100%',
     height: 60,
     paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: "center"
+    alignItems: "center",
+    alignSelf: "stretch",
   },
 
   leftSide:{
-    //backgroundColor:'red',
+    backgroundColor:'red',
      //width:'50%' ,
       alignItems:'flex-start'
   },
 
   rightSide:{
     //paddingTop:10,
-     //backgroundColor:'yellow',
+     backgroundColor:'yellow',
       //width:'50%' ,
       alignItems:'flex-end'
   },

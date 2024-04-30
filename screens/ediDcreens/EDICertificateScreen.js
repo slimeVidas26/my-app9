@@ -118,14 +118,22 @@ const EDICertificate = ({navigation}) => {
 export default EDICertificate
 
 const styles = StyleSheet.create({
+  
+  
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'stretch'
+    padding: 8,
+    flexDirection: "column", // main axis
+    justifyContent: "center", // main axis
+    alignItems: "center", // cross axis
+    //backgroundColor: colors.background_dark
   },
 
   flatList: {
-    width: '100%'
+    //width: '100%',
+    marginTop: 14,
+    alignSelf: "stretch",
+
   }
 });
 
