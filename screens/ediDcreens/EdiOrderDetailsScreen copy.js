@@ -30,7 +30,6 @@ i18n.enableFallback = true;
 
 const spacing = 5;
 const width = (Dimensions.get('window').width - 2 * 10) / 2;
-const height = (Dimensions.get('window').height)
 // const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
  //const image = require('../assets/logo-og.png');
 
@@ -49,54 +48,27 @@ const DepartmentItem = ({ department}) => {
   const { title , id } = department; 
   console.log( title , id)
 return(
-//   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-//  <View style={styles.listItem}>
-//         <View style={styles.metaInfo}>
-//         <Text style={[styles.title]}>12</Text>   
-//         <Feather name="box" size={26} color="black" />
-//     <Image style = {[styles.image , {marginLeft:40}]}  source={require('../../assets/gamadim.png')}
-//     placeholder={"rami-levi"}
-//         //contentFit="cover"
-//         //transition={1000} 
-//         />
-//         </View>
+  <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
+ <View style={styles.listItem}>
+        <View style={styles.metaInfo}>
+        <Text style={[styles.title]}>12</Text>   
+        <Feather name="box" size={26} color="black" />
+    <Image style = {[styles.image , {marginLeft:40}]}  source={require('../../assets/gamadim.png')}
+    placeholder={"rami-levi"}
+        //contentFit="cover"
+        //transition={1000} 
+        />
+        </View>
 
-//         <View style={styles.metaInfo2}>
-//           <Text style={styles.title}>quantity:48</Text>
-//           <Text style={styles.blueText}>reference</Text>
-//           <Text style={styles.barcode}>729000145784</Text>
+        <View style={styles.metaInfo2}>
+          <Text style={styles.title}>quantity:48</Text>
+          <Text style={styles.blueText}>reference</Text>
+          <Text style={styles.barcode}>729000145784</Text>
 
-//         </View>
-//         </View>
+        </View>
+        </View>
 
-//     </TouchableOpacity>
-
-<TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-<View style = {styles.item}>
-
-<View style = {styles.top}>
-<Text style = {styles.boxes}>12</Text>   
-<Feather name="box" size={26} color="black" />
-
-<View style = {styles.img}>
-<Image   style={{width: 80, height: 80}} source={require('../../assets/gamadim.png')}/>
-</View>
-
-</View>
-
-<View style = {styles.bottom}>
-<Text style = {styles.quantity}>quantity : 48</Text>
-<Text style = {styles.reference}>reference</Text>
-<Text style = {styles.barcode}>729000111444</Text>
-
-</View>
-
-
-
-
-</View>
-
-   </TouchableOpacity>
+    </TouchableOpacity>
  
 )
 
@@ -140,68 +112,11 @@ return(
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#7CA1B4",
-    display: 'flex',
+    flex: 1,
     //gap: '1rem',
-    //flexWrap: "nowrap",
-    //flexDirection: 'row',  
-    //height:height,
-    //marginTop: 14,
-    //alignSelf: "stretch",
-    alignItems:'center',
-    //justifyContent:'flex-end',
-
+    //flexWrap: "wrap",
+    flexDirection: 'column',  
   },
-
-  item: {
-    display:'flex',
-    backgroundColor: '#f9c2ff',
-   borderColor: "#fff",
-   borderWidth: 1,
-   padding: 18,
-   alignItems:'center',
-   marginBottom:10,
-   borderRadius:20
-   
-   //marginVertical: 8,
-  // marginHorizontal: 16,
- },
-top:{
-  flex:1,
-backgroundColor:'red',
-flexDirection:'row',
-alignItems:'center',
-padding:5,
-margin:15
-
-},
-boxes:{
-backgroundColor:'yellow',
-},
-img:{
-  backgroundColor:'white',
-  
-
- 
-
-},
-bottom:{
-  //backgroundColor:'green',
-  margin:5,
-  alignSelf:'flex-end'
-
-},
-quantity:{
-  backgroundColor:'grey'
-
-},
-reference:{
-  backgroundColor:'cyan'
-
-},
-barcode:{
-  backgroundColor:'orange'
-
-},
   listItem: {
     width: width,
     margin: spacing,
@@ -253,10 +168,10 @@ barcode:{
     fontSize: 20,
     marginBottom: 20,
   },
-  // barcode: {
-  //   fontSize: 16,
-  //   marginBottom: 20,
-  // },
+  barcode: {
+    fontSize: 16,
+    marginBottom: 20,
+  },
 
   image: {
     flex: 1,
@@ -342,7 +257,14 @@ barcode:{
        padding:5
     },
   
-  
+    item: {
+      // backgroundColor: '#f9c2ff',
+      borderColor: "#fff",
+      borderWidth: 1,
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
     title: {
       fontSize: 20,
     },
