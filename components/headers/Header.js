@@ -9,15 +9,15 @@ export const EdiOrderDetailHeader = () => {
     <View style={styles.header}>
 
     <View style = {styles.leftSide} >
-      <Text>edi:12345</Text>
-      <Text>order Number:55487859</Text>
+      <Text style = {{fontSize:20,color:'white'}}>edi:12345</Text>
+      <Text  style = {{fontSize:20,color:'white'}}>order Number:55487859</Text>
     </View>
 
     <View  style = {styles.rightSide}>
       <AntDesign onPress={() => {
         navigation.navigate('Home')
       }} name="rightcircleo"
-        size={35} color="blue" />
+        size={35} color="white" />
        </View>
     </View>
   )
@@ -34,14 +34,14 @@ export const EdiHeader = ({ setModalOpen, setQuery, setFullData }) => {
       <Ionicons onPress={() => {
         setModalOpen(true); setQuery(''); setFullData([])
       }}
-        name="search-circle-sharp" size={48} color="blue" />
+        name="search-circle-sharp" size={48} color="white" />
     </View>
 
     <View  style = {styles.rightSide}>
       <AntDesign onPress={() => {
         navigation.navigate('Home')
       }} name="rightcircleo"
-        size={40} color="blue" />
+        size={40} color="white" />
        </View>
     </View>
   )
@@ -54,11 +54,11 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
     <>
       <View style={styles.header}>
       
-      <View style = {[styles.leftSide ,{paddingLeft:8} ]}>
+      <View style = {[styles.leftSide  ]}>
         <Pressable onPress={() => setModalOpen(!isModalOpen)}>
           <Text style={{ zIndex: 1000 }}>
             <AntDesign onPress={() => setModalOpen(!isModalOpen)}
-              name="closecircle" size={35} color="blue" />
+              name="closecircle" size={35} color="white" />
           </Text>
         </Pressable>
         </View>
@@ -85,7 +85,7 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor:'green',
+    backgroundColor: "#7CA1B4",
     display: 'flex',
     //width: '100%',
     height: 60,
@@ -97,15 +97,18 @@ const styles = StyleSheet.create({
   },
 
   leftSide:{
-    backgroundColor:'red',
+    //backgroundColor:'red',
      //width:'50%' ,
-      alignItems:'flex-start'
+      alignItems:'flex-start',
+      paddingLeft:8 ,
+       paddingRight:8
+      
   },
 
   rightSide:{
     //paddingTop:10,
-     backgroundColor:'yellow',
-      //width:'50%' ,
+     //backgroundColor:'yellow',
+      // width:'80%' ,
       alignItems:'flex-end'
   },
 
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: 'blue',
+    borderColor: 'white',
     width:350
   },
 

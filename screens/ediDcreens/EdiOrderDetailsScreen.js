@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 import { Card } from '@rneui/themed';
 //import logo from '../assets/warehouse.png'
 import { Feather } from '@expo/vector-icons';
+import { EdiOrderDetailHeader } from "../../components/headers/Header";
 
 
 
@@ -29,7 +30,7 @@ i18n.enableFallback = true;
 // );
 
 const spacing = 5;
-const width = (Dimensions.get('window').width - 2 * 10) / 2;
+const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 // const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
  //const image = require('../assets/logo-og.png');
@@ -75,11 +76,14 @@ return(
 <View style = {styles.item}>
 
 <View style = {styles.top}>
-<Text style = {styles.boxes}>12</Text>   
-<Feather name="box" size={26} color="black" />
+  <View style = {styles.left}>
+     <Text style = {styles.boxes}>12</Text>   
+     <Feather name="box" size={26} color="black" />
+  </View>
 
-<View style = {styles.img}>
-<Image   style={{width: 80, height: 80}} source={require('../../assets/gamadim.png')}/>
+
+<View>
+<Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
 </View>
 
 </View>
@@ -105,7 +109,7 @@ return(
   return (
     <View style={styles.container}>
 
-  
+  <EdiOrderDetailHeader/>
 
     {/* <View style = {styles.image}>
     <Image  source={require('../assets/today.jpg')}
@@ -123,7 +127,7 @@ return(
     {loading && <Text>Loading...</Text>}
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
-      <FlatList
+      <FlatList style = {styles.flat}
         data={data.departments}
         renderItem={({ item }) => (
           <DepartmentItem department={item} />)}
@@ -140,6 +144,7 @@ return(
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#7CA1B4",
+
     display: 'flex',
     //gap: '1rem',
     //flexWrap: "nowrap",
@@ -152,58 +157,86 @@ const styles = StyleSheet.create({
 
   },
 
+  flat:{
+  display:'flex',
+    //backgroundColor:'white',
+   width:'100%',
+  //  marginLeft:20
+   //justifyContent:'center'
+   //alignItems:'center'
+  },
+
   item: {
     display:'flex',
-    backgroundColor: '#f9c2ff',
+    backgroundColor:'white',
    borderColor: "#fff",
    borderWidth: 1,
    padding: 18,
-   alignItems:'center',
-   marginBottom:10,
-   borderRadius:20
+   //alignItems:'stretch',
+   margin:5,
+   borderRadius:20,
+   width:width -8
    
    //marginVertical: 8,
   // marginHorizontal: 16,
  },
 top:{
   flex:1,
-backgroundColor:'red',
+//backgroundColor:'red',
 flexDirection:'row',
 alignItems:'center',
+justifyContent:'space-between',
 padding:5,
-margin:15
+marginBottom:15
 
 },
+left:{
+  flex:1,
+  flexDirection:'row',
+  justifyContent:'space-between',
+  
+},
 boxes:{
-backgroundColor:'yellow',
+//backgroundColor:'yellow',
+fontSize:18
 },
 img:{
-  backgroundColor:'white',
-  
+  //backgroundColor:'white',
+  width: 100, height: 100
 
  
 
 },
 bottom:{
-  //backgroundColor:'green',
-  margin:5,
-  alignSelf:'flex-end'
+  flex:1,
+  //backgroundColor:'yellow',
+  // margin:15,
+  alignSelf:'stretch',
+  textAlign:'right',
+  
 
 },
 quantity:{
-  backgroundColor:'grey'
+  //backgroundColor:'grey'
+  fontSize:20,
+  // flexBasis:'100%'
+
+
 
 },
 reference:{
-  backgroundColor:'cyan'
+  //backgroundColor:'cyan',
+  fontSize:24,
+  color:'blue'
 
 },
 barcode:{
-  backgroundColor:'orange'
+  //backgroundColor:'orange'
+  fontSize:18,
+
 
 },
   listItem: {
-    width: width,
     margin: spacing,
     backgroundColor:'grey',
     marginTop: 10,
