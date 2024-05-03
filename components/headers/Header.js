@@ -2,7 +2,7 @@ import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
-
+import EdiButton from '../EDICertificate/EdiButton';
 
 export const EdiOrderDetailHeader = () => {
   return (
@@ -82,10 +82,39 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
   )
 }
 
+export const EdiTab = () => {
+  return (
+    <>
+      <View style={styles.tabHeader}>
+      <View style = {styles.TextInputTab}>
+        <TextInput
+          autoFocus={true}
+          keyboardType='numeric'
+          autoCapitalize="none"
+          placeHolder='Search'
+          autoCorrect={false}
+          clearButtonMode="always"
+          style={styles.inputTab}
+      /></View>
+        <EdiButton title = "Todo"/>
+        <EdiButton title = "Done"/>
+        
+      
+        </View>
+      
+     
+
+       
+      {/* </View> */}
+    </>
+  )
+}
+
+
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#7CA1B4",
+    backgroundColor: "red",
     display: 'flex',
     //width: '100%',
     height: 60,
@@ -94,6 +123,44 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: "center",
     alignSelf: "stretch",
+    margin:5,
+    borderRadius:10,
+    elevation: 3,
+
+  },
+  tabHeader: {
+    //backgroundColor: "green",
+    display: 'flex',
+    //width: '100%',
+    height: 70,
+    paddingHorizontal: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    //alignItems: "center",
+    alignSelf: "stretch",
+    margin:5,
+    borderRadius:10
+  },
+
+  TextInputTab:{
+    backgroundColor:'white' ,
+    elevation: 3,
+     width:'32%' ,
+      height:'100%' ,
+      borderRadius:10
+  },
+  inputTab: {
+    textAlign: "right",
+    borderWidth: 7,
+    flex: 1,
+    fontSize: 20,
+    color: '#000',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: 'white',
+    //width:350
   },
 
   leftSide:{

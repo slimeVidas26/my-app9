@@ -8,7 +8,7 @@ import Constants from 'expo-constants';
 import { Card } from '@rneui/themed';
 //import logo from '../assets/warehouse.png'
 import { Feather } from '@expo/vector-icons';
-import { EdiOrderDetailHeader } from "../../components/headers/Header";
+import { EdiOrderDetailHeader  , EdiTab} from "../../components/headers/Header";
 
 
 
@@ -110,6 +110,7 @@ return(
     <View style={styles.container}>
 
   <EdiOrderDetailHeader/>
+  <EdiTab/>
 
     {/* <View style = {styles.image}>
     <Image  source={require('../assets/today.jpg')}

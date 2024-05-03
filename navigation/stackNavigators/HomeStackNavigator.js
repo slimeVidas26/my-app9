@@ -53,15 +53,11 @@ const DepartmentItem = ({ department}) => {
   console.log( title , id)
 return(
   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-
-  
-    
-    
   <View style = {styles.container1}>
   <View>
      <Text style={{fontSize:15 , fontWeight:"bold" , marginRight:8 }}> {i18n.t(title)}</Text>
      </View>
-  <View style={styles.circle}>
+    <View style={styles.circle}>
     <Text style={{fontSize:15 , fontWeight:"bold" }}>25</Text>
     </View>
     </View>
