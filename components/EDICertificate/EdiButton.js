@@ -2,13 +2,21 @@ import React from 'react';
 import { Text, StyleSheet, Pressable , View } from 'react-native';
 
 export default function EdiButton(props) {
-  const { onPress, title = 'Save' } = props;
+  const { onPress,backgroundColor , title } = props;
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+
+   
+    
+    <Pressable
+    style={({ pressed }) => [
+        { opacity: pressed ? 0.5 : 1.0 },
+        styles.button
+      ]}
+      onPress={() => console.log('Todo Pressed')}>
         <View style={styles.circle}>
          <Text style={styles.text}>25</Text>
         </View>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.textTodo}>{title}</Text>
       
     </Pressable>
   );
@@ -21,15 +29,23 @@ const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 10,
     elevation: 3,
-    backgroundColor: 'blue',
-    width:'32%'
+    width:'50%',
+    backgroundColor:'blue',
+    zIndex:100
   },
   text: {
+    fontSize: 17,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'blue',
+  },
+  textTodo: {
     fontSize: 17,
     lineHeight: 21,
     fontWeight: 'bold',
@@ -41,7 +57,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     padding: 10,
-    backgroundColor:'orange',
+    backgroundColor:'white',
     //border: '3px solid #000',
     //color: '#000',
     textAlign: 'center',

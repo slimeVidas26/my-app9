@@ -84,7 +84,7 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
 
 export const EdiTab = () => {
   return (
-    <>
+  
       <View style={styles.tabHeader}>
       <View style = {styles.TextInputTab}>
         <TextInput
@@ -96,17 +96,41 @@ export const EdiTab = () => {
           clearButtonMode="always"
           style={styles.inputTab}
       /></View>
-        <EdiButton title = "Todo"/>
-        <EdiButton title = "Done"/>
+        {/* <EdiButton title = "Todo" backgroundColor = "blue"/> */}
+        {/* <EdiButton title = "Done"
+         backgroundColor = "#d3d3d3" 
+          width='75%'
+         
+          /> */}
+          
+
+    <Pressable style={({ pressed }) => [
+        { opacity: pressed ? 0.5 : 1.0 },
+        styles.pressableDone
+      ]} onPress={() => console.log('Done Pressed')}>
+          <EdiButton  title = "Todo" backgroundColor = "blue"/>
+          <View style = {{ display:'flex',
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    elevation: 3,
+    width:'50%',
+    backgroundColor:'#d3d3d3',}}>
+          <View style={styles.circle}>
+         <Text style={styles.text}>25</Text>
+        </View>
+      <Text style={styles.textDone}>Done</Text>
+          </View>
+         
+          </Pressable>
         
       
         </View>
-      
-     
 
-       
-      {/* </View> */}
-    </>
+    
   )
 }
 
@@ -145,7 +169,7 @@ const styles = StyleSheet.create({
   TextInputTab:{
     backgroundColor:'white' ,
     elevation: 3,
-     width:'32%' ,
+     width:'25%' ,
       height:'100%' ,
       borderRadius:10
   },
@@ -202,7 +226,52 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'blue'
-  }
+  },
+  textTodo: {
+    fontSize: 17,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  text: {
+    fontSize: 17,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  pressableDone:{
+     display:'flex',
+    flexDirection:'row',
+    alignItems: 'center',
+    //justifyContent: 'space-between',
+    paddingVertical: 12,
+    //paddingHorizontal: 14,
+    borderRadius: 10,
+    elevation: 3,
+    width:'70%',
+    backgroundColor:'#d3d3d3'
+  },
+  textDone: {
+    fontSize: 17,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'black',
+  },
+  circle :{
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    padding: 10,
+    backgroundColor:'blue',
+    //border: '3px solid #000',
+    //color: '#000',
+    //textAlign: 'center',
+    //font: '32px Arial, sans-serif'
+   
+  },
 });
 
 
