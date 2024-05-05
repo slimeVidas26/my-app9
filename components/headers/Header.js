@@ -83,32 +83,24 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
 }
 
 export const EdiTab = () => {
+  
   return (
   
       <View style={styles.tabHeader}>
       <View style = {styles.TextInputTab}>
-        <TextInput
-          autoFocus={true}
-          keyboardType='numeric'
-          autoCapitalize="none"
-          placeHolder='Search'
-          autoCorrect={false}
-          clearButtonMode="always"
-          style={styles.inputTab}
-      /></View>
-        {/* <EdiButton title = "Todo" backgroundColor = "blue"/> */}
-        {/* <EdiButton title = "Done"
-         backgroundColor = "#d3d3d3" 
-          width='75%'
-         
-          /> */}
+      <Ionicons onPress={() => {
+        console.log('search')
+      }}
+        name="search-circle-sharp" size={48} color="blue" />
+       </View>
+      
           
 
     <Pressable style={({ pressed }) => [
-        { opacity: pressed ? 0.5 : 1.0 },
+        { backgroundColor: pressed ? '#d3d3d3' : 'blue'},
         styles.pressableDone
       ]} onPress={() => console.log('Done Pressed')}>
-          <EdiButton  title = "Todo" backgroundColor = "blue"/>
+          <EdiButton  title = "Todo"/>
           <View style = {{ display:'flex',
     flexDirection:'row',
     alignItems: 'center',
@@ -118,7 +110,8 @@ export const EdiTab = () => {
     borderRadius: 10,
     elevation: 3,
     width:'50%',
-    backgroundColor:'#d3d3d3',}}>
+    backgroundColor:'#d3d3d3',
+    }}>
           <View style={styles.circle}>
          <Text style={styles.text}>25</Text>
         </View>
@@ -167,6 +160,9 @@ const styles = StyleSheet.create({
   },
 
   TextInputTab:{
+    display:'flex',
+    justifyContent :'center',
+    alignItems:'center',
     backgroundColor:'white' ,
     elevation: 3,
      width:'25%' ,
@@ -251,7 +247,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
     width:'70%',
-    backgroundColor:'#d3d3d3'
+    //backgroundColor:'#d3d3d3'
   },
   textDone: {
     fontSize: 17,
