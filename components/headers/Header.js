@@ -88,9 +88,7 @@ export const EdiTab = () => {
   
       <View style={styles.tabHeader}>
       <View style = {styles.TextInputTab}>
-      <Ionicons onPress={() => {
-        console.log('search')
-      }}
+      <Ionicons onPress={() => {console.log('search')}}
         name="search-circle-sharp" size={48} color="blue" />
        </View>
       

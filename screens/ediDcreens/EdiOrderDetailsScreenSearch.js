@@ -37,7 +37,7 @@ const height = (Dimensions.get('window').height)
 
 
 
-export function EdiOrderDetailsScreen({navigation}) {
+export function EdiOrderDetailsScreenSearch({navigation}) {
 
   const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
   //console.log('data' , data)
