@@ -27,18 +27,18 @@ function MyTabBar({ navigation }) {
     }}
     >
             <Tab.Screen
-                options={{ tabBarItemStyle: { borderRadius:10 }, tabBarLabel: ()=><Ionicons name="search-circle-sharp" size={48} color="blue" /> }} 
+                options={{ tabBarLabel: ()=><Ionicons name="search-circle-sharp" size={48} color="blue" /> }} 
                         name="EdiOrderDetailsScreenSearch" 
                         component={EdiOrderDetailsScreenSearch} />
 
-      <Tab.Screen   options={{tabBarItemStyle: { borderRadius:10 , backgroundColor:'yellow' }, 
-      tabBarLabel: ()=> <View style = {{flex:1 ,flexDirection:'row' ,justifyContent:'space-between', alignItems:'center'}}>
+      <Tab.Screen   options={{
+      tabBarLabel: ()=> <View style = {{flexDirection:'row' ,justifyContent:'space-between', alignItems:'center'}}>
         <View style={styles.circle}><Text style={styles.textCircle}>25</Text></View>
         <View><Text>Open</Text></View>
         </View>}} 
          name="EdiOrderDetailsScreenOpen" component={EdiOrderDetailsScreenOpen} />
 
-      <Tab.Screen    options={{tabBarItemStyle: { borderRadius:10 }, 
+      <Tab.Screen    options={{
      tabBarLabel: ()=> <View style = {{flex:1 ,flexDirection:'row' ,justifyContent:'space-between', alignItems:'center'}}>
      <View style={styles.circle}><Text style={styles.textCircle}>25</Text></View>
      <View><Text>Closed</Text></View>
