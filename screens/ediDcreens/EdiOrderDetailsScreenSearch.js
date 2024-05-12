@@ -109,8 +109,8 @@ return(
   return (
     <View style={styles.container}>
 
-  <EdiOrderDetailHeader/>
-  <EdiTab/>
+  {/* <EdiOrderDetailHeader/> */}
+  {/* <EdiTab/> */}
 
     {/* <View style = {styles.image}>
     <Image  source={require('../assets/today.jpg')}

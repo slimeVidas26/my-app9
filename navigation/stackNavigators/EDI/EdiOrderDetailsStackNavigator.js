@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { EdiOrderDetailsScreenOpen } from '../../../screens/ediDcreens/EdiOrderDetailsScreenOpen'
 import { EdiOrderDetailsScreenClosed } from '../../../screens/ediDcreens/EdiOrderDetailsScreenClosed'
 import { EdiOrderDetailsScreenSearch } from '../../../screens/ediDcreens/EdiOrderDetailsScreenSearch'
-
+import { EdiOrderDetailHeader } from '../../../components/headers/Header';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Stack = createStackNavigator()
@@ -23,19 +23,21 @@ const Tab = createMaterialTopTabNavigator();
 
 function MyTabBar({ navigation }) {
   return (
+    <>
+    <EdiOrderDetailHeader/>
     <Tab.Navigator
     initialRouteName='EdiOrderDetailsScreenOpen'
     tabBarOptions={{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-      showLabel: true,
+      //activeTintColor: 'tomato',
+      //inactiveTintColor: 'gray',
+      //showLabel: false,
       //style: {backgroundColor:'red'},
     }}
     screenOptions={{
       //tabBarActiveTintColor: "red",
       //tabBarInactiveTintColor: "blue",
       // tabBarStyle: {
-      //   height: 55,
+         //height: 105,
       // },
       tabBarLabelStyle: {
         fontSize: 18,
@@ -45,34 +47,37 @@ function MyTabBar({ navigation }) {
         //height: 90,
         //paddingHorizontal: 5,
         //paddingTop: 0,
-        //backgroundColor: 'rgba(34,36,40,1)',
+        backgroundColor: '#d3d3d3',
         //position: 'absolute',
         //borderTopWidth: 0,
         //top:500
     },
     }}
     >
-            <Tab.Screen options={{ tabBarLabel: ()=><Ionicons name="search-circle-sharp" size={48} color="blue" /> }} 
-                        name="EdiOrderDetailsScreenSearch" 
-                        component={EdiOrderDetailsScreenSearch} />
+            <Tab.Screen options={{
+               tabBarLabel: ({focused})=>
+                (<View style = {{backgroundColor: focused ? 'blue' : 'white', width:125 ,height:65, borderRadius:10,flex:1 ,flexDirection:'row' ,justifyContent:'space-evenly', alignItems:'center'}}>
+              <Ionicons name="search-circle-sharp" size={48} color = {focused ? 'white' : 'blue'} /> 
+              </View>)
+              }} 
+                name="EdiOrderDetailsScreenSearch" 
+                component={EdiOrderDetailsScreenSearch} />
 
       <Tab.Screen   options={{
-          tabBarLabel: ({focused, color, size , backgroundColor}) => (
-            <View style = {{backgroundColor: focused ? 'blue' : backgroundColor,flex:1 ,flexDirection:'row' ,justifyContent:'space-evenly', alignItems:'center',width:'100%' , borderRadius:10 }}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : 'blue'}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : 'white'}]}>25</Text></View>
-            <Text style={{color: focused ? 'white' : color,fontWeight: 'bold',fontSize:18}}>Open</Text>
-
+          tabBarLabel: ({focused}) => (
+            <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>25</Text></View>
+            <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Open</Text>
             </View>
           ) 
         }}
          name="EdiOrderDetailsScreenOpen" component={EdiOrderDetailsScreenOpen} />
 
 <Tab.Screen   options={{
-          tabBarLabel: ({focused, color, size , backgroundColor}) => (
-            <View style = {{backgroundColor: focused ? 'blue' : backgroundColor,flex:1 ,flexDirection:'row' ,justifyContent:'space-evenly', alignItems:'center',width:'100%' , borderRadius:10}}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : 'blue' , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : 'white'}]}>25</Text></View>
-            <Text style={{color: focused ? 'white' : color,fontWeight: 'bold',fontSize:18}}>Closed</Text>
-
+          tabBarLabel: ({focused}) => (
+            <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>25</Text></View>
+            <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Closed</Text>
             </View>
           ) 
         }}
@@ -80,7 +85,7 @@ function MyTabBar({ navigation }) {
 
     </Tab.Navigator>
     
-   
+    </>
   );
 }
 
@@ -89,7 +94,9 @@ function MyTabBar({ navigation }) {
 
 const EdiOrderDetailsStackNavigator = () => {
   return (
-     <Stack.Navigator>
+     <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
        <Stack.Screen name="MyTabBar" component={MyTabBar} />
      </Stack.Navigator>
    
@@ -114,6 +121,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
   },
+
+  tabBg : {
+    flex:1 ,
+    flexDirection:'row' ,
+    justifyContent:'space-evenly',
+     alignItems:'center',
+     width:125 ,
+      borderRadius:10,
+      backgroundColor:'white'
+
+  },
   TextInputTab:{
     display:'flex',
     justifyContent :'center',
@@ -129,7 +147,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     padding: 10,
-    //backgroundColor:'blue',
+    backgroundColor:'blue',
     //border: '3px solid #000',
     //color: '#000',
     //textAlign: 'center',
@@ -143,6 +161,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
+  text:{
+    color:'black',
+    fontWeight: 'bold',fontSize:18
+  }
 })
 
 export default EdiOrderDetailsStackNavigator;
