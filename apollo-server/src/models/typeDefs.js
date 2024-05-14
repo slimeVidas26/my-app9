@@ -20,7 +20,6 @@ export const typeDefs = gql`
     warehouses: [Warehouse!],
     departments: [Department!],
     arrivals:[Arrival!],
-    suppliers:[Supplier!],
     orders:[Order!]
     openOrders:[Order!],
     closedOrders: [Order!],
@@ -30,6 +29,8 @@ export const typeDefs = gql`
     ediOrders:[EdiOrder!]
     ediOrderItems:[EdiOrderItem!]
     ediOrderItemsByNumber(ediOrder: String):[EdiOrderItem!]
+    suppliers:[Supplier!]
+
     
   }
 
@@ -39,6 +40,7 @@ export const typeDefs = gql`
     createBook(name: String!, pages: Int, author: String!): Book!
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
+    createSupplier(supplier_name:String! , supplier_number:String!):Supplier!
 
   }
 
@@ -95,8 +97,8 @@ type EdiOrderItem {
 
     type Supplier {
         id: ID,
-        name: String!,
-        number: String!
+        supplier_name: String!,
+        supplier_number: String!
         
 
         

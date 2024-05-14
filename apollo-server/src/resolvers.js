@@ -212,6 +212,16 @@ export const resolvers = {
         }
       },
 
+      createSupplier: async (_, { supplier_name  ,  supplier_number}) => {
+        try {
+          const supplier = new Supplier({ supplier_name  ,  supplier_number })
+          await supplier.save()
+          return supplier;
+        } catch (err) {
+          throw err
+        }
+      },
+
       createDepartment: async (_, { title }) => {
         try {
           const department = new Department({ title })
