@@ -4,6 +4,8 @@ import {Arrival} from './models/Arrival.js';
 import {Supplier} from './models/Supplier.js';
 import {Author} from './models/Author.js';
 import {Book} from './models/Book.js';
+import {Product} from './models/Product.js';
+
 import { EdiOrder } from './models/EdiOrder.js';
 import { EdiOrderItem } from './models/EdiOrderItem.js';
 
@@ -55,6 +57,18 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
+  const products = async productIds => {
+    try {
+      const products = await Product.find({_id: { $in: productIds }})
+      return products.map(product => ({
+        ...product._doc,
+        supplier: Supplier.bind(this, product._doc.supplier)
+      }))
+    } catch {
+      throw err
+    }
+  }
+
   const ediOrderItems = async ediOrderItemsIds => {
     try {
       const ediOrderItems = await EdiOrderItem.find({_id: { $in: ediOrderItemsIds }})
@@ -96,6 +110,18 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
+  const supplier = async supplierId => {
+    try {
+      const supplier = await Supplier.findById(supplierId)
+      return {
+        ...supplier._doc,
+        products: products.bind(this, supplier._doc.products)
+      }
+    } catch (err) {
+      throw err
+    }
+  }
+
 
 // GraphQL Resolvers
 export const resolvers = {
@@ -112,7 +138,8 @@ export const resolvers = {
         suppliers: async () => await Supplier.find({}),
         // authors: async () => await Author.find({}),
         // books: async () => await Book.find({}),
-        
+         products: async () => await Product.find({}),
+
         orders: async () => await Order.find({supplierNumber : Supplier.number}),
         orderItems: async () => await OrderItem.find({}),
         openOrders: async () => await Order.find({isOpen:true}),
@@ -156,6 +183,18 @@ export const resolvers = {
           }
         },
 
+        suppliers: async () => {
+          try {
+            const suppliers = await Supplier.find()
+            return suppliers.map(supplier => ({
+              ...supplier._doc,
+              products: products.bind(this, supplier._doc.products)
+            }))
+          } catch (err) {
+            throw err
+          }
+        },
+
 
         books: async () => {
           try {
@@ -163,6 +202,18 @@ export const resolvers = {
             return books.map(book => ({
               ...book._doc,
               author: author.bind(this, book._doc.author)
+            }))
+          } catch (err) {
+            throw err
+          }
+        },
+
+        products: async () => {
+          try {
+            const products = await Product.find()
+            return products.map(product => ({
+              ...product._doc,
+              supplier: Supplier.bind(this, product._doc.supplier)
             }))
           } catch (err) {
             throw err
@@ -242,8 +293,8 @@ export const resolvers = {
         }
       },
 
-      createBook: async (_, { name, pages, author: authorId }) => {
-        const book = new Book({ name, pages, author: authorId })
+      createBook: async (_, { title, pages, author: authorId }) => {
+        const book = new Book({ title, pages, author: authorId })
         try {
           const savedBook = await book.save()
           const authorRecord = await Author.findById(authorId)
@@ -257,6 +308,32 @@ export const resolvers = {
           throw err
         }
       },
+
+      createProduct: async (_, {product_name ,barcode , image }) => {
+        try {
+          const product = new Product({ product_name ,barcode , image })
+          await product.save()
+          return product;
+        } catch (err) {
+          throw err
+        }
+      },
+
+      // createProduct: async (_, { product_name, barcode,image, supplier: supplierId }) => {
+      //   const product = new Product({product_name, barcode,image, supplier: supplierId })
+      //   try {
+      //     const savedProduct = await product.save()
+      //     const supplierRecord = await Supplier.findById(supplierId)
+      //     supplierRecord.products.push(product)
+      //     await supplierRecord.save()
+      //     return {
+      //       ...savedProduct._doc,
+      //       supplier: supplier.bind(this, supplierId)
+      //     }
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
 
       createEdiOrderItem: async (_, { code, product,quantity ,  ediOrder: ediOrderId }) => {
         const ediOrderItem = new EdiOrderItem({ code, product,quantity ,  ediOrder: ediOrderId })

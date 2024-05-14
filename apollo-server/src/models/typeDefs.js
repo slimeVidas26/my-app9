@@ -26,6 +26,7 @@ export const typeDefs = gql`
     orderItems: [OrderItem!],
     authors: [Author!]
     books: [Book!]
+    products: [Product!]
     ediOrders:[EdiOrder!]
     ediOrderItems:[EdiOrderItem!]
     ediOrderItemsByNumber(ediOrder: String):[EdiOrderItem!]
@@ -36,18 +37,27 @@ export const typeDefs = gql`
 
   type Mutation {
     createAuthor(name: String!): Author!
+    createBook(title: String!, pages: Int!, author: String!): Book!
+
     createDepartment(title:String!): Department!
-    createBook(name: String!, pages: Int, author: String!): Book!
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
     createSupplier(supplier_name:String! , supplier_number:String!):Supplier!
+    createProduct(product_name:String! , barcode:String! , image:String ):Product!
 
   }
 
   type Author {
   id: ID!
   name: String!
-  books: [Book!]
+  books: [Book!] 
+}
+
+type Book {
+  id: ID!
+  title: String!
+  pages: Int
+  author: Author!
 }
 
 type EdiOrder {
@@ -70,12 +80,7 @@ type EdiOrderItem {
       ediOrder: EdiOrder!
       }
 
-  type Book {
-  id: ID!
-  name: String!
-  pages: Int
-  author: Author!
-}
+  
 
   type Warehouse {
         id: ID,
@@ -96,12 +101,16 @@ type EdiOrderItem {
     }
 
     type Supplier {
-        id: ID,
-        supplier_name: String!,
+        id: ID
+        supplier_name: String!
         supplier_number: String!
         
+    }
 
-        
+    type Product {
+      product_name:String!
+      barcode:String!
+      image:String
       
     }
 
