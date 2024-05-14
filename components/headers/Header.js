@@ -3,6 +3,15 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 import EdiButton from '../EDICertificate/EdiButton';
+import { EdiOrderDetailsScreenOpen } from '../../screens/ediDcreens/EdiOrderDetailsScreenOpen'
+import { EdiOrderDetailsScreenClosed } from '../../screens/ediDcreens/EdiOrderDetailsScreenClosed'
+import { EdiOrderDetailsScreenSearch } from '../../screens/ediDcreens/EdiOrderDetailsScreenSearch'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useQuery } from '@apollo/client';
+import { DEPARTMENTS_QUERY } from '../../gql/Query';
+
+const Tab = createMaterialTopTabNavigator();
+
 
 export const EdiOrderDetailHeader = () => {
   return (
@@ -22,8 +31,6 @@ export const EdiOrderDetailHeader = () => {
     </View>
   )
 }
-
-
 
 export const EdiHeader = ({ setModalOpen, setQuery, setFullData }) => {
   const navigation = useNavigation()
@@ -46,8 +53,6 @@ export const EdiHeader = ({ setModalOpen, setQuery, setFullData }) => {
     </View>
   )
 }
-
-
 
 export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) => {
   return (
@@ -82,52 +87,9 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
   )
 }
 
-export const EdiTab = () => {
-  
-  return (
-  
-      <View style={styles.tabHeader}>
-      <View style = {styles.TextInputTab}>
-      <Ionicons onPress={() => {console.log('search')}}
-        name="search-circle-sharp" size={48} color="blue" />
-       </View>
-      
-          
-
-    <Pressable style={({ pressed }) => [
-        { backgroundColor: pressed ? '#d3d3d3' : 'blue'},
-        styles.pressableDone
-      ]} onPress={() => console.log('Done Pressed')}>
-          <EdiButton  title = "Todo"/>
-          <View style = {{ display:'flex',
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingVertical: 12,
-    paddingHorizontal: 14,
-    borderRadius: 10,
-    elevation: 3,
-    width:'50%',
-    backgroundColor:'#d3d3d3',
-    }}>
-          <View style={styles.circle}>
-         <Text style={styles.text}>25</Text>
-        </View>
-      <Text style={styles.textDone}>Done</Text>
-          </View>
-         
-          </Pressable>
-        
-      
-        </View>
-
-    
-  )
-}
-
-
 
 const styles = StyleSheet.create({
+ 
   header: {
     backgroundColor: "red",
     display: 'flex',
@@ -228,13 +190,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
-  text: {
-    fontSize: 17,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
+  // text: {
+  //   fontSize: 17,
+  //   lineHeight: 21,
+  //   fontWeight: 'bold',
+  //   letterSpacing: 0.25,
+  //   color: 'white',
+  // },
   pressableDone:{
      display:'flex',
     flexDirection:'row',

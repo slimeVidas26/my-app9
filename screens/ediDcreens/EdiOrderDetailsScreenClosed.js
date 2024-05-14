@@ -1,20 +1,17 @@
 import React, { useState , useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
+import { I18n } from 'i18n-js';
 import { translation } from "../../i18n/supportedLanguages";
 import * as Localization from 'expo-localization';
-import { I18n } from 'i18n-js';
 import Constants from 'expo-constants';
 import { Card } from '@rneui/themed';
 //import logo from '../assets/warehouse.png'
 import { Feather } from '@expo/vector-icons';
-import { EdiOrderDetailHeader  , EdiTab} from "../../components/headers/Header";
 
-
-
-import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from "../../gql/Query";
 const i18n = new I18n(translation)
+
+
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
 // When a value is missing from a language it'll fallback to another language with the key present.
@@ -22,55 +19,19 @@ i18n.enableFallback = true;
 // To see the fallback mechanism uncomment line below to force app to use Japanese language.
 // i18n.locale = 'ja';
 
-
-// const Square = ({ text}) => (
-//   <View >
-//     <Text style={styles.text}>{text}</Text>
-//   </View>
-// );
-
 const spacing = 5;
 const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
-// const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
- //const image = require('../assets/logo-og.png');
 
+export function EdiOrderDetailsScreenClosed({navigation , data , error , loading}) {
 
-
-export function EdiOrderDetailsScreenClosed({navigation}) {
-
-  const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
-  //console.log('data' , data)
-
-  if (error) {
-    console.error('DEPARTMENTS_QUERY error', error);
-}
+  
 
 const DepartmentItem = ({ department}) => {
   const { title , id } = department; 
   console.log( title , id)
 return(
-//   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-//  <View style={styles.listItem}>
-//         <View style={styles.metaInfo}>
-//         <Text style={[styles.title]}>12</Text>   
-//         <Feather name="box" size={26} color="black" />
-//     <Image style = {[styles.image , {marginLeft:40}]}  source={require('../../assets/gamadim.png')}
-//     placeholder={"rami-levi"}
-//         //contentFit="cover"
-//         //transition={1000} 
-//         />
-//         </View>
 
-//         <View style={styles.metaInfo2}>
-//           <Text style={styles.title}>quantity:48</Text>
-//           <Text style={styles.blueText}>reference</Text>
-//           <Text style={styles.barcode}>729000145784</Text>
-
-//         </View>
-//         </View>
-
-//     </TouchableOpacity>
 
 <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
 <View style = {styles.item}>
