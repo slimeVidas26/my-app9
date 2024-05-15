@@ -32,7 +32,7 @@ const DepartmentItem = ({ department}) => {
 return(
 
 
-<TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
+<TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
 <View style = {styles.item}>
 
 <View style = {styles.top}>
