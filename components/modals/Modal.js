@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: 'lightGrey',
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
 
     //marginTop:30,
     //padding: 10,
