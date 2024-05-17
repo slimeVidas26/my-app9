@@ -66,10 +66,38 @@ i18n.enableFallback = true;
               renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}
             /> */}
-            <View style = {{backgroundColor:'#d4d4d4',flexDirection :'row',alignItems:'center' , justifyContent:'center',width:400 }} >
-              <View style = {{ padding:10,flexDirection :'column',alignItems:'flex-start' , justifyContent:'space-between'}}>
-                <Text style = {{color:'black' , fontSize:22 , padingBottom:10}}>Ossem Taassiot Mazon</Text>
-                <Text style = {{color:'blue', fontSize:20, paddingBottom:10}}>Product Name</Text>
+
+<View style={styles.container}>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
+        <Text style={styles.productName}>
+        Product Name</Text>
+        <Text style={styles.productCode}>
+        72900000025487 </Text>
+        <Text style={styles.productQuantityInStock}>
+        Quantity in stock:104</Text>
+        <View style = {styles.left}>
+                      <Text style = {styles.boxes}>12</Text>   
+                      <Feather name="box" size={26} color="black" />
+                    </View>
+      </View>
+    <View style = {styles.right}>
+    <Image
+        style={styles.productImage}
+        //source={{ uri: 'https://via.placeholder.com/150' }} // Replace with your product image URL
+        source={require('../../assets/gamadim.png')} // Replace with your product image URL
+      />
+
+     <Text style = {styles.before}>Quantity before:47</Text>
+    </View>
+      
+    </View>
+
+
+            {/* <View style = {{backgroundColor:'#d4d4d4',flexDirection :'row',alignItems:'center' , justifyContent:'center'  }} >
+              <View style = {{ padding:10,flexDirection :'column',alignItems:'flex-start' , justifyContent:'space-between' , width:'65%'}}>
+                <Text style = {{color:'black' , fontSize:22 , paddingBottom:10}}>Ossem Taassiot Mazon</Text>
+                <Text numberOfLines={3} style = {{color:'blue', fontSize:20, paddingBottom:10 }}>Product Name</Text>
                 <Text style = {{color:'black' , fontSize:18 , paddingBottom:10}}>72900000025487</Text>
                 <Text style = {{color:'black' , fontSize:18, paddingBottom:10}}>Quantity in stock:104</Text>
                 <View style = {styles.left}>
@@ -77,28 +105,30 @@ i18n.enableFallback = true;
                       <Feather name="box" size={26} color="black" />
                     </View>
                 </View>
-              <View style = {{ padding:13 , alignItems:'flex-end'}}>
+              <View style = {{flex:1,   justifyContent:'space-around' , width:'35%'}}>
               <Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
-                <Text style = {{fontSize:16}}>Initial quantity:48</Text>
+              <View>
+              <Text style = {{fontSize:16}}>Initial quantity:48</Text>
+
               </View>
               </View>
+              </View> */}
             <View style = {styles.btnZone}>
             <Pressable style={styles.unitsButton}
-onPress={()=>console.log("Units")}>
-<Text style={[styles.closeButtonText , {fontSize:25}]}>Units</Text> 
-</Pressable>
+              onPress={()=>console.log("Units")}>
+              <Text style={[styles.closeButtonText , {fontSize:25}]}>Units</Text> 
+              </Pressable>
               </View>
             <View style = {[styles.btnZone]}>
-            <Pressable onPress={()=>console.log("Minus")} style={styles.closeButton}>
-            <Text style={[styles.closeButtonText , {fontSize:50}]}>-</Text>
+            <Pressable onPress={()=>console.log("Minus")} style={styles.countButton}>
+            <Feather name="minus" size={60} color="black" />
           </Pressable>
-          <TextInput value='48' style = {{fontSize:40 , color:'blue'}}/>
-           <Pressable style={styles.closeButton}
+          <TextInput value='0' style = {{fontSize:40 , color:'blue'}}/>
+           <Pressable style={styles.countButton}
 onPress={()=>console.log("Plus")}>
-<Text style={[styles.closeButtonText , {fontSize:50}]}>+</Text> 
-</Pressable>
+<Feather name="plus" size={60} color="black" /></Pressable>
               </View>
-            <View style = {{display:'flex',backgroundColor:'red' , padding:15 , borderRadius:10 ,alignItems:'center',marginTop:20 , padding:20}}><Text style ={{fontSize:20 , color:'white'}}>No Matching Quantity</Text></View>
+            <View style = {{display:'flex',backgroundColor:'#d4d4d4' , padding:15 , borderRadius:10 ,alignItems:'center',margin:20}}><Text style ={{fontSize:20 , color:'black'}}>No Matching Quantity</Text></View>
             
             
             <View style = {styles.btnZone}>
@@ -125,24 +155,77 @@ onPress={() => {setModalVisible(false);navigation.goBack()}}>
 const styles = StyleSheet.create({
   
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    display:'flex',
+    flexDirection:'row',
+    //backgroundColor: '#d4d4d4',
     alignItems: 'center',
     // justifyContent: 'center',
+    padding:10
+  },
+  detailsContainer: {
+    flex: 3,
+    justifyContent: 'center',
+  },
+  compagny: {
+    fontSize: 20,
+    //fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  productName: {
+    fontSize: 20,
+    //fontWeight: 'bold',
+    marginBottom: 8,
+    color:'blue'
+  },
+  productCode: {
+    fontSize: 18,
+    //fontWeight: 'bold',
+    marginBottom: 8,
+    //color:'blue'
+  },
+  productQuantityInStock: {
+    fontSize: 18,
+    //fontWeight: 'bold',
+    marginBottom: 8,
+    //color:'blue'
+  },
+  productDescription: {
+    fontSize: 16,
+    color: '#666',
+  },
+  productImage: {
+    flex: 1,
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+    marginLeft: 16,
   },
   img:{
-    //backgroundColor:'white',
-    width: 100, height: 105,
+    backgroundColor:'white',
+    width: 100, height: 168,
+    alignSelf:'flex-end'
   },
   boxes:{
     //backgroundColor:'yellow',
-    fontSize:16
+    fontSize:16,
+    marginRight:12
     },
   left:{
     //flex:1,
+    //backgroundColor:'red',
     flexDirection:'row',
     justifyContent:'center',
+    alignItems:'center'
     
+  },
+  right:{
+    flexDirection:'column'
+  },
+
+  before:{
+alignSelf:'flex-end',
+paddingRight:20,
+fontSize:18
   },
 
   logo : {
@@ -225,13 +308,23 @@ const styles = StyleSheet.create({
       backgroundColor: 'blue',
       borderRadius: 15,
     },
+    countButton: {
+      //flex: 1,
+       justifyContent: 'center',
+       alignItems: 'center',
+      width:100,
+      marginTop: 20,
+      padding: 15,
+      backgroundColor: 'blue',
+      borderRadius: 15,
+    },
      unitsButton: {
       //flex: 1,
        justifyContent: 'center',
        alignItems: 'center',
       width:'90%',
       marginTop: 20,
-      padding: 15,
+      padding: 10,
       backgroundColor: 'blue',
       borderRadius: 15,
     },

@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    //backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: '#d4d4d4',
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'stretch'
   },
   modal: {
-    backgroundColor: 'lightGrey',
+    //backgroundColor: 'lightGrey',
     backgroundColor: 'white',
 
     //marginTop:30,
@@ -39,17 +39,9 @@ const styles = StyleSheet.create({
     position: 'relative',
     minWidth: '95%',
     //maxWidth: 500
-    height: '100%',
+    height: '90%',
   },
-  closeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    background: 'transparent',
-    border: 'none',
-    fontSize: 18,
-    cursor: 'pointer'
-  }
+ 
 });
 
 
