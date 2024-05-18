@@ -27,6 +27,18 @@ i18n.enableFallback = true;
 
   const [isModalOpen, setModalOpen] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [count, setCount] = useState(0);
+  
+
+
+  const incrementCounter = () => {
+    setCount(count + 1);
+};
+
+const decrementCounter = () => {
+  if(count > 0)
+  setCount(count - 1);
+};
   
   const handleOpenPopup = () => {
     setIsVisible(true);
@@ -114,31 +126,38 @@ i18n.enableFallback = true;
               </View>
               </View> */}
             <View style = {styles.btnZone}>
+
             <Pressable style={styles.unitsButton}
               onPress={()=>console.log("Units")}>
-              <Text style={[styles.closeButtonText , {fontSize:25}]}>Units</Text> 
+              <Text style={[styles.unitButtonText , {fontSize:25}]}>Units</Text> 
               </Pressable>
-              </View>
-            <View style = {[styles.btnZone]}>
-            <Pressable onPress={()=>console.log("Minus")} style={styles.countButton}>
-            <Feather name="minus" size={60} color="black" />
+            
+            <View style = {styles.counter}>
+            <Pressable onPress={decrementCounter} style={styles.countButton}>
+            <Feather name="minus" size={60} color="red" />
           </Pressable>
-          <TextInput value='0' style = {{fontSize:40 , color:'blue'}}/>
+
+          <TextInput style = {styles.TextCounter}>
+          <Text  >{count}</Text>
+          </TextInput>
+
            <Pressable style={styles.countButton}
-onPress={()=>console.log("Plus")}>
-<Feather name="plus" size={60} color="black" /></Pressable>
-              </View>
-            <View style = {{display:'flex',backgroundColor:'#d4d4d4' , padding:15 , borderRadius:10 ,alignItems:'center',margin:20}}><Text style ={{fontSize:20 , color:'black'}}>No Matching Quantity</Text></View>
+           onPress={incrementCounter}>
+           <Feather name="plus" size={60} color="red" /></Pressable>
+            </View>
+
+            <View style = {{display:'flex',backgroundColor:'#d4d4d4' , padding:15 ,marginVertical:20, borderRadius:10 ,alignItems:'center'}}><Text style ={{fontSize:20 , color:'black'}}>No Matching Quantity</Text></View>
             
             
-            <View style = {styles.btnZone}>
-    <Pressable onPress={handleClosePopup} style={styles.closeButton}>
-      <Text style={styles.closeButtonText}>Next</Text>
+            <View style = {styles.approve} >
+    <Pressable onPress={handleClosePopup} style={styles.nextButton}>
+      <Text style={styles.approveButtonText}>Next</Text>
     </Pressable>
-    <Pressable style={styles.closeButton}
+    <Pressable style={styles.cancelButton}
 onPress={() => {setModalVisible(false);navigation.goBack()}}>
-<Text style={styles.closeButtonText}>Cancel</Text> 
+<Text style={styles.approveButtonText}>Cancel</Text> 
 </Pressable>
+    </View>  
     </View>          
     </Modal>
           :
@@ -193,11 +212,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
+  
   productImage: {
     flex: 1,
     width: 150,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     marginLeft: 16,
   },
   img:{
@@ -258,14 +278,22 @@ fontSize:18
  
     alignItems: "center",
   },
+
+  
  
-  TextInput: {
-    height: 60,
+  TextCounter: {
+    //height: 60,
     flex: 1,
     padding: 5,
-    marginLeft: 10,
-    fontSize : 20,
+    marginTop:30,
+    margin: 10,
+    fontSize : 50,
     borderRadius : 25,
+    color:'red',
+    //backgroundColor:'yellow',
+    justifyContent:'center',
+    alignItems:'center',
+    textAlign:'center'
   },
   loginBtn: {
     width: "60%",
@@ -288,11 +316,21 @@ fontSize:18
     color : "blue"
   },
   btnZone:{
-    flexDirection :'row',
+    flexDirection :'column',
     justifyContent: 'space-around',
-    width:400,
-    
+    //width:400,
     },
+    counter:{
+      //backgroundColor:'pink',
+      flexDirection :'row',
+      //justifyContent:'space-around',
+      alignItems:'center'
+    },
+    approve:{
+      flexDirection :'row',
+      justifyContent:'space-evenly',
+    },
+
     buttonText: {
       color: 'white',
       fontSize: 16,
@@ -302,12 +340,31 @@ fontSize:18
       //flex: 1,
        justifyContent: 'center',
        alignItems: 'center',
-      width:120,
-      marginTop: 20,
+      width:150,
+      //marginTop: 20,
       padding: 15,
       backgroundColor: 'blue',
       borderRadius: 15,
     },
+     
+     
+    nextButton: {
+       justifyContent: 'center',
+       alignItems: 'center',
+      width:150,
+      padding: 15,
+      backgroundColor: 'green',
+      borderRadius: 15,
+      
+    },
+    cancelButton: {
+      justifyContent: 'center',
+      alignItems: 'center',
+     width:150,
+     padding: 15,
+     backgroundColor: '#36454F',
+     borderRadius: 15,
+   },
     countButton: {
       //flex: 1,
        justifyContent: 'center',
@@ -315,23 +372,28 @@ fontSize:18
       width:100,
       marginTop: 20,
       padding: 15,
-      backgroundColor: 'blue',
+      backgroundColor: '#d4d4d4',
       borderRadius: 15,
     },
      unitsButton: {
       //flex: 1,
        justifyContent: 'center',
        alignItems: 'center',
-      width:'90%',
+      //width:'90%',
       marginTop: 20,
       padding: 10,
-      backgroundColor: 'blue',
+      backgroundColor: 'red',
       borderRadius: 15,
     },
-    closeButtonText: {
+    approveButtonText: {
       color: 'white',
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: 20,
+      //fontWeight: 'bold',
+    },
+    unitButtonText: {
+      color: 'white',
+      fontSize: 20,
+      //fontWeight: 'bold',
     },
  
 });

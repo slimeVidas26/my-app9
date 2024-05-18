@@ -19,27 +19,28 @@ const Modal = ({ children, onClose }) => {
 
 const styles = StyleSheet.create({
   overlay: {
+    flex:1,
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#d4d4d4',
+    backgroundColor: 'rgb(128, 128, 128)',
     display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'stretch'
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    height:windowHeight
   },
   modal: {
     //backgroundColor: 'lightGrey',
     backgroundColor: 'white',
-
     //marginTop:30,
-    //padding: 10,
+    padding: 20,
     borderRadius: 40,
-    position: 'relative',
-    minWidth: '95%',
+    //position: 'relative',
+    //minWidth: '95%',
     //maxWidth: 500
-    height: '90%',
+    //height: '90%',
   },
  
 });
