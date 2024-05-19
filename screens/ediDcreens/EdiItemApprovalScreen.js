@@ -27,22 +27,37 @@ i18n.enableFallback = true;
 
   const [isModalOpen, setModalOpen] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [matching , setMatching] = useState(false)
+  const [index, setIndex] = useState(0);
+
   const [count, setCount] = useState(0);
   
 
 
-  const incrementCounter = () => {
-    setCount(count + 1);
-};
-
-const decrementCounter = () => {
-  if(count > 0)
-  setCount(count - 1);
-};
+  const [counter, setCounter] = useState(0); 
+    const [initialCount, setInitialCount] = useState(47); 
   
-  const handleOpenPopup = () => {
-    setIsVisible(true);
-  };
+    const handleInitialCountChange = (value) => { 
+        setInitialCount(Number(value)); 
+    }; 
+  
+    const handleReset = () => { 
+        setCounter(initialCount); 
+        setMatching(true)
+    }; 
+
+    const decrementCounter = () => { 
+      setCounter(counter - 1); 
+      
+
+  }; 
+  
+    const incrementCounter = () => { 
+        setCounter(counter + 1); 
+       
+    }; 
+  
+    
 
   const handleClosePopup = () => {
     setIsVisible(false);
@@ -83,24 +98,30 @@ const decrementCounter = () => {
       <View style={styles.detailsContainer}>
         <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
         <Text style={styles.productName}>
-        Product Name</Text>
+        Gamadim 100 gl</Text>
         <Text style={styles.productCode}>
         72900000025487 </Text>
         <Text style={styles.productQuantityInStock}>
         Quantity in stock:104</Text>
-        <View style = {styles.left}>
+        <View style = {styles.box}>
                       <Text style = {styles.boxes}>12</Text>   
                       <Feather name="box" size={26} color="black" />
                     </View>
       </View>
-    <View style = {styles.right}>
+    <View style = {styles.imageContainer}>
     <Image
         style={styles.productImage}
         //source={{ uri: 'https://via.placeholder.com/150' }} // Replace with your product image URL
         source={require('../../assets/gamadim.png')} // Replace with your product image URL
       />
 
-     <Text style = {styles.before}>Quantity before:47</Text>
+     {/* <Text style = {styles.before}>Quantity before:47</Text> */}
+     <TouchableOpacity  onPress={handleReset}  > 
+                    <Text style={styles.before}> 
+                     Quantity before:47
+                   
+                    </Text> 
+                </TouchableOpacity> 
     </View>
       
     </View>
@@ -125,25 +146,36 @@ const decrementCounter = () => {
               </View>
               </View>
               </View> */}
+
+<View style={{ margin: 15 }}> 
+               
+               
+            </View> 
             <View style = {styles.btnZone}>
 
-            <Pressable style={styles.unitsButton}
+            <Pressable style={[styles.unitsButton , {backgroundColor :initialCount===counter ? 'blue':'red'}]}
               onPress={()=>console.log("Units")}>
-              <Text style={[styles.unitButtonText , {fontSize:25}]}>Units</Text> 
+              <Text style={[styles.unitButtonText ]}>Units</Text> 
               </Pressable>
             
             <View style = {styles.counter}>
-            <Pressable onPress={decrementCounter} style={styles.countButton}>
-            <Feather name="minus" size={60} color="red" />
+            <Pressable  onPress={decrementCounter} style={[styles.decrementButton , {borderColor: initialCount===counter ? '#d4d4d4' : 'red'} ]}
+            
+            >
+            <Feather name="minus" size={60} color={initialCount===counter ?'blue':'red'} />
           </Pressable>
 
-          <TextInput style = {styles.TextCounter}>
+          {/* <TextInput style = {styles.TextCounter}>
           <Text  >{count}</Text>
-          </TextInput>
+          </TextInput> */}
+            {/* <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}> */}
+          <Text style = {[styles.TextCounter,{color : initialCount===counter ? 'blue': 'red'}]}> 
+                {counter} 
+            </Text> 
 
-           <Pressable style={styles.countButton}
-           onPress={incrementCounter}>
-           <Feather name="plus" size={60} color="red" /></Pressable>
+           <Pressable
+            onPress={incrementCounter}  style={[styles.incrementButton ,{borderColor: initialCount===counter ? '#d4d4d4' : 'red'}]}>
+           <Feather name="plus" size={60}  color={initialCount===counter ?'blue':'red'} /></Pressable>
             </View>
 
             <View style = {{display:'flex',backgroundColor:'#d4d4d4' , padding:15 ,marginVertical:20, borderRadius:10 ,alignItems:'center'}}><Text style ={{fontSize:20 , color:'black'}}>No Matching Quantity</Text></View>
@@ -179,11 +211,12 @@ const styles = StyleSheet.create({
     //backgroundColor: '#d4d4d4',
     alignItems: 'center',
     // justifyContent: 'center',
-    padding:10
+    //padding:10
   },
   detailsContainer: {
     flex: 3,
     justifyContent: 'center',
+    //backgroundColor:'red'
   },
   compagny: {
     fontSize: 20,
@@ -218,7 +251,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: 'cover',
-    marginLeft: 16,
+    //marginLeft: 16,
   },
   img:{
     backgroundColor:'white',
@@ -230,7 +263,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     marginRight:12
     },
-  left:{
+  box:{
     //flex:1,
     //backgroundColor:'red',
     flexDirection:'row',
@@ -238,13 +271,15 @@ const styles = StyleSheet.create({
     alignItems:'center'
     
   },
-  right:{
-    flexDirection:'column'
+  imageContainer:{
+    flex:2,
+    flexDirection:'column',
+    //backgroundColor:'yellow'
   },
 
   before:{
 alignSelf:'flex-end',
-paddingRight:20,
+//paddingRight:20,
 fontSize:18
   },
 
@@ -289,27 +324,13 @@ fontSize:18
     margin: 10,
     fontSize : 50,
     borderRadius : 25,
-    color:'red',
+    //color:'red',
     //backgroundColor:'yellow',
     justifyContent:'center',
     alignItems:'center',
     textAlign:'center'
   },
-  loginBtn: {
-    width: "60%",
-    borderRadius: 25,
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    backgroundColor: "blue",
-   
-  },
-
-  loginText :{
-    fontSize : 20,
-    color :'white'
-  },
+  
   text:{
     fontSize:30,
     paddingBottom:30,
@@ -365,7 +386,7 @@ fontSize:18
      backgroundColor: '#36454F',
      borderRadius: 15,
    },
-    countButton: {
+    incrementButton: {
       //flex: 1,
        justifyContent: 'center',
        alignItems: 'center',
@@ -373,6 +394,21 @@ fontSize:18
       marginTop: 20,
       padding: 15,
       backgroundColor: '#d4d4d4',
+      //borderColor:'yellow',
+      borderWidth:2,
+      borderRadius: 15,
+    },
+
+    decrementButton: {
+      //flex: 1,
+       justifyContent: 'center',
+       alignItems: 'center',
+      width:100,
+      marginTop: 20,
+      padding: 15,
+      backgroundColor: '#d4d4d4',
+      borderColor:'#d4d4d4',
+      borderWidth:2,
       borderRadius: 15,
     },
      unitsButton: {
@@ -392,7 +428,7 @@ fontSize:18
     },
     unitButtonText: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 25,
       //fontWeight: 'bold',
     },
  
