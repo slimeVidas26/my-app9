@@ -171,7 +171,7 @@ i18n.enableFallback = true;
             <View style = {styles.counter}>
             {/* this.state.{selected === "btn1" ? "selected" : "notSelected"} */}
             {/* <Pressable  onPress={decrementCounter} style={[styles.decrementButton , {borderColor: initialCount===counter ? '#d4d4d4' : 'red'} ]} */}
-            <Pressable disabled = { counter === 0 ? true : false}
+            <Pressable disabled = { counter === 0}
              onPress={decrementCounter} style={[styles.decrementButton,selected === "btn1" ? styles.selected : styles.notSelected] }
 
             >
