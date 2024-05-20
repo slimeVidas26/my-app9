@@ -32,10 +32,18 @@ i18n.enableFallback = true;
 
   const [count, setCount] = useState(0);
   
+  const [selected , setSelected] = useState('btn1')
+  console.log(selected)
+
+  const changeColor = (btn) => {
+     setSelected( btn );
+  };
+
+  console.log(()=>changeColor('btn1'))
 
 
   const [counter, setCounter] = useState(0); 
-    const [initialCount, setInitialCount] = useState(47); 
+    const [initialCount, setInitialCount] = useState(9); 
   
     const handleInitialCountChange = (value) => { 
         setInitialCount(Number(value)); 
@@ -48,12 +56,14 @@ i18n.enableFallback = true;
 
     const decrementCounter = () => { 
       setCounter(counter - 1); 
+      changeColor('btn1');
       
 
   }; 
   
     const incrementCounter = () => { 
         setCounter(counter + 1); 
+        changeColor('btn2');
        
     }; 
   
@@ -68,7 +78,7 @@ i18n.enableFallback = true;
   // const [password, setPassword] = useState("");
  
   return (
-    <>
+  
       <View style={styles.container}>
         {/* {loading && <Loading/>}
         {error && <Error/>} */}
@@ -98,7 +108,7 @@ i18n.enableFallback = true;
       <View style={styles.detailsContainer}>
         <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
         <Text style={styles.productName}>
-        Gamadim 100 gl</Text>
+        Gamadim 100 gl Gamadim 100 gl</Text>
         <Text style={styles.productCode}>
         72900000025487 </Text>
         <Text style={styles.productQuantityInStock}>
@@ -114,17 +124,17 @@ i18n.enableFallback = true;
         //source={{ uri: 'https://via.placeholder.com/150' }} // Replace with your product image URL
         source={require('../../assets/gamadim.png')} // Replace with your product image URL
       />
-
      {/* <Text style = {styles.before}>Quantity before:47</Text> */}
-     <TouchableOpacity  onPress={handleReset}  > 
+   
+    </View>
+      
+    </View>
+    <TouchableOpacity style = {styles.quantityBefore}  onPress={handleReset}  > 
                     <Text style={styles.before}> 
                      Quantity before:47
                    
                     </Text> 
-                </TouchableOpacity> 
-    </View>
-      
-    </View>
+     </TouchableOpacity> 
 
 
             {/* <View style = {{backgroundColor:'#d4d4d4',flexDirection :'row',alignItems:'center' , justifyContent:'center'  }} >
@@ -159,8 +169,11 @@ i18n.enableFallback = true;
               </Pressable>
             
             <View style = {styles.counter}>
-            <Pressable  onPress={decrementCounter} style={[styles.decrementButton , {borderColor: initialCount===counter ? '#d4d4d4' : 'red'} ]}
-            
+            {/* this.state.{selected === "btn1" ? "selected" : "notSelected"} */}
+            {/* <Pressable  onPress={decrementCounter} style={[styles.decrementButton , {borderColor: initialCount===counter ? '#d4d4d4' : 'red'} ]} */}
+            <Pressable disabled = { counter === 0 ? true : false}
+             onPress={decrementCounter} style={[styles.decrementButton,selected === "btn1" ? styles.selected : styles.notSelected] }
+
             >
             <Feather name="minus" size={60} color={initialCount===counter ?'blue':'red'} />
           </Pressable>
@@ -173,12 +186,23 @@ i18n.enableFallback = true;
                 {counter} 
             </Text> 
 
-           <Pressable
-            onPress={incrementCounter}  style={[styles.incrementButton ,{borderColor: initialCount===counter ? '#d4d4d4' : 'red'}]}>
-           <Feather name="plus" size={60}  color={initialCount===counter ?'blue':'red'} /></Pressable>
+           <Pressable disabled = { counter > initialCount ? true : false}
+            onPress={incrementCounter}  style={[styles.incrementButton,selected === "btn2" ? styles.selected : styles.notSelected] }>
+           <Feather name="plus" size={60}  color={initialCount===counter ?'#d4d4d4':'red'} /></Pressable>
             </View>
 
-            <View style = {{display:'flex',backgroundColor:'#d4d4d4' , padding:15 ,marginVertical:20, borderRadius:10 ,alignItems:'center'}}><Text style ={{fontSize:20 , color:'black'}}>No Matching Quantity</Text></View>
+
+
+            {initialCount !== counter &&
+            
+              <View style = {{display:'flex',backgroundColor:'#d4d4d4' , 
+              padding:15 ,marginVertical:5, borderRadius:10 ,
+              alignItems:'center'}}>
+                <Text style ={{fontSize:20 , color:'black'}}>
+                  No Matching Quantity</Text>
+                  </View>
+            }
+            
             
             
             <View style = {styles.approve} >
@@ -197,7 +221,7 @@ onPress={() => {setModalVisible(false);navigation.goBack()}}>
             
         }
       </View>
-    </>
+    
   );
 }
 
@@ -206,6 +230,7 @@ onPress={() => {setModalVisible(false);navigation.goBack()}}>
 const styles = StyleSheet.create({
   
   container: {
+    //height:400,
     display:'flex',
     flexDirection:'row',
     //backgroundColor: '#d4d4d4',
@@ -216,7 +241,8 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 3,
     justifyContent: 'center',
-    //backgroundColor:'red'
+    //backgroundColor:'red',
+    marginVertical:20
   },
   compagny: {
     fontSize: 20,
@@ -253,6 +279,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     //marginLeft: 16,
   },
+ 
   img:{
     backgroundColor:'white',
     width: 100, height: 168,
@@ -274,13 +301,20 @@ const styles = StyleSheet.create({
   imageContainer:{
     flex:2,
     flexDirection:'column',
-    //backgroundColor:'yellow'
+    //backgroundColor:'yellow',
+    //marginBottom:20,
+  },
+
+  quantityBefore:{
+    //backgroundColor:'green',
+    marginTop:10
   },
 
   before:{
+    //backgroundColor:'red',
 alignSelf:'flex-end',
 //paddingRight:20,
-fontSize:18
+fontSize:20
   },
 
   logo : {
@@ -340,14 +374,17 @@ fontSize:18
     flexDirection :'column',
     justifyContent: 'space-around',
     //width:400,
+    //marginBottom:50
     },
     counter:{
       //backgroundColor:'pink',
       flexDirection :'row',
       //justifyContent:'space-around',
-      alignItems:'center'
+      alignItems:'center',
+      marginBottom:20
     },
     approve:{
+      marginVertical:20,
       flexDirection :'row',
       justifyContent:'space-evenly',
     },
@@ -372,7 +409,7 @@ fontSize:18
     nextButton: {
        justifyContent: 'center',
        alignItems: 'center',
-      width:150,
+      width:180,
       padding: 15,
       backgroundColor: 'green',
       borderRadius: 15,
@@ -381,7 +418,7 @@ fontSize:18
     cancelButton: {
       justifyContent: 'center',
       alignItems: 'center',
-     width:150,
+     width:180,
      padding: 15,
      backgroundColor: '#36454F',
      borderRadius: 15,
@@ -397,6 +434,17 @@ fontSize:18
       //borderColor:'yellow',
       borderWidth:2,
       borderRadius: 15,
+    },
+
+    selected :{
+      color: '#fff',
+      backgroundColor: '#00867d',
+      border: '1px solid #00867d'
+    },
+    notSelected : {
+      color: '#00867d',
+      backgroundColor: '#f2f2f2',
+      border: '1px solid #f2f2f2'
     },
 
     decrementButton: {
@@ -416,7 +464,7 @@ fontSize:18
        justifyContent: 'center',
        alignItems: 'center',
       //width:'90%',
-      marginTop: 20,
+      marginTop: -10,
       padding: 10,
       backgroundColor: 'red',
       borderRadius: 15,

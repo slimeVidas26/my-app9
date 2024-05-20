@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
   modal: {
     //backgroundColor: 'lightGrey',
     backgroundColor: 'white',
-    //marginTop:30,
+    marginTop:20,
     padding: 20,
     borderRadius: 40,
     //position: 'relative',
     //minWidth: '95%',
     //maxWidth: 500
-    //height: '90%',
+    //height: '80%',
   },
  
 });
