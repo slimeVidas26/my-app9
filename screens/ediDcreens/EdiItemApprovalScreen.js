@@ -31,14 +31,13 @@ i18n.enableFallback = true;
   const [index, setIndex] = useState(0);
 
   
-  const [selected , setSelected] = useState('btn1')
+  const [selected , setSelected] = useState(null)
   console.log(selected)
 
   const changeColor = (btn) => {
      setSelected( btn );
   };
 
-  console.log(()=>changeColor('btn1'))
 
 
   const [counter, setCounter] = useState(0); 
@@ -60,7 +59,7 @@ i18n.enableFallback = true;
     const decrementCounter = () => { 
       if (counter > minLimit) {
       setCounter(counter - 1); 
-      changeColor('btn1');
+      changeColor('minus');
       }
       
 
@@ -69,7 +68,7 @@ i18n.enableFallback = true;
     const incrementCounter = () => { 
       if (counter < maxLimit) {
         setCounter(counter + 1); 
-        changeColor('btn2');
+        changeColor('plus');
       }  
     }; 
 
@@ -94,7 +93,7 @@ i18n.enableFallback = true;
  
   return (
   
-      <View style={styles.container}>
+      <View style={styles.modalContainer}>
         {/* {loading && <Loading/>}
         {error && <Error/>} */}
 
@@ -121,16 +120,27 @@ i18n.enableFallback = true;
 
 <View style={styles.container}>
       <View style={styles.detailsContainer}>
-        <Text style={styles.compagny}>Ossem Taassiot Mazon Ossem Taassiot Mazon</Text>
+        <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
         <Text style={[styles.productName , {color:counter===initialCount?'blue':'red'}]}>
-        Gamadim 100 gl Gamadim 100 gl</Text>
+        Gamadim 100 gl</Text>
         <Text style={styles.productCode}>
         72900000025487 </Text>
         <Text style={styles.productQuantityInStock}>
         Quantity in stock:104</Text>
         <View style = {styles.box}>
-                      <Text style = {styles.boxes}>12</Text>   
+                     <View style = {{flexDirection:'row' , flexDirection:'row' , justifyContent:'center',alignItems:'baseline'}}>
+                     <Text style = {styles.boxes}>12</Text>   
                       <Feather name="box" size={26} color="black" />
+                     </View>
+                      
+                     <View style = {{flexDirection:'row' , flexDirection:'row' , justifyContent:'center',alignItems:'baseline'}}>
+                     <Text style = {styles.boxes}>12</Text>   
+                      <Feather name="box" size={26} color="black" />
+                     </View>
+                     <View style = {{flexDirection:'row' , flexDirection:'row' , justifyContent:'center',alignItems:'baseline'}}>
+                     <Text style = {styles.boxes}>12</Text>   
+                      <Feather name="box" size={26} color="black" />
+                     </View>
                     </View>
       </View>
     <View style = {styles.imageContainer}>
@@ -146,7 +156,7 @@ i18n.enableFallback = true;
     </View>
     <TouchableOpacity style = {styles.quantityBefore}  onPress={handleReset}  > 
                     <Text style={styles.before}> 
-                     Quantity before:47
+                     Quantity before:10
                    
                     </Text> 
      </TouchableOpacity> 
@@ -167,10 +177,9 @@ i18n.enableFallback = true;
             <View style = {styles.counter}>
            
             <Pressable
-             onPress={decrementCounter} style={[styles.decrementButton,selected === "btn1" ? styles.selected : styles.notSelected] }
-
+             onPress={decrementCounter} style={[styles.decrementButton,selected === "minus" ? styles.selected : styles.notSelected,{borderColor: counter=== 0 || counter === initialCount ?'#d4d4d4':'red'}] }
             >
-            <Feather name="minus" size={60} color={initialCount===counter ?'blue':'red'} />
+            <Feather name="minus" size={60} color={initialCount===counter ?'blue': counter === 0 ? '#f2f2f2':'red'} />
           </Pressable>
 
          
@@ -185,8 +194,8 @@ i18n.enableFallback = true;
             {/* </TextInput> */}
 
            <Pressable
-            onPress={incrementCounter}  style={[styles.incrementButton,selected === "btn2" ? styles.selected : styles.notSelected] }>
-           <Feather name="plus" size={60}  color={initialCount===counter ?'#d4d4d4':'red'} /></Pressable>
+            onPress={incrementCounter}  style={[styles.incrementButton,selected === "plus" ? styles.selected : styles.notSelected,{borderColor:initialCount===counter ?'#f2f2f2':'red'}] }>
+           <Feather name="plus" size={60}  color={initialCount===counter ?'#f2f2f2':'red'}  /></Pressable>
             </View>
 
 
@@ -234,32 +243,49 @@ const styles = StyleSheet.create({
     //backgroundColor: '#d4d4d4',
     alignItems: 'center',
     // justifyContent: 'center',
-    //padding:10
+    paddingVertical:20
+  },
+  modalContainer: {
+    //height:400,
+    display:'flex',
+    flexDirection:'row',
+    // backgroundColor: '#d4d4d4',
+    alignItems: 'center',
+     justifyContent: 'center',
+    //paddingTop:10
   },
   detailsContainer: {
     flex: 3,
     justifyContent: 'center',
-    //backgroundColor:'red',
+    alignItems:'center',
+    // backgroundColor:'green',
     marginVertical:20
   },
   compagny: {
     fontSize: 20,
     //fontWeight: 'bold',
     marginBottom: 8,
+    // backgroundColor:'red'
   },
   productName: {
+    //backgroundColor:'yellow',
     fontSize: 20,
+    width:'100%',
     //fontWeight: 'bold',
     marginBottom: 8,
     color:'red'
   },
   productCode: {
+    //backgroundColor:'red',
+    width:'100%',
     fontSize: 18,
     //fontWeight: 'bold',
     marginBottom: 8,
     //color:'blue'
   },
   productQuantityInStock: {
+    width:'100%',
+    //backgroundColor:'red',
     fontSize: 18,
     //fontWeight: 'bold',
     marginBottom: 8,
@@ -285,15 +311,18 @@ const styles = StyleSheet.create({
   },
   boxes:{
     //backgroundColor:'yellow',
-    fontSize:16,
-    marginRight:12
+    fontSize:18,
+    marginRight:4
+    
     },
   box:{
     //flex:1,
+    width:'100%',
     //backgroundColor:'red',
     flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent:'space-between',
+    alignItems:'baseline',
+    
     
   },
   imageContainer:{
@@ -353,8 +382,8 @@ fontSize:20
     flex: 1,
     padding: 5,
     marginTop:30,
-    margin: 10,
-    fontSize : 50,
+    margin: 12,
+    fontSize : 55,
     borderRadius : 25,
     //color:'red',
     //backgroundColor:'yellow',
@@ -430,19 +459,21 @@ fontSize:20
       padding: 15,
       backgroundColor: '#d4d4d4',
       //borderColor:'yellow',
-      borderWidth:2,
+      //borderWidth:2,
       borderRadius: 15,
     },
 
     selected :{
       color: '#fff',
-      backgroundColor: '#00867d',
-      border: '1px solid #00867d'
+      //backgroundColor: '#00867d',
+      //border: '1px solid #00867d'
+      borderWidth : 1,
+      borderColor:'red'
     },
     notSelected : {
       color: '#00867d',
-      backgroundColor: '#f2f2f2',
-      border: '1px solid #f2f2f2'
+      backgroundColor: '#d4d4d4',
+      //border: '1px solid #f2f2f2'
     },
 
     decrementButton: {
