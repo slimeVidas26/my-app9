@@ -30,7 +30,6 @@ i18n.enableFallback = true;
   const [matching , setMatching] = useState(false)
   const [index, setIndex] = useState(0);
 
-  const [count, setCount] = useState(0);
   
   const [selected , setSelected] = useState('btn1')
   console.log(selected)
@@ -43,7 +42,8 @@ i18n.enableFallback = true;
 
 
   const [counter, setCounter] = useState(0); 
-    const [initialCount, setInitialCount] = useState(9); 
+    const [initialCount, setInitialCount] = useState(10); 
+    const [value, onChangeText] = useState(45);
   
     const handleInitialCountChange = (value) => { 
         setInitialCount(Number(value)); 
@@ -54,18 +54,33 @@ i18n.enableFallback = true;
         setMatching(true)
     }; 
 
+    const minLimit = 0;
+    const maxLimit = initialCount;
+
     const decrementCounter = () => { 
+      if (counter > minLimit) {
       setCounter(counter - 1); 
       changeColor('btn1');
+      }
       
 
   }; 
   
     const incrementCounter = () => { 
+      if (counter < maxLimit) {
         setCounter(counter + 1); 
         changeColor('btn2');
-       
+      }  
     }; 
+
+    const handleChange = (number) => {
+      const newValue = parseInt(number, 10);
+      if (!isNaN(newValue) && newValue >= minLimit && newValue <= maxLimit) {
+        setCounter(newValue);}
+      // } else {
+      //   Alert.alert('Invalid input', `Enter a number between ${minLimit} and ${maxLimit}`);
+      // }
+    };
   
     
 
@@ -106,8 +121,8 @@ i18n.enableFallback = true;
 
 <View style={styles.container}>
       <View style={styles.detailsContainer}>
-        <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
-        <Text style={styles.productName}>
+        <Text style={styles.compagny}>Ossem Taassiot Mazon Ossem Taassiot Mazon</Text>
+        <Text style={[styles.productName , {color:counter===initialCount?'blue':'red'}]}>
         Gamadim 100 gl Gamadim 100 gl</Text>
         <Text style={styles.productCode}>
         72900000025487 </Text>
@@ -137,25 +152,6 @@ i18n.enableFallback = true;
      </TouchableOpacity> 
 
 
-            {/* <View style = {{backgroundColor:'#d4d4d4',flexDirection :'row',alignItems:'center' , justifyContent:'center'  }} >
-              <View style = {{ padding:10,flexDirection :'column',alignItems:'flex-start' , justifyContent:'space-between' , width:'65%'}}>
-                <Text style = {{color:'black' , fontSize:22 , paddingBottom:10}}>Ossem Taassiot Mazon</Text>
-                <Text numberOfLines={3} style = {{color:'blue', fontSize:20, paddingBottom:10 }}>Product Name</Text>
-                <Text style = {{color:'black' , fontSize:18 , paddingBottom:10}}>72900000025487</Text>
-                <Text style = {{color:'black' , fontSize:18, paddingBottom:10}}>Quantity in stock:104</Text>
-                <View style = {styles.left}>
-                      <Text style = {styles.boxes}>12</Text>   
-                      <Feather name="box" size={26} color="black" />
-                    </View>
-                </View>
-              <View style = {{flex:1,   justifyContent:'space-around' , width:'35%'}}>
-              <Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
-              <View>
-              <Text style = {{fontSize:16}}>Initial quantity:48</Text>
-
-              </View>
-              </View>
-              </View> */}
 
 <View style={{ margin: 15 }}> 
                
@@ -169,24 +165,26 @@ i18n.enableFallback = true;
               </Pressable>
             
             <View style = {styles.counter}>
-            {/* this.state.{selected === "btn1" ? "selected" : "notSelected"} */}
-            {/* <Pressable  onPress={decrementCounter} style={[styles.decrementButton , {borderColor: initialCount===counter ? '#d4d4d4' : 'red'} ]} */}
-            <Pressable disabled = { counter === 0}
+           
+            <Pressable
              onPress={decrementCounter} style={[styles.decrementButton,selected === "btn1" ? styles.selected : styles.notSelected] }
 
             >
             <Feather name="minus" size={60} color={initialCount===counter ?'blue':'red'} />
           </Pressable>
 
-          {/* <TextInput style = {styles.TextCounter}>
-          <Text  >{count}</Text>
-          </TextInput> */}
+         
             {/* <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}> */}
-          <Text style = {[styles.TextCounter,{color : initialCount===counter ? 'blue': 'red'}]}> 
+            <TextInput style = {[styles.TextCounter,{color : initialCount===counter ? 'blue': 'red'}]}
+             value={String(counter)}
+             keyboardType="numeric"
+             onChangeText={handleChange}/>
+          {/* <Text > 
                 {counter} 
-            </Text> 
+            </Text>  */}
+            {/* </TextInput> */}
 
-           <Pressable disabled = { counter > initialCount ? true : false}
+           <Pressable
             onPress={incrementCounter}  style={[styles.incrementButton,selected === "btn2" ? styles.selected : styles.notSelected] }>
            <Feather name="plus" size={60}  color={initialCount===counter ?'#d4d4d4':'red'} /></Pressable>
             </View>
@@ -253,7 +251,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     //fontWeight: 'bold',
     marginBottom: 8,
-    color:'blue'
+    color:'red'
   },
   productCode: {
     fontSize: 18,
