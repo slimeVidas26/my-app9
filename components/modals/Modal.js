@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     //position: 'relative',
     //minWidth: '95%',
     //maxWidth: 500
-    height:windowHeight-120
+    height:windowHeight-200
   },
  
 });
