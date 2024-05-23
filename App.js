@@ -28,7 +28,7 @@ const App = () => {
       headerShown: true,
     }}>
     <RootStack.Group>
-      <RootStack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} /> 
+      {/* <RootStack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />  */}
 
     <RootStack.Screen name="Landing" component={LandingStackNavigator} />
       <RootStack.Screen name="Login" component={LoginStackNavigator} />

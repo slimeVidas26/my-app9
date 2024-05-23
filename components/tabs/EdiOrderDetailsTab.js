@@ -22,7 +22,7 @@ export const EdiOrderDetailsTab  = ()=>{
 }
   return(
     <Tab.Navigator
-    initialRouteName='EdiOrderDetailsScreenOpen'
+    initialRouteName='EdiOrderDetailsScreenClosed'
     tabBarOptions={{
       //activeTintColor: 'tomato',
       //inactiveTintColor: 'gray',
@@ -63,7 +63,7 @@ export const EdiOrderDetailsTab  = ()=>{
       <Tab.Screen   options={{
           tabBarLabel: ({focused}) => (
             <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{lens}</Text></View>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{0}</Text></View>
             <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Open</Text>
             </View>
           ) 

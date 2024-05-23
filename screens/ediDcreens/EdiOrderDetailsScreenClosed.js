@@ -1,6 +1,6 @@
 import React, { useState , useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
-import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
+import { SafeAreaView,ImageBackground,View,Pressable,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
 import { I18n } from 'i18n-js';
 import { translation } from "../../i18n/supportedLanguages";
 import * as Localization from 'expo-localization';
@@ -99,6 +99,10 @@ return(
         numColumns={2}
         columnWrapperStyle={styles.column}
       />}
+      <Pressable style={styles.closeButton}
+        onPress={navigation.navigate('EdiCertificateApprovalScreen') }>
+        <Text style={styles.closeButtonText}>Close Certificate</Text>
+      </Pressable>
     </View>
   );
 }
@@ -110,8 +114,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     //gap: '1rem',
     //flexWrap: "nowrap",
-    //flexDirection: 'row',  
-    //height:height,
+    flexDirection: 'column',  
+    height:height-300,
     //marginTop: 14,
     //alignSelf: "stretch",
     alignItems:'center',
@@ -127,6 +131,33 @@ const styles = StyleSheet.create({
    //justifyContent:'center'
    //alignItems:'center'
   },
+  closeButton:{ 
+    //height:70,
+    backgroundColor:'blue',
+    borderRadius:15,
+    flexDirection:'row' ,
+    justifyContent:'space-evenly',
+     alignItems:'center',
+     width:'95%' ,
+    borderRadius:10,
+    backgroundColor:'blue',
+    padding:18
+    
+     },
+     closeButtonText:{
+    color :'white',
+    fontSize:22
+     },
+    top:{
+      flex:1,
+    //backgroundColor:'red',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    padding:5,
+    marginBottom:15
+    
+    },
 
   item: {
     display:'flex',

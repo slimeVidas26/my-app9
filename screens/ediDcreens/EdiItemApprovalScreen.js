@@ -1,6 +1,6 @@
 //import { Image } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Pressable,Keyboard, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, Pressable,Keyboard, Image,Alert ,  TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from "react";
 import { translation } from '../../i18n/supportedLanguages';
 import * as Localization from 'expo-localization';
@@ -29,19 +29,16 @@ i18n.locale = 'he';
 export const EdiItemApprovalScreen = ({ navigation }) => {
 
   const [isModalOpen, setModalOpen] = useState(true);
+  const initialCount = 10;
+  const [counter, setCounter] = useState(0);
 
 
-
-  const InfoProduct = ()=>{
-    const [counter, setCounter] = useState(0);
-    const initialCount = 10;
-
-
+  const InfoProduct = ({initialCountProp , counterProp})=>{
     return(
       <View style={styles.infoProductZone}>
             <View style={styles.detailsContainer}>
               <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
-              <Text style={[styles.productName, { color: counter === initialCount ? 'blue' : styles.productName.color }]}>
+              <Text style={[styles.productName, { color: counterProp === initialCountProp ? 'blue' : styles.productName.color }]}>
                 Gamadim 100 gl</Text>
               <Text style={styles.productCode}>
                 72900000025487 </Text>
@@ -77,11 +74,9 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
   }
 
 
-  const Counter = ()=>{
+  const Counter = ({initialCountProp , counterProp})=>{
   
     const minLimit = 0;
-    const [counter, setCounter] = useState(0);
-    const initialCount = 10;
 
     const maxLimit = initialCount;
     const [selected, setSelected] = useState(null)
@@ -95,20 +90,20 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
 
   const decrementCounter = () => {
     if (counter > minLimit) {
-      setCounter(counter - 1);
+      setCounter(counterProp - 1);
       changeColor('minus');
     }
   };
 
   const incrementCounter = () => {
-    if (counter < maxLimit) {
-      setCounter(counter + 1);
+    if (counterProp < maxLimit) {
+      setCounter(counterProp + 1);
       changeColor('plus');
     }
   };
 
   const handleQuantity = () => {
-    setCounter(initialCount);
+    setCounter(initialCountProp);
     setMatching(true)
   };
 
@@ -117,9 +112,9 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
     if (!isNaN(newValue) && newValue >= minLimit && newValue <= maxLimit) {
       setCounter(newValue);
     }
-    // } else {
-    //   Alert.alert('Invalid input', `Enter a number between ${minLimit} and ${maxLimit}`);
-    // }
+      else {
+       Alert.alert('Invalid input', `Enter a number between ${minLimit} and ${maxLimit}`);
+     }
   };
   
     return(
@@ -131,7 +126,7 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
           </TouchableOpacity>
      
       <View style={styles.counterZone}>
-      <Pressable style={[styles.unitsButton, { backgroundColor: initialCount === counter ? 'blue' : styles.unitsButton.backgroundColor }]}
+      <Pressable style={[styles.unitsButton, { backgroundColor: initialCountProp === counter ? 'blue' : styles.unitsButton.backgroundColor }]}
         onPress={Keyboard.dismiss}>
         <Text style={[styles.unitButtonText]}>Units</Text>
       </Pressable>
@@ -141,22 +136,22 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
         <Pressable
           onPress={decrementCounter} style={[styles.counterButton, selected === "minus" ? styles.selected : styles.notSelected, { borderColor: counter === 0 || counter === initialCount ? '#d4d4d4' : styles.selected.borderColor }]}
         >
-          <Feather name="minus" size={60} color={initialCount === counter ? 'blue' : counter === 0 ? '#f2f2f2' : 'red'} />
+          <Feather name="minus" size={60} color={initialCountProp === counterProp ? 'blue' : counterProp === 0 ? '#f2f2f2' : 'red'} />
         </Pressable>
   
   
         {/* <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}> */}
-        <TextInput style={[styles.TextCounter, { color: initialCount === counter ? 'blue' : styles.TextCounter.color }]}
-          value={String(counter)}
+        <TextInput style={[styles.TextCounter, { color: initialCountProp === counterProp ? 'blue' : styles.TextCounter.color }]}
+          value={String(counterProp)}
           keyboardType="numeric"
           onChangeText={handleChange} />
   
         <Pressable
           onPress={incrementCounter} style={[styles.counterButton, selected === "plus" ? styles.selected : styles.notSelected, { borderColor: initialCount === counter ? '#f2f2f2' : styles.selected.borderColor }]}>
-          <Feather name="plus" size={60} color={initialCount === counter ? '#f2f2f2' : 'red'} /></Pressable>
+          <Feather name="plus" size={60} color={initialCountProp === counterProp ? '#f2f2f2' : 'red'} /></Pressable>
       </View>
   
-      {initialCount !== counter &&
+      {initialCountProp !== counterProp &&
   
         <View style={styles.noMatching}>
           <Text style={styles.noMatchingText}>
@@ -176,7 +171,7 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
     };
     return(
       <View style={styles.approve} >
-      <Pressable onPress={handleClosePopup} style={styles.nextButton}>
+      <Pressable onPress={() => navigation.navigate('EdiCertificateApprovalScreen')} style={styles.nextButton}>
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>
       <Pressable style={styles.cancelButton}
@@ -201,10 +196,10 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
         >
 
           {/* INFO PRODUCT ZONE */}
-                 <InfoProduct/>
+                 <InfoProduct initialCountProp={initialCount} counterProp={counter}/>
 
           {/* COUNTER ZONE */}
-                <Counter/>
+                <Counter initialCountProp={initialCount} counterProp={counter}/>
                
           {/* APPROVE BUTTONS */}
               <ApproveButtons/>
@@ -250,7 +245,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     //fontWeight: 'bold',
     marginBottom: 8,
-    // backgroundColor:'red'
+     //backgroundColor:'red',
+     width:'100%'
   },
   productName: {
     //backgroundColor:'yellow',
@@ -276,10 +272,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     //color:'blue'
   },
-  productDescription: {
-    fontSize: 16,
-    color: '#666',
-  },
+  
 
   productImage: {
     flex: 1,
@@ -332,40 +325,6 @@ const styles = StyleSheet.create({
     //paddingRight:20,
     fontSize: 20
   },
-
-  logo: {
-    width: "100%",
-    marginBottom: 10,
-    alignItems: 'center',
-
-  },
-  image: {
-    // width : "90%",
-    // backgroundColor: '#0553',
-    width: "100%",
-    marginBottom: 80,
-    alignItems: 'center',
-    position: 'relative',
-    top: 20
-  },
-  expoImage: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#0553',
-  },
-
-  inputView: {
-    backgroundColor: "#d3d3d3",
-    borderRadius: 30,
-    width: "70%",
-    height: 55,
-    marginBottom: 20,
-
-    alignItems: "center",
-  },
-
-
-
   TextCounter: {
     //height: 60,
     flex: 1,
@@ -410,17 +369,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  closeButton: {
-    //flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 150,
-    //marginTop: 20,
-    padding: 15,
-    backgroundColor: 'blue',
-    borderRadius: 15,
-  },
-
 
   nextButton: {
     justifyContent: 'center',

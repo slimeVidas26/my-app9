@@ -22,7 +22,7 @@ const height = (Dimensions.get('window').height)
 
 
 
-export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) {
+export function EdiCertificateApprovalScreen({navigation ,data , error , loading}) {
 
   
 
@@ -32,7 +32,7 @@ const DepartmentItem = ({ department}) => {
 return(
 
 
-<TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
+<TouchableOpacity  onPress={() => navigation.navigate('Login')}>
 <View style = {styles.item}>
 
 <View style = {styles.top}>
@@ -74,8 +74,8 @@ return(
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        //data={data.departments}
-        data={null}
+        data={data.departments}
+        //data={null}
         renderItem={({ item }) => (
           <DepartmentItem department={item} />)}
         //keyExtractor={(item, index) => index}
@@ -85,7 +85,7 @@ return(
         columnWrapperStyle={styles.column}
       />}
       <Pressable style={styles.closeButton}
-        onPress={navigation.navigate('EdiCertificateApprovalScreen') }>
+        onPress={() =>{console.log('close button')} }>
         <Text style={styles.closeButtonText}>Close Certificate</Text>
       </Pressable>
     </View>
