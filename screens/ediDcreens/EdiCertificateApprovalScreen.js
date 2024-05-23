@@ -32,7 +32,7 @@ const DepartmentItem = ({ department}) => {
 return(
 
 
-<TouchableOpacity  onPress={() => navigation.navigate('Login')}>
+<TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
 <View style = {styles.item}>
 
 <View style = {styles.top}>
@@ -68,8 +68,7 @@ return(
 
   return (
     <View style={styles.container}>
-
-  
+       <Text>Edi item approval screen</Text>
     {loading && <Text>Loading...</Text>}
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
@@ -85,8 +84,8 @@ return(
         columnWrapperStyle={styles.column}
       />}
       <Pressable style={styles.closeButton}
-        onPress={() =>{console.log('close button')} }>
-        <Text style={styles.closeButtonText}>Close Certificate</Text>
+        onPress={() =>{console.log(' button')} }>
+        <Text style={styles.closeButtonText}>Close </Text>
       </Pressable>
     </View>
   );

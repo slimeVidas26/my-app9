@@ -5,6 +5,7 @@ import { translation } from "../../i18n/supportedLanguages";
 import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
+import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
 
 
 const i18n = new I18n(translation)
@@ -85,7 +86,7 @@ return(
         columnWrapperStyle={styles.column}
       />}
       <Pressable style={styles.closeButton}
-        onPress={navigation.navigate('EdiCertificateApprovalScreen') }>
+        onPress={() =>{navigation.navigate('EdiCertificateApprovalScreen')} }>
         <Text style={styles.closeButtonText}>Close Certificate</Text>
       </Pressable>
     </View>

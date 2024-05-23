@@ -33,7 +33,7 @@ const DepartmentItem = ({ department}) => {
 return(
 
 
-<TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
+<TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
 <View style = {styles.item}>
 
 <View style = {styles.top}>
@@ -100,7 +100,7 @@ return(
         columnWrapperStyle={styles.column}
       />}
       <Pressable style={styles.closeButton}
-        onPress={navigation.navigate('EdiCertificateApprovalScreen') }>
+        onPress={() =>{navigation.navigate('EdiCertificateApprovalScreen')} }>
         <Text style={styles.closeButtonText}>Close Certificate</Text>
       </Pressable>
     </View>

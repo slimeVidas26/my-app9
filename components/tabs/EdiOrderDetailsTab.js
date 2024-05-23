@@ -22,7 +22,7 @@ export const EdiOrderDetailsTab  = ()=>{
 }
   return(
     <Tab.Navigator
-    initialRouteName='EdiOrderDetailsScreenClosed'
+    initialRouteName='EdiOrderDetailsScreenOpen'
     tabBarOptions={{
       //activeTintColor: 'tomato',
       //inactiveTintColor: 'gray',

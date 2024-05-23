@@ -25,12 +25,12 @@ const EdiStackNavigator = () => {
       headerShown: false
     }}>
 
-      <Stack.Screen name="EDICertificate" component={EDICertificateStackNavigator} />
+      <Stack.Screen name="EDICertificateScreen" component={EDICertificateStackNavigator} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       <Stack.Screen name="PopUp" component={PopUpScreen} />
       <Stack.Screen name="EdiOrderDetailsScreenOpen" component={EdiOrderDetailsStackNavigator} />
       <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalStackNavigator} />
-      {/* <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalStackNavigator} /> */}
+      <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalStackNavigator} />
 
 
     </Stack.Navigator>

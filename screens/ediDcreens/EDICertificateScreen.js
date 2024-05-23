@@ -34,7 +34,7 @@ import { useQuery } from "@apollo/client";
 import { EDI_ORDERS_QUERY } from '../../gql/Query';
 
 
-const EDICertificate = ({navigation}) => {
+const EDICertificateScreen = ({navigation}) => {
 
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -115,7 +115,7 @@ const EDICertificate = ({navigation}) => {
 
 }
 
-export default EDICertificate
+export default EDICertificateScreen
 
 const styles = StyleSheet.create({
   

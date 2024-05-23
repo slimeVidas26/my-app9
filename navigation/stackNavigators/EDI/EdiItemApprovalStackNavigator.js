@@ -19,9 +19,6 @@ const EdiItemApprovalStackNavigator = () => {
     }}>
        <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />
      </Stack.Navigator>
-   
-    
-  
   )
 }
 
