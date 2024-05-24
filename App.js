@@ -9,6 +9,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import LandingStackNavigator from './navigation/stackNavigators/LandingStackNavigator'
 import LoginStackNavigator from './navigation/stackNavigators/LoginStackNavigator'
 import { EdiItemApprovalScreen } from './screens/ediDcreens/EdiItemApprovalScreen';
+import { EdiCertificateApprovalScreen } from './screens/ediDcreens/EdiCertificateApprovalScreen';
+import {EndEdiFormScreen} from './screens/ediDcreens/EndEdiFormScreen';
 
 const RootStack = createStackNavigator()
 
@@ -28,6 +30,10 @@ const App = () => {
       headerShown: true,
     }}>
     <RootStack.Group>
+    <RootStack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />
+
+    {/* <RootStack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />  */}
+
       {/* <RootStack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />  */}
 
     <RootStack.Screen name="Landing" component={LandingStackNavigator} />

@@ -171,7 +171,7 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
     };
     return(
       <View style={styles.approve} >
-      <Pressable onPress={() => navigation.navigate('EdiCertificateApprovalScreen')} style={styles.nextButton}>
+      <Pressable onPress={() => navigation.navigate('EdiOrderDetailsScreenOpen')} style={styles.nextButton}>
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>
       <Pressable style={styles.cancelButton}

@@ -101,7 +101,7 @@ return(
       />}
       <Pressable style={styles.closeButton}
         onPress={() =>{navigation.navigate('EdiCertificateApprovalScreen')} }>
-        <Text style={styles.closeButtonText}>Close Certificate</Text>
+        <Text style={styles.closeButtonText}>Close Certificate from closed</Text>
       </Pressable>
     </View>
   );

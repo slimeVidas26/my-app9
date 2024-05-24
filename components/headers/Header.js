@@ -143,21 +143,7 @@ const styles = StyleSheet.create({
     //width:350
   },
 
-  leftSide:{
-    //backgroundColor:'red',
-     //width:'50%' ,
-      alignItems:'flex-start',
-      paddingLeft:8 ,
-       paddingRight:8
-      
-  },
-
-  rightSide:{
-    //paddingTop:10,
-     //backgroundColor:'yellow',
-      // width:'80%' ,
-      alignItems:'flex-end'
-  },
+  
 
   textInput: {
     textAlign: "right",
