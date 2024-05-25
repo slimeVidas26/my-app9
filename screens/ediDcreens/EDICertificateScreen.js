@@ -68,7 +68,7 @@ const EDICertificateScreen = ({navigation}) => {
   };
 
   return (
-    <>
+    
       <View style={styles.container}>
         {loading && <Loading/>}
         {error && <Error/>}
@@ -110,7 +110,7 @@ const EDICertificateScreen = ({navigation}) => {
          </>
         }
       </View>
-    </>
+    
   );
 
 }

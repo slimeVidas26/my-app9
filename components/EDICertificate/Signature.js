@@ -32,8 +32,8 @@ export const Sign = ({ onOK }) => {
     
       <SignatureScreen ref={ref} onEmpty={handleEmpty} webStyle={style} />
        <View style={styles.row}>
-        <Button title="Clear" onPress={handleClear} />
-        <Button title="Confirm" onPress={handleConfirm} />
+        {/* <Button title="Clear" onPress={handleClear} />
+        <Button title="Confirm" onPress={handleConfirm} /> */}
       </View> 
     </View>
   );
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    height: 250,
+    height: 200,
     padding: 10,
     margin:15,
     marginTop:0,

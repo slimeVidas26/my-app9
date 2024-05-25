@@ -1,7 +1,7 @@
 //https://www.geeksforgeeks.org/how-to-implement-form-validation-in-react-native/
 
 import React, { useState, useEffect } from 'react'; 
-import { View, TextInput, TouchableOpacity,Pressable, 
+import { View, TextInput, TouchableOpacity,Pressable,SafeAreaView, ScrollView,
 	Text, StyleSheet } from 'react-native'; 
 
 import { Sign } from '../../components/EDICertificate/Signature';
@@ -10,9 +10,13 @@ import { Sign } from '../../components/EDICertificate/Signature';
     const ApproveButtons = () => {
         return (
           
-          <View style={[styles.approve , { opacity: isFormValid ? 1 : 0.5 }]} disabled={!isFormValid} >
+        //   <View style={[styles.approve , { opacity: isFormValid ? 1 : 0.5 }]} disabled={!isFormValid} >
+        <View style={styles.approve } >
+
           
-            <Pressable style={styles.nextButton} onPress={()=>navigation.navigate('TotoScreen')} >
+            {/* <Pressable style={styles.nextButton} onPress={()=>{validateForm,navigation.navigate('EdiCertificateConfirmationScreen')}} > */}
+            <Pressable style={styles.nextButton} onPress={()=>{handleSubmit()}} >
+
               <Text style={styles.approveButtonText}>Next</Text>
             </Pressable>
 
@@ -30,9 +34,7 @@ import { Sign } from '../../components/EDICertificate/Signature';
 	// State variables to store form inputs, 
 	// errors, and form validity 
 	const [name, setName] = useState(''); 
-	const [email, setEmail] = useState(''); 
     const [phone , setPhone] = useState('');
-	const [password, setPassword] = useState(''); 
     const [car, setCar] = useState(''); 
     const [reason, setReason] = useState(''); 
     const [comment, setComment] = useState(''); 
@@ -42,12 +44,12 @@ import { Sign } from '../../components/EDICertificate/Signature';
 	const [errors, setErrors] = useState({}); 
 	const [isFormValid, setIsFormValid] = useState(false); 
 
-	useEffect(() => { 
+	//   useEffect(() => { 
 
-		// Trigger form validation when name, 
-		// email, or password changes 
-		validateForm(); 
-	}, [name, phone, car , reason , comment]); 
+	//  	// Trigger form validation when name, 
+	//   	// email, or password changes 
+	//   	validateForm(); 
+	//   }, [name, phone, car , reason , comment]); 
 
 	const validateForm = () => { 
 		let errors = {}; 
@@ -55,29 +57,16 @@ import { Sign } from '../../components/EDICertificate/Signature';
 		// Validate name field 
 		if (!name) { 
 			errors.name = 'Name is required.'; 
-		} 
+		}
+       
 
-		// Validate email field 
-		// if (!email) { 
-		// 	errors.email = 'Email is required.'; 
-		// } else if (!/\S+@\S+\.\S+/.test(email)) { 
-		// 	errors.email = 'Email is invalid.'; 
-		// } 
+		
 
         // Validate phone field 
 		if (!phone) { 
 			errors.phone = 'Phone is required.'; 
 		 } 
-         //else if (!/\S+@\S+\.\S+/.test(phone)) { 
-		// 	errors.phone = 'Phone is invalid.'; 
-		// } 
-
-		// Validate password field 
-		// if (!password) { 
-		// 	errors.password = 'Password is required.'; 
-		// } else if (password.length < 6) { 
-		// 	errors.password = 'Password must be at least 6 characters.'; 
-		// } 
+        
 
         if (!car) { 
 			errors.car = 'Car is required.'; 
@@ -105,28 +94,34 @@ import { Sign } from '../../components/EDICertificate/Signature';
 	const handleSubmit = () => { 
 		if (isFormValid) { 
 			// Form is valid, perform the submission logic 
-			console.log('Form submitted successfully!'); 
+			console.log('Form submitted successfully!');
+            navigation.navigate('EdiCertificateConfirmationScreen') 
             
 		} else { 
 			// Form is invalid, display error messages 
 			console.log('Form has errors. Please correct them.'); 
+            validateForm()
 		} 
 	}; 
 
 	return ( 
-		<View style={styles.container}> 
+        <SafeAreaView style={styles.container}>
+             <ScrollView style={styles.scrollView}>
 			<TextInput 
 				style={styles.input} 
-				placeholder="Name"
+				placeholder="Name*"
 				value={name} 
 				onChangeText={setName} 
 			/> 
+            <Text style = {styles.error}>{errors.name}</Text>
 			<TextInput 
 				style={styles.input} 
 				placeholder="Phone"
 				value={phone} 
 				onChangeText={setPhone} 
 			/> 
+           <Text style = {styles.error}>{errors.phone}</Text>
+
 			<TextInput 
 				style={styles.input} 
 				placeholder="Car"
@@ -134,6 +129,8 @@ import { Sign } from '../../components/EDICertificate/Signature';
 				onChangeText={setCar} 
 				//secureTextEntry 
 			/> 
+             <Text style = {styles.error}>{errors.car}</Text>
+
 
             <Sign/>
 
@@ -142,25 +139,30 @@ import { Sign } from '../../components/EDICertificate/Signature';
 				placeholder="Reason"
 				value={reason} 
 				onChangeText={setReason} 
-				secureTextEntry 
+				//secureTextEntry 
 			/> 
+            <Text style = {styles.error}>{errors.reason}</Text>
+
 
 <TextInput 
 				style={styles.input} 
 				placeholder="Comment"
 				value={comment} 
 				onChangeText={setComment} 
-				secureTextEntry 
+				//secureTextEntry 
 			/> 
+            <Text style = {styles.error}>{errors.comment}</Text>
+
 			<ApproveButtons/>
 			
 			{/* Display error messages */} 
-			{Object.values(errors).map((error, index) => ( 
+			{/* {Object.values(errors).map((error, index) => ( 
 				<Text key={index} style={styles.error}> 
 					{error} 
 				</Text> 
-			))} 
-		</View> 
+			))}  */}
+            </ScrollView>
+		</SafeAreaView> 
 	); 
 }; 
 
@@ -173,12 +175,14 @@ const styles = StyleSheet.create({
 	}, 
 	input: { 
 		height: 60, 
-		borderColor: '#ccc', 
+		borderColor: '#ccc',
+        backgroundColor:'#ccc' ,
 		borderWidth: 1, 
 		marginBottom: 12, 
 		paddingHorizontal: 10, 
 		borderRadius: 8, 
 		fontSize: 16, 
+        textAlign:'center'
 	}, 
     approve: {
         flexDirection: 'row',
@@ -222,7 +226,7 @@ const styles = StyleSheet.create({
 	}, 
 	error: { 
 		color: 'red', 
-		fontSize: 20, 
+		fontSize: 18, 
 		marginBottom: 12, 
 	}, 
 }); 

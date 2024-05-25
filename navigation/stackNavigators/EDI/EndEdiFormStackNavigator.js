@@ -7,18 +7,18 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { EdiCertificateApprovalScreen } from '../../../screens/ediDcreens/EdiCertificateApprovalScreen';
 import { EndEdiFormScreen } from '../../../screens/ediDcreens/EndEdiFormScreen';
+import  TotoScreen  from '../../../screens/ediDcreens/TotoScreen';
 
 const Stack = createStackNavigator()
 
 
-const EdiICertificateApprovalStackNavigator = () => {
+const EndEdiFormStackNavigator = () => {
   
   return (
      <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
-       <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />
-       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />
+       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormStackNavigator} />
 
      </Stack.Navigator>
    
@@ -28,7 +28,7 @@ const EdiICertificateApprovalStackNavigator = () => {
 }
 
 
-export default EdiICertificateApprovalStackNavigator;
+export default EndEdiFormStackNavigator;
 
 
 

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     //backgroundColor: 'lightGrey',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
     marginTop:20,
     padding: 20,
     borderRadius: 40,
