@@ -5,6 +5,8 @@ import { View, TextInput, TouchableOpacity,Pressable,SafeAreaView, ScrollView,
 	Text, StyleSheet } from 'react-native'; 
 
 import { Sign } from '../../components/EDICertificate/Signature';
+//import { SignatureScreen } from '../../components/EDICertificate/SignatureScreen';
+
  export function EndEdiFormScreen({navigation}) { 
 
     const ApproveButtons = () => {
@@ -36,6 +38,7 @@ import { Sign } from '../../components/EDICertificate/Signature';
 	const [name, setName] = useState(''); 
     const [phone , setPhone] = useState('');
     const [car, setCar] = useState(''); 
+    const [signature, setSignature] = useState(''); 
     const [reason, setReason] = useState(''); 
     const [comment, setComment] = useState(''); 
 
@@ -58,21 +61,22 @@ import { Sign } from '../../components/EDICertificate/Signature';
 		if (!name) { 
 			errors.name = 'Name is required.'; 
 		}
-       
-
-		
-
         // Validate phone field 
 		if (!phone) { 
 			errors.phone = 'Phone is required.'; 
 		 } 
-        
-
         if (!car) { 
 			errors.car = 'Car is required.'; 
 		} else if (car.length < 6) { 
 			errors.car = 'Car must be at least 6 characters.'; 
 		} 
+
+        if (!signature) { 
+			errors.signature = 'Signature is required.'; 
+		 } 
+        //  else if (.length < 6) { 
+		// 	errors.car = 'Car must be at least 6 characters.'; 
+		// } 
 
         if (!reason) { 
 			errors.reason = 'Reason is required.'; 
@@ -101,12 +105,14 @@ import { Sign } from '../../components/EDICertificate/Signature';
 			// Form is invalid, display error messages 
 			console.log('Form has errors. Please correct them.'); 
             validateForm()
+            handleEmpty()
 		} 
 	}; 
 
 	return ( 
         <SafeAreaView style={styles.container}>
              <ScrollView style={styles.scrollView}>
+             {/* <ScrollView style={styles.scrollView}> */}
 			<TextInput 
 				style={styles.input} 
 				placeholder="Name*"
@@ -134,7 +140,7 @@ import { Sign } from '../../components/EDICertificate/Signature';
 
             <Sign/>
 
-<TextInput 
+          <TextInput 
 				style={styles.input} 
 				placeholder="Reason"
 				value={reason} 
@@ -161,7 +167,7 @@ import { Sign } from '../../components/EDICertificate/Signature';
 					{error} 
 				</Text> 
 			))}  */}
-            </ScrollView>
+             </ScrollView>
 		</SafeAreaView> 
 	); 
 }; 
@@ -178,7 +184,7 @@ const styles = StyleSheet.create({
 		borderColor: '#ccc',
         backgroundColor:'#ccc' ,
 		borderWidth: 1, 
-		marginBottom: 12, 
+		//marginBottom: 12, 
 		paddingHorizontal: 10, 
 		borderRadius: 8, 
 		fontSize: 16, 
@@ -226,8 +232,9 @@ const styles = StyleSheet.create({
 	}, 
 	error: { 
 		color: 'red', 
-		fontSize: 18, 
-		marginBottom: 12, 
+		fontSize: 16, 
+		marginBottom: 10, 
+        //backgroundColor:'red'
 	}, 
 }); 
 
