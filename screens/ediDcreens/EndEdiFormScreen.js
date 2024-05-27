@@ -8,6 +8,7 @@ import { Sign } from '../../components/EDICertificate/Signature';
 //import { SignatureScreen } from '../../components/EDICertificate/SignatureScreen';
 
  export function EndEdiFormScreen({navigation}) { 
+    
 
     const ApproveButtons = () => {
         return (
@@ -117,16 +118,20 @@ import { Sign } from '../../components/EDICertificate/Signature';
 				style={styles.input} 
 				placeholder="Name*"
 				value={name} 
-				onChangeText={setName} 
+				onChangeText= {setName}
 			/> 
-            <Text style = {styles.error}>{errors.name}</Text>
+            <Text style = {styles.error}>
+                {name ? errors.name==='' : errors.name}
+                </Text>
 			<TextInput 
 				style={styles.input} 
 				placeholder="Phone"
 				value={phone} 
 				onChangeText={setPhone} 
 			/> 
-           <Text style = {styles.error}>{errors.phone}</Text>
+           <Text style = {styles.error}>
+           {phone ? errors.phone==='' : errors.phone}
+            </Text>
 
 			<TextInput 
 				style={styles.input} 
@@ -135,7 +140,9 @@ import { Sign } from '../../components/EDICertificate/Signature';
 				onChangeText={setCar} 
 				//secureTextEntry 
 			/> 
-             <Text style = {styles.error}>{errors.car}</Text>
+             <Text style = {styles.error}>
+             {car ? errors.car ==='' : errors.car}
+                </Text>
 
 
             <Sign/>
@@ -147,17 +154,21 @@ import { Sign } from '../../components/EDICertificate/Signature';
 				onChangeText={setReason} 
 				//secureTextEntry 
 			/> 
-            <Text style = {styles.error}>{errors.reason}</Text>
+            <Text style = {styles.error}>
+            {reason ? errors.reason ==='' : errors.reason}
+                </Text>
 
 
-<TextInput 
+             <TextInput 
 				style={styles.input} 
 				placeholder="Comment"
 				value={comment} 
 				onChangeText={setComment} 
 				//secureTextEntry 
 			/> 
-            <Text style = {styles.error}>{errors.comment}</Text>
+            <Text style = {styles.error}>
+            {comment ? errors.comment ==='' : errors.name}
+                </Text>
 
 			<ApproveButtons/>
 			

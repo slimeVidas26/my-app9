@@ -106,9 +106,17 @@ const styles = StyleSheet.create({
     height: 180,
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom:30,
+    //marginBottom:30,
     borderRadius: 8, 
   },
+  error: { 
+    flex:1,
+    alignSelf:'flex-start',
+		color: 'red', 
+		fontSize: 16, 
+		marginBottom: 10, 
+    //backgroundColor:'yellow'
+	},
 });
 
 // export default SignatureScreen;
