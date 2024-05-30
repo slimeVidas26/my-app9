@@ -31,7 +31,7 @@ const App = () => {
       headerShown: true,
     }}>
     <RootStack.Group>
-      {/* <RootStack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />  */}
+      <RootStack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} /> 
 
     {/* <RootStack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />  */}
 
