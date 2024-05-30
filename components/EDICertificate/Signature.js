@@ -6,7 +6,7 @@ import SignatureCanvas from 'react-native-signature-canvas';
 export const Sign = ({ text, onOK }) => {
 
   const signatureRef = useRef();
-  console.log(signatureRef.current)
+  //console.log(signatureRef.current)
   const [signature, setSign] = useState(null);
   const [empty , setEmpty] = useState('')
 
@@ -18,10 +18,13 @@ export const Sign = ({ text, onOK }) => {
 
   const handleClear = () => {
     console.log('Signature cleared');
+    signatureRef.current.erase()
   };
 
   const handleEmpty = () => {
     console.log("Empty");
+    console.log(signature);
+
     setEmpty('Canvas cant be empty')
   };
 
@@ -47,19 +50,27 @@ export const Sign = ({ text, onOK }) => {
 
    // Called after end of stroke
    const handleEnd = () => {
-    signatureRef.current.readSignature();
+    const  sign = signatureRef.current.readSignature();
+    console.log('sign' , sign)
   };
 
   // Called after ref.current.readSignature() reads a non-empty base64 string
   const handleOK = (signature) => {
     console.log(signature);
-    onOK(signature); // Callback from Component props
+    setEmpty('')
+    //onOK(signature);  Callback from Component props
   };
 
   // Called after ref.current.getData()
   const handleData = (data) => {
     console.log(data);
   };
+
+  const handleConfirm = () => {
+    console.log("end");
+    signatureRef.current.readSignature();
+  };
+
   
 
   return (
@@ -67,7 +78,8 @@ export const Sign = ({ text, onOK }) => {
       <SignatureCanvas
        ref={signatureRef}
         onOK={handleOK}
-        //onEnd  = {handleEnd}
+        onEnd  = {handleEnd}
+        //onConfirm = {handleConfirm}
         onEmpty={handleEmpty}
         onGetData={handleData}
         onClear={handleClear}
@@ -90,6 +102,18 @@ export const Sign = ({ text, onOK }) => {
       />
        <Text style = {styles.error}>{empty}</Text>
        <Button title="Check if Canvas is Blank" onPress={handleEmpty} />
+       {/* <Button title="Check if Canvas signature" onPress={handleSignature} />
+       <Button title="Check handleClear" onPress={handleClear} />
+       <Button title="Check handleEnd" onPress={handleEnd} />
+       <Button title="Check handleOK" onPress={handleOK} />
+       <Button title="Check handleData" onPress={handleData} />
+       <Button title="Check handleConfirm" onPress={handleConfirm} /> */}
+
+
+
+
+
+
     </View>
   );
 };
