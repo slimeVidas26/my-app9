@@ -135,8 +135,6 @@ import { Sign } from '../../components/EDICertificate/Signature';
 			errors.car = 'Car must be at least 6 characters.'; 
 		} 
 
-    
-
         if (!signature) { 
 			errors.signature = 'Signature is required.'; 
 		 } 

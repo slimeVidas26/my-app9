@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, View, StyleSheet,Pressable, Button, Alert } from 'react-native';
+import { SafeAreaView, Text, TextInput, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
 import Signature from 'react-native-signature-canvas';
 
 export function EndEdiFormScreen({navigation}) { 
@@ -15,6 +15,8 @@ export function EndEdiFormScreen({navigation}) {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState({}); 
+  const [isFormValid, setIsFormValid] = useState(false); 
+
   const signRef = useRef(null);
 
   
@@ -44,7 +46,9 @@ export function EndEdiFormScreen({navigation}) {
     )
   }
 
-  const handleSubmit = () => {
+  // const handleSubmit = () => {
+    const validateForm = () => {
+      let errors = {};
     console.log('Signature:', signature);
     if (!name) { 
 			errors.name = 'Name is required.'; 
@@ -79,9 +83,28 @@ export function EndEdiFormScreen({navigation}) {
 		} else if (comment.length < 6) { 
 			errors.comment = 'comment must be at least 6 characters.'; 
 		} 
-    setErrors('');
-    Alert.alert('Submitted', `First Name: ${name}, Last Name: ${phone}, Signature: ${signature}`);
+    setErrors(errors); 
+		setIsFormValid(Object.keys(errors).length === 0); 
+    // setErrors('');
+    // Alert.alert('Submitted', `First Name: ${name}, Last Name: ${phone}, Signature: ${signature}`);
   };
+
+  const handleSubmit = () => { 
+		if (isFormValid ) { 
+			// Form is valid, perform the submission logic 
+			console.log('Form submitted successfully!');
+            navigation.navigate('EdiCertificateConfirmationScreen') 
+            
+		} else { 
+			// Form is invalid, display error messages 
+			console.log('Form has errors. Please correct them.'); 
+            validateForm()
+           
+            
+		} 
+	}; 
+
+
 
   // Called after end of stroke
   const handleEnd = () => {
@@ -101,24 +124,9 @@ export function EndEdiFormScreen({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
       <View style={styles.formGroup}>
-        {/* <Text style={styles.label}>First Name</Text>
-        <TextInput
-          style={styles.input}
-          value={firstName}
-          onChangeText={setFirstName}
-          placeholder="Enter your first name"
-        />
-      </View>
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Last Name</Text>
-        <TextInput
-          style={styles.input}
-          value={lastName}
-          onChangeText={setLastName}
-          placeholder="Enter your last name"
-        />
-        <View style={styles.formGroup}> */}
+       
         	<TextInput 
 				style={styles.input} 
 				placeholder="Name*"
@@ -150,7 +158,7 @@ export function EndEdiFormScreen({navigation}) {
              {car ? errors.car ==='' : errors.car}
                 </Text>
      
-        <Text style={styles.label}>Signature</Text>
+        {/* <Text style={styles.label}>Signature</Text> */}
         <View style={styles.signatureContainer}>
           <Signature
             ref={signRef}
@@ -163,11 +171,11 @@ export function EndEdiFormScreen({navigation}) {
             webStyle={styles.signatureWebStyle}
           />
            <Text style = {styles.error}>
-             {car ? errors.signature ==='' : errors.signature}
+             {signature ? errors.signature ==='' : errors.signature}
                 </Text>
         </View>
 
-        <View style={styles.formGroup}>
+        
         <TextInput 
 				style={styles.input} 
 				placeholder="Reason"
@@ -176,11 +184,11 @@ export function EndEdiFormScreen({navigation}) {
 				//secureTextEntry 
 			/> 
        <Text style = {styles.error}>
-             {car ? errors.reason ==='' : errors.reason}
+             {reason ? errors.reason ==='' : errors.reason}
                 </Text>
-       </View>
+      
 
-       <View style={styles.formGroup}>
+       
        <TextInput 
 				style={styles.input} 
 				placeholder="Comment"
@@ -189,16 +197,18 @@ export function EndEdiFormScreen({navigation}) {
 				//secureTextEntry 
 			/> 
        <Text style = {styles.error}>
-             {car ? errors.comment ==='' : errors.comment}
+             {comment ? errors.comment ==='' : errors.comment}
                 </Text>
-       </View>
+       
 
-        {signature ? (
+        {/* {signature ? (
           <Button title="Clear Signature" onPress={handleClear} />
-        ) : null}
+        ) : null} */}
       </View>
-      {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
+      {/* {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null} */}
       <ApproveButtons/>
+      </ScrollView>
+
     </SafeAreaView>
   );
 };
@@ -209,6 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
+  
   formGroup: {
     marginBottom: 16,
   },
@@ -223,21 +234,23 @@ const styles = StyleSheet.create({
 		fontSize: 16, 
         textAlign:'center'
 	}, 
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-  },
+  // label: {
+  //   fontSize: 16,
+  //   marginBottom: 8,
+  // },
+  // input: {
+  //   height: 40,
+  //   borderColor: '#ccc',
+  //   borderWidth: 1,
+  //   paddingHorizontal: 8,
+  //   borderRadius: 4,
+  // },
   signatureContainer: {
     borderColor: '#ccc',
+    // backgroundColor:'red',
     borderWidth: 1,
     height: 200,
+    
   },
   signatureWebStyle: `
     .m-signature-pad {
@@ -246,6 +259,7 @@ const styles = StyleSheet.create({
     }
     .m-signature-pad--body {
       border: none;
+      background-color: #ccc;
     }
     .m-signature-pad--footer {
       display: none;
@@ -255,15 +269,11 @@ const styles = StyleSheet.create({
       width: 100%; height: 100%;
     }
   `,
-  error: {
-    color: 'red',
-    marginBottom: 16,
-    textAlign: 'center',
-  },
+ 
   approve: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop:10
+    // marginTop:10
   },
   approveButtonText: {
     color: 'white',
