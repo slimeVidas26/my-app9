@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
+import { SafeAreaView, Text, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
 import Signature from 'react-native-signature-canvas';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export function EndEdiFormScreen({navigation}) { 
   const [firstName, setFirstName] = useState('');
@@ -123,12 +124,17 @@ export function EndEdiFormScreen({navigation}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-      <View style={styles.formGroup}>
+    // <SafeAreaView style={styles.container}>
+    //     <ScrollView style={styles.scrollView}>
+    <KeyboardAwareScrollView>
+    <View style={styles.inner}>
+
+        <Text style={styles.title}>Edi Certificate Confirmation</Text>
+        <Text style={styles.ref}>Reference : 4707342</Text>
+
        
         	<TextInput 
-				style={styles.input} 
+				style={[styles.input , { borderBottomColor: errors.name ? 'red' : styles.input.borderBottomColor } ] } 
 				placeholder="Name*"
 				value={name} 
 				onChangeText= {setName}
@@ -138,8 +144,7 @@ export function EndEdiFormScreen({navigation}) {
         </Text>
      
       <TextInput 
-				style={styles.input} 
-				placeholder="Phone"
+        style={[styles.input , { borderBottomColor: errors.phone ? 'red' : styles.input.borderBottomColor } ] } 				placeholder="Phone"
 				value={phone} 
 				onChangeText={setPhone} 
 			/> 
@@ -148,7 +153,7 @@ export function EndEdiFormScreen({navigation}) {
             </Text>
      
       <TextInput 
-				style={styles.input} 
+				style={[styles.input , { borderBottomColor: errors.car ? 'red' : styles.input.borderBottomColor } ] }  
 				placeholder="Car"
 				value={car} 
 				onChangeText={setCar} 
@@ -157,9 +162,11 @@ export function EndEdiFormScreen({navigation}) {
        <Text style = {styles.error}>
              {car ? errors.car ==='' : errors.car}
                 </Text>
-     
+
+
+
         {/* <Text style={styles.label}>Signature</Text> */}
-        <View style={styles.signatureContainer}>
+        <View style={[styles.signatureContainer , { borderBottomColor: errors.signature ? 'red' : styles.signatureContainer.borderBottomColor }]}>
           <Signature
             ref={signRef}
             onEnd={handleEnd}
@@ -170,27 +177,31 @@ export function EndEdiFormScreen({navigation}) {
             confirmText="Save"
             webStyle={styles.signatureWebStyle}
           />
-           <Text style = {styles.error}>
+          
+        </View>
+        <Text style = {styles.error}>
              {signature ? errors.signature ==='' : errors.signature}
                 </Text>
-        </View>
 
         
+        <View style={styles.formGroup}>
+        <Text style = {styles.redStamp}>
+          Red Stamp
+        </Text>
+
         <TextInput 
-				style={styles.input} 
+				style={[styles.input , { borderBottomColor: errors.reason ? 'red' : styles.input.borderBottomColor } ] } 
 				placeholder="Reason"
 				value={reason} 
 				onChangeText={setReason} 
 				//secureTextEntry 
 			/> 
-       <Text style = {styles.error}>
-             {reason ? errors.reason ==='' : errors.reason}
-                </Text>
-      
+       
+      </View>
 
        
        <TextInput 
-				style={styles.input} 
+				style={[styles.input , { borderBottomColor: errors.comment ? 'red' : styles.input.borderBottomColor } ] }  
 				placeholder="Comment"
 				value={comment} 
 				onChangeText={setComment} 
@@ -204,35 +215,62 @@ export function EndEdiFormScreen({navigation}) {
         {/* {signature ? (
           <Button title="Clear Signature" onPress={handleClear} />
         ) : null} */}
-      </View>
+     
       {/* {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null} */}
       <ApproveButtons/>
-      </ScrollView>
-
-    </SafeAreaView>
+      </View>
+      </KeyboardAwareScrollView>
+     
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    // padding: 16,
+  },
+
+  inner: {
     padding: 16,
+    flex: 1,
+    justifyContent: 'space-around',
   },
   
   formGroup: {
     marginBottom: 16,
   },
+  title:{
+    color:'blue',
+    fontSize:22,
+    textAlign:'right',
+    marginBottom:30
+  },
+  ref:{
+    fontSize:18,
+    textAlign:'right',
+    marginBottom:20
+
+  },
+  redStamp:{
+    position:'relative',
+     top : 22,
+     left: 10,
+     color:'red',
+     zIndex:100,
+     fontSize:16
+  },
   input: { 
-		height: 60, 
-		borderColor: '#ccc',
-        backgroundColor:'#ccc' ,
-		borderWidth: 1, 
+		height: 70, 
+		borderBottomColor:'#ccc',
+    backgroundColor:'#ccc' ,
+		//borderWidth: 1, 
+    borderBottomWidth:1,
 		//marginBottom: 12, 
 		paddingHorizontal: 10, 
 		borderRadius: 8, 
-		fontSize: 16, 
-        textAlign:'center'
+		fontSize: 18, 
+    textAlign:'center'
 	}, 
   // label: {
   //   fontSize: 16,
@@ -246,10 +284,12 @@ const styles = StyleSheet.create({
   //   borderRadius: 4,
   // },
   signatureContainer: {
-    borderColor: '#ccc',
+    borderBottomColor:'#ccc',
+    borderBottomWidth:1,
+    //borderColor: '#ccc',
     // backgroundColor:'red',
-    borderWidth: 1,
-    height: 200,
+    // borderWidth: 1,
+    height: 180,
     
   },
   signatureWebStyle: `

@@ -2,12 +2,11 @@ import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack'
-
-
-
-import { EdiCertificateApprovalScreen } from '../../../screens/ediDcreens/EdiCertificateApprovalScreen';
 import { EndEdiFormScreen } from '../../../screens/ediDcreens/EndEdiFormScreen';
-import  TotoScreen  from '../../../screens/ediDcreens/TotoScreen';
+
+
+
+// import { EdiCertificateApprovalScreen } from '../../../screens/ediDcreens/EdiCertificateApprovalScreen';
 
 const Stack = createStackNavigator()
 
@@ -18,7 +17,7 @@ const EndEdiFormStackNavigator = () => {
      <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
-       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormStackNavigator} />
+       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />
 
      </Stack.Navigator>
    

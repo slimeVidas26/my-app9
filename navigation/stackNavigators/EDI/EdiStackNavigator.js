@@ -6,6 +6,7 @@ import EntryCertificateStackNavigator from './EntryCertificateStackNavigator';
 import EdiItemApprovalStackNavigator from './EdiItemApprovalStackNavigator';
 import EdiCertificateApprovalStackNavigator from './EdiCertificateApprovalStackNavigator';
 import EdiCertificateConfirmationStackNavigator from './EdiCertificateConfirmationStackNavigator';
+import EndEdiFormStackNavigator from './EndEdiFormStackNavigator';
 // import PopUpScreen from '../../../screens/ediDcreens/PopUpScreen1';
 import { useRoute } from '@react-navigation/native';
 
@@ -32,6 +33,7 @@ const EdiStackNavigator = () => {
       <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalStackNavigator} />
       <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalStackNavigator} />
       <Stack.Screen name="EdiCertificateConfirmationScreen" component={EdiCertificateConfirmationStackNavigator} />
+      <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormStackNavigator} />
 
 
     </Stack.Navigator>
