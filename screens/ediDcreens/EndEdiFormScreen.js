@@ -1,9 +1,51 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
+import { SafeAreaView,Modal,FlatList,StatusBar, Text, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
 import Signature from 'react-native-signature-canvas';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Lack',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Excess',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Missing EDI',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
+    title: 'Invalid code',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
+    title: 'Item not ordered',
+  },
+  {
+    id: '58694a0f-3da1-555f-bd96-145571e29d72',
+    title: 'Supplier left goods uninspected',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd74-145571e29d72',
+    title: 'Choose reason',
+  },
+];
+
+const Item = ({title}) => (
+  <View style={styles.item}>
+    <Text style={styles.itemTitle}>{title}</Text>
+  </View>
+);
+
+
+
 export function EndEdiFormScreen({navigation}) { 
+
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [name, setName] = useState(''); 
@@ -12,6 +54,8 @@ export function EndEdiFormScreen({navigation}) {
   const [signature, setSignature] = useState('');
   const [reason, setReason] = useState(''); 
   const [comment, setComment] = useState(''); 
+
+  const [modalVisible, setModalVisible] = useState(false);
 
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -79,11 +123,11 @@ export function EndEdiFormScreen({navigation}) {
 			errors.reason = 'Reason must be at least 6 characters.'; 
 		} 
 
-        if (!comment) { 
-			errors.comment = 'Comment is required.'; 
-		} else if (comment.length < 6) { 
-			errors.comment = 'comment must be at least 6 characters.'; 
-		} 
+    //     if (!comment) { 
+		// 	errors.comment = 'Comment is required.'; 
+		// } else if (comment.length < 6) { 
+		// 	errors.comment = 'comment must be at least 6 characters.'; 
+		// } 
     setErrors(errors); 
 		setIsFormValid(Object.keys(errors).length === 0); 
     // setErrors('');
@@ -133,6 +177,8 @@ export function EndEdiFormScreen({navigation}) {
         <Text style={styles.ref}>Reference : 4707342</Text>
 
        
+
+           <Text style = {styles.sidePlaceholder}>{name ? "Name*" : " "}</Text>
         	<TextInput 
 				style={[styles.input , { borderBottomColor: errors.name ? 'red' : styles.input.borderBottomColor } ] } 
 				placeholder="Name*"
@@ -143,8 +189,10 @@ export function EndEdiFormScreen({navigation}) {
         {name ? errors.name==='' : errors.name}
         </Text>
      
+        <Text style = {styles.sidePlaceholder}>{phone ? "Phone*" : " "}</Text>
       <TextInput 
-        style={[styles.input , { borderBottomColor: errors.phone ? 'red' : styles.input.borderBottomColor } ] } 				placeholder="Phone"
+        style={[styles.input , { borderBottomColor: errors.phone ? 'red' : styles.input.borderBottomColor } ] }
+        placeholder="Phone"
 				value={phone} 
 				onChangeText={setPhone} 
 			/> 
@@ -152,6 +200,8 @@ export function EndEdiFormScreen({navigation}) {
            {phone ? errors.phone==='' : errors.phone}
             </Text>
      
+
+      <Text style = {styles.sidePlaceholder}>{car ? "Car*" : " "}</Text>
       <TextInput 
 				style={[styles.input , { borderBottomColor: errors.car ? 'red' : styles.input.borderBottomColor } ] }  
 				placeholder="Car"
@@ -188,18 +238,41 @@ export function EndEdiFormScreen({navigation}) {
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
+        <Pressable style ={styles.input} onPress={() => setModalVisible(true)} > 
+        <Text style = {styles.chooseReasonText}>Choose reason</Text>
+        </Pressable>
 
-        <TextInput 
-				style={[styles.input , { borderBottomColor: errors.reason ? 'red' : styles.input.borderBottomColor } ] } 
-				placeholder="Reason"
-				value={reason} 
-				onChangeText={setReason} 
-				//secureTextEntry 
-			/> 
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+          <SafeAreaView style={styles.modalContainer}>
+          <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+       </SafeAreaView>
+            {/* <Button
+              title="Close Modal"
+              onPress={() => setModalVisible(!modalVisible)}
+            /> */}
+          </View>
+        </View>
+      </Modal>
+
+      
        
       </View>
 
-       
+      <Text style = {styles.sidePlaceholder}>{comment ? "Comment*" : " "}</Text>
        <TextInput 
 				style={[styles.input , { borderBottomColor: errors.comment ? 'red' : styles.input.borderBottomColor } ] }  
 				placeholder="Comment"
@@ -229,6 +302,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     // padding: 16,
+    //marginTop: StatusBar.currentHeight || 0,
   },
 
   inner: {
@@ -246,6 +320,15 @@ const styles = StyleSheet.create({
     textAlign:'right',
     marginBottom:30
   },
+  sidePlaceholder:{
+    position:'relative',
+    top:24,
+    right:10,
+    zIndex:100,
+    fontSize:16,
+    textAlign:'right',
+  },
+  
   ref:{
     fontSize:18,
     textAlign:'right',
@@ -260,7 +343,53 @@ const styles = StyleSheet.create({
      zIndex:100,
      fontSize:16
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+
+  modalContainer:{
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  modalView: {
+    margin: 20,
+    width:375,
+    height:600,
+    backgroundColor: 'white',
+    //borderRadius: 20,
+    padding: 0,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  item: {
+    backgroundColor: 'grey',
+    padding: 25,
+    marginVertical: 2,
+    //marginHorizontal: 2,
+    
+  },
+  itemTitle: {
+    fontSize: 20,
+    textAlign:'right',
+    color:'#FFF'
+  },
+  
   input: { 
+    flex:1,
 		height: 70, 
 		borderBottomColor:'#ccc',
     backgroundColor:'#ccc' ,
@@ -270,8 +399,16 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10, 
 		borderRadius: 8, 
 		fontSize: 18, 
-    textAlign:'center'
+    textAlign:'center',
+    justifyContent:'center'
 	}, 
+  chooseReasonText:{
+    fontSize: 18,
+    textAlign:'center',
+ 
+ 
+    
+  },
   // label: {
   //   fontSize: 16,
   //   marginBottom: 8,
