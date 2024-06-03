@@ -1,52 +1,34 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView,Modal,FlatList,StatusBar, Text, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
+import { SafeAreaView,Modal,FlatList,StatusBar, Text, TextInput,TouchableOpacity, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, View,ScrollView, StyleSheet,Pressable, Button, Alert } from 'react-native';
 import Signature from 'react-native-signature-canvas';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { Picker } from '@react-native-picker/picker';
 
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Lack',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Excess',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Missing EDI',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
-    title: 'Invalid code',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
-    title: 'Item not ordered',
-  },
-  {
-    id: '58694a0f-3da1-555f-bd96-145571e29d72',
-    title: 'Supplier left goods uninspected',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd74-145571e29d72',
-    title: 'Choose reason',
-  },
-];
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.itemTitle}>{title}</Text>
-  </View>
-);
+// const MyForm = ()=> {
+//   const [myCar, setMyCar] = useState("Volvo");
+
+//   return (
+//     // <View style={styles.container}>
+//       <Picker
+//         selectedValue={myCar}
+//         onValueChange={(itemValue) => setMyCar(itemValue)}
+//       >
+//         <Picker.Item label="Ford" value="Ford" />
+//         <Picker.Item label="Volvo" value="Volvo" />
+//         <Picker.Item label="Fiat" value="Fiat" />
+//       </Picker>
+//     // </View>
+//   );
+// }
 
 
 
 export function EndEdiFormScreen({navigation}) { 
 
 
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState('Choose Reason');
   const [lastName, setLastName] = useState('');
   const [name, setName] = useState(''); 
   const [phone , setPhone] = useState('');
@@ -64,7 +46,45 @@ export function EndEdiFormScreen({navigation}) {
 
   const signRef = useRef(null);
 
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Lack',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Excess',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Missing EDI',
+    },
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
+      title: 'Invalid code',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
+      title: 'Item not ordered',
+    },
+    {
+      id: '58694a0f-3da1-555f-bd96-145571e29d72',
+      title: 'Supplier left goods uninspected',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd74-145571e29d72',
+      title: 'Choose reason',
+    },
+  ];
   
+  
+   const Item = ({title}) => (
+    <TouchableOpacity onPress = {()=>{console.log(title);setModalVisible(false);setFirstName(title)}}>
+     <View style={styles.item}>
+       <Text style={styles.itemTitle}>{title}</Text>
+     </View>
+     </TouchableOpacity>
+   );
 
 
   const ApproveButtons = () => {
@@ -238,27 +258,38 @@ export function EndEdiFormScreen({navigation}) {
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
-        <Pressable style ={styles.input} onPress={() => setModalVisible(true)} > 
-        <Text style = {styles.chooseReasonText}>Choose reason</Text>
+        <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
+        <Text style = {styles.chooseReasonText}>{firstName}</Text>
         </Pressable>
 
         <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
+        //onDismiss={()=>setModalVisible(false)}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
+          
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+         <TouchableOpacity
+      style={{flex:1}}
+      onPress={() => {
+        setModalVisible(false)
+      }}>
 
-          <SafeAreaView style={styles.modalContainer}>
-          <FlatList
+     
+        <View style={styles.centeredView} >
+          
+          <View style={styles.modalView} >
+
+          <SafeAreaView style={styles.modalContainer} >
+           <FlatList
         data={DATA}
         renderItem={({item}) => <Item title={item.title} />}
         keyExtractor={item => item.id}
-      />
+      /> 
+        {/* <MyForm /> */}
        </SafeAreaView>
             {/* <Button
               title="Close Modal"
@@ -266,6 +297,7 @@ export function EndEdiFormScreen({navigation}) {
             /> */}
           </View>
         </View>
+        </TouchableOpacity>
       </Modal>
 
       
@@ -352,15 +384,16 @@ const styles = StyleSheet.create({
 
   modalContainer:{
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    //marginTop: StatusBar.currentHeight || 0,
+   
   },
   modalView: {
-    margin: 20,
+     margin: 0,
+     padding:0,
     width:375,
-    height:600,
+    height:555,
     backgroundColor: 'white',
     //borderRadius: 20,
-    padding: 0,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -379,11 +412,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     padding: 25,
     marginVertical: 2,
+    //margin:20,
+    width:375,
+    height:75
+
     //marginHorizontal: 2,
     
   },
   itemTitle: {
-    fontSize: 20,
+    fontSize: 22,
     textAlign:'right',
     color:'#FFF'
   },
@@ -400,7 +437,8 @@ const styles = StyleSheet.create({
 		borderRadius: 8, 
 		fontSize: 18, 
     textAlign:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    
 	}, 
   chooseReasonText:{
     fontSize: 18,
