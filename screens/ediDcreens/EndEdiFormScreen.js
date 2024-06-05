@@ -38,6 +38,7 @@ export function EndEdiFormScreen({navigation}) {
   const [comment, setComment] = useState(''); 
 
   const [modalVisible, setModalVisible] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
 
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -78,13 +79,20 @@ export function EndEdiFormScreen({navigation}) {
   ];
   
   
-   const Item = ({title}) => (
-    <TouchableOpacity onPress = {()=>{console.log(title);setModalVisible(false);setFirstName(title)}}>
-     <View style={styles.item}>
-       <Text style={styles.itemTitle}>{title}</Text>
-     </View>
+   const renderItem = ({item}) =>{
+    //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
+    const color = item.id === selectedId ? 'red' : 'white';
+
+    return (
+    <TouchableOpacity onPress = {()=>{console.log(item.title);setSelectedId(item.id);setModalVisible(false);setFirstName(item.title)}} style={styles.item}>
+       
+       <Text style={styles.itemTitle}>{item.title}</Text>
+       <Text style={[styles.itemCircle , {color}]}>{`\u29BF`}</Text>
+       
+     
      </TouchableOpacity>
-   );
+   )
+  };
 
 
   const ApproveButtons = () => {
@@ -137,11 +145,11 @@ export function EndEdiFormScreen({navigation}) {
 		// 	errors.car = 'Car must be at least 6 characters.'; 
 		// } 
 
-        if (!reason) { 
-			errors.reason = 'Reason is required.'; 
-		} else if (reason.length < 6) { 
-			errors.reason = 'Reason must be at least 6 characters.'; 
-		} 
+    //     if (!reason) { 
+		// 	errors.reason = 'Reason is required.'; 
+		// } else if (reason.length < 6) { 
+		// 	errors.reason = 'Reason must be at least 6 characters.'; 
+		// } 
 
     //     if (!comment) { 
 		// 	errors.comment = 'Comment is required.'; 
@@ -286,9 +294,12 @@ export function EndEdiFormScreen({navigation}) {
           <SafeAreaView style={styles.modalContainer} >
            <FlatList
         data={DATA}
-        renderItem={({item}) => <Item title={item.title} />}
+        renderItem={renderItem}
         keyExtractor={item => item.id}
+        extraData={selectedId}
       /> 
+
+
         {/* <MyForm /> */}
        </SafeAreaView>
             {/* <Button
@@ -409,9 +420,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   item: {
-    backgroundColor: 'grey',
-    padding: 25,
-    marginVertical: 2,
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'stretch',
+    backgroundColor: '#696969',
+     padding: 15,
+     marginVertical: 2,
     //margin:20,
     width:375,
     height:75
@@ -421,7 +436,12 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 22,
-    textAlign:'right',
+    //textAlign:'right',
+    color:'#FFF'
+  },
+  itemCircle: {
+    fontSize: 22,
+    //textAlign:'left',
     color:'#FFF'
   },
   
