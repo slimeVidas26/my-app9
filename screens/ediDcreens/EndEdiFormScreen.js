@@ -3,6 +3,7 @@ import { SafeAreaView,Modal,FlatList,StatusBar, Text, TextInput,TouchableOpacity
 import Signature from 'react-native-signature-canvas';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { Picker } from '@react-native-picker/picker';
+import { OpenModalButton } from '../../components/modals/OpenModalButon';
 
 
 
@@ -28,17 +29,14 @@ import { Picker } from '@react-native-picker/picker';
 export function EndEdiFormScreen({navigation}) { 
 
 
-  const [firstName, setFirstName] = useState('Choose Reason');
+  const [reason, setReason] = useState('Choose Reason');
   const [lastName, setLastName] = useState('');
   const [name, setName] = useState(''); 
   const [phone , setPhone] = useState('');
   const [car, setCar] = useState(''); 
   const [signature, setSignature] = useState('');
-  const [reason, setReason] = useState(''); 
   const [comment, setComment] = useState(''); 
 
-  const [modalVisible, setModalVisible] = useState(false);
-    const [selectedId, setSelectedId] = useState(null);
 
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -79,20 +77,23 @@ export function EndEdiFormScreen({navigation}) {
   ];
   
   
-   const renderItem = ({item}) =>{
-    //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
-    const color = item.id === selectedId ? 'red' : 'white';
+  //  const renderItem = ({item}) =>{
+  //   //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
+  //   const color = item.id === selectedId ? 'red' : 'white';
 
-    return (
-    <TouchableOpacity onPress = {()=>{console.log(item.title);setSelectedId(item.id);setModalVisible(false);setFirstName(item.title)}} style={styles.item}>
+  //   return (
+  //   <TouchableOpacity onPress = {
+  //     ()=>{console.log(item.title);
+  //          setSelectedId(item.id);
+  //          setModalVisible(false);setReason(item.title)}} style={styles.item}>
        
-       <Text style={styles.itemTitle}>{item.title}</Text>
-       <Text style={[styles.itemCircle , {color}]}>{`\u29BF`}</Text>
+  //      <Text style={styles.itemTitle}>{item.title}</Text>
+  //      <Text style={[styles.itemCircle , {color}]}>{`\u29BF`}</Text>
        
      
-     </TouchableOpacity>
-   )
-  };
+  //    </TouchableOpacity>
+  //  )
+  // };
 
 
   const ApproveButtons = () => {
@@ -261,55 +262,20 @@ export function EndEdiFormScreen({navigation}) {
              {signature ? errors.signature ==='' : errors.signature}
                 </Text>
 
+
+                
+
         
         <View style={styles.formGroup}>
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
-        <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
-        <Text style = {styles.chooseReasonText}>{firstName}</Text>
-        </Pressable>
-
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        //onDismiss={()=>setModalVisible(false)}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-          
-        }}
-      >
-         <TouchableOpacity
-      style={{flex:1}}
-      onPress={() => {
-        setModalVisible(false)
-      }}>
+        <OpenModalButton data = {DATA}/>
+        {/* <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
+        <Text style = {styles.chooseReasonText}>{reason}</Text>
+        </Pressable> */}
 
      
-        <View style={styles.centeredView} >
-          
-          <View style={styles.modalView} >
-
-          <SafeAreaView style={styles.modalContainer} >
-           <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        extraData={selectedId}
-      /> 
-
-
-        {/* <MyForm /> */}
-       </SafeAreaView>
-            {/* <Button
-              title="Close Modal"
-              onPress={() => setModalVisible(!modalVisible)}
-            /> */}
-          </View>
-        </View>
-        </TouchableOpacity>
-      </Modal>
 
       
        
@@ -386,64 +352,64 @@ const styles = StyleSheet.create({
      zIndex:100,
      fontSize:16
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
+  // centeredView: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  // },
 
-  modalContainer:{
-    flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
+  // modalContainer:{
+  //   flex: 1,
+  //   //marginTop: StatusBar.currentHeight || 0,
    
-  },
-  modalView: {
-     margin: 0,
-     padding:0,
-    width:375,
-    height:555,
-    backgroundColor: 'white',
-    //borderRadius: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  item: {
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'stretch',
-    backgroundColor: '#696969',
-     padding: 15,
-     marginVertical: 2,
-    //margin:20,
-    width:375,
-    height:75
+  // },
+  // modalView: {
+  //    margin: 0,
+  //    padding:0,
+  //   width:375,
+  //   height:555,
+  //   backgroundColor: 'white',
+  //   //borderRadius: 20,
+  //   alignItems: 'center',
+  //   shadowColor: '#000',
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.25,
+  //   shadowRadius: 4,
+  //   elevation: 5,
+  // },
+  // modalText: {
+  //   marginBottom: 15,
+  //   textAlign: 'center',
+  // },
+  // item: {
+  //   flex:1,
+  //   flexDirection:'row',
+  //   justifyContent:'space-between',
+  //   alignItems:'stretch',
+  //   backgroundColor: '#696969',
+  //    padding: 15,
+  //    marginVertical: 2,
+  //   //margin:20,
+  //   width:375,
+  //   height:75
 
-    //marginHorizontal: 2,
+  //   //marginHorizontal: 2,
     
-  },
-  itemTitle: {
-    fontSize: 22,
-    //textAlign:'right',
-    color:'#FFF'
-  },
-  itemCircle: {
-    fontSize: 22,
-    //textAlign:'left',
-    color:'#FFF'
-  },
+  // },
+  // itemTitle: {
+  //   fontSize: 22,
+  //   //textAlign:'right',
+  //   color:'#FFF'
+  // },
+  // itemCircle: {
+  //   fontSize: 22,
+  //   //textAlign:'left',
+  //   color:'#FFF'
+  // },
   
   input: { 
     flex:1,
@@ -460,13 +426,10 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     
 	}, 
-  chooseReasonText:{
-    fontSize: 18,
-    textAlign:'center',
- 
- 
-    
-  },
+  // chooseReasonText:{
+  //   fontSize: 18,
+  //   textAlign:'center',  
+  // },
   // label: {
   //   fontSize: 16,
   //   marginBottom: 8,
