@@ -1,5 +1,6 @@
 import {Warehouse} from './models/Warehouse.js';
 import {Department} from './models/Department.js';
+import { Redstamp } from './models/Redstamp.js';
 import {Arrival} from './models/Arrival.js';
 import {Supplier} from './models/Supplier.js';
 import {Author} from './models/Author.js';
@@ -134,6 +135,8 @@ export const resolvers = {
         hello:  (_, {name}) =>  `Hello ${name}`,
         warehouses: async () => await Warehouse.find({}),
         departments: async () => await Department.find({}),
+        redstamps: async () => await Redstamp.find({}),
+
         arrivals: async () => await Arrival.find({}),
         suppliers: async () => await Supplier.find({}),
         // authors: async () => await Author.find({}),
@@ -278,6 +281,16 @@ export const resolvers = {
           const department = new Department({ title })
           await department.save()
           return department;
+        } catch (err) {
+          throw err
+        }
+      },
+
+      createRedstamp: async (_, { title }) => {
+        try {
+          const redstamp = new Redstamp({ title })
+          await redstamp.save()
+          return redstamp;
         } catch (err) {
           throw err
         }

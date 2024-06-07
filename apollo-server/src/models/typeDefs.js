@@ -19,6 +19,7 @@ export const typeDefs = gql`
     hello(name: String): String!
     warehouses: [Warehouse!],
     departments: [Department!],
+    redstamps: [Redstamp!],
     arrivals:[Arrival!],
     orders:[Order!]
     openOrders:[Order!],
@@ -40,6 +41,8 @@ export const typeDefs = gql`
     createBook(title: String!, pages: Int!, author: String!): Book!
 
     createDepartment(title:String!): Department!
+    createRedstamp(title:String!): Redstamp!
+
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
     createSupplier(supplier_name:String! , supplier_number:String!):Supplier!
@@ -93,6 +96,12 @@ type EdiOrderItem {
         title: String
       
     }
+
+    type Redstamp {
+      id: ID,
+      title: String
+    
+  }
 
     type Arrival {
         id: ID,

@@ -4,7 +4,20 @@ import Signature from 'react-native-signature-canvas';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { Picker } from '@react-native-picker/picker';
 import { OpenModalButton } from '../../components/modals/OpenModalButon';
+import { translation } from '../../i18n/supportedLanguages';
+import * as Localization from 'expo-localization';
+import { I18n } from 'i18n-js';
 
+
+import { useQuery } from "@apollo/client";
+import { REDSTAMPS_QUERY } from '../../gql/Query';
+const i18n = new I18n(translation)
+// Set the locale once at the beginning of your app.
+i18n.locale = Localization.locale;
+// When a value is missing from a language it'll fallback to another language with the key present.
+i18n.enableFallback = true;
+// To see the fallback mechanism uncomment line below to force app to use Japanese language.
+// i18n.locale = 'ja';
 
 
 // const MyForm = ()=> {
@@ -29,6 +42,18 @@ import { OpenModalButton } from '../../components/modals/OpenModalButon';
 export function EndEdiFormScreen({navigation}) { 
 
 
+  const {data, error, loading} = useQuery(REDSTAMPS_QUERY);
+  console.log('data' , data)
+
+  if (error) {
+    console.error('REDSTAMPS_QUERY error', error);
+}
+
+if (loading) {
+  console.error('REDSTAMPS_QUERY error', error);
+}
+
+
   const [reason, setReason] = useState('Choose Reason');
   const [lastName, setLastName] = useState('');
   const [name, setName] = useState(''); 
@@ -45,36 +70,36 @@ export function EndEdiFormScreen({navigation}) {
 
   const signRef = useRef(null);
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Lack',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Excess',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Missing EDI',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
-      title: 'Invalid code',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
-      title: 'Item not ordered',
-    },
-    {
-      id: '58694a0f-3da1-555f-bd96-145571e29d72',
-      title: 'Supplier left goods uninspected',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd74-145571e29d72',
-      title: 'Choose reason',
-    },
-  ];
+  // const DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: 'Lack',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'Excess',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'Missing EDI',
+  //   },
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
+  //     title: 'Invalid code',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
+  //     title: 'Item not ordered',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-555f-bd96-145571e29d72',
+  //     title: 'Supplier left goods uninspected',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd74-145571e29d72',
+  //     title: 'Choose reason',
+  //   },
+  // ];
   
   
   //  const renderItem = ({item}) =>{
@@ -270,7 +295,7 @@ export function EndEdiFormScreen({navigation}) {
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
-        <OpenModalButton data = {DATA}/>
+        <OpenModalButton data = {data}/>
         {/* <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
         <Text style = {styles.chooseReasonText}>{reason}</Text>
         </Pressable> */}

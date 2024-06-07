@@ -36,6 +36,14 @@ export  const DEPARTMENTS_QUERY = gql`
          }
      }`
 
+     export  const REDSTAMPS_QUERY = gql`
+     query RedstampQuery {
+         redstamps {
+            id
+            title   
+         }
+     }`
+
 export  const ARRIVALS_QUERY = gql`
 query ArrivalQuery {
     arrivals {
