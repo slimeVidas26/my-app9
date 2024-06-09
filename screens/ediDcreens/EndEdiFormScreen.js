@@ -3,10 +3,12 @@ import { SafeAreaView,Modal,FlatList,StatusBar, Text, TextInput,TouchableOpacity
 import Signature from 'react-native-signature-canvas';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { Picker } from '@react-native-picker/picker';
-import { OpenModalButton } from '../../components/modals/OpenModalButon';
+import { OpenModalButtonEndEdi } from '../../components/modals/OpenModalButonEndEdi';
 import { translation } from '../../i18n/supportedLanguages';
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
+
+
 
 
 
@@ -285,7 +287,7 @@ export function EndEdiFormScreen({navigation , data}) {
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
-        <OpenModalButton data = {data}/>
+        <OpenModalButtonEndEdi data = {data}/>
         {/* <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
         <Text style = {styles.chooseReasonText}>{reason}</Text>
         </Pressable> */}

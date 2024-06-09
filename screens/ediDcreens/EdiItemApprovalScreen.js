@@ -7,6 +7,7 @@ import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 import Modal from '../../components/modals/Modal';
 import { Feather } from '@expo/vector-icons';
+import { OpenModalButtonApproval } from '../../components/modals/OpenModalButonApproval';
 
 
 
@@ -26,7 +27,7 @@ i18n.locale = 'he';
 
 
 
-export const EdiItemApprovalScreen = ({ navigation }) => {
+export const EdiItemApprovalScreen = ({ navigation , data }) => {
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = 10;
@@ -152,11 +153,17 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
       </View>
   
       {initialCountProp !== counterProp &&
-  
-        <View style={styles.noMatching}>
-          <Text style={styles.noMatchingText}>
-            No Matching Quantity</Text>
-        </View>
+         <>
+        {/* <View style={styles.noMatching}> */}
+          {/* <Text style={styles.noMatchingText}>
+            No Matching Quantity</Text> */}
+            <OpenModalButtonApproval data = {data}/>
+
+        {/* </View> */}
+
+        </>
+
+        
       }
   
           </View>

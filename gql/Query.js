@@ -44,6 +44,14 @@ export  const DEPARTMENTS_QUERY = gql`
          }
      }`
 
+     export  const ITEMREASONS_QUERY = gql`
+     query ItemReasonQuery {
+         itemReasons {
+            id
+            title   
+         }
+     }`
+
 export  const ARRIVALS_QUERY = gql`
 query ArrivalQuery {
     arrivals {

@@ -20,6 +20,7 @@ export const typeDefs = gql`
     warehouses: [Warehouse!],
     departments: [Department!],
     redstamps: [Redstamp!],
+    itemReasons: [ItemReason!],
     arrivals:[Arrival!],
     orders:[Order!]
     openOrders:[Order!],
@@ -42,6 +43,8 @@ export const typeDefs = gql`
 
     createDepartment(title:String!): Department!
     createRedstamp(title:String!): Redstamp!
+    createItemReason(title:String!): ItemReason!
+
 
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
@@ -102,6 +105,12 @@ type EdiOrderItem {
       title: String
     
   }
+
+  type ItemReason {
+    id: ID,
+    title: String
+  
+}
 
     type Arrival {
         id: ID,

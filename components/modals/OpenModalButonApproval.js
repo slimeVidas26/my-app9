@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { SafeAreaView,Modal,FlatList,StatusBar, Text,TouchableOpacity, View, StyleSheet,Pressable } from 'react-native';
 import { useQuery } from "@apollo/client";
-import { REDSTAMPS_QUERY } from '../../gql/Query';
+import { ITEMREASONS_QUERY } from '../../gql/Query';
 
 
-export const OpenModalButton = ()=>{
+export const OpenModalButtonApproval = ()=>{
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [title, setTitle] = useState('Choose Reason');
+    const [title, setTitle] = useState('No matching quantity');
+
     const [selectedId, setSelectedId] = useState(null);
 
-    const {data, error, loading} = useQuery(REDSTAMPS_QUERY,{enabled: modalVisible});
+    const {data, error, loading} = useQuery(ITEMREASONS_QUERY
+      //,{enabled: modalVisible}
+    );
   console.log('data' , data)
 
   if (error) {
-    console.error('REDSTAMPS_QUERY error', error);
+    console.error('ITEMREASONS_QUERY error', error);
 }
 
 if (loading) {
@@ -24,8 +27,8 @@ if (loading) {
    
       
       
-       const RedstampItem = ({redstamp}) =>{
-        const { title , id } = redstamp; 
+       const RedstampItem = ({itemReason}) =>{
+        const { title , id } = itemReason; 
         //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
         const color = id === selectedId ? 'red' : 'white';
     
@@ -77,10 +80,10 @@ setModalVisible(false)
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
    <FlatList
-data={data.redstamps}
+data={data.itemReasons}
 // renderItem={RedstampItem}
 renderItem={({ item }) => (
-  <RedstampItem redstamp={item} />)}
+  <RedstampItem itemReason={item} />)}
 keyExtractor={item => item.id}
 extraData={selectedId}
 /> }
@@ -97,7 +100,7 @@ extraData={selectedId}
 
 const styles = StyleSheet.create({
 input: { 
-    flex:1,
+    
 		height: 70, 
 		borderBottomColor:'#ccc',
     backgroundColor:'#ccc' ,
