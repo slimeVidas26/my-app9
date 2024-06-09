@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
 import { SafeAreaView,Modal,FlatList,StatusBar, Text,TouchableOpacity, View, StyleSheet,Pressable } from 'react-native';
+import { useQuery } from "@apollo/client";
+import { REDSTAMPS_QUERY } from '../../gql/Query';
 
 
-
-export const OpenModalButton = ({data})=>{
+export const OpenModalButton = ()=>{
 
     const [modalVisible, setModalVisible] = useState(false);
     const [title, setTitle] = useState('Choose Reason');
     const [selectedId, setSelectedId] = useState(null);
 
+    const {data, error, loading} = useQuery(REDSTAMPS_QUERY,{enabled: modalVisible});
+  console.log('data' , data)
+
+  if (error) {
+    console.error('REDSTAMPS_QUERY error', error);
+}
+
+if (loading) {
+  console.error('Loading');
+}
+
    
       
       
-       const renderItem = ({item}) =>{
+       const RedstampItem = ({redstamp}) =>{
+        const { title , id } = redstamp; 
         //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
-        const color = item.id === selectedId ? 'red' : 'white';
+        const color = id === selectedId ? 'red' : 'white';
     
         return (
         <TouchableOpacity onPress = {
-          ()=>{console.log(item.title);
-               setSelectedId(item.id);
-               setModalVisible(false);setTitle(item.title)}} style={styles.item}>
+          ()=>{console.log(title);
+               setSelectedId(id);
+               setModalVisible(false);setTitle(title)}} style={styles.item}>
            
-           <Text style={styles.itemTitle}>{item.title}</Text>
+           <Text style={styles.itemTitle}>{title}</Text>
            <Text style={[styles.itemCircle , {color}]}>{`\u29BF`}</Text>
            
          
@@ -60,12 +73,17 @@ setModalVisible(false)
   <View style={styles.modalView} >
 
   <SafeAreaView style={styles.modalContainer} >
+  {loading && <Text>Loading...</Text>}
+      {error && <Text>Check console for error logs</Text>}
+      {!loading && !error && data && 
    <FlatList
-data={data}
-renderItem={renderItem}
+data={data.redstamps}
+// renderItem={RedstampItem}
+renderItem={({ item }) => (
+  <RedstampItem redstamp={item} />)}
 keyExtractor={item => item.id}
 extraData={selectedId}
-/> 
+/> }
 </SafeAreaView>
   </View>
 </View>

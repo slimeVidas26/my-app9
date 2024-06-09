@@ -9,8 +9,7 @@ import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 
 
-import { useQuery } from "@apollo/client";
-import { REDSTAMPS_QUERY } from '../../gql/Query';
+
 const i18n = new I18n(translation)
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
@@ -39,19 +38,10 @@ i18n.enableFallback = true;
 
 
 
-export function EndEdiFormScreen({navigation}) { 
+export function EndEdiFormScreen({navigation , data}) { 
 
 
-  const {data, error, loading} = useQuery(REDSTAMPS_QUERY);
-  console.log('data' , data)
-
-  if (error) {
-    console.error('REDSTAMPS_QUERY error', error);
-}
-
-if (loading) {
-  console.error('REDSTAMPS_QUERY error', error);
-}
+  
 
 
   const [reason, setReason] = useState('Choose Reason');
