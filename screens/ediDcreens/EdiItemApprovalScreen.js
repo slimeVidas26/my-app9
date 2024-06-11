@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     //height:400,
     display: 'flex',
     flexDirection: 'row',
-    // backgroundColor: '#d4d4d4',
+     backgroundColor: '#d4d4d4',
     alignItems: 'center',
     justifyContent: 'center',
     //paddingTop:10

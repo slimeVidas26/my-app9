@@ -25,22 +25,22 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgb(128, 128, 128)',
+    //backgroundColor: 'rgb(128, 128, 128)',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     height:windowHeight
   },
   modal: {
-    //backgroundColor: 'lightGrey',
+    backgroundColor: 'white',
     //backgroundColor: 'white',
-    marginTop:20,
+    //marginTop:20,
     padding: 20,
     borderRadius: 40,
     //position: 'relative',
     //minWidth: '95%',
     //maxWidth: 500
-    height:windowHeight-200
+    height:windowHeight
   },
  
 });
