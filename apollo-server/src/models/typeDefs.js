@@ -1,14 +1,6 @@
 import gql from 'graphql-tag';
 
-//    ediOrders(input: EdiOrdersInputFilter): [EdiOrder!]
 
-
-// // GraphQL Schema
-// const typeDefs = gql`
-//   type Query {
-//     hello: String
-//   }
-// `;
 
 // GraphQL Schema
 export const typeDefs = gql`
@@ -17,22 +9,24 @@ export const typeDefs = gql`
 
   type Query {
     hello(name: String): String!
-    warehouses: [Warehouse!],
-    departments: [Department!],
-    redstamps: [Redstamp!],
-    itemReasons: [ItemReason!],
-    arrivals:[Arrival!],
+    warehouses: [Warehouse!]
+    departments: [Department!]
+    redstamps: [Redstamp!]
+    itemReasons: [ItemReason!]
+    arrivals:[Arrival!]
     orders:[Order!]
-    openOrders:[Order!],
-    closedOrders: [Order!],
-    orderItems: [OrderItem!],
+    openOrders:[Order!]
+    closedOrders: [Order!]
+    orderItems: [OrderItem!]
     authors: [Author!]
     books: [Book!]
     products: [Product!]
+    product(id: ID!): Product
     ediOrders:[EdiOrder!]
     ediOrderItems:[EdiOrderItem!]
     ediOrderItemsByNumber(ediOrder: String):[EdiOrderItem!]
     suppliers:[Supplier!]
+    supplier(id: ID!): Supplier
 
     
   }
@@ -48,9 +42,8 @@ export const typeDefs = gql`
 
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
-    createSupplier(supplier_name:String! , supplier_number:String!):Supplier!
-    createProduct(product_name:String! , barcode:String! , image:String ):Product!
-
+    createSupplier(name: String!, email: String! , number:String): Supplier!
+    createProduct(name: String!,barcode:String!,image:String!, price: Float!, description: String, supplierId: ID!): Product
   }
 
   type Author {
@@ -118,18 +111,25 @@ type EdiOrderItem {
       
     }
 
+    
+
     type Supplier {
-        id: ID
-        supplier_name: String!
-        supplier_number: String!
-        
+      id: ID!
+      name: String!
+      number: String!
+      email: String!
+      products: [Product]
     }
 
+    
+
     type Product {
-      product_name:String!
+      id: ID!
+      name: String!
       barcode:String!
-      image:String
-      
+      image:String!
+      price: Float!
+      description: String
     }
 
     type Order {

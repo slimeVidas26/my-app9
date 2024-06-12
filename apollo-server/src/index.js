@@ -6,9 +6,11 @@ import {typeDefs} from './models/typeDefs.js';
 
 
 
+
+
 mongoose.set('strictQuery', true);
 const db = await mongoose.connect("mongodb://127.0.0.1:27017/my-app-database", {
-    useNewUrlParser: true,
+    useNewUrlParser: true, useUnifiedTopology: true 
 });
 console.info('📚 Connected to db', db?.connections[0]?._connectionString);
 

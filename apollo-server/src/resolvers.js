@@ -141,10 +141,14 @@ export const resolvers = {
 
 
         arrivals: async () => await Arrival.find({}),
-        suppliers: async () => await Supplier.find({}),
+        // suppliers: async () => await Supplier.find({}),
+        suppliers: () => Supplier.find().populate('products'),
+        supplier: (_, { id }) => Supplier.findById(id).populate('products'),
         // authors: async () => await Author.find({}),
         // books: async () => await Book.find({}),
-         products: async () => await Product.find({}),
+        //  products: async () => await Product.find({}),
+         products: () => Product.find(),
+         product: (_, { id }) => Product.findById(id),
 
         orders: async () => await Order.find({supplierNumber : Supplier.number}),
         orderItems: async () => await OrderItem.find({}),
@@ -238,14 +242,8 @@ export const resolvers = {
           }
         }
       
-    }
-    ,
-
-
+    },
     
-
-    
-
     Mutation: {
 
 
@@ -269,14 +267,20 @@ export const resolvers = {
         }
       },
 
-      createSupplier: async (_, { supplier_name  ,  supplier_number}) => {
-        try {
-          const supplier = new Supplier({ supplier_name  ,  supplier_number })
-          await supplier.save()
-          return supplier;
-        } catch (err) {
-          throw err
-        }
+      // createSupplier: async (_, { supplier_name  ,  supplier_number}) => {
+      //   try {
+      //     const supplier = new Supplier({ supplier_name  ,  supplier_number })
+      //     await supplier.save()
+      //     return supplier;
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
+
+      createSupplier: async (_, { name, email , number }) => {
+        const supplier = new Supplier({ name, email , number });
+        await supplier.save();
+        return supplier;
       },
 
       createDepartment: async (_, { title }) => {
@@ -335,16 +339,29 @@ export const resolvers = {
         }
       },
 
-      createProduct: async (_, {product_name ,barcode , image }) => {
-        try {
-          const product = new Product({ product_name ,barcode , image })
-          await product.save()
-          return product;
-        } catch (err) {
-          throw err
-        }
-      },
+      // createProduct: async (_, {product_name ,barcode , image }) => {
+      //   try {
+      //     const product = new Product({ product_name ,barcode , image })
+      //     await product.save()
+      //     return product;
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
 
+      
+     
+        createProduct: async (_, { name, barcode , image ,  price, description, supplierId }) => {
+          const product = new Product({ name,barcode , image ,  price, description });
+          await product.save();
+          
+          // Add product to supplier's products array
+          await Supplier.findByIdAndUpdate(supplierId, { $push: { products: product._id } });
+    
+          return product;
+        },
+      
+    
       // createProduct: async (_, { product_name, barcode,image, supplier: supplierId }) => {
       //   const product = new Product({product_name, barcode,image, supplier: supplierId })
       //   try {
@@ -378,6 +395,9 @@ export const resolvers = {
         }
       
       }
-    }
+    },
+    //  Supplier: {
+    //    products: (supplier) => Product.find({ _id: { $in: supplier.products } }),
+    //  },
 };
 
