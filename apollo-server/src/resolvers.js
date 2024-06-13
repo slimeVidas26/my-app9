@@ -59,17 +59,17 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
-  const products = async productIds => {
-    try {
-      const products = await Product.find({_id: { $in: productIds }})
-      return products.map(product => ({
-        ...product._doc,
-        supplier: Supplier.bind(this, product._doc.supplier)
-      }))
-    } catch {
-      throw err
-    }
-  }
+  // const products = async productIds => {
+  //   try {
+  //     const products = await Product.find({_id: { $in: productIds }})
+  //     return products.map(product => ({
+  //       ...product._doc,
+  //       supplier: Supplier.bind(this, product._doc.supplier)
+  //     }))
+  //   } catch {
+  //     throw err
+  //   }
+  // }
 
   const ediOrderItems = async ediOrderItemsIds => {
     try {
@@ -112,17 +112,17 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
-  const supplier = async supplierId => {
-    try {
-      const supplier = await Supplier.findById(supplierId)
-      return {
-        ...supplier._doc,
-        products: products.bind(this, supplier._doc.products)
-      }
-    } catch (err) {
-      throw err
-    }
-  }
+  // const supplier = async supplierId => {
+  //   try {
+  //     const supplier = await Supplier.findById(supplierId)
+  //     return {
+  //       ...supplier._doc,
+  //       products: products.bind(this, supplier._doc.products)
+  //     }
+  //   } catch (err) {
+  //     throw err
+  //   }
+  // }
 
 
 // GraphQL Resolvers
@@ -142,13 +142,13 @@ export const resolvers = {
 
         arrivals: async () => await Arrival.find({}),
         // suppliers: async () => await Supplier.find({}),
-        suppliers: () => Supplier.find().populate('products'),
-        supplier: (_, { id }) => Supplier.findById(id).populate('products'),
+        //suppliers: () => Supplier.find().populate('products'),
+        // supplier: (_, { id }) => Supplier.findById(id).populate('products'),
         // authors: async () => await Author.find({}),
         // books: async () => await Book.find({}),
         //  products: async () => await Product.find({}),
-         products: () => Product.find(),
-         product: (_, { id }) => Product.findById(id),
+         // products: () => Product.find(),
+         // product: (_, { id }) => Product.findById(id),
 
         orders: async () => await Order.find({supplierNumber : Supplier.number}),
         orderItems: async () => await OrderItem.find({}),
@@ -157,7 +157,22 @@ export const resolvers = {
         orderItems: async () => await OrderItem.find({}),
         ediOrders: async () => await EdiOrder.find({}),
 
-        
+        suppliers: async () => {
+          // Fetch suppliers and populate products
+          return await Supplier.find().populate('products');
+        },
+        supplier: async (_, { id }) => {
+          // Fetch a single supplier by ID and populate products
+          return await Supplier.findById(id).populate('products');
+        },
+        products: async () => {
+          // Fetch all products and populate supplier
+          return await Product.find().populate('supplier');
+        },
+        product: async (_, { id }) => {
+          // Fetch a single product by ID and populate supplier
+          return await Product.findById(id).populate('supplier');
+        },
 
           //  ediOrders: async () => {
           //     try {
@@ -193,17 +208,17 @@ export const resolvers = {
           }
         },
 
-        suppliers: async () => {
-          try {
-            const suppliers = await Supplier.find()
-            return suppliers.map(supplier => ({
-              ...supplier._doc,
-              products: products.bind(this, supplier._doc.products)
-            }))
-          } catch (err) {
-            throw err
-          }
-        },
+        // suppliers: async () => {
+        //   try {
+        //     const suppliers = await Supplier.find()
+        //     return suppliers.map(supplier => ({
+        //       ...supplier._doc,
+        //       products: products.bind(this, supplier._doc.products)
+        //     }))
+        //   } catch (err) {
+        //     throw err
+        //   }
+        // },
 
 
         books: async () => {
@@ -277,8 +292,8 @@ export const resolvers = {
       //   }
       // },
 
-      createSupplier: async (_, { name, email , number }) => {
-        const supplier = new Supplier({ name, email , number });
+      createSupplier: async (_, { name,number, email }) => {
+        const supplier = new Supplier({ name,number, email });
         await supplier.save();
         return supplier;
       },
@@ -351,15 +366,15 @@ export const resolvers = {
 
       
      
-        createProduct: async (_, { name, barcode , image ,  price, description, supplierId }) => {
-          const product = new Product({ name,barcode , image ,  price, description });
-          await product.save();
-          
-          // Add product to supplier's products array
-          await Supplier.findByIdAndUpdate(supplierId, { $push: { products: product._id } });
-    
-          return product;
-        },
+      createProduct: async (_, { name, barcode , image ,  price, description, supplierId }) => {
+        const product = new Product({ name, barcode , image, price, description, supplier: supplierId });
+        await product.save();
+        
+        // Add product to supplier's products array
+        await Supplier.findByIdAndUpdate(supplierId, { $push: { products: product._id } });
+  
+        return product;
+      },
       
     
       // createProduct: async (_, { product_name, barcode,image, supplier: supplierId }) => {
@@ -396,8 +411,10 @@ export const resolvers = {
       
       }
     },
-    //  Supplier: {
-    //    products: (supplier) => Product.find({ _id: { $in: supplier.products } }),
-    //  },
+    Supplier: {
+      products: async (supplier) => {
+        // Fresh query for products related to the supplier
+        return await Product.find({ _id: { $in: supplier.products } });
+      }},
 };
 

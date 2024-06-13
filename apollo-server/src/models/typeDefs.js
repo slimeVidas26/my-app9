@@ -42,7 +42,7 @@ export const typeDefs = gql`
 
     createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
-    createSupplier(name: String!, email: String! , number:String): Supplier!
+    createSupplier(name: String!, email: String! , number:String!): Supplier!
     createProduct(name: String!,barcode:String!,image:String!, price: Float!, description: String, supplierId: ID!): Product
   }
 
