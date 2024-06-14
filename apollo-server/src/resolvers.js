@@ -157,6 +157,8 @@ export const resolvers = {
         orderItems: async () => await OrderItem.find({}),
         ediOrders: async () => await EdiOrder.find({}),
 
+        
+
         suppliers: async () => {
           // Fetch suppliers and populate products
           return await Supplier.find().populate('products');
@@ -171,7 +173,9 @@ export const resolvers = {
         },
         product: async (_, { id }) => {
           // Fetch a single product by ID and populate supplier
-          return await Product.findById(id).populate('supplier');
+          // return await Product.findById(id).populate('supplier');
+          return await Product.findById(id);
+
         },
 
           //  ediOrders: async () => {
@@ -366,8 +370,15 @@ export const resolvers = {
 
       
      
-      createProduct: async (_, { name, barcode , image ,  price, description, supplierId }) => {
-        const product = new Product({ name, barcode , image, price, description, supplier: supplierId });
+      createProduct: async (_, { name,
+                                 barcode ,
+                                 image ,
+                                 price,
+                                 description, 
+                                 quantityPerBox ,
+                                  supplierId,
+                                  quantityInStock }) => {
+        const product = new Product({ name, barcode , image, price, description,quantityPerBox ,quantityInStock, supplier: supplierId });
         await product.save();
         
         // Add product to supplier's products array

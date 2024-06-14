@@ -26,6 +26,9 @@ export  const WAREHOUSES_QUERY = gql`
          }
      }`
 
+
+     
+
  
 
 export  const DEPARTMENTS_QUERY = gql`
@@ -59,12 +62,53 @@ query ArrivalQuery {
        title   
     }
 }`
+
+export  const PRODUCTS_QUERY = gql`
+    query ProductsQuery {
+        products {
+        name
+        barcode
+        description
+        image
+        quantityInStock
+        quantityPerBox
+        }
+    }`
+
+   
+    export  const PRODUCT_QUERY = gql`
+    query ProductQuery($productId: ID!) {
+        products(id: $productId) {
+        name
+        barcode
+        description
+        image
+        quantityInStock
+        quantityPerBox
+        }
+    }`
+
+
 export  const SUPPLIERS_QUERY = gql`
 query SupplierQuery {
     suppliers {
        id
+       name
+       email
        number
-       name  
+    }
+}`
+
+
+export  const SUPPLIER_QUERY = gql`
+query SupplierQuery($supplierId: ID!) {
+    supplier(id: $supplierId) {
+      name
+      email
+      number
+      products {
+        name
+      }
     }
 }`
 
