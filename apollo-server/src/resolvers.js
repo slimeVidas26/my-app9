@@ -237,17 +237,17 @@ export const resolvers = {
           }
         },
 
-        products: async () => {
-          try {
-            const products = await Product.find()
-            return products.map(product => ({
-              ...product._doc,
-              supplier: Supplier.bind(this, product._doc.supplier)
-            }))
-          } catch (err) {
-            throw err
-          }
-        },
+        // products: async () => {
+        //   try {
+        //     const products = await Product.find()
+        //     return products.map(product => ({
+        //       ...product._doc,
+        //       supplier: Supplier.bind(this, product._doc.supplier)
+        //     }))
+        //   } catch (err) {
+        //     throw err
+        //   }
+        // },
 
         ediOrderItems: async () => {
           try {

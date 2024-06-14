@@ -79,6 +79,7 @@ type EdiOrder {
   quantity:Int!,
   date: String!
   
+  
 }
 
 type EdiOrderItem {
