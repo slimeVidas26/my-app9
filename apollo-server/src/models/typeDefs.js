@@ -28,10 +28,22 @@ export const typeDefs = gql`
     suppliers:[Supplier!]
     supplier(id: ID!): Supplier
 
+    testSuppliers: [TestSupplier]
+    testSupplier(id: ID!): TestSupplier
+
+    testProducts: [TestProduct]
+    testProduct(id: ID!): TestProduct
+
+    testOrders: [TestOrder]
+    testOrder(id: ID!): TestOrder
+
     
   }
 
   type Mutation {
+    addTestOrder(testProducts: [ID!]!,testSupplierId: ID!, totalAmount: Float!): TestOrder
+    addTestProduct(name: String!, price: Float!, testSupplierId: ID!): TestProduct
+    addTestSupplier(name: String!, address: String, phone: String, email: String): TestSupplier
     createAuthor(name: String!): Author!
     createBook(title: String!, pages: Int!, author: String!): Book!
 
@@ -54,6 +66,31 @@ export const typeDefs = gql`
                   quantityPerBox:Int!,
                   supplierId: ID!,
                   quantityInStock:Int!): Product
+  }
+
+
+  type TestSupplier {
+    id: ID!
+    name: String!
+    address: String
+    phone: String
+    email: String
+    testProducts: [TestProduct]
+  }
+
+  type TestProduct {
+    id: ID!
+    name: String!
+    price: Float!
+    testSupplier: TestSupplier!
+  }
+
+  type TestOrder {
+    id: ID!
+    testProducts: [TestProduct]!
+    testSupplier: TestSupplier!
+    orderDate: String!
+    totalAmount: Float!
   }
 
   type Author {

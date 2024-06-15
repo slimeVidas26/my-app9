@@ -7,6 +7,9 @@ import {Supplier} from './models/Supplier.js';
 import {Author} from './models/Author.js';
 import {Book} from './models/Book.js';
 import {Product} from './models/Product.js';
+import { TestSupplier } from './models/TestSupplier.js';
+import { TestOrder } from './models/TestOrder.js';
+import {TestProduct} from './models/TestProduct.js';
 
 import { EdiOrder } from './models/EdiOrder.js';
 import { EdiOrderItem } from './models/EdiOrderItem.js';
@@ -133,6 +136,14 @@ export const resolvers = {
     //     hello: () => "Hello from Apollo Server"
     // }
     Query: {
+
+      testSuppliers: async () => await TestSupplier.find(),
+      testSupplier: async (_, { id }) => await TestSupplier.findById(id),
+      testProducts: async() => await TestProduct.find(),
+      testProduct: async(_, { id }) => await TestProduct.findById(id),
+      testOrders: async() => await TestOrder.find(),
+      
+      testOrder: async(_, { id }) => await TestOrder.findById(id),
         hello:  (_, {name}) =>  `Hello ${name}`,
         warehouses: async () => await Warehouse.find({}),
         departments: async () => await Department.find({}),
@@ -265,6 +276,25 @@ export const resolvers = {
     
     Mutation: {
 
+      
+
+      addTestSupplier: async (_, { name, address, phone, email }) => {
+        const testSupplier =  new TestSupplier({ name, address, phone, email });
+        await testSupplier.save();
+        return testSupplier;
+      },
+
+      addTestProduct: async (_, { name, price, testSupplierId }) => {
+        const testProduct =  new TestProduct({ name, price, testSupplier: testSupplierId });
+        await testProduct.save();
+        return testProduct;
+      },
+
+      addTestOrder: async (_, { testProducts, totalAmount,testSupplierId }) => {
+        const testOrder = new TestOrder({ testProducts, totalAmount , testSupplier: testSupplierId });
+        await testOrder.save();
+        return testOrder;
+      },
 
       // createAuthor: async (_, { name }) => {
       //   const author = new Author({ name });
@@ -427,5 +457,21 @@ export const resolvers = {
         // Fresh query for products related to the supplier
         return await Product.find({ _id: { $in: supplier.products } });
       }},
+
+      TestSupplier: {
+        testProducts: async (testSupplier) => {
+          return await TestProduct.find({ testSupplier: testSupplier.id })
+        }
+      },
+      TestProduct: {
+        testSupplier:async (testProduct) => {
+          return await TestSupplier.findById(testProduct.testSupplier)
+        }
+      },
+      TestOrder: {
+        testProducts:async (testOrder) => {
+          return await TestProduct.find({ _id: { $in: testOrder.testProducts } })
+      }
+    }
 };
 
