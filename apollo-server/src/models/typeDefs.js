@@ -8,6 +8,13 @@ export const typeDefs = gql`
 
 
   type Query {
+    alphaSuppliers:[AlphaSupplier!]
+    alphaSupplier(id: ID!): AlphaSupplier
+    alphaProducts: [AlphaProduct]
+    alphaProduct(id: ID!): AlphaProduct
+    alphaOrders: [AlphaOrder]
+    alphaOrder(id: ID!): AlphaOrder
+
     hello(name: String): String!
     warehouses: [Warehouse!]
     departments: [Department!]
@@ -28,22 +35,17 @@ export const typeDefs = gql`
     suppliers:[Supplier!]
     supplier(id: ID!): Supplier
 
-    testSuppliers: [TestSupplier]
-    testSupplier(id: ID!): TestSupplier
-
-    testProducts: [TestProduct]
-    testProduct(id: ID!): TestProduct
-
-    testOrders: [TestOrder]
-    testOrder(id: ID!): TestOrder
+    
 
     
   }
 
   type Mutation {
-    addTestOrder(testProducts: [ID!]!,testSupplierId: ID!, totalAmount: Float!): TestOrder
-    addTestProduct(name: String!, price: Float!, testSupplierId: ID!): TestProduct
-    addTestSupplier(name: String!, address: String, phone: String, email: String): TestSupplier
+
+    addAlphaSupplier(name: String!, address: String, phone: String, email: String): AlphaSupplier
+    addAlphaProduct(name: String!, price: Float!, alphaSupplierId: ID!): AlphaProduct
+    addAlphaOrder(alphaSupplierId: ID!, alphaProducts: [AlphaOrderProductInput]!, totalAmount: Float!): AlphaOrder
+  
     createAuthor(name: String!): Author!
     createBook(title: String!, pages: Int!, author: String!): Book!
 
@@ -68,31 +70,46 @@ export const typeDefs = gql`
                   quantityInStock:Int!): Product
   }
 
+  input AlphaOrderProductInput {
+    alphaProductId: ID!
+    quantity: Int!
+  }
 
-  type TestSupplier {
+
+
+  type AlphaSupplier {
     id: ID!
     name: String!
     address: String
     phone: String
     email: String
-    testProducts: [TestProduct]
+    alphaProducts: [AlphaProduct]
+
   }
 
-  type TestProduct {
+  type AlphaProduct {
     id: ID!
     name: String!
     price: Float!
-    testSupplier: TestSupplier!
+    alphaSupplier: AlphaSupplier!
   }
 
-  type TestOrder {
+  type AlphaOrderProduct {
+    alphaProduct: AlphaProduct!
+    quantity: Int!
+  }
+
+  type AlphaOrder {
     id: ID!
-    testProducts: [TestProduct]!
-    testSupplier: TestSupplier!
+    alphaSupplier: AlphaSupplier!
+    alphaProducts: [AlphaOrderProduct]!
     orderDate: String!
     totalAmount: Float!
   }
 
+
+
+  
   type Author {
   id: ID!
   name: String!
@@ -208,4 +225,6 @@ type EdiOrderItem {
       orderReference: String
       }
 `;
+
+
 

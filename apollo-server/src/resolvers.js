@@ -7,9 +7,11 @@ import {Supplier} from './models/Supplier.js';
 import {Author} from './models/Author.js';
 import {Book} from './models/Book.js';
 import {Product} from './models/Product.js';
-import { TestSupplier } from './models/TestSupplier.js';
-import { TestOrder } from './models/TestOrder.js';
-import {TestProduct} from './models/TestProduct.js';
+import { AlphaSupplier } from './models/AlphaSupplier.js';
+import {AlphaProduct} from './models/AlphaProduct.js'
+import {AlphaOrder} from './models/AlphaOrder.js'
+
+
 
 import { EdiOrder } from './models/EdiOrder.js';
 import { EdiOrderItem } from './models/EdiOrderItem.js';
@@ -17,6 +19,24 @@ import { EdiOrderItem } from './models/EdiOrderItem.js';
 import {Order} from './models/Order.js';
 import {OrderItem} from './models/OrderItem.js'
 import { GraphQLScalarType, Kind } from 'graphql';
+
+
+// const newSupplier = new AlphaSupplier({
+//   name: 'Supplier E',
+//   address: '123 Main St',
+//   phone: '123-456-7890',
+//   email: 'suppliera@example.com'
+// });
+
+// newSupplier.save()
+//   .then(supplier => console.log('Supplier saved:', supplier))
+//   .catch(error => console.error('Error saving supplier:', error));
+
+  
+
+//    AlphaSupplier.find()
+//  .then(supplier => console.log('Supplier founded:', supplier))
+//  .catch(error => console.error('Error finding supplier:', error));
 
 
 const dateScalar = new GraphQLScalarType({
@@ -115,6 +135,7 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
+
   // const supplier = async supplierId => {
   //   try {
   //     const supplier = await Supplier.findById(supplierId)
@@ -130,6 +151,7 @@ const dateScalar = new GraphQLScalarType({
 
 // GraphQL Resolvers
 export const resolvers = {
+  
     
     Date: dateScalar,
     // Query: {
@@ -137,13 +159,14 @@ export const resolvers = {
     // }
     Query: {
 
-      testSuppliers: async () => await TestSupplier.find(),
-      testSupplier: async (_, { id }) => await TestSupplier.findById(id),
-      testProducts: async() => await TestProduct.find(),
-      testProduct: async(_, { id }) => await TestProduct.findById(id),
-      testOrders: async() => await TestOrder.find(),
-      
-      testOrder: async(_, { id }) => await TestOrder.findById(id),
+    alphaSuppliers: () => AlphaSupplier.find(),
+    alphaSupplier: (_, { id }) => AlphaSupplier.findById(id),
+    alphaProducts: () => AlphaProduct.find(),
+    alphaProduct: (_, { id }) => AlphaProduct.findById(id),
+    alphaOrders: () => AlphaOrder.find(),
+    alphaOrder: (_, { id }) => AlphaOrder.findById(id),
+
+     
         hello:  (_, {name}) =>  `Hello ${name}`,
         warehouses: async () => await Warehouse.find({}),
         departments: async () => await Department.find({}),
@@ -168,6 +191,8 @@ export const resolvers = {
         orderItems: async () => await OrderItem.find({}),
         ediOrders: async () => await EdiOrder.find({}),
 
+
+        
         
 
         suppliers: async () => {
@@ -276,36 +301,23 @@ export const resolvers = {
     
     Mutation: {
 
+      addAlphaSupplier: (_, { name, address, phone, email }) => {
+        const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+        return alphaSupplier.save();
+      },
+      addAlphaProduct: (_, { name, price, alphaSupplierId }) => {
+        const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
+        return alphaProduct.save();
+      },
+      addAlphaOrder: async (_, { alphaSupplierId, alphaProduct, totalAmount }) => {
+        const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
+        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaProducts: alphaOrderProducts, totalAmount });
+        return alphaOrder.save();
+      },
+
       
 
-      addTestSupplier: async (_, { name, address, phone, email }) => {
-        const testSupplier =  new TestSupplier({ name, address, phone, email });
-        await testSupplier.save();
-        return testSupplier;
-      },
-
-      addTestProduct: async (_, { name, price, testSupplierId }) => {
-        const testProduct =  new TestProduct({ name, price, testSupplier: testSupplierId });
-        await testProduct.save();
-        return testProduct;
-      },
-
-      addTestOrder: async (_, { testProducts, totalAmount,testSupplierId }) => {
-        const testOrder = new TestOrder({ testProducts, totalAmount , testSupplier: testSupplierId });
-        await testOrder.save();
-        return testOrder;
-      },
-
-      // createAuthor: async (_, { name }) => {
-      //   const author = new Author({ name });
-      //   await author.save();
-      //   return author;
-      // },
-      // createBook: async (_, { name, pages, author }) => {
-      //   const book = new Book({ name, pages, author });
-      //   await book.save();
-      //   return book;
-      // }
+    
       createAuthor: async (_, { name }) => {
         try {
           const author = new Author({ name })
@@ -452,26 +464,30 @@ export const resolvers = {
       
       }
     },
-    Supplier: {
-      products: async (supplier) => {
-        // Fresh query for products related to the supplier
-        return await Product.find({ _id: { $in: supplier.products } });
-      }},
 
-      TestSupplier: {
-        testProducts: async (testSupplier) => {
-          return await TestProduct.find({ testSupplier: testSupplier.id })
-        }
+    AlphaSupplier: {
+      alphaProducts: (alphaSupplier) => AlphaProduct.find({ alphaSupplier: alphaSupplier.id })
+    },
+
+    AlphaProduct: {
+      alphaSupplier: (product) => Supplier.findById(product.alphaSupplier)
+    }, 
+
+    AlphaOrder: {
+      alphaSupplier: (alphaOrder) => AlphaSupplier.findById(alphaOrder.alphaSupplier),
+      alphaProducts: async (alphaOrder) => {
+        const populatedProducts = await Promise.all(alphaOrder.alphaProducts.map(async (op) => {
+          const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
+          return { alphaProduct, quantity: op.quantity };
+        }));
+        return populatedProducts;
       },
-      TestProduct: {
-        testSupplier:async (testProduct) => {
-          return await TestSupplier.findById(testProduct.testSupplier)
-        }
-      },
-      TestOrder: {
-        testProducts:async (testOrder) => {
-          return await TestProduct.find({ _id: { $in: testOrder.testProducts } })
-      }
     }
-};
+  }
 
+    // Supplier: {
+    //   products: async (supplier) => {
+    //     // Fresh query for products related to the supplier
+    //     return await Product.find({ _id: { $in: supplier.products } })
+    //   }
+    
