@@ -159,8 +159,8 @@ export const resolvers = {
     // }
     Query: {
 
-    alphaSuppliers: () => AlphaSupplier.find(),
-    alphaSupplier: (_, { id }) => AlphaSupplier.findById(id),
+    alphaSuppliers: async () => await AlphaSupplier.find(),
+    alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
     alphaProducts: () => AlphaProduct.find(),
     alphaProduct: (_, { id }) => AlphaProduct.findById(id),
     alphaOrders: () => AlphaOrder.find(),
@@ -301,15 +301,22 @@ export const resolvers = {
     
     Mutation: {
 
-      addAlphaSupplier: (_, { name, address, phone, email }) => {
+      addAlphaSupplier: async (_, { name, address, phone, email  }) => {
         const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
-        return alphaSupplier.save();
+        await alphaSupplier.save();
+        return alphaSupplier;
       },
-      addAlphaProduct: (_, { name, price, alphaSupplierId }) => {
+
+      // addAlphaSupplier: async (_, { name, address, phone, email }) => {
+      //   const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+      //   return alphaSupplier.save();
+      // },
+      addAlphaProduct:async (_, { name, price, alphaSupplierId }) => {
         const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
-        return alphaProduct.save();
+        await alphaProduct.save();
+        return alphaProduct;
       },
-      addAlphaOrder: async (_, { alphaSupplierId, alphaProduct, totalAmount }) => {
+      addAlphaOrder: async (_, { alphaSupplierId, alphaProducts, totalAmount }) => {
         const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
         const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaProducts: alphaOrderProducts, totalAmount });
         return alphaOrder.save();
@@ -470,7 +477,7 @@ export const resolvers = {
     },
 
     AlphaProduct: {
-      alphaSupplier: (product) => Supplier.findById(product.alphaSupplier)
+      alphaSupplier: async (alphaProduct) => await AlphaSupplier.findById(alphaProduct.alphaSupplier)
     }, 
 
     AlphaOrder: {
