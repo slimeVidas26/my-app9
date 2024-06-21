@@ -45,6 +45,7 @@ export const typeDefs = gql`
     addAlphaSupplier(name: String!, address: String!, phone: String, email: String): AlphaSupplier
     addAlphaProduct(name: String!, price: Float!, alphaSupplierId: ID!): AlphaProduct
     addAlphaOrder(alphaSupplierId: ID!, alphaProducts: [AlphaOrderProductInput]!, totalAmount: Float!): AlphaOrder
+    addAlphaProductToAlphaOrder(alphaOrderId: ID!, alphaProductId: ID!, quantity: Int!): AlphaOrder
   
     createAuthor(name: String!): Author!
     createBook(title: String!, pages: Int!, author: String!): Book!

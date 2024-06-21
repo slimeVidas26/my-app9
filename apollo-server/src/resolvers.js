@@ -161,8 +161,8 @@ export const resolvers = {
 
     alphaSuppliers: async () => await AlphaSupplier.find(),
     alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
-    alphaProducts: () => AlphaProduct.find(),
-    alphaProduct: (_, { id }) => AlphaProduct.findById(id),
+    alphaProducts: async() => await AlphaProduct.find(),
+    alphaProduct: async (_, { id }) =>await AlphaProduct.findById(id),
     alphaOrders: () => AlphaOrder.find(),
     alphaOrder: (_, { id }) => AlphaOrder.findById(id),
 
@@ -319,8 +319,30 @@ export const resolvers = {
       addAlphaOrder: async (_, { alphaSupplierId, alphaProducts, totalAmount }) => {
         const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
         const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaProducts: alphaOrderProducts, totalAmount });
-        return alphaOrder.save();
+        await alphaOrder.save();
+        return alphaOrder;
       },
+
+      addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
+        const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+        if (!alphaOrder) {
+          addAlphaOrder
+          throw new Error('Order not found');
+        }
+        const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
+        if (alphaProductExists) {
+          // Update the quantity if the product already exists in the order
+          alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
+            p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
+          );
+        } else {
+          // Add the new product to the order
+          alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+        }
+        return await alphaOrder.save();
+      },
+
+      
 
       
 
@@ -473,7 +495,7 @@ export const resolvers = {
     },
 
     AlphaSupplier: {
-      alphaProducts: (alphaSupplier) => AlphaProduct.find({ alphaSupplier: alphaSupplier.id })
+      alphaProducts: async(alphaSupplier) => await AlphaProduct.find({ alphaSupplier: alphaSupplier.id })
     },
 
     AlphaProduct: {
@@ -481,7 +503,7 @@ export const resolvers = {
     }, 
 
     AlphaOrder: {
-      alphaSupplier: (alphaOrder) => AlphaSupplier.findById(alphaOrder.alphaSupplier),
+      alphaSupplier: async (alphaOrder) => await AlphaSupplier.findById(alphaOrder.alphaSupplier),
       alphaProducts: async (alphaOrder) => {
         const populatedProducts = await Promise.all(alphaOrder.alphaProducts.map(async (op) => {
           const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
@@ -490,6 +512,8 @@ export const resolvers = {
         return populatedProducts;
       },
     }
+   
+  
   }
 
     // Supplier: {
