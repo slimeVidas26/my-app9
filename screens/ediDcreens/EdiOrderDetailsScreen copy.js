@@ -1,17 +1,18 @@
 import React, { useState , useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { translation } from "../i18n/supportedLanguages";
+import { translation } from "../../i18n/supportedLanguages";
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 import Constants from 'expo-constants';
 import { Card } from '@rneui/themed';
-import logo from '../assets/warehouse.png'
+//import logo from '../assets/warehouse.png'
+import { Feather } from '@expo/vector-icons';
 
 
 
 import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from "../gql/Query";
+import { DEPARTMENTS_QUERY } from "../../gql/Query";
 const i18n = new I18n(translation)
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
@@ -34,7 +35,7 @@ const width = (Dimensions.get('window').width - 2 * 10) / 2;
 
 
 
-export  function GridScreen({navigation}) {
+export function EdiOrderDetailsScreen({navigation}) {
 
   const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
   //console.log('data' , data)
@@ -48,12 +49,25 @@ const DepartmentItem = ({ department}) => {
   console.log( title , id)
 return(
   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-  <Card
-      containerStyle={[styles.card, { height:90 }]}>
-      <Text style={styles.text}>
-      {i18n.t(title)}
-      </Text>
-    </Card>
+ <View style={styles.listItem}>
+        <View style={styles.metaInfo}>
+        <Text style={[styles.title]}>12</Text>   
+        <Feather name="box" size={26} color="black" />
+    <Image style = {[styles.image , {marginLeft:40}]}  source={require('../../assets/gamadim.png')}
+    placeholder={"rami-levi"}
+        //contentFit="cover"
+        //transition={1000} 
+        />
+        </View>
+
+        <View style={styles.metaInfo2}>
+          <Text style={styles.title}>quantity:48</Text>
+          <Text style={styles.blueText}>reference</Text>
+          <Text style={styles.barcode}>729000145784</Text>
+
+        </View>
+        </View>
+
     </TouchableOpacity>
  
 )
@@ -74,9 +88,9 @@ return(
 
     {/* <View style = {styles.placeholder}></View> */}
 
-    <ImageBackground source={logo} resizeMode="cover" style={styles.image}>
+    {/* <ImageBackground source={logo} resizeMode="cover" style={styles.image}> */}
       {/* <Text style={styles.logoText}>What We Will Do Today ?</Text> */}
-    </ImageBackground>
+    {/* </ImageBackground> */}
 
     {loading && <Text>Loading...</Text>}
       {error && <Text>Check console for error logs</Text>}
@@ -103,21 +117,76 @@ const styles = StyleSheet.create({
     //flexWrap: "wrap",
     flexDirection: 'column',  
   },
+  listItem: {
+    width: width,
+    margin: spacing,
+    backgroundColor:'grey',
+    marginTop: 10,
+    paddingVertical: 0,
+    backgroundColor: '#fff',
+    flexDirection: 'column',
+    //justifyContent: 'space-around',
+    borderRadius: 10,
+  },
+  metaInfo: {
+    flex: 1,
+
+    //backgroundColor:'yellow',
+     alignItems:'center',
+     justifyContent:'space-between',
+    borderRadius: 2,
+    flexDirection: "row", // main axis
+    //justifyContent: "space-between", // main axis
+    //marginLeft: 10,
+    //marginRight: 10,
+    marginTop: 15,
+    //marginBottom: 0,
+        paddingBottom:40
+
+  },
+  metaInfo2: {
+    //backgroundColor:'pink',
+    borderRadius: 2,
+    flex: 1,
+    flexDirection: "column", // main axis
+    justifyContent: "space-between", // main axis
+    alignItems:'flex-end',
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 0,
+    marginBottom: 0,
+  },
+
+  blueText: {
+    fontSize: 24,
+    color: 'blue',
+    marginBottom: 5,
+
+  },
+
+  title: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  barcode: {
+    fontSize: 16,
+    marginBottom: 20,
+  },
 
   image: {
     flex: 1,
-    justifyContent: 'center',
-    paddingBottom :200,
+    //justifyContent: 'space-between',
+    //paddingBottom :200,
   
-  //   //  width : null,
-  //   //  height : 220,
-  //    backgroundColor: '#0553',
-  //   aspectRatio: 1.4, 
+     //  width : null,
+    //height : 220,
+      //backgroundColor: '#0553',
+     aspectRatio: 1.2, 
   //   marginBottom : 80,
-  //   alignItems: 'center',
-  //   position : 'relative',
-  //   top:30,
-  //   resizeMode: 'contain'
+     //alignItems: 'flex-end',
+     //position : 'relative',
+     //top:30,
+     //resizeMode: 'contain'
   },
 
   placeholder :{
@@ -174,8 +243,10 @@ const styles = StyleSheet.create({
   },
   
     card: {
+     
       width: width,
       margin: spacing,
+      
       // borderColor: "#fff",
       // borderWidth: 1,
       // width: "45%",

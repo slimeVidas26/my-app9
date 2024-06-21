@@ -1,14 +1,6 @@
 import gql from 'graphql-tag';
 
-//    ediOrders(input: EdiOrdersInputFilter): [EdiOrder!]
 
-
-// // GraphQL Schema
-// const typeDefs = gql`
-//   type Query {
-//     hello: String
-//   }
-// `;
 
 // GraphQL Schema
 export const typeDefs = gql`
@@ -16,47 +8,132 @@ export const typeDefs = gql`
 
 
   type Query {
+    alphaSuppliers:[AlphaSupplier!]
+    alphaSupplier(id: ID!): AlphaSupplier
+    alphaProducts: [AlphaProduct]
+    alphaProduct(id: ID!): AlphaProduct
+    alphaOrders: [AlphaOrder]
+    alphaOrder(id: ID!): AlphaOrder
+
     hello(name: String): String!
-    warehouses: [Warehouse!],
-    departments: [Department!],
-    arrivals:[Arrival!],
-    suppliers:[Supplier!],
+    warehouses: [Warehouse!]
+    departments: [Department!]
+    redstamps: [Redstamp!]
+    itemReasons: [ItemReason!]
+    arrivals:[Arrival!]
     orders:[Order!]
-    openOrders:[Order!],
-    closedOrders: [Order!],
-    orderItems: [OrderItem!],
+    openOrders:[Order!]
+    closedOrders: [Order!]
+    orderItems: [OrderItem!]
     authors: [Author!]
     books: [Book!]
+    products: [Product!]
+    product(id: ID!): Product
     ediOrders:[EdiOrder!]
     ediOrderItems:[EdiOrderItem!]
     ediOrderItemsByNumber(ediOrder: String):[EdiOrderItem!]
+    suppliers:[Supplier!]
+    supplier(id: ID!): Supplier
+
+    
+
     
   }
 
   type Mutation {
-    createAuthor(name: String!): Author!
-    createEdiOrder(orderNumber: String! , rows:Int! ,quantity:Int!): EdiOrder!
 
-    createBook(name: String!, pages: Int, author: String!): Book!
+    addAlphaSupplier(name: String!, address: String!, phone: String, email: String): AlphaSupplier
+    addAlphaProduct(name: String!, price: Float!, alphaSupplierId: ID!): AlphaProduct
+    addAlphaOrder(alphaSupplierId: ID!, alphaProducts: [AlphaOrderProductInput]!, totalAmount: Float!): AlphaOrder
+    addAlphaProductToAlphaOrder(alphaOrderId: ID!, alphaProductId: ID!, quantity: Int!): AlphaOrder
+  
+    createAuthor(name: String!): Author!
+    createBook(title: String!, pages: Int!, author: String!): Book!
+
+    createDepartment(title:String!): Department!
+    createRedstamp(title:String!): Redstamp!
+    createItemReason(title:String!): ItemReason!
+
+
+    createEdiOrder(supplier:String!,supplierNumber:Int!,edi:Int!,orderNumber: String!,boxes:Int!,quantity:Int!,date: String!): EdiOrder!
     createEdiOrderItem(code: String, product: String!,quantity:Int! ,  ediOrder: String!): EdiOrderItem!
+    createSupplier(name: String!,
+                   email: String! ,
+                   number:String!): Supplier!
+
+    createProduct(name: String!,
+                  barcode:String!,
+                  image:String!,
+                  price: Float!,
+                  description: String,
+                  quantityPerBox:Int!,
+                  supplierId: ID!,
+                  quantityInStock:Int!): Product
+  }
+
+  input AlphaOrderProductInput {
+    alphaProductId: ID!
+    quantity: Int!
+  }
+
+
+
+  type AlphaSupplier {
+    id: ID!
+    name: String!
+    address: String!
+    phone: String
+    email: String
+    alphaProducts: [AlphaProduct]
 
   }
 
+  type AlphaProduct {
+    id: ID!
+    name: String!
+    price: Float!
+    alphaSupplier: AlphaSupplier!
+  }
+
+  type AlphaOrderProduct {
+    alphaProduct: AlphaProduct!
+    quantity: Int!
+  }
+
+  type AlphaOrder {
+    id: ID!
+    alphaSupplier: AlphaSupplier!
+    alphaProducts: [AlphaOrderProduct]!
+    orderDate: String!
+    totalAmount: Float!
+  }
+
+
+
+  
   type Author {
   id: ID!
   name: String!
-  books: [Book!]
+  books: [Book!] 
+}
+
+type Book {
+  id: ID!
+  title: String!
+  pages: Int
+  author: Author!
 }
 
 type EdiOrder {
   id: ID!
   supplier:String!
-  supplierNumber:Int!
+  supplierNumber:String!
   edi:Int!,
-  orderNumber: String!
+  orderNumber:String!
   boxes:Int!,
   quantity:Int!,
   date: String!
+  
   
 }
 
@@ -68,12 +145,7 @@ type EdiOrderItem {
       ediOrder: EdiOrder!
       }
 
-  type Book {
-  id: ID!
-  name: String!
-  pages: Int
-  author: Author!
-}
+  
 
   type Warehouse {
         id: ID,
@@ -87,20 +159,46 @@ type EdiOrderItem {
       
     }
 
+    type Redstamp {
+      id: ID,
+      title: String
+    
+  }
+
+  type ItemReason {
+    id: ID,
+    title: String
+  
+}
+
     type Arrival {
         id: ID,
         title: String
       
     }
 
-    type Supplier {
-        id: ID,
-        name: String!,
-        number: String!
-        
+    
 
-        
-      
+    type Supplier {
+      id: ID!
+      name: String!
+      number: String!
+      email: String!
+      products: [Product]
+    }
+
+    
+
+    type Product {
+      id: ID!
+      name: String!
+      barcode:String!
+      image:String!
+      price: Float!
+      description: String
+      quantityPerBox :Int
+      quantityInStock :Int
+
     }
 
     type Order {
@@ -128,4 +226,6 @@ type EdiOrderItem {
       orderReference: String
       }
 `;
+
+
 

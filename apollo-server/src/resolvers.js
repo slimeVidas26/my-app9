@@ -1,15 +1,42 @@
 import {Warehouse} from './models/Warehouse.js';
 import {Department} from './models/Department.js';
+import { Redstamp } from './models/Redstamp.js';
+import { ItemReason } from './models/ItemReason.js';
 import {Arrival} from './models/Arrival.js';
 import {Supplier} from './models/Supplier.js';
 import {Author} from './models/Author.js';
 import {Book} from './models/Book.js';
+import {Product} from './models/Product.js';
+import { AlphaSupplier } from './models/AlphaSupplier.js';
+import {AlphaProduct} from './models/AlphaProduct.js'
+import {AlphaOrder} from './models/AlphaOrder.js'
+
+
+
 import { EdiOrder } from './models/EdiOrder.js';
 import { EdiOrderItem } from './models/EdiOrderItem.js';
 
 import {Order} from './models/Order.js';
 import {OrderItem} from './models/OrderItem.js'
 import { GraphQLScalarType, Kind } from 'graphql';
+
+
+// const newSupplier = new AlphaSupplier({
+//   name: 'Supplier E',
+//   address: '123 Main St',
+//   phone: '123-456-7890',
+//   email: 'suppliera@example.com'
+// });
+
+// newSupplier.save()
+//   .then(supplier => console.log('Supplier saved:', supplier))
+//   .catch(error => console.error('Error saving supplier:', error));
+
+  
+
+//    AlphaSupplier.find()
+//  .then(supplier => console.log('Supplier founded:', supplier))
+//  .catch(error => console.error('Error finding supplier:', error));
 
 
 const dateScalar = new GraphQLScalarType({
@@ -55,6 +82,18 @@ const dateScalar = new GraphQLScalarType({
     }
   }
 
+  // const products = async productIds => {
+  //   try {
+  //     const products = await Product.find({_id: { $in: productIds }})
+  //     return products.map(product => ({
+  //       ...product._doc,
+  //       supplier: Supplier.bind(this, product._doc.supplier)
+  //     }))
+  //   } catch {
+  //     throw err
+  //   }
+  // }
+
   const ediOrderItems = async ediOrderItemsIds => {
     try {
       const ediOrderItems = await EdiOrderItem.find({_id: { $in: ediOrderItemsIds }})
@@ -97,22 +136,54 @@ const dateScalar = new GraphQLScalarType({
   }
 
 
+  // const supplier = async supplierId => {
+  //   try {
+  //     const supplier = await Supplier.findById(supplierId)
+  //     return {
+  //       ...supplier._doc,
+  //       products: products.bind(this, supplier._doc.products)
+  //     }
+  //   } catch (err) {
+  //     throw err
+  //   }
+  // }
+
+
 // GraphQL Resolvers
 export const resolvers = {
+  
     
     Date: dateScalar,
     // Query: {
     //     hello: () => "Hello from Apollo Server"
     // }
     Query: {
+
+    alphaSuppliers: async () => await AlphaSupplier.find(),
+    alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
+    alphaProducts: async() => await AlphaProduct.find(),
+    alphaProduct: async (_, { id }) =>await AlphaProduct.findById(id),
+    alphaOrders: () => AlphaOrder.find(),
+    alphaOrder: (_, { id }) => AlphaOrder.findById(id),
+
+     
         hello:  (_, {name}) =>  `Hello ${name}`,
         warehouses: async () => await Warehouse.find({}),
         departments: async () => await Department.find({}),
+        redstamps: async () => await Redstamp.find({}),
+        itemReasons: async () => await ItemReason.find({}),
+
+
         arrivals: async () => await Arrival.find({}),
-        suppliers: async () => await Supplier.find({}),
+        // suppliers: async () => await Supplier.find({}),
+        //suppliers: () => Supplier.find().populate('products'),
+        // supplier: (_, { id }) => Supplier.findById(id).populate('products'),
         // authors: async () => await Author.find({}),
         // books: async () => await Book.find({}),
-        
+        //  products: async () => await Product.find({}),
+         // products: () => Product.find(),
+         // product: (_, { id }) => Product.findById(id),
+
         orders: async () => await Order.find({supplierNumber : Supplier.number}),
         orderItems: async () => await OrderItem.find({}),
         openOrders: async () => await Order.find({isOpen:true}),
@@ -120,7 +191,28 @@ export const resolvers = {
         orderItems: async () => await OrderItem.find({}),
         ediOrders: async () => await EdiOrder.find({}),
 
+
         
+        
+
+        suppliers: async () => {
+          // Fetch suppliers and populate products
+          return await Supplier.find().populate('products');
+        },
+        supplier: async (_, { id }) => {
+          // Fetch a single supplier by ID and populate products
+          return await Supplier.findById(id).populate('products');
+        },
+        products: async () => {
+          // Fetch all products and populate supplier
+          return await Product.find().populate('supplier');
+        },
+        product: async (_, { id }) => {
+          // Fetch a single product by ID and populate supplier
+          // return await Product.findById(id).populate('supplier');
+          return await Product.findById(id);
+
+        },
 
           //  ediOrders: async () => {
           //     try {
@@ -156,6 +248,18 @@ export const resolvers = {
           }
         },
 
+        // suppliers: async () => {
+        //   try {
+        //     const suppliers = await Supplier.find()
+        //     return suppliers.map(supplier => ({
+        //       ...supplier._doc,
+        //       products: products.bind(this, supplier._doc.products)
+        //     }))
+        //   } catch (err) {
+        //     throw err
+        //   }
+        // },
+
 
         books: async () => {
           try {
@@ -169,6 +273,18 @@ export const resolvers = {
           }
         },
 
+        // products: async () => {
+        //   try {
+        //     const products = await Product.find()
+        //     return products.map(product => ({
+        //       ...product._doc,
+        //       supplier: Supplier.bind(this, product._doc.supplier)
+        //     }))
+        //   } catch (err) {
+        //     throw err
+        //   }
+        // },
+
         ediOrderItems: async () => {
           try {
             const ediOrderItems = await EdiOrderItem.find()
@@ -181,27 +297,56 @@ export const resolvers = {
           }
         }
       
-    }
-    ,
-
-
+    },
     
-
-    
-
     Mutation: {
 
+      addAlphaSupplier: async (_, { name, address, phone, email  }) => {
+        const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+        await alphaSupplier.save();
+        return alphaSupplier;
+      },
 
-      // createAuthor: async (_, { name }) => {
-      //   const author = new Author({ name });
-      //   await author.save();
-      //   return author;
+      // addAlphaSupplier: async (_, { name, address, phone, email }) => {
+      //   const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+      //   return alphaSupplier.save();
       // },
-      // createBook: async (_, { name, pages, author }) => {
-      //   const book = new Book({ name, pages, author });
-      //   await book.save();
-      //   return book;
-      // }
+      addAlphaProduct:async (_, { name, price, alphaSupplierId }) => {
+        const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
+        await alphaProduct.save();
+        return alphaProduct;
+      },
+      addAlphaOrder: async (_, { alphaSupplierId, alphaProducts, totalAmount }) => {
+        const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
+        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaProducts: alphaOrderProducts, totalAmount });
+        await alphaOrder.save();
+        return alphaOrder;
+      },
+
+      addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
+        const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+        if (!alphaOrder) {
+          addAlphaOrder
+          throw new Error('Order not found');
+        }
+        const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
+        if (alphaProductExists) {
+          // Update the quantity if the product already exists in the order
+          alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
+            p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
+          );
+        } else {
+          // Add the new product to the order
+          alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+        }
+        return await alphaOrder.save();
+      },
+
+      
+
+      
+
+    
       createAuthor: async (_, { name }) => {
         try {
           const author = new Author({ name })
@@ -212,9 +357,55 @@ export const resolvers = {
         }
       },
 
-      createEdiOrder: async (_, { orderNumber , rows , quantity }) => {
+      // createSupplier: async (_, { supplier_name  ,  supplier_number}) => {
+      //   try {
+      //     const supplier = new Supplier({ supplier_name  ,  supplier_number })
+      //     await supplier.save()
+      //     return supplier;
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
+
+      createSupplier: async (_, { name,number, email }) => {
+        const supplier = new Supplier({ name,number, email });
+        await supplier.save();
+        return supplier;
+      },
+
+      createDepartment: async (_, { title }) => {
         try {
-          const ediOrder = new EdiOrder({ orderNumber  , rows , quantity})
+          const department = new Department({ title })
+          await department.save()
+          return department;
+        } catch (err) {
+          throw err
+        }
+      },
+
+      createRedstamp: async (_, { title }) => {
+        try {
+          const redstamp = new Redstamp({ title })
+          await redstamp.save()
+          return redstamp;
+        } catch (err) {
+          throw err
+        }
+      },
+
+      createItemReason: async (_, { title }) => {
+        try {
+          const itemReason = new ItemReason({ title })
+          await itemReason.save()
+          return itemReason;
+        } catch (err) {
+          throw err
+        }
+      },
+
+      createEdiOrder: async (_, {supplier,supplierNumber,edi,orderNumber,boxes,quantity,date }) => {
+        try {
+          const ediOrder = new EdiOrder({supplier,supplierNumber,edi,orderNumber,boxes,quantity,date})
           await ediOrder.save()
           return ediOrder;
         } catch (err) {
@@ -222,8 +413,8 @@ export const resolvers = {
         }
       },
 
-      createBook: async (_, { name, pages, author: authorId }) => {
-        const book = new Book({ name, pages, author: authorId })
+      createBook: async (_, { title, pages, author: authorId }) => {
+        const book = new Book({ title, pages, author: authorId })
         try {
           const savedBook = await book.save()
           const authorRecord = await Author.findById(authorId)
@@ -237,6 +428,52 @@ export const resolvers = {
           throw err
         }
       },
+
+      // createProduct: async (_, {product_name ,barcode , image }) => {
+      //   try {
+      //     const product = new Product({ product_name ,barcode , image })
+      //     await product.save()
+      //     return product;
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
+
+      
+     
+      createProduct: async (_, { name,
+                                 barcode ,
+                                 image ,
+                                 price,
+                                 description, 
+                                 quantityPerBox ,
+                                  supplierId,
+                                  quantityInStock }) => {
+        const product = new Product({ name, barcode , image, price, description,quantityPerBox ,quantityInStock, supplier: supplierId });
+        await product.save();
+        
+        // Add product to supplier's products array
+        await Supplier.findByIdAndUpdate(supplierId, { $push: { products: product._id } });
+  
+        return product;
+      },
+      
+    
+      // createProduct: async (_, { product_name, barcode,image, supplier: supplierId }) => {
+      //   const product = new Product({product_name, barcode,image, supplier: supplierId })
+      //   try {
+      //     const savedProduct = await product.save()
+      //     const supplierRecord = await Supplier.findById(supplierId)
+      //     supplierRecord.products.push(product)
+      //     await supplierRecord.save()
+      //     return {
+      //       ...savedProduct._doc,
+      //       supplier: supplier.bind(this, supplierId)
+      //     }
+      //   } catch (err) {
+      //     throw err
+      //   }
+      // },
 
       createEdiOrderItem: async (_, { code, product,quantity ,  ediOrder: ediOrderId }) => {
         const ediOrderItem = new EdiOrderItem({ code, product,quantity ,  ediOrder: ediOrderId })
@@ -255,6 +492,33 @@ export const resolvers = {
         }
       
       }
-    }
-};
+    },
 
+    AlphaSupplier: {
+      alphaProducts: async(alphaSupplier) => await AlphaProduct.find({ alphaSupplier: alphaSupplier.id })
+    },
+
+    AlphaProduct: {
+      alphaSupplier: async (alphaProduct) => await AlphaSupplier.findById(alphaProduct.alphaSupplier)
+    }, 
+
+    AlphaOrder: {
+      alphaSupplier: async (alphaOrder) => await AlphaSupplier.findById(alphaOrder.alphaSupplier),
+      alphaProducts: async (alphaOrder) => {
+        const populatedProducts = await Promise.all(alphaOrder.alphaProducts.map(async (op) => {
+          const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
+          return { alphaProduct, quantity: op.quantity };
+        }));
+        return populatedProducts;
+      },
+    }
+   
+  
+  }
+
+    // Supplier: {
+    //   products: async (supplier) => {
+    //     // Fresh query for products related to the supplier
+    //     return await Product.find({ _id: { $in: supplier.products } })
+    //   }
+    
