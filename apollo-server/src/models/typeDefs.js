@@ -44,7 +44,7 @@ export const typeDefs = gql`
 
     addAlphaSupplier(name: String!, address: String!, phone: String, email: String): AlphaSupplier
     addAlphaProduct(name: String!, price: Float!, alphaSupplierId: ID!): AlphaProduct
-    addAlphaOrder(alphaSupplierId: ID!, alphaProducts: [AlphaOrderProductInput]!, totalAmount: Float!): AlphaOrder
+    addAlphaOrder(alphaSupplierId: ID!,alphaReference:Int!, alphaProducts: [AlphaOrderProductInput], alphaOrderDate:String, totalAmount: Float): AlphaOrder
     addAlphaProductToAlphaOrder(alphaOrderId: ID!, alphaProductId: ID!, quantity: Int!): AlphaOrder
   
     createAuthor(name: String!): Author!
@@ -102,9 +102,10 @@ export const typeDefs = gql`
 
   type AlphaOrder {
     id: ID!
+    alphaReference:Int!
     alphaSupplier: AlphaSupplier!
-    alphaProducts: [AlphaOrderProduct]!
-    orderDate: String!
+    alphaProducts: [AlphaOrderProduct]
+    alphaOrderDate: String!
     totalAmount: Float!
   }
 

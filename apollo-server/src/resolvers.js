@@ -159,12 +159,83 @@ export const resolvers = {
     // }
     Query: {
 
-    alphaSuppliers: async () => await AlphaSupplier.find(),
-    alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
-    alphaProducts: async() => await AlphaProduct.find(),
-    alphaProduct: async (_, { id }) =>await AlphaProduct.findById(id),
-    alphaOrders: () => AlphaOrder.find(),
-    alphaOrder: (_, { id }) => AlphaOrder.findById(id),
+    // alphaSuppliers: async () => await AlphaSupplier.find(),
+    alphaSuppliers: async () => {
+      try {
+        const alphaSuppliers = await AlphaSupplier.find();
+        console.log('list suppliers:', alphaSuppliers);
+        return alphaSuppliers;
+      } catch (error) {
+        console.error('Error listing suppliers:', error);
+        throw error;
+      }
+    },
+    //alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
+
+    alphaSupplier : async (_, { id }) =>{
+      try {
+        const alphaSupplier  = await AlphaSupplier.findById(id);
+      console.log('alphaSupplier' , alphaSupplier);
+      return alphaSupplier;
+      } catch (error) {
+        console.error('Error finding alphaSupplier:', error);
+        throw error;
+      }
+    },
+    
+    
+    //alphaProducts: async() => await AlphaProduct.find(),
+
+    alphaProducts : async()=>{
+      try {
+        const alphaProducts = await AlphaProduct.find();
+        console.log('listing alphaProducts',alphaProducts);
+        return alphaProducts
+        
+      } catch (error) {
+        console.error('Error finding alphaSupplier:', error);
+        throw error;
+      }
+    },
+
+
+    // alphaProduct: async (_, { id }) =>await AlphaProduct.findById(id),
+    alphaProduct : async (_ , {id})=>{
+      try {
+        const alphaProduct = await AlphaProduct.findById(id);
+        console.log('alphaProduct' , alphaProduct);
+        return alphaProduct;
+
+      } catch (error) {
+        console.error('Error finding alphaProduct:', error);
+        throw error;
+      }
+    },
+
+
+    //alphaOrders: () => AlphaOrder.find(),
+    alphaOrders : async ()=>{
+      try {
+        const alphaOrders = await AlphaOrder.find();
+        console.log('listing alphaOrders' ,alphaOrders)
+        return alphaOrders
+      } catch (error) {
+        console.error('Error finding alphaOrders:', error);
+        throw error;
+      }
+    }
+    ,
+    // alphaOrder: (_, { id }) => AlphaOrder.findById(id),
+    alphaOrder : async (_ , {id})=>{
+      try {
+       const alphaOrder = await AlphaOrder.findById(id) ;
+       console .log('alphaOrder',alphaOrder)
+       return alphaOrder
+      } catch (error) {
+        console.error('Error finding alphaOrder:', error);
+        throw error;
+      }
+    },
 
      
         hello:  (_, {name}) =>  `Hello ${name}`,
@@ -302,9 +373,16 @@ export const resolvers = {
     Mutation: {
 
       addAlphaSupplier: async (_, { name, address, phone, email  }) => {
-        const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
-        await alphaSupplier.save();
-        return alphaSupplier;
+        try {
+          const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+          await alphaSupplier.save();
+          console.log('alphaSupplier added success' , alphaSupplier)
+          return alphaSupplier;
+        } catch (error) {
+          console.error('Error adding alphaSupplier:', error);
+          throw error;
+        }
+       
       },
 
       // addAlphaSupplier: async (_, { name, address, phone, email }) => {
@@ -312,35 +390,66 @@ export const resolvers = {
       //   return alphaSupplier.save();
       // },
       addAlphaProduct:async (_, { name, price, alphaSupplierId }) => {
-        const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
-        await alphaProduct.save();
-        return alphaProduct;
+        try {
+          const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
+          await alphaProduct.save();
+          console.log('alphaProduct added success' , alphaProduct)
+          return alphaProduct;
+        } catch (error) {
+          console.error('Error adding alphaProduct:', error);
+          throw error;
+        }
+       
       },
-      addAlphaOrder: async (_, { alphaSupplierId, alphaProducts, totalAmount }) => {
-        const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
-        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaProducts: alphaOrderProducts, totalAmount });
+      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,  alphaProducts, totalAmount }) => {
+        try {
+           // const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
+        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaReference , totalAmount });
         await alphaOrder.save();
+        console.log('alphaOrder added success' , alphaOrder)
         return alphaOrder;
+        } catch (error) {
+          console.error('Error adding alphaOrder:', error);
+          throw error;  
+        }
+       
       },
 
       addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
-        const alphaOrder = await AlphaOrder.findById(alphaOrderId);
-        if (!alphaOrder) {
-          addAlphaOrder
-          throw new Error('Order not found');
+        try {
+          const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+          if (!alphaOrder) {
+             // Create a new order if it doesn't exist
+             alphaOrder = new Order({
+              alphaReference,
+            alphaSupplier: null, // or set a default supplier if needed
+            alphaProducts: [{ alphaProduct: alphaProductId, quantity }],
+            alphaOrderDate: new Date(),
+            totalAmount: 0 // Adjust as necessary based on your pricing logic
+          });
+          console.log('alphaOrder added succes' , alphaOrder)
+            //throw new Error('Order not found');
+          } else{
+          const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
+          console.log("alphaProductExists",alphaProductExists)
+          if (alphaProductExists) {
+            // Update the quantity if the product already exists in the order
+            alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
+              p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
+            );
+          } else {
+            // Add the new product to the order
+            alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+          }
+          return await alphaOrder.save();
+          console.log("AlphaOrder" , AlphaOrder )
         }
-        const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
-        if (alphaProductExists) {
-          // Update the quantity if the product already exists in the order
-          alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
-            p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
-          );
-        } else {
-          // Add the new product to the order
-          alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+        } catch (error) {
+          console.error('Error adding AlphaProductToAlphaOrder:', error);
+          throw error;  
         }
-        return await alphaOrder.save();
-      },
+       
+    },
 
       
 
