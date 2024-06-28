@@ -8,6 +8,8 @@ const alphaSupplierSchema = new Schema({
     email: String
   });
 
+  //console.log(alphaSupplierSchema)
+
   export const AlphaSupplier = mongoose.model('AlphaSupplier', alphaSupplierSchema);
 
   

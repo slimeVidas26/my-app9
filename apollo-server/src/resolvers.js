@@ -389,9 +389,9 @@ export const resolvers = {
       //   const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
       //   return alphaSupplier.save();
       // },
-      addAlphaProduct:async (_, { name, price, alphaSupplierId }) => {
+      addAlphaProduct:async (_, { name, price , inStock ,perBox ,   alphaSupplierId }) => {
         try {
-          const alphaProduct = new AlphaProduct({ name, price, alphaSupplier: alphaSupplierId });
+          const alphaProduct = new AlphaProduct({ name, price , inStock,perBox, alphaSupplier: alphaSupplierId });
           await alphaProduct.save();
           console.log('alphaProduct added success' , alphaProduct)
           return alphaProduct;
@@ -401,10 +401,10 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,  alphaProducts, totalAmount }) => {
+      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,alphaOrderDate ,   alphaProducts, totalAmount }) => {
         try {
            // const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
-        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaReference , totalAmount });
+        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaReference ,alphaOrderDate, totalAmount });
         await alphaOrder.save();
         console.log('alphaOrder added success' , alphaOrder)
         return alphaOrder;
@@ -608,7 +608,11 @@ export const resolvers = {
     },
 
     AlphaProduct: {
-      alphaSupplier: async (alphaProduct) => await AlphaSupplier.findById(alphaProduct.alphaSupplier)
+      alphaSupplier: async (alphaProduct) => {
+        const  asp = await AlphaSupplier.findById(alphaProduct.alphaSupplier)
+        console.log("asp" , asp)
+        return asp
+      }
     }, 
 
     AlphaOrder: {
