@@ -401,13 +401,23 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,alphaOrderDate ,   alphaProducts, totalAmount }) => {
+      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,alphaOrderDate ,alphaOrderId,   alphaProducts, totalAmount }) => {
         try {
-           // const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
-        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId, alphaReference ,alphaOrderDate, totalAmount });
+          const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+          console.log('alphaOrder',alphaOrder)
+
+
+          if (!alphaOrder) {
+         const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
+        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId,alphaProducts:alphaOrderProducts, alphaReference ,alphaOrderDate, totalAmount });
         await alphaOrder.save();
         console.log('alphaOrder added success' , alphaOrder)
+         
         return alphaOrder;
+          }
+          else{
+        console.log('ORDER ALREADY EXISTS')
+          }
         } catch (error) {
           console.error('Error adding alphaOrder:', error);
           throw error;  
