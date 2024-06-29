@@ -401,37 +401,69 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder: async (_, { alphaSupplierId,alphaReference ,alphaOrderDate ,alphaOrderId,   alphaProducts, totalAmount }) => {
+      addAlphaOrder : async (_, { alphaSupplierId, alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalAmount }) => {
         try {
-          const alphaOrder = await AlphaOrder.findById(alphaOrderId);
-          console.log('alphaOrder',alphaOrder)
-
-
-          if (!alphaOrder) {
-         const alphaOrderProducts = alphaProducts.map(p => ({ alphaProduct: p.alphaProductId, quantity: p.quantity }));
-        const alphaOrder = new AlphaOrder({ alphaSupplier: alphaSupplierId,alphaProducts:alphaOrderProducts, alphaReference ,alphaOrderDate, totalAmount });
-        await alphaOrder.save();
-        console.log('alphaOrder added success' , alphaOrder)
-         
-        return alphaOrder;
-          }
-          else{
-        console.log('ORDER ALREADY EXISTS')
+          console.log('Checking for Alpha Order with reference:', alphaReference);
+      
+          // Check if an order with the given alphaReference already exists
+          const existingOrder = await AlphaOrder.findOne({ alphaReference });
+          console.log('Existing Alpha Order:', existingOrder);
+      
+          if (!existingOrder) {
+            // If the order does not exist, create and save a new one
+            const alphaOrderProducts = alphaProducts.map(p => ({
+              alphaProduct: p.alphaProductId,
+              quantity: p.quantity
+            }));
+            const newAlphaOrder = new AlphaOrder({
+              alphaSupplier: alphaSupplierId,
+              alphaProducts: alphaOrderProducts,
+              alphaReference,
+              alphaOrderDate,
+              totalAmount
+            });
+      
+            await newAlphaOrder.save();
+            console.log('Alpha Order added successfully:', newAlphaOrder);
+      
+            return newAlphaOrder;
+          } else {
+            // If the order exists, check if the product already exists in the order
+            alphaProducts.forEach(({ alphaProductId, quantity }) => {
+              const existingProductIndex = existingOrder.alphaProducts.findIndex(p => p.alphaProduct && p.alphaProduct.toString() === alphaProductId);
+              
+              if (existingProductIndex > -1) {
+                // Update the quantity if the product already exists in the order
+                existingOrder.alphaProducts[existingProductIndex].quantity += quantity;
+              } else {
+                // Add the new product to the order
+                existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+              }
+            });
+      
+            const updatedOrder = await existingOrder.save();
+            console.log('Alpha Order updated successfully:', updatedOrder);
+      
+            return updatedOrder;
           }
         } catch (error) {
-          console.error('Error adding alphaOrder:', error);
-          throw error;  
+          console.error('Error adding alpha order:', error);
+          throw error;
         }
-       
-      },
+      }
+      
+      
+      ,
+      
 
       addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
         try {
           const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+          // console.log('alphaOrder' , alphaOrder)
           if (!alphaOrder) {
              // Create a new order if it doesn't exist
-             alphaOrder = new Order({
-              alphaReference,
+             alphaOrder = new AlphaOrder({
+              //alphaReference:null
             alphaSupplier: null, // or set a default supplier if needed
             alphaProducts: [{ alphaProduct: alphaProductId, quantity }],
             alphaOrderDate: new Date(),
@@ -452,7 +484,6 @@ export const resolvers = {
             alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
           }
           return await alphaOrder.save();
-          console.log("AlphaOrder" , AlphaOrder )
         }
         } catch (error) {
           console.error('Error adding AlphaProductToAlphaOrder:', error);

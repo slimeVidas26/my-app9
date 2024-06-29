@@ -8,7 +8,7 @@ const alphaOrderProductSchema = new mongoose.Schema({
 
 const alphaOrderSchema = new mongoose.Schema({
   alphaSupplier: { type: mongoose.Schema.Types.ObjectId, ref: 'AlphaSupplier', required: true },
-  alphaReference: { type: Number, required: true },
+  alphaReference: { type: Number, required: false },
   alphaProducts: [alphaOrderProductSchema],
   alphaOrderDate: { type: Date, default: Date.now},
   totalAmount: { type: Number,default: 0 }
