@@ -372,9 +372,9 @@ export const resolvers = {
     
     Mutation: {
 
-      addAlphaSupplier: async (_, { name, address, phone, email  }) => {
+      addAlphaSupplier: async (_, { name,number ,  address, phone, email  }) => {
         try {
-          const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
+          const alphaSupplier = new AlphaSupplier({ name,number ,  address, phone, email });
           await alphaSupplier.save();
           console.log('alphaSupplier added success' , alphaSupplier)
           return alphaSupplier;
@@ -389,7 +389,7 @@ export const resolvers = {
       //   const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
       //   return alphaSupplier.save();
       // },
-      addAlphaProduct:async (_, { name, price , inStock ,perBox ,   alphaSupplierId }) => {
+      addAlphaProduct:async (_, { name, price , inStock ,perBox ,alphaSupplierId }) => {
         try {
           const alphaProduct = new AlphaProduct({ name, price , inStock,perBox, alphaSupplier: alphaSupplierId });
           await alphaProduct.save();
@@ -410,6 +410,14 @@ export const resolvers = {
           console.log('Existing Alpha Order:', existingOrder);
       
           if (!existingOrder) {
+               // Find the highest alphaReference and increment it
+      const highestAlphaOrder = await AlphaOrder.findOne().sort({ alphaReference: -1 }).exec();
+      const newAlphaReference = highestAlphaOrder ? highestAlphaOrder.alphaReference + 1 : 1;
+      console.log('New alphaReference:', newAlphaReference);
+
+      // Calculate the total amount
+      const totalAmount = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
+
             // If the order does not exist, create and save a new one
             const alphaOrderProducts = alphaProducts.map(p => ({
               alphaProduct: p.alphaProductId,
@@ -418,7 +426,7 @@ export const resolvers = {
             const newAlphaOrder = new AlphaOrder({
               alphaSupplier: alphaSupplierId,
               alphaProducts: alphaOrderProducts,
-              alphaReference,
+              alphaReference :newAlphaReference,
               alphaOrderDate,
               totalAmount
             });
@@ -440,6 +448,9 @@ export const resolvers = {
                 existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
               }
             });
+
+             // Recalculate the total amount
+             existingOrder.totalAmount = existingOrder.alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
       
             const updatedOrder = await existingOrder.save();
             console.log('Alpha Order updated successfully:', updatedOrder);
@@ -456,41 +467,41 @@ export const resolvers = {
       ,
       
 
-      addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
-        try {
-          const alphaOrder = await AlphaOrder.findById(alphaOrderId);
-          // console.log('alphaOrder' , alphaOrder)
-          if (!alphaOrder) {
-             // Create a new order if it doesn't exist
-             alphaOrder = new AlphaOrder({
-              //alphaReference:null
-            alphaSupplier: null, // or set a default supplier if needed
-            alphaProducts: [{ alphaProduct: alphaProductId, quantity }],
-            alphaOrderDate: new Date(),
-            totalAmount: 0 // Adjust as necessary based on your pricing logic
-          });
-          console.log('alphaOrder added succes' , alphaOrder)
-            //throw new Error('Order not found');
-          } else{
-          const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
-          console.log("alphaProductExists",alphaProductExists)
-          if (alphaProductExists) {
-            // Update the quantity if the product already exists in the order
-            alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
-              p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
-            );
-          } else {
-            // Add the new product to the order
-            alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
-          }
-          return await alphaOrder.save();
-        }
-        } catch (error) {
-          console.error('Error adding AlphaProductToAlphaOrder:', error);
-          throw error;  
-        }
+    //   addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
+    //     try {
+    //       const alphaOrder = await AlphaOrder.findById(alphaOrderId);
+    //       // console.log('alphaOrder' , alphaOrder)
+    //       if (!alphaOrder) {
+    //          // Create a new order if it doesn't exist
+    //          alphaOrder = new AlphaOrder({
+    //           //alphaReference:null
+    //         alphaSupplier: null, // or set a default supplier if needed
+    //         alphaProducts: [{ alphaProduct: alphaProductId, quantity }],
+    //         alphaOrderDate: new Date(),
+    //         totalAmount: 0 // Adjust as necessary based on your pricing logic
+    //       });
+    //       console.log('alphaOrder added succes' , alphaOrder)
+    //         //throw new Error('Order not found');
+    //       } else{
+    //       const alphaProductExists = alphaOrder.alphaProducts.some(p => p.alphaProduct.toString() === alphaProductId);
+    //       console.log("alphaProductExists",alphaProductExists)
+    //       if (alphaProductExists) {
+    //         // Update the quantity if the product already exists in the order
+    //         alphaOrder.alphaProducts = alphaOrder.alphaProducts.map(p =>
+    //           p.alphaProduct.toString() === alphaProductId ? { alphaProduct: p.alphaProduct, quantity: p.quantity + quantity } : p
+    //         );
+    //       } else {
+    //         // Add the new product to the order
+    //         alphaOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+    //       }
+    //       return await alphaOrder.save();
+    //     }
+    //     } catch (error) {
+    //       console.error('Error adding AlphaProductToAlphaOrder:', error);
+    //       throw error;  
+    //     }
        
-    },
+    // },
 
       
 

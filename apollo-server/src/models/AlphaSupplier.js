@@ -3,6 +3,8 @@ const { Schema } = mongoose;
 
 const alphaSupplierSchema = new Schema({
     name: { type: String, required: true },
+    number: { type: Number, required: true },
+
     address: String,
     phone: String,
     email: String
