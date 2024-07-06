@@ -372,7 +372,7 @@ export const resolvers = {
     
     Mutation: {
 
-      addAlphaSupplier: async (_, { name,number ,  address, phone, email  }) => {
+      addAlphaSupplier: async (_, { name, number ,  address, phone, email  }) => {
         try {
           const alphaSupplier = new AlphaSupplier({ name,number ,  address, phone, email });
           await alphaSupplier.save();
@@ -401,7 +401,7 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder : async (_, { alphaSupplierId, alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalAmount }) => {
+      addAlphaOrder : async (_, { alphaSupplierId, alphaEdi ,  alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalAmount }) => {
         try {
           console.log('Checking for Alpha Order with reference:', alphaReference);
       
@@ -410,10 +410,16 @@ export const resolvers = {
           console.log('Existing Alpha Order:', existingOrder);
       
           if (!existingOrder) {
+
+         // Find the highest alphaReference and increment it
+         const highestAlphaEdi = await AlphaOrder.findOne().sort({ alphaEdi: -1 }).exec();
+         const newAlphaEdi = highestAlphaEdi ? highestAlphaEdi.alphaEdi + 1 : 1;
+         console.log('New alphaEdi:', newAlphaEdi);
+
                // Find the highest alphaReference and increment it
-      const highestAlphaOrder = await AlphaOrder.findOne().sort({ alphaReference: -1 }).exec();
-      const newAlphaReference = highestAlphaOrder ? highestAlphaOrder.alphaReference + 1 : 1;
-      console.log('New alphaReference:', newAlphaReference);
+      // const highestAlphaOrder = await AlphaOrder.findOne().sort({ alphaReference: -1 }).exec();
+      // const newAlphaReference = highestAlphaOrder ? highestAlphaOrder.alphaReference + 1 : 1;
+      // console.log('New alphaReference:', newAlphaReference);
 
       // Calculate the total amount
       const totalAmount = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
@@ -425,8 +431,9 @@ export const resolvers = {
             }));
             const newAlphaOrder = new AlphaOrder({
               alphaSupplier: alphaSupplierId,
+              alphaEdi:newAlphaEdi,
               alphaProducts: alphaOrderProducts,
-              alphaReference :newAlphaReference,
+              alphaReference,
               alphaOrderDate,
               totalAmount
             });
