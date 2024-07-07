@@ -401,7 +401,7 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder : async (_, { alphaSupplierId, alphaEdi ,  alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalAmount }) => {
+      addAlphaOrder : async (_, { alphaSupplierId, alphaEdi ,  alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalQuantity }) => {
         try {
           console.log('Checking for Alpha Order with reference:', alphaReference);
       
@@ -422,7 +422,7 @@ export const resolvers = {
       // console.log('New alphaReference:', newAlphaReference);
 
       // Calculate the total amount
-      const totalAmount = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
+      const totalQuantity = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
 
             // If the order does not exist, create and save a new one
             const alphaOrderProducts = alphaProducts.map(p => ({
@@ -435,7 +435,7 @@ export const resolvers = {
               alphaProducts: alphaOrderProducts,
               alphaReference,
               alphaOrderDate,
-              totalAmount
+              totalQuantity
             });
       
             await newAlphaOrder.save();
@@ -457,7 +457,7 @@ export const resolvers = {
             });
 
              // Recalculate the total amount
-             existingOrder.totalAmount = existingOrder.alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
+             existingOrder.totalQuantity = existingOrder.alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
       
             const updatedOrder = await existingOrder.save();
             console.log('Alpha Order updated successfully:', updatedOrder);
@@ -485,7 +485,7 @@ export const resolvers = {
     //         alphaSupplier: null, // or set a default supplier if needed
     //         alphaProducts: [{ alphaProduct: alphaProductId, quantity }],
     //         alphaOrderDate: new Date(),
-    //         totalAmount: 0 // Adjust as necessary based on your pricing logic
+    //         totalQuantity: 0 // Adjust as necessary based on your pricing logic
     //       });
     //       console.log('alphaOrder added succes' , alphaOrder)
     //         //throw new Error('Order not found');
@@ -674,12 +674,23 @@ export const resolvers = {
       }
     }, 
 
+
+    
+
     AlphaOrder: {
       alphaSupplier: async (alphaOrder) => await AlphaSupplier.findById(alphaOrder.alphaSupplier),
+
       alphaProducts: async (alphaOrder) => {
         const populatedProducts = await Promise.all(alphaOrder.alphaProducts.map(async (op) => {
+          console.log("op" , op)
           const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
-          return { alphaProduct, quantity: op.quantity };
+         
+          //  if (alphaProduct) {
+          //    alphaProduct.quantity = op.quantity;  // Add the quantity to the product object
+          //    console.log("alphaProduct" , alphaProduct)
+          //  }
+           return { alphaProduct, quantity: op.quantity };
+          //return alphaProduct
         }));
         return populatedProducts;
       },
