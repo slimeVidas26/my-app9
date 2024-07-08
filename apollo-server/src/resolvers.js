@@ -427,7 +427,8 @@ export const resolvers = {
             // If the order does not exist, create and save a new one
             const alphaOrderProducts = alphaProducts.map(p => ({
               alphaProduct: p.alphaProductId,
-              quantity: p.quantity
+               quantity: p.quantity,
+               boxes : p.quantity / alphaProductId.perBox
             }));
             const newAlphaOrder = new AlphaOrder({
               alphaSupplier: alphaSupplierId,
@@ -444,15 +445,18 @@ export const resolvers = {
             return newAlphaOrder;
           } else {
             // If the order exists, check if the product already exists in the order
-            alphaProducts.forEach(({ alphaProductId, quantity }) => {
+            alphaProducts.forEach(({ alphaProductId, quantity , boxes }) => {
               const existingProductIndex = existingOrder.alphaProducts.findIndex(p => p.alphaProduct && p.alphaProduct.toString() === alphaProductId);
               
               if (existingProductIndex > -1) {
                 // Update the quantity if the product already exists in the order
+                const perBox = 3;
                 existingOrder.alphaProducts[existingProductIndex].quantity += quantity;
+                 existingOrder.alphaProducts[existingProductIndex].boxes = quantity/perBox
+
               } else {
                 // Add the new product to the order
-                existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+                existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity , boxes });
               }
             });
 
@@ -678,18 +682,30 @@ export const resolvers = {
     
 
     AlphaOrder: {
-      alphaSupplier: async (alphaOrder) => await AlphaSupplier.findById(alphaOrder.alphaSupplier),
+      alphaSupplier: async (alphaOrder) => {
+        const alphaSupplier = await AlphaSupplier.findById(alphaOrder.alphaSupplier)
+        if (!alphaSupplier) {
+          throw new Error(`AlphaSupplier with id ${alphaOrder.alphaSupplier} not found`);
+        }
+        if (alphaSupplier.number == null) {
+          throw new Error(`AlphaSupplier number is null for id ${alphaOrder.alphaSupplier}`);
+        }
+        return alphaSupplier;
+      },
 
       alphaProducts: async (alphaOrder) => {
         const populatedProducts = await Promise.all(alphaOrder.alphaProducts.map(async (op) => {
           console.log("op" , op)
           const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
+          alphaProduct.quantity = op.quantity
+                    console.log("op" , op)
+
          
           //  if (alphaProduct) {
           //    alphaProduct.quantity = op.quantity;  // Add the quantity to the product object
           //    console.log("alphaProduct" , alphaProduct)
           //  }
-           return { alphaProduct, quantity: op.quantity };
+           return { alphaProduct, quantity: op.quantity , boxes:op.boxes };
           //return alphaProduct
         }));
         return populatedProducts;

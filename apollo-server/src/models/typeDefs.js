@@ -43,7 +43,7 @@ export const typeDefs = gql`
   type Mutation {
 
     addAlphaSupplier(name: String!,number:Int! address: String, phone: String, email: String): AlphaSupplier
-    addAlphaProduct(name: String!, price:Float!, inStock:Float!,perBox:Int!, alphaSupplierId: ID!): AlphaProduct
+    addAlphaProduct(name: String!, price:Float!, inStock:Float!,perBox:Float!, alphaSupplierId: ID!): AlphaProduct
     addAlphaOrder(alphaSupplierId: ID!,alphaEdi:Int,alphaReference:Int!, alphaProducts: [AlphaOrderProductInput]!, alphaOrderDate:Date, totalQuantity: Float): AlphaOrder
     addAlphaProductToAlphaOrder(alphaOrderId: ID, alphaProductId: ID!, quantity: Int!): AlphaOrder
   
@@ -73,8 +73,8 @@ export const typeDefs = gql`
 
   input AlphaOrderProductInput {
     alphaProductId: ID!
-    quantity: Int!
-    boxes: Int
+    quantity: Float!
+    
 
   }
 
@@ -104,7 +104,7 @@ export const typeDefs = gql`
   type AlphaOrderProduct {
     alphaProduct: AlphaProduct
     quantity: Int!
-    boxes: Int
+    boxes: Float!
   }
 
   type AlphaOrder {
