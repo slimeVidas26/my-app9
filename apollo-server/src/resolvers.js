@@ -389,9 +389,9 @@ export const resolvers = {
       //   const alphaSupplier = new AlphaSupplier({ name, address, phone, email });
       //   return alphaSupplier.save();
       // },
-      addAlphaProduct:async (_, { name, price , inStock ,perBox ,alphaSupplierId }) => {
+      addAlphaProduct:async (_, { name, price , inStock , quantityPerBox ,alphaSupplierId }) => {
         try {
-          const alphaProduct = new AlphaProduct({ name, price , inStock,perBox, alphaSupplier: alphaSupplierId });
+          const alphaProduct = new AlphaProduct({ name, price , inStock, quantityPerBox, alphaSupplier: alphaSupplierId });
           await alphaProduct.save();
           console.log('alphaProduct added success' , alphaProduct)
           return alphaProduct;
@@ -428,7 +428,7 @@ export const resolvers = {
             const alphaOrderProducts = alphaProducts.map(p => ({
               alphaProduct: p.alphaProductId,
                quantity: p.quantity,
-               boxes : p.quantity / alphaProductId.perBox
+               boxes : p.quantity / alphaProductId.quantityPerBox
             }));
             const newAlphaOrder = new AlphaOrder({
               alphaSupplier: alphaSupplierId,
@@ -450,9 +450,9 @@ export const resolvers = {
               
               if (existingProductIndex > -1) {
                 // Update the quantity if the product already exists in the order
-                const perBox = 3;
+                const quantityPerBox = 3;
                 existingOrder.alphaProducts[existingProductIndex].quantity += quantity;
-                 existingOrder.alphaProducts[existingProductIndex].boxes = quantity/perBox
+                 existingOrder.alphaProducts[existingProductIndex].boxes = quantity/quantityPerBox
 
               } else {
                 // Add the new product to the order
@@ -698,6 +698,7 @@ export const resolvers = {
           console.log("op" , op)
           const alphaProduct = await AlphaProduct.findById(op.alphaProduct);
           alphaProduct.quantity = op.quantity
+
                     console.log("op" , op)
 
          

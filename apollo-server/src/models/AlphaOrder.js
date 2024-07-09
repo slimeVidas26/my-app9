@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const alphaOrderProductSchema = new Schema({
   alphaProduct: { type: mongoose.Schema.Types.ObjectId, ref: 'AlphaProduct', required: true },
   quantity: { type: Number, required: true },
-  boxes: { type: Number, required: false },
+  quantityPerBox: { type: Number, required: false },
 
 
 });
