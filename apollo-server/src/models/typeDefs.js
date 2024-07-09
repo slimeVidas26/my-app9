@@ -74,6 +74,8 @@ export const typeDefs = gql`
   input AlphaOrderProductInput {
     alphaProductId: ID!
     quantity: Float!
+    totalBoxes:Float
+    
     
 
   }
@@ -104,7 +106,7 @@ export const typeDefs = gql`
   type AlphaOrderProduct {
     alphaProduct: AlphaProduct
     quantity: Int!
-    boxes: Float!
+    totalBoxes: Int
   }
 
   type AlphaOrder {
