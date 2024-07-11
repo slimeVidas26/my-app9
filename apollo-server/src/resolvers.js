@@ -8,7 +8,9 @@ import {Author} from './models/Author.js';
 import {Book} from './models/Book.js';
 import {Product} from './models/Product.js';
 import { AlphaSupplier } from './models/AlphaSupplier.js';
-import {AlphaProduct} from './models/AlphaProduct.js'
+import { BetaSupplier } from './models/BetaSupplier.js';
+import {AlphaProduct} from './models/AlphaProduct.js';
+import { BetaProduct } from './models/BetaProduct.js';
 import {AlphaOrder} from './models/AlphaOrder.js'
 
 
@@ -19,6 +21,21 @@ import { EdiOrderItem } from './models/EdiOrderItem.js';
 import {Order} from './models/Order.js';
 import {OrderItem} from './models/OrderItem.js'
 import { GraphQLScalarType, Kind } from 'graphql';
+
+
+// const newProduct   = new BetaProduct({
+//   name :"product2",
+//   quantityPerBox: 22
+// });
+
+// newProduct.save()
+// .then(product => console.log("newproduct saved" , product))
+// .catch(error => console.log("saving newproduct failed" , error))
+
+// BetaProduct.find()
+// .then(products => console.log("listing products" , products))
+// .catch(error=>console.log("listing products failed" , error))
+
 
 
 // const newSupplier = new AlphaSupplier({
@@ -170,6 +187,17 @@ export const resolvers = {
         throw error;
       }
     },
+
+    betaSuppliers: async () => {
+      try {
+        const betaSuppliers = await BetaSupplier.find();
+        console.log('list suppliers:', betaSuppliers);
+        return betaSuppliers;
+      } catch (error) {
+        console.error('Error listing suppliers:', error);
+        throw error;
+      }
+    },
     //alphaSupplier: async (_, { id }) => await AlphaSupplier.findById(id),
 
     alphaSupplier : async (_, { id }) =>{
@@ -194,6 +222,17 @@ export const resolvers = {
         
       } catch (error) {
         console.error('Error finding alphaSupplier:', error);
+        throw error;
+      }
+    },
+    betaProducts : async()=>{
+      try {
+        const betaProducts = await BetaProduct.find();
+        console.log('listing alphaProducts',betaProducts);
+        return betaProducts
+        
+      } catch (error) {
+        console.error('Error finding alphaProducts:', error);
         throw error;
       }
     },
@@ -382,7 +421,18 @@ export const resolvers = {
           console.error('Error adding alphaSupplier:', error);
           throw error;
         }
-       
+      },
+
+      addBetaSupplier: async (_, { name, number ,  address, phone, email  }) => {
+        try {
+          const betaSupplier = new BetaSupplier({ name,number ,  address, phone, email });
+          await betaSupplier.save();
+          console.log('betaSupplier added success' , betaSupplier)
+          return betaSupplier;
+        } catch (error) {
+          console.error('Error adding betaSupplier:', error);
+          throw error;
+        }
       },
 
       // addAlphaSupplier: async (_, { name, address, phone, email }) => {
@@ -397,6 +447,17 @@ export const resolvers = {
           return alphaProduct;
         } catch (error) {
           console.error('Error adding alphaProduct:', error);
+          throw error;
+        }
+      },
+      addBetaProduct:async (_, { name,  quantityPerBox }) => {
+        try {
+          const betaProduct = new BetaProduct({ name, quantityPerBox });
+          await betaProduct.save();
+          console.log('betaProduct added success' , betaProduct)
+          return betaProduct;
+        } catch (error) {
+          console.error('Error adding betaProduct:', error);
           throw error;
         }
        
