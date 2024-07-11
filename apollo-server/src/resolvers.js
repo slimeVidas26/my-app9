@@ -171,9 +171,7 @@ export const resolvers = {
   
     
     Date: dateScalar,
-    // Query: {
-    //     hello: () => "Hello from Apollo Server"
-    // }
+    
     Query: {
 
     // alphaSuppliers: async () => await AlphaSupplier.find(),
@@ -210,6 +208,16 @@ export const resolvers = {
         throw error;
       }
     },
+    betaSupplier : async (_, { id }) =>{
+      try {
+        const betaSupplier  = await BetaSupplier.findById(id);
+      console.log('betaSupplier' , betaSupplier);
+      return betaSupplier;
+      } catch (error) {
+        console.error('Error finding betaSupplier:', error);
+        throw error;
+      }
+    },
     
     
     //alphaProducts: async() => await AlphaProduct.find(),
@@ -228,17 +236,16 @@ export const resolvers = {
     betaProducts : async()=>{
       try {
         const betaProducts = await BetaProduct.find();
-        console.log('listing alphaProducts',betaProducts);
+        console.log('listing betaProducts',betaProducts);
         return betaProducts
         
       } catch (error) {
-        console.error('Error finding alphaProducts:', error);
+        console.error('Error finding betaProducts:', error);
         throw error;
       }
     },
 
 
-    // alphaProduct: async (_, { id }) =>await AlphaProduct.findById(id),
     alphaProduct : async (_ , {id})=>{
       try {
         const alphaProduct = await AlphaProduct.findById(id);
@@ -247,6 +254,18 @@ export const resolvers = {
 
       } catch (error) {
         console.error('Error finding alphaProduct:', error);
+        throw error;
+      }
+    },
+
+    betaProduct : async (_ , {id})=>{
+      try {
+        const betaProduct = await BetaProduct.findById(id);
+        console.log('betaProduct' , betaProduct);
+        return betaProduct;
+
+      } catch (error) {
+        console.error('Error finding betaProduct:', error);
         throw error;
       }
     },
@@ -277,7 +296,7 @@ export const resolvers = {
     },
 
      
-        hello:  (_, {name}) =>  `Hello ${name}`,
+        // hello:  (_, {name}) =>  `Hello ${name}`,
         warehouses: async () => await Warehouse.find({}),
         departments: async () => await Department.find({}),
         redstamps: async () => await Redstamp.find({}),
@@ -450,9 +469,9 @@ export const resolvers = {
           throw error;
         }
       },
-      addBetaProduct:async (_, { name,  quantityPerBox }) => {
+      addBetaProduct:async (_, { name,  quantityPerBox ,betaSupplierId}) => {
         try {
-          const betaProduct = new BetaProduct({ name, quantityPerBox });
+          const betaProduct = new BetaProduct({ name, quantityPerBox , betaSupplier:betaSupplierId });
           await betaProduct.save();
           console.log('betaProduct added success' , betaProduct)
           return betaProduct;
@@ -740,9 +759,21 @@ export const resolvers = {
       alphaProducts: async(alphaSupplier) => await AlphaProduct.find({ alphaSupplier: alphaSupplier.id })
     },
 
+    BetaSupplier: {
+      betaProducts: async(betaSupplier) => await BetaProduct.find({ betaSupplier: betaSupplier.id })
+    },
+
     AlphaProduct: {
       alphaSupplier: async (alphaProduct) => {
         const  asp = await AlphaSupplier.findById(alphaProduct.alphaSupplier)
+        console.log("asp" , asp)
+        return asp
+      }
+    }, 
+
+    BetaProduct: {
+      betaSupplier: async (betaProduct) => {
+        const  asp = await BetaSupplier.findById(betaProduct.betaSupplier)
         console.log("asp" , asp)
         return asp
       }
