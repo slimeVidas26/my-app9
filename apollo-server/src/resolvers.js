@@ -12,6 +12,7 @@ import { BetaSupplier } from './models/BetaSupplier.js';
 import {AlphaProduct} from './models/AlphaProduct.js';
 import { BetaProduct } from './models/BetaProduct.js';
 import {AlphaOrder} from './models/AlphaOrder.js'
+import { BetaOrder } from './models/BetaOrder.js';
 
 
 
@@ -444,10 +445,23 @@ export const resolvers = {
 
       addBetaSupplier: async (_, { name, number ,  address, phone, email  }) => {
         try {
-          const betaSupplier = new BetaSupplier({ name,number ,  address, phone, email });
+           // Check if supplier with the given  name or number already exists
+          const existingBetaSupplier =  await BetaSupplier.findOne({
+            $or: [
+              { name : name },
+              { number: number }
+            ]
+          })
+         
+          if(!existingBetaSupplier){
+          const betaSupplier = new BetaSupplier({ name ,number ,  address, phone, email });
           await betaSupplier.save();
           console.log('betaSupplier added success' , betaSupplier)
           return betaSupplier;
+        }
+        else{
+        console.log(`supplier ${existingBetaSupplier.name} already exists`)
+        }
         } catch (error) {
           console.error('Error adding betaSupplier:', error);
           throw error;
@@ -561,13 +575,92 @@ export const resolvers = {
           console.error('Error adding alpha order:', error);
           throw error;
         }
-      }
+      },
+
+      addBetaOrder : async (_, { betaSupplierId, betaEdi ,  betaReference, betaOrderDate, betaProductId, betaOrderId, betaProducts, totalQuantity }) => {
+        try {
+          console.log('Checking for Beta Order with reference:', betaReference);
       
+          // Check if an order with the given alphaReference already exists
+          const existingOrder = await BetaOrder.findOne({ betaReference });
+          console.log('Existing Beat Order:', existingOrder);
       
-      ,
+          if (!existingOrder) {
+            // Find the highest alphaReference and increment it
+            const highestBetaOrder = await BetaOrder.findOne().sort({ betaEdi: -1 }).exec();
+            const newBetaEdi = highestBetaOrder ? highestBetaOrder.betaEdi + 1 : 1;
+            console.log('New betaEdi:', newBetaEdi);
+      
+            // Fetch the quantityPerBox for each product and calculate the total number of boxes
+            let totalBoxes = 0;
+            for (const { betaProductId, quantity } of betaProducts) {
+              const product = await BetaProduct.findById(betaProductId);
+              if (product) {
+                const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+                totalBoxes += numberOfBoxes;
+              }
+            }
+      
+            // Calculate the total amount
+            const totalQuantity = betaProducts.reduce((sum, p) => sum + p.quantity, 0);
+      
+            // Create and save a new order with the incremented betaReference
+            const betaOrderProducts = betaProducts.map(p => ({
+              betaProduct: p.betaProductId,
+              quantity: p.quantity,
+              quantityPerBox:p.quantityPerBox
+            }));
+            const newBetaOrder = new BetaOrder({
+              betaSupplier: betaSupplierId,
+              betaProducts: betaOrderProducts,
+              betaReference,
+              betaOrderDate,
+              totalQuantity,
+              totalBoxes
+            });
+      
+            await newBetaOrder.save();
+            console.log('Beta Order added successfully:', newBetaOrder);
+      
+            return newBetaOrder;
+          } else {
+            // If the order exists, check if the product already exists in the order
+            let totalBoxes = 0;
+            for (const { betaProductId, quantity } of betaProducts) {
+              const existingProductIndex = existingOrder.betaProducts.findIndex(p => p.betaProduct && p.betaProduct.toString() === betaProductId);
+      
+              if (existingProductIndex > -1) {
+                // Update the quantity if the product already exists in the order
+                existingOrder.betaProducts[existingProductIndex].quantity += quantity;
+              } else {
+                // Add the new product to the order
+                existingOrder.betaProducts.push({ betaProduct: betaProductId, quantity });
+              }
+      
+              const product = await BetaProduct.findById(betaProductId);
+              if (product) {
+                const numberOfBoxes = Math.ceil(existingOrder.betaProducts[existingProductIndex].quantity / product.quantityPerBox);
+                totalBoxes += numberOfBoxes;
+              }
+            }
+      
+            // Recalculate the total amount and total number of boxes
+            existingOrder.totalQuantity = existingOrder.betaProducts.reduce((sum, p) => sum + p.quantity, 0);
+            existingOrder.totalBoxes = totalBoxes;
+      
+            const updatedOrder = await existingOrder.save();
+            console.log('Beta Order updated successfully:', updatedOrder);
+      
+            return updatedOrder;
+          }
+        } catch (error) {
+          console.error('Error adding alpha order:', error);
+          throw error;
+        }
+      },
       
 
-    //   addAlphaProductToAlphaOrder: async (_, { alphaOrderId, alphaProductId, quantity }) => {
+   
     //     try {
     //       const alphaOrder = await AlphaOrder.findById(alphaOrderId);
     //       // console.log('alphaOrder' , alphaOrder)
@@ -808,6 +901,38 @@ export const resolvers = {
           //    console.log("alphaProduct" , alphaProduct)
           //  }
            return { alphaProduct, quantity: op.quantity , boxes:op.boxes };
+          //return alphaProduct
+        }));
+        return populatedProducts;
+      },
+    },
+
+    BetaOrder: {
+      betaSupplier: async (betaOrder) => {
+        const betaSupplier = await BetaSupplier.findById(betaOrder.betaSupplier)
+        if (!betaSupplier) {
+          throw new Error(`BetaSupplier with id ${betaOrder.betaSupplier} not found`);
+        }
+        if (betaSupplier.number == null) {
+          throw new Error(`BetaSupplier number is null for id ${betaOrder.betaSupplier}`);
+        }
+        return betaSupplier;
+      },
+
+      betaProducts: async (betaOrder) => {
+        const populatedProducts = await Promise.all(betaOrder.betaProducts.map(async (op) => {
+          console.log("op" , op)
+          const betaProduct = await BetaProduct.findById(op.betaProduct);
+          betaProduct.quantity = op.quantity
+
+                    console.log("op" , op)
+
+         
+          //  if (alphaProduct) {
+          //    alphaProduct.quantity = op.quantity;  // Add the quantity to the product object
+          //    console.log("alphaProduct" , alphaProduct)
+          //  }
+           return { betaProduct, quantity: op.quantity , boxes:op.boxes };
           //return alphaProduct
         }));
         return populatedProducts;

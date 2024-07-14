@@ -54,8 +54,13 @@ export const typeDefs = gql`
     addAlphaSupplier(name: String!,number:Int! address: String, phone: String, email: String): AlphaSupplier
     addBetaSupplier(name: String!,number:Int! address: String, phone: String, email: String): BetaSupplier
 
+    
+
     addAlphaOrder(alphaSupplierId: ID!,alphaEdi:Int,alphaReference:Int!, alphaProducts: [AlphaOrderProductInput]!, alphaOrderDate:Date, totalQuantity: Float): AlphaOrder
-    addAlphaProductToAlphaOrder(alphaOrderId: ID, alphaProductId: ID!, quantity: Int!): AlphaOrder
+    addBetaOrder(betaSupplierId: ID!,betaEdi:Int,betaReference:Int!, betaProducts: [BetaOrderProductInput]!,
+                  betaOrderDate:Date, totalQuantity: Float , totalBoxes:Int): BetaOrder
+
+    # addAlphaProductToAlphaOrder(alphaOrderId: ID, alphaProductId: ID!, quantity: Int!): AlphaOrder
   
     createAuthor(name: String!): Author!
     createBook(title: String!, pages: Int!, author: String!): Book!
@@ -85,10 +90,9 @@ export const typeDefs = gql`
     alphaProductId: ID!
     quantity: Float!
     totalBoxes:Float
-    
-    
-
   }
+
+  
 
 
 
@@ -124,6 +128,9 @@ export const typeDefs = gql`
   type BetaProduct {
     id: ID!
     name: String!
+    code:String
+    category:String
+    picture:String
     price: Float
     inStock:Float
     quantityPerBox:Int!
@@ -145,6 +152,29 @@ export const typeDefs = gql`
     alphaProducts: [AlphaOrderProduct]!
     alphaOrderDate: Date!
     totalQuantity: Float!
+  }
+
+  input BetaOrderProductInput {
+    betaProductId: ID!
+    quantity: Float!
+    boxes:Float
+  }
+
+  type BetaOrderProduct {
+    betaProduct: BetaProduct
+    quantity: Int!
+    totalBoxes: Int
+  }
+
+  type BetaOrder {
+    id: ID!
+    betaEdi:Int
+    betaReference:Int!
+    betaSupplier: BetaSupplier!
+    betaProducts: [BetaOrderProduct]!
+    betaOrderDate: Date!
+    totalQuantity: Float!
+    totalBoxes: Int
   }
 
 
