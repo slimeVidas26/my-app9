@@ -1,23 +1,19 @@
-import mongoose from 'mongoose';
-
+import mongoose from 'mongoose'
 const { Schema } = mongoose;
 
-
-
-// Define the Supplier schema
 const supplierSchema = new Schema({
-  name: { type: String, required: true },
-  number: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  products: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
-});
+    name: { type: String, required: true },
+    number: { type: Number, required: true },
+    address: String,
+    phone: String,
+    email: String
+  });
 
-export const Supplier = mongoose.model('Supplier', supplierSchema);
+  //console.log(alphaSupplierSchema)
 
+  export const Supplier = mongoose.model('Supplier', supplierSchema);
 
+  
+ 
 
-// export const Supplier = mongoose.model('Supplier', {
-     
-//     supplier_name: String,
-//      supplier_number:String 
-// });
+  
