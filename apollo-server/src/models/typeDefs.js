@@ -58,7 +58,7 @@ export const typeDefs = gql`
 
     addAlphaOrder(alphaSupplierId: ID!,alphaEdi:Int,alphaReference:Int!, alphaProducts: [AlphaOrderProductInput]!, alphaOrderDate:Date, totalQuantity: Float): AlphaOrder
     addBetaOrder(betaSupplierId: ID!,betaEdi:Int,betaReference:Int!, betaProducts: [BetaOrderProductInput]!,
-                  betaOrderDate:Date, totalQuantity: Float , totalBoxes:Int): BetaOrder
+                  betaOrderDate:Date, totalQuantity: Float): BetaOrder
 
     # addAlphaProductToAlphaOrder(alphaOrderId: ID, alphaProductId: ID!, quantity: Int!): AlphaOrder
   
@@ -156,7 +156,7 @@ export const typeDefs = gql`
 
   input BetaOrderProductInput {
     betaProductId: ID!
-    quantity: Float!
+    quantity: Int!
     boxes:Float
   }
 

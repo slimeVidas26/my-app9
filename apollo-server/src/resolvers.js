@@ -495,39 +495,44 @@ export const resolvers = {
         }
        
       },
-      addAlphaOrder : async (_, { alphaSupplierId, alphaEdi ,  alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalQuantity }) => {
+      addAlphaOrder: async (_, { alphaSupplierId, alphaEdi, alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalQuantity }) => {
         try {
           console.log('Checking for Alpha Order with reference:', alphaReference);
+      
+          if (!Array.isArray(alphaProducts) || alphaProducts.length === 0) {
+            throw new Error('alphaProducts should be a non-empty array');
+          }
       
           // Check if an order with the given alphaReference already exists
           const existingOrder = await AlphaOrder.findOne({ alphaReference });
           console.log('Existing Alpha Order:', existingOrder);
       
           if (!existingOrder) {
-            // Find the highest alphaReference and increment it
             const highestAlphaOrder = await AlphaOrder.findOne().sort({ alphaEdi: -1 }).exec();
             const newAlphaEdi = highestAlphaOrder ? highestAlphaOrder.alphaEdi + 1 : 1;
             console.log('New alphaEdi:', newAlphaEdi);
       
-            // Fetch the quantityPerBox for each product and calculate the total number of boxes
             let totalBoxes = 0;
             for (const { alphaProductId, quantity } of alphaProducts) {
+              console.log(`Processing product with ID: ${alphaProductId}, quantity: ${quantity}`);
               const product = await AlphaProduct.findById(alphaProductId);
               if (product) {
+                console.log(`Found product: ${product}`);
                 const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
+              } else {
+                throw new Error(`Product with ID ${alphaProductId} not found`);
               }
             }
       
-            // Calculate the total amount
             const totalQuantity = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
       
-            // Create and save a new order with the incremented alphaReference
             const alphaOrderProducts = alphaProducts.map(p => ({
               alphaProduct: p.alphaProductId,
               quantity: p.quantity,
-              quantityPerBox:p.quantityPerBox
+              quantityPerBox: p.quantityPerBox
             }));
+      
             const newAlphaOrder = new AlphaOrder({
               alphaSupplier: alphaSupplierId,
               alphaProducts: alphaOrderProducts,
@@ -542,27 +547,36 @@ export const resolvers = {
       
             return newAlphaOrder;
           } else {
-            // If the order exists, check if the product already exists in the order
             let totalBoxes = 0;
             for (const { alphaProductId, quantity } of alphaProducts) {
+              console.log(`Processing product with ID: ${alphaProductId}, quantity: ${quantity}`);
               const existingProductIndex = existingOrder.alphaProducts.findIndex(p => p.alphaProduct && p.alphaProduct.toString() === alphaProductId);
       
               if (existingProductIndex > -1) {
-                // Update the quantity if the product already exists in the order
                 existingOrder.alphaProducts[existingProductIndex].quantity += quantity;
-              } else {
-                // Add the new product to the order
-                existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
-              }
       
-              const product = await AlphaProduct.findById(alphaProductId);
-              if (product) {
-                const numberOfBoxes = Math.ceil(existingOrder.alphaProducts[existingProductIndex].quantity / product.quantityPerBox);
-                totalBoxes += numberOfBoxes;
+                const product = await AlphaProduct.findById(alphaProductId);
+                if (product) {
+                  console.log(`Found product: ${product}`);
+                  const numberOfBoxes = Math.ceil(existingOrder.alphaProducts[existingProductIndex].quantity / product.quantityPerBox);
+                  totalBoxes += numberOfBoxes;
+                } else {
+                  throw new Error(`Product with ID ${alphaProductId} not found`);
+                }
+              } else {
+                existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+      
+                const product = await AlphaProduct.findById(alphaProductId);
+                if (product) {
+                  console.log(`Found product: ${product}`);
+                  const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+                  totalBoxes += numberOfBoxes;
+                } else {
+                  throw new Error(`Product with ID ${alphaProductId} not found`);
+                }
               }
             }
       
-            // Recalculate the total amount and total number of boxes
             existingOrder.totalQuantity = existingOrder.alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
             existingOrder.totalBoxes = totalBoxes;
       
@@ -576,40 +590,130 @@ export const resolvers = {
           throw error;
         }
       },
-
-      addBetaOrder : async (_, { betaSupplierId, betaEdi ,  betaReference, betaOrderDate, betaProductId, betaOrderId, betaProducts, totalQuantity }) => {
-        try {
-          console.log('Checking for Beta Order with reference:', betaReference);
       
-          // Check if an order with the given alphaReference already exists
+      // addAlphaOrder : async (_, { alphaSupplierId, alphaEdi ,  alphaReference, alphaOrderDate, alphaProductId, alphaOrderId, alphaProducts, totalQuantity }) => {
+      //   try {
+      //     console.log('Checking for Alpha Order with reference:', alphaReference);
+      
+      //     // Check if an order with the given alphaReference already exists
+      //     const existingOrder = await AlphaOrder.findOne({ alphaReference });
+      //     console.log('Existing Alpha Order:', existingOrder);
+      
+      //     if (!existingOrder) {
+      //       // Find the highest alphaReference and increment it
+      //       const highestAlphaOrder = await AlphaOrder.findOne().sort({ alphaEdi: -1 }).exec();
+      //       const newAlphaEdi = highestAlphaOrder ? highestAlphaOrder.alphaEdi + 1 : 1;
+      //       console.log('New alphaEdi:', newAlphaEdi);
+      
+      //       // Fetch the quantityPerBox for each product and calculate the total number of boxes
+      //       let totalBoxes = 0;
+      //       for (const { alphaProductId, quantity } of alphaProducts) {
+      //         const product = await AlphaProduct.findById(alphaProductId);
+      //         if (product) {
+      //           console.log(`Found product: ${product}`);
+      //           const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+      //           totalBoxes += numberOfBoxes;
+      //         }
+      //       }
+      
+      //       // Calculate the total amount
+      //       const totalQuantity = alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
+      
+      //       // Create and save a new order with the incremented alphaReference
+      //       const alphaOrderProducts = alphaProducts.map(p => ({
+      //         alphaProduct: p.alphaProductId,
+      //         quantity: p.quantity,
+      //         quantityPerBox:p.quantityPerBox
+      //       }));
+      //       const newAlphaOrder = new AlphaOrder({
+      //         alphaSupplier: alphaSupplierId,
+      //         alphaProducts: alphaOrderProducts,
+      //         alphaReference,
+      //         alphaOrderDate,
+      //         totalQuantity,
+      //         totalBoxes
+      //       });
+      
+      //       await newAlphaOrder.save();
+      //       console.log('Alpha Order added successfully:', newAlphaOrder);
+      
+      //       return newAlphaOrder;
+      //     } else {
+
+      //       console.log(`Product with ID ${alphaProductId} not found`);
+      //       // If the order exists, check if the product already exists in the order
+      //       let totalBoxes = 0;
+      //       for (const { alphaProductId, quantity } of alphaProducts) {
+      //         const existingProductIndex = existingOrder.alphaProducts.findIndex(p => p.alphaProduct && p.alphaProduct.toString() === alphaProductId);
+      
+      //         if (existingProductIndex > -1) {
+      //           // Update the quantity if the product already exists in the order
+      //           existingOrder.alphaProducts[existingProductIndex].quantity += quantity;
+      //         } else {
+      //           // Add the new product to the order
+      //           existingOrder.alphaProducts.push({ alphaProduct: alphaProductId, quantity });
+      //         }
+      
+      //         const product = await AlphaProduct.findById(alphaProductId);
+      //         if (product) {
+      //           const numberOfBoxes = Math.ceil(existingOrder.alphaProducts[existingProductIndex].quantity / product.quantityPerBox);
+      //           totalBoxes += numberOfBoxes;
+      //         }
+      //       }
+      
+      //       // Recalculate the total amount and total number of boxes
+      //       existingOrder.totalQuantity = existingOrder.alphaProducts.reduce((sum, p) => sum + p.quantity, 0);
+      //       existingOrder.totalBoxes = totalBoxes;
+      
+      //       const updatedOrder = await existingOrder.save();
+      //       console.log('Alpha Order updated successfully:', updatedOrder);
+      
+      //       return updatedOrder;
+      //     }
+      //   } catch (error) {
+      //     console.error('Error adding alpha order:', error);
+      //     throw error;
+      //   }
+      // },
+
+      addBetaOrder: async (_, { betaSupplierId, betaEdi, betaReference, betaOrderDate, betaProductId, betaOrderId, betaProducts, totalQuantity }) => {
+        try {
+          console.log('Checking for beta Order with reference:', betaReference);
+      
+          if (!Array.isArray(betaProducts) || betaProducts.length === 0) {
+            throw new Error('betaProducts should be a non-empty array');
+          }
+      
+          // Check if an order with the given betaReference already exists
           const existingOrder = await BetaOrder.findOne({ betaReference });
-          console.log('Existing Beat Order:', existingOrder);
+          console.log('Existing Beta Order:', existingOrder);
       
           if (!existingOrder) {
-            // Find the highest alphaReference and increment it
             const highestBetaOrder = await BetaOrder.findOne().sort({ betaEdi: -1 }).exec();
             const newBetaEdi = highestBetaOrder ? highestBetaOrder.betaEdi + 1 : 1;
             console.log('New betaEdi:', newBetaEdi);
       
-            // Fetch the quantityPerBox for each product and calculate the total number of boxes
             let totalBoxes = 0;
             for (const { betaProductId, quantity } of betaProducts) {
+              console.log(`Processing product with ID: ${betaProductId}, quantity: ${quantity}`);
               const product = await BetaProduct.findById(betaProductId);
               if (product) {
+                console.log(`Found product: ${product}`);
                 const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
+              } else {
+                throw new Error(`Product with ID ${betaProductId} not found`);
               }
             }
       
-            // Calculate the total amount
             const totalQuantity = betaProducts.reduce((sum, p) => sum + p.quantity, 0);
       
-            // Create and save a new order with the incremented betaReference
             const betaOrderProducts = betaProducts.map(p => ({
               betaProduct: p.betaProductId,
               quantity: p.quantity,
-              quantityPerBox:p.quantityPerBox
+              quantityPerBox: p.quantityPerBox
             }));
+      
             const newBetaOrder = new BetaOrder({
               betaSupplier: betaSupplierId,
               betaProducts: betaOrderProducts,
@@ -624,32 +728,41 @@ export const resolvers = {
       
             return newBetaOrder;
           } else {
-            // If the order exists, check if the product already exists in the order
             let totalBoxes = 0;
             for (const { betaProductId, quantity } of betaProducts) {
+              console.log(`Processing product with ID: ${betaProductId}, quantity: ${quantity}`);
               const existingProductIndex = existingOrder.betaProducts.findIndex(p => p.betaProduct && p.betaProduct.toString() === betaProductId);
       
               if (existingProductIndex > -1) {
-                // Update the quantity if the product already exists in the order
                 existingOrder.betaProducts[existingProductIndex].quantity += quantity;
-              } else {
-                // Add the new product to the order
-                existingOrder.betaProducts.push({ betaProduct: betaProductId, quantity });
-              }
       
-              const product = await BetaProduct.findById(betaProductId);
-              if (product) {
-                const numberOfBoxes = Math.ceil(existingOrder.betaProducts[existingProductIndex].quantity / product.quantityPerBox);
-                totalBoxes += numberOfBoxes;
+                const product = await BetaProduct.findById(betaProductId);
+                if (product) {
+                  console.log(`Found product: ${product}`);
+                  const numberOfBoxes = Math.ceil(existingOrder.betaProducts[existingProductIndex].quantity / product.quantityPerBox);
+                  totalBoxes += numberOfBoxes;
+                } else {
+                  throw new Error(`Product with ID ${betaProductId} not found`);
+                }
+              } else {
+                existingOrder.betaProducts.push({ betaProduct: betaProductId, quantity });
+      
+                const product = await BetaProduct.findById(betaProductId);
+                if (product) {
+                  console.log(`Found product: ${product}`);
+                  const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+                  totalBoxes += numberOfBoxes;
+                } else {
+                  throw new Error(`Product with ID ${betaProductId} not found`);
+                }
               }
             }
       
-            // Recalculate the total amount and total number of boxes
             existingOrder.totalQuantity = existingOrder.betaProducts.reduce((sum, p) => sum + p.quantity, 0);
             existingOrder.totalBoxes = totalBoxes;
       
             const updatedOrder = await existingOrder.save();
-            console.log('Beta Order updated successfully:', updatedOrder);
+            console.log('Alpha Order updated successfully:', updatedOrder);
       
             return updatedOrder;
           }
