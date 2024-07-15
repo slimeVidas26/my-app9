@@ -98,11 +98,98 @@ export const resolvers = {
         throw error;
       }
     },
+    warehouses : async()=>{
+      try {
+        const warehouses = await Warehouse.find();
+        console.log('listing warehouses', warehouses);
+        return warehouses
+        
+      } catch (error) {
+        console.error('Error finding warehouses:', error);
+        throw error;
+      }
+    },
+    warehouse : async (_ , {id})=>{
+      try {
+        const warehouse = await Warehouse.findById(id);
+        console.log('warehouse' , warehouse);
+        return warehouse;
 
-        warehouses: async () => await Warehouse.find({}),
-        departments: async () => await Department.find({}),
-        redstamps: async () => await Redstamp.find({}),
-        itemReasons: async () => await ItemReason.find({}),
+      } catch (error) {
+        console.error('Error finding warehouse:', error);
+        throw error;
+      }
+    },
+
+    departments : async()=>{
+      try {
+        const departments = await Department.find();
+        console.log('listing departments',departments);
+        return departments
+        
+      } catch (error) {
+        console.error('Error finding departments:', error);
+        throw error;
+      }
+    },
+    departments : async (_ , {id})=>{
+      try {
+        const departments = await Department.findById(id);
+        console.log('departments' , departments);
+        return departments;
+
+      } catch (error) {
+        console.error('Error finding departments:', error);
+        throw error;
+      }
+    },
+
+    redstamps : async()=>{
+      try {
+        const redstamps = await Redstamp.find();
+        console.log('listing redstamps',redstamps);
+        return redstamps
+        
+      } catch (error) {
+        console.error('Error finding redstamps:', error);
+        throw error;
+      }
+    },
+    redstamps : async (_ , {id})=>{
+      try {
+        const redstamps = await Redstamp.findById(id);
+        console.log('redstamps' , redstamps);
+        return redstamps;
+
+      } catch (error) {
+        console.error('Error finding redstamps:', error);
+        throw error;
+      }
+    },
+
+    itemReasons : async()=>{
+      try {
+        const itemReasons = await ItemReason.find();
+        console.log('listing itemReasons',itemReasons);
+        return itemReasons
+        
+      } catch (error) {
+        console.error('Error finding itemReasons:', error);
+        throw error;
+      }
+    },
+    itemReasons : async (_ , {id})=>{
+      try {
+        const itemReasons = await ItemReason.findById(id);
+        console.log('itemReasons' , itemReasons);
+        return itemReasons;
+
+      } catch (error) {
+        console.error('Error finding itemReasons:', error);
+        throw error;
+      }
+    },
+
 
 
         arrivals: async () => await Arrival.find({}),
@@ -115,11 +202,11 @@ export const resolvers = {
       addSupplier: async (_, { name, number ,  address, phone, email  }) => {
         try {
            // Check if supplier with the given  name or number already exists
-          const existingSupplier =  await Supplier.findOne({
-            $or: [
-              { name : name },
-              { number: number }
-            ]
+          const existingSupplier =  await Supplier.findOne({number
+            // $or: [
+            //   { name : name },
+            //   { number: number }
+            // ]
           })
          
           if(!existingSupplier){
@@ -129,7 +216,7 @@ export const resolvers = {
           return supplier;
         }
         else{
-        console.log(`supplier ${existingSupplier.name} already exists`)
+        console.log(`supplier ${existingSupplier.name} with number ${existingSupplier.number}  already exists`)
         }
         } catch (error) {
           console.error('Error adding supplier:', error);
@@ -137,21 +224,28 @@ export const resolvers = {
         }
       },
 
-     
-      addProduct:async (_, { name,  quantityPerBox , supplierId}) => {
+      addProduct: async (_, { name, code ,   quantityPerBox , supplierId }) => {
         try {
-          const product = new Product({ name, quantityPerBox , supplier:supplierId });
+           // Check if product with the given code  already exists
+          const existingProduct =  await Product.findOne({code})
+         
+          if(!existingProduct){
+          const product = new Product({ name, code ,   quantityPerBox , supplierId });
           await product.save();
           console.log('product added success' , product)
           return product;
+        }
+        else{
+        console.log(`product ${existingProduct.name} with code ${existingProduct.code}  already exists`)
+        }
         } catch (error) {
           console.error('Error adding product:', error);
           throw error;
         }
-       
       },
-     
 
+     
+     
       addOrder: async (_, { supplierId, edi, reference, date, productId, orderId, products, totalQuantity }) => {
         try {
           console.log('Checking for  Order with reference:', reference);
@@ -247,36 +341,67 @@ export const resolvers = {
           throw error;
         }
       },
-      
-      createDepartment: async (_, { title }) => {
+
+      addDepartment: async (_, {title }) => {
         try {
-          const department = new Department({ title })
-          await department.save()
+           // Check if department with the given title  already exists
+          const existingDepartment =  await Department.findOne({title})
+         
+          if(!existingDepartment){
+          const department = new Product({ title });
+          await department.save();
+          console.log('department added success' , department)
           return department;
-        } catch (err) {
-          throw err
+        }
+        else{
+        console.log(`department ${existingDepartment.title}   already exists`)
+        }
+        } catch (error) {
+          console.error('Error adding department:', error);
+          throw error;
         }
       },
 
-      createRedstamp: async (_, { title }) => {
+      addRedstamp: async (_, {title }) => {
         try {
-          const redstamp = new Redstamp({ title })
-          await redstamp.save()
+           // Check if redstamp with the given title  already exists
+          const existingRedstamp =  await Redstamp.findOne({title})
+         
+          if(!existingRedstamp){
+          const redstamp = new Redstamp({ title });
+          await redstamp.save();
+          console.log('redstamp added success' , redstamp)
           return redstamp;
-        } catch (err) {
-          throw err
+        }
+        else{
+        console.log(`redstamp ${existingRedstamp.title}   already exists`)
+        }
+        } catch (error) {
+          console.error('Error adding redstamp:', error);
+          throw error;
         }
       },
 
-      createItemReason: async (_, { title }) => {
+      addItemReason: async (_, {title }) => {
         try {
-          const itemReason = new ItemReason({ title })
-          await itemReason.save()
+           // Check if itemReason with the given title  already exists
+          const existingItemReason =  await ItemReason.findOne({title})
+         
+          if(!existingItemReason){
+          const itemReason = new ItemReason({ title });
+          await itemReason.save();
+          console.log('itemReason added success' , itemReason)
           return itemReason;
-        } catch (err) {
-          throw err
         }
-      }
+        else{
+        console.log(`itemReason ${existingItemReason.title}   already exists`)
+        }
+        } catch (error) {
+          console.error('Error adding existingItemReason:', error);
+          throw error;
+        }
+      },
+        
     },
 
     Supplier: {
@@ -285,9 +410,9 @@ export const resolvers = {
 
     Product: {
       supplier: async (product) => {
-        const  asp = await Supplier.findById(product.supplier)
-        console.log("asp" , asp)
-        return asp
+        const  supplier = await Supplier.findById(product.supplier)
+        console.log("supplier" , supplier)
+        return supplier
       }
     }, 
     Order: {
@@ -308,10 +433,6 @@ export const resolvers = {
           const product = await Product.findById(op.product);
           product.quantity = op.quantity
 
-                    console.log("op" , op)
-
-         
-          
            return { product, quantity: op.quantity , boxes:op.boxes };
         }));
         return populatedProducts;

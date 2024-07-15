@@ -15,6 +15,8 @@ export const typeDefs = gql`
     orders: [Order]
     order(id: ID!): Order
     warehouses: [Warehouse!]
+    warehouse(id:ID!): Warehouse
+
     departments: [Department!]
     redstamps: [Redstamp!]
     itemReasons: [ItemReason!]
@@ -25,9 +27,11 @@ export const typeDefs = gql`
     addProduct(name: String!, price:Float, inStock:Float,quantityPerBox:Int! , supplierId:ID!): Product
     addSupplier(name: String!,number:Int! address: String, phone: String, email: String): Supplier
     addOrder(supplierId: ID!,edi:Int,reference:Int!, products: [OrderProductInput]!,date:Date, totalQuantity: Float): Order
-    createDepartment(title:String!): Department!
-    createRedstamp(title:String!): Redstamp!
-    createItemReason(title:String!): ItemReason!
+    addWarehouse(title:String!): Warehouse!
+
+    addDepartment(title:String!): Department!
+    addRedstamp(title:String!): Redstamp!
+    addItemReason(title:String!): ItemReason!
 
   }
   
