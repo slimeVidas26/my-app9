@@ -228,9 +228,10 @@ export const resolvers = {
         try {
            // Check if product with the given code  already exists
           const existingProduct =  await Product.findOne({code})
+          console.log("existingProduct",existingProduct)
          
           if(!existingProduct){
-          const product = new Product({ name, code ,   quantityPerBox , supplierId });
+          const product = new Product({ name, code ,   quantityPerBox , supplier: supplierId });
           await product.save();
           console.log('product added success' , product)
           return product;
@@ -404,7 +405,19 @@ export const resolvers = {
         
     },
 
+    // supplier : async (_, { id }) =>{
+    //   try {
+    //     const supplier  = await Supplier.findById(id);
+    //   console.log('supplier' , supplier);
+    //   return supplier;
+    //   } catch (error) {
+    //     console.error('Error finding supplier:', error);
+    //     throw error;
+    //   }
+    // },
+
     Supplier: {
+      
       products: async(supplier) => await Product.find({ supplier: supplier.id })
     },
 
@@ -415,6 +428,8 @@ export const resolvers = {
         return supplier
       }
     }, 
+
+    
     Order: {
       supplier: async (order) => {
         const supplier = await Supplier.findById(order.supplier)

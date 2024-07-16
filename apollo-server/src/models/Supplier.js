@@ -6,7 +6,8 @@ const supplierSchema = new Schema({
     number: { type: Number, required: true },
     address: String,
     phone: String,
-    email: String
+    email: String,
+
   });
 
   //console.log(alphaSupplierSchema)

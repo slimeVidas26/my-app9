@@ -24,7 +24,7 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addProduct(name: String!, price:Float, inStock:Float,quantityPerBox:Int! , supplierId:ID!): Product
+    addProduct(name: String!,code:Int! price:Float, inStock:Float, quantityPerBox:Int! , supplierId:ID!): Product
     addSupplier(name: String!,number:Int! address: String, phone: String, email: String): Supplier
     addOrder(supplierId: ID!,edi:Int,reference:Int!, products: [OrderProductInput]!,date:Date, totalQuantity: Float): Order
     addWarehouse(title:String!): Warehouse!
@@ -50,7 +50,7 @@ export const typeDefs = gql`
   type Product {
     id: ID!
     name: String!
-    code:String
+    code:String!
     category:String
     picture:String
     price: Float
