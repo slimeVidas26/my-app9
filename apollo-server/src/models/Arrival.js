@@ -1,3 +1,10 @@
-import mongoose from 'mongoose';
 
-export const Arrival = mongoose.model('Arrival', { title: String });
+
+import mongoose from 'mongoose'
+const { Schema } = mongoose;
+
+const arrivalSchema = new Schema({
+    title: String
+});
+
+export const Arrival = mongoose.model('Arrival', arrivalSchema);

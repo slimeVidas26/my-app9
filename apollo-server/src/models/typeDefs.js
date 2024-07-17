@@ -35,7 +35,6 @@ export const typeDefs = gql`
 
   }
   
-  
 
   type Supplier {
     id: ID!

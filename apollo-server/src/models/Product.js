@@ -7,8 +7,8 @@ const productSchema = new Schema({
   code: { type: Number, required: true },
 
   inStock: { type: Number, required: false },
-  quantityPerBox: { type: Number, required:true },
-   supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true }
+  quantityPerBox: { type: Number, required: true },
+  supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true }
 });
 
 export const Product = mongoose.model('Product', productSchema);
