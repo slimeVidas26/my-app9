@@ -199,7 +199,7 @@ export const resolvers = {
     Mutation: {
 
 
-      addSupplier: async (_, { name, number ,  address, phone, email  }) => {
+      addSupplier: async (_, { name, number ,  address, phone, email  ,products }) => {
         try {
            // Check if supplier with the given  name or number already exists
           const existingSupplier =  await Supplier.findOne({number
@@ -210,7 +210,7 @@ export const resolvers = {
           })
          
           if(!existingSupplier){
-          const supplier = new Supplier({ name ,number ,  address, phone, email });
+          const supplier = new Supplier({ name ,number ,  address, phone, email , products });
           await supplier.save();
           console.log('supplier added success' , supplier)
           return supplier;
@@ -417,8 +417,17 @@ export const resolvers = {
     // },
 
     Supplier: {
-      
-      products: async(supplier) => await Product.find({ supplier: supplier.id })
+      products: async(supplier) => {
+        try {
+          const product = await Product.find({ supplier: supplier.id })
+        console.log("product from Supplier" , product)
+        return product;
+        } catch (error) {
+          console.error('Error finding product:', error);
+        throw error;
+        }
+        
+      }
     },
 
     Product: {

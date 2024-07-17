@@ -7,6 +7,8 @@ const supplierSchema = new Schema({
     address: String,
     phone: String,
     email: String,
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }]
+
 
   });
 

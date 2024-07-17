@@ -44,7 +44,7 @@ export const typeDefs = gql`
     address: String
     phone: String
     email: String
-    products:[Product]
+    products:[Product]!
   }
 
   type Product {
