@@ -233,6 +233,15 @@ export const resolvers = {
           if(!existingProduct){
           const product = new Product({ name, code ,   quantityPerBox , supplier: supplierId });
           await product.save();
+
+           // Find the supplier and update the products array
+            const supplier = await Supplier.findById(supplierId);
+          if (!supplier) {
+           throw new Error('Supplier not found');
+           }
+
+         supplier.products.push(product._id);
+         await supplier.save();
           console.log('product added success' , product)
           return product;
         }
@@ -416,19 +425,23 @@ export const resolvers = {
     //   }
     // },
 
-    Supplier: {
-      products: async(supplier) => {
-        try {
-          const product = await Product.find({ supplier: supplier.id })
-        console.log("product from Supplier" , product)
-        return product;
-        } catch (error) {
-          console.error('Error finding product:', error);
-        throw error;
-        }
+     Supplier: {
+       products: async(supplier) => {
+         try {
+           const product = await Product.find({ supplier: supplier.id })
+         console.log("product from Supplier" , product)
+         return product;
+         } catch (error) {
+           console.error('Error finding product:', error);
+         throw error;
+         }
         
-      }
-    },
+       }
+     },
+    // Supplier: {
+      
+    //   products: async(supplier) => await Product.find({ supplier: supplier.id })
+    // },
 
     Product: {
       supplier: async (product) => {
