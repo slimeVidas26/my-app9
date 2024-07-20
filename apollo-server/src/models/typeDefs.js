@@ -16,10 +16,15 @@ export const typeDefs = gql`
     order(id: ID!): Order
     warehouses: [Warehouse!]
     warehouse(id:ID!): Warehouse
-
     departments: [Department!]
+    department(id:ID!): Department
+
     redstamps: [Redstamp!]
+    redstamp(id:ID!): Redstamp
+
     itemReasons: [ItemReason!]
+    itemReason(id:ID!): ItemReason
+
     arrivals:[Arrival!] 
   }
 
@@ -91,7 +96,6 @@ export const typeDefs = gql`
     type Department {
         id: ID
         title: String
-      
     }
 
     type Redstamp {

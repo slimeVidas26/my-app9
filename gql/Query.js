@@ -94,10 +94,12 @@ query SupplierQuery {
     suppliers {
        id
        name
-       email
+       
        number
     }
 }`
+
+
 
 
 export  const SUPPLIER_QUERY = gql`

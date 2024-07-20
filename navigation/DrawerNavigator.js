@@ -15,6 +15,7 @@ import DocumentReviewStackNavigator from './stackNavigators/DocumentReviewStackN
 import LandingStackNavigator from './stackNavigators/LandingStackNavigator'
 import EntryCertificateStackNavigator from './stackNavigators/EDI/EntryCertificateStackNavigator';
 import PopupScreen from '../screens/ediDcreens/PopUpScreen1'
+import SuppliersStackNavigator from './stackNavigators/SuppliersStackNavigator'
 
 // import MyRewardsStackNavigator from './stackNavigators/MyRewardsStackNavigator'
 // import LocationsStackNavigator from './stackNavigators/LocationsStackNavigator'
@@ -169,6 +170,8 @@ const DrawerNavigator = () => {
     <Drawer.Screen name="Bottles" component={BottlesStackNavigator} />
     <Drawer.Screen name="Transfert" component={TransfertStackNavigator} />
     <Drawer.Screen name="DocumentReview" component={DocumentReviewStackNavigator} />
+    <Drawer.Screen name="Suppliers" component={SuppliersStackNavigator} />
+
     <Drawer.Screen name="Disconnect" component={LandingStackNavigator} />
 
     {/* <Drawer.Screen name="MyModal" component={ModalScreen} /> */}

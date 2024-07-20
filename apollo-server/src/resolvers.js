@@ -359,7 +359,7 @@ export const resolvers = {
         const existingDepartment = await Department.findOne({ title })
 
         if (!existingDepartment) {
-          const department = new Product({ title });
+          const department = new Department({ title });
           await department.save();
           console.log('department added success', department)
           return department;
