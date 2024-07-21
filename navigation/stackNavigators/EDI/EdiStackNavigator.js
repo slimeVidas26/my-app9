@@ -23,7 +23,7 @@ const EdiStackNavigator = () => {
   console.log(route.name);
   return (
     <Stack.Navigator screenOptions={{
-      headerShown: false
+      headerShown: true
     }}>
 
       <Stack.Screen name="EDICertificateScreen" component={EDICertificateStackNavigator} />

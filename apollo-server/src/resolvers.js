@@ -98,6 +98,28 @@ export const resolvers = {
         throw error;
       }
     },
+
+    orders: async () => {
+      try {
+        const orders = await Order.find();
+        console.log('list orders:', orders);
+        return orders;
+      } catch (error) {
+        console.error('Error listing orders:', error);
+        throw error;
+      }
+    },
+    order: async (_, { id }) => {
+      try {
+        const order = await Order.findById(id);
+        console.log('order', order);
+        return order;
+
+      } catch (error) {
+        console.error('Error finding order:', error);
+        throw error;
+      }
+    },
     warehouses: async () => {
       try {
         const warehouses = await Warehouse.find();

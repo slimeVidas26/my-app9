@@ -82,7 +82,7 @@ i18n.enableFallback = true;
 const LoginStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{
-      headerShown: false,
+      headerShown: true,
     }}>
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>

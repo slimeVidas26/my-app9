@@ -11,22 +11,22 @@ export const EDIcertificateItem = ({ item }) => {
       <View style={styles.listItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
-          <Text style={styles.blueText}>{`${item.supplier}`}</Text>
+          <Text style={styles.blueText}>{`${item.supplier.name}`}</Text>
         </View>
 
         <View style={styles.metaInfo}>
-          <Text style={styles.blueText}>Boxes:{`${item.boxes}`}</Text>
-          <Text style={styles.title}>Supplier Number:{`${item.supplierNumber}`}</Text>
+          <Text style={styles.blueText}>Boxes:{`${item.totalBoxes}`}</Text>
+          <Text style={styles.title}>Supplier Number:{`${item.supplier.number}`}</Text>
         </View>
 
         <View style={styles.metaInfo}>
-          <Text style={styles.blueText}>Quantity:{`${item.quantity}`}</Text>
+          <Text style={styles.blueText}>Quantity:{`${item.totalQuantity}`}</Text>
           <Text style={styles.title}>Edi:{`${item.edi}`}</Text>
         </View>
 
         <View style={styles.metaInfo}>
           <Text style={styles.title}>{`${item.date}`}</Text>
-          <Text style={styles.title}>Order Number: {`${item.orderNumber}`}</Text>
+          <Text style={styles.title}>Order Number: {`${item.reference}`}</Text>
         </View>
       </View>
     </TouchableOpacity>
