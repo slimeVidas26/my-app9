@@ -3,6 +3,7 @@ import { View, Text , FlatList,StyleSheet ,ActivityIndicator , TextInput} from '
 import { createStackNavigator } from '@react-navigation/stack'
 import { useQuery } from "@apollo/client";
 import { SUPPLIERS_QUERY } from '../../gql/Query';
+import AddSupplier from '../../screens/ediDcreens/AddSupplierScreen';
 
 const Stack = createStackNavigator();  
 
@@ -120,6 +121,8 @@ const SuppliersStackNavigator = () => {
       headerShown: true,
     }}>
       <Stack.Screen name="Suppliers" component={Suppliers} />
+      <Stack.Screen name="AddSupplier" component={AddSupplier} />
+
     </Stack.Navigator>
   )
 }

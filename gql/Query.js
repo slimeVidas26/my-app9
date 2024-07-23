@@ -147,6 +147,16 @@ query EdiOrdersQuery {
     }
 }`
 
+export  const ADD_SUPPLIER = gql`
+mutation AddSupplier($name: String!, $number: Int!) {
+    addSupplier(name: $name, number: $number) {
+      name
+      number
+    }
+  }`
+
+
+
 
 
 

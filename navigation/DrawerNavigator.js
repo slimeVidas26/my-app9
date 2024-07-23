@@ -153,13 +153,10 @@ const DrawerNavigator = () => {
       
     <Drawer.Screen name="Home" component={HomeStackNavigator}
      options={{ drawerLabel: 'Home Page' ,title: 'Dahan Isaac',
-     
-    
-    headerTintColor: '#fff'}}
-   />
+    headerTintColor: '#fff'}}/>
     <Drawer.Screen name="EDICertificate" component={EdiStackNavigator} 
-    options={{headerLeft: () => (
 
+    options={{headerLeft: () => (
            <TouchableOpacity onPress={()=>navigation.navigate('EntryCertificate')} style={styles.headerLeft}>
           <Icon name="pencil-square-o" size={30} color="#fff" />  
           </TouchableOpacity> 
@@ -170,7 +167,13 @@ const DrawerNavigator = () => {
     <Drawer.Screen name="Bottles" component={BottlesStackNavigator} />
     <Drawer.Screen name="Transfert" component={TransfertStackNavigator} />
     <Drawer.Screen name="DocumentReview" component={DocumentReviewStackNavigator} />
-    <Drawer.Screen name="Suppliers" component={SuppliersStackNavigator} />
+    <Drawer.Screen name="Suppliers" component={SuppliersStackNavigator}
+    options={{headerLeft: () => (
+      <TouchableOpacity onPress={()=>navigation.navigate('AddSupplier')} style={styles.headerLeft}>
+     <Icon name="pencil-square-o" size={30} color="#fff" />  
+     </TouchableOpacity> 
+   ),}}
+    />
 
     <Drawer.Screen name="Disconnect" component={LandingStackNavigator} />
 
