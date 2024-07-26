@@ -8,6 +8,7 @@ import React, { useState , useEffect } from "react";
 import { translation } from '../../i18n/supportedLanguages';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useMutation } from '@apollo/client';
+import { SUPPLIERS_QUERY } from '../../gql/Query';
 import { ADD_SUPPLIER } from '../../gql/Query';
 
 const Stack = createStackNavigator()
@@ -49,16 +50,16 @@ i18n.enableFallback = true;
     };
   
     const handleClosePopup = () => {
-      Alert.alert(`supplier name ${name}  added`)
+      //Alert.alert(`supplier name ${name}  added`)
       setIsVisible(false);
     };
   
-  const [name, setName] = useState("toto");
+  const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, {
-    //refetchQueries: [{ query: GET_SUPPLIERS }],
+    refetchQueries: [{ query: SUPPLIERS_QUERY }],
     awaitRefetchQueries: true,
   });
 
@@ -74,9 +75,10 @@ i18n.enableFallback = true;
       await addSupplier({ variables: { name, number: parseInt(number) } });
       setName('');
       setNumber('');
-      Alert.alert('Success', 'Supplier added successfully');
+      console.log('Success', 'Supplier added successfully');
+      setModalVisible(false)
     } catch (error) {
-      Alert.alert('Error', error.message);
+      console.log('Error', error.message);
     }
   };
  
@@ -110,7 +112,7 @@ i18n.enableFallback = true;
 
      <View style = {styles.btnZone}>
     
-           <TouchableOpacity onPress={handleAddSupplier} style={styles.closeButton}>
+           <TouchableOpacity onPress={()=>{handleAddSupplier;navigation.navigate('Suppliers')}} style={styles.closeButton}>
              <Text style={styles.closeButtonText}>Add</Text>
            </TouchableOpacity>
            <TouchableOpacity style={styles.closeButton}
