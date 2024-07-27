@@ -1,21 +1,16 @@
-import React from 'react'
-import { View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { MarlogScreen } from '../../screens/drawerScreens/marlog/MarlogScreen'
 
 const Stack = createStackNavigator()
 
-const Marlog = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Marlog screen!</Text>
-  </View>
-)
+
 
 const MarlogStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{
       headerShown: false,
     }}>
-      <Stack.Screen name="Marlog" component={Marlog} />
+      <Stack.Screen name="Marlog" component={MarlogScreen} />
     </Stack.Navigator>
   )
 }
