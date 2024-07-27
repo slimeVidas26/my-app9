@@ -43,7 +43,7 @@ i18n.enableFallback = true;
 // };
 
 
-  const AddSupplier = ({navigation})=> {
+  export const AddSupplierScreen = ({navigation})=> {
 
     const handleOpenPopup = () => {
       setIsVisible(true);
@@ -112,7 +112,7 @@ i18n.enableFallback = true;
 
      <View style = {styles.btnZone}>
     
-           <TouchableOpacity onPress={()=>{handleAddSupplier;navigation.navigate('Suppliers')}} style={styles.closeButton}>
+           <TouchableOpacity onPress={()=>{handleAddSupplier();navigation.navigate('Suppliers')}} style={styles.closeButton}>
              <Text style={styles.closeButtonText}>Add</Text>
            </TouchableOpacity>
            <TouchableOpacity style={styles.closeButton}
@@ -303,4 +303,4 @@ const styles = StyleSheet.create({
  
 });
 
-export default AddSupplier
+

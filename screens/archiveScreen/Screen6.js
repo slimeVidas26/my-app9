@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
-import { Context2 } from '../App';
+import { Context2 } from '../../App';
 
 //import { CommonStyles } from '../Utils/CommonStyles';
 

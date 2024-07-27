@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
-import { Context1 } from '../App';
+import { Context1 } from '../../App';
 
 
 export function Screen4({ navigation }) {

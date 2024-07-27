@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView, ImageBackground, View, FlatList, Dimensions, Image, Pressable, StyleSheet, Text, StatusBar, Button, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
-import { translation } from "../../i18n/supportedLanguages";
+import { translation } from "../../../i18n/supportedLanguages";
 import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
 import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from '../../gql/Query';
+import { DEPARTMENTS_QUERY } from '../../../gql/Query';
 
 
 const i18n = new I18n(translation)
