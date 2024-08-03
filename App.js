@@ -8,10 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import LandingStackNavigator from './navigation/stackNavigators/LandingStackNavigator'
 import LoginStackNavigator from './navigation/stackNavigators/LoginStackNavigator'
-import { EdiItemApprovalScreen } from './screens/ediDcreens/EdiItemApprovalScreen';
-import { EdiCertificateApprovalScreen } from './screens/ediDcreens/EdiCertificateApprovalScreen';
-import {EndEdiFormScreen} from './screens/ediDcreens/EndEdiFormScreen';
-import { EdiCertificateConfirmationScreen } from './screens/ediDcreens/EdiCertificateConfirmationScreen';
+//import { EdiItemApprovalScreen } from './screens/ediDcreens/EdiItemApprovalScreen';
+//import { EdiCertificateApprovalScreen } from './screens/ediDcreens/EdiCertificateApprovalScreen';
+//import {EndEdiFormScreen} from './screens/ediDcreens/EndEdiFormScreen';
+//import { EdiCertificateConfirmationScreen } from './screens/ediDcreens/EdiCertificateConfirmationScreen';
 
 const RootStack = createStackNavigator()
 

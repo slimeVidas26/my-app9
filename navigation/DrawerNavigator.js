@@ -14,7 +14,7 @@ import TransfertStackNavigator from './stackNavigators/TransfertStackNavigator'
 import DocumentReviewStackNavigator from './stackNavigators/DocumentReviewStackNavigator'
 import LandingStackNavigator from './stackNavigators/LandingStackNavigator'
 import EntryCertificateStackNavigator from './stackNavigators/EDI/EntryCertificateStackNavigator';
-import PopupScreen from '../screens/ediDcreens/PopUpScreen1'
+//import PopupScreen from '../screens/ediDcreens/PopUpScreen1'
 import SuppliersStackNavigator from './stackNavigators/SuppliersStackNavigator'
 
 // import MyRewardsStackNavigator from './stackNavigators/MyRewardsStackNavigator'

@@ -9,7 +9,7 @@ export const EDIcertificateItem = ({ item }) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('EdiOrderDetailsScreenOpen')}>
       <View style={styles.listItem}>
-        <View style={styles.metaInfo}>
+        {/* <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
           <Text style={styles.blueText}>{`${item.supplier.name}`}</Text>
         </View>
@@ -26,6 +26,11 @@ export const EDIcertificateItem = ({ item }) => {
 
         <View style={styles.metaInfo}>
           <Text style={styles.title}>{`${item.date}`}</Text>
+          <Text style={styles.title}>Order Number: {`${item.reference}`}</Text>
+        </View> */}
+
+        <View style={styles.metaInfo}>
+         
           <Text style={styles.title}>Order Number: {`${item.reference}`}</Text>
         </View>
       </View>

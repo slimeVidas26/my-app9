@@ -135,17 +135,12 @@ query OpenOrdersQuery {
 export  const EDI_ORDERS_QUERY = gql`
 query EdiOrdersQuery {
     orders {
-      supplier {
-        name
-        number
-      }
-      edi
       reference
-      totalQuantity
-      totalBoxes
-      date
     }
 }`
+
+
+
 
 export  const ADD_SUPPLIER = gql`
 mutation AddSupplier($name: String!, $number: Int!) {
