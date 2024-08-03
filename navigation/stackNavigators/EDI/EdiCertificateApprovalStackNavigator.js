@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 
 
-import { EdiCertificateApprovalScreen } from '../../../screens/ediDcreens/EdiCertificateApprovalScreen';
+import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCertificateApprovalScreen';
 // import { EndEdiFormScreen } from '../../../screens/ediDcreens/EndEdiFormScreen';
 
 const Stack = createStackNavigator()

@@ -25,13 +25,13 @@ import Modal from "../../components/modals/Modal";
 import { ModalHeader, EdiHeader } from '../../components/headers/Header';
 import { View, StyleSheet, FlatList  } from 'react-native'
 import filter from 'lodash.filter';
-import { EDIcertificateItem } from '../../../components/EDICertificate/EDIcertificateItem';
-import { MyListEmpty } from '../../../components/EDICertificate/MyListEmpty';
-import { RenderSeparator } from '../../../components/EDICertificate/RenderSeparator';
-import { Loading } from '../../../components/EDICertificate/Loading';
-import { Error } from '../../../components/EDICertificate/Error';
+import { EDIcertificateItem } from '../../components/EDICertificate/EDIcertificateItem';
+import { MyListEmpty } from '../../components/EDICertificate/MyListEmpty';
+import { RenderSeparator } from '../../components/EDICertificate/RenderSeparator';
+import { Loading } from '../../components/EDICertificate/Loading';
+import { Error } from '../../components/EDICertificate/Error';
 import { useQuery } from "@apollo/client";
-import { EDI_ORDERS_QUERY } from '../../../gql/Query';
+import { EDI_ORDERS_QUERY } from '../../gql/Query';
 
 
 const EDICertificateScreen = ({navigation}) => {

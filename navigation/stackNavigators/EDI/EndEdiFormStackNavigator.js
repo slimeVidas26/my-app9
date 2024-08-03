@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack'
-import { EndEdiFormScreen } from '../../../screens/ediDcreens/EndEdiFormScreen';
+import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
 
 
 

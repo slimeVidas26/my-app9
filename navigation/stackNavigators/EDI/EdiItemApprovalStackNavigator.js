@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { EdiOrderDetailHeader } from '../../../components/headers/Header';
 
 import { EdiOrderDetailsTab } from '../../../components/tabs/EdiOrderDetailsTab';
-import { EdiItemApprovalScreen } from '../../../screens/drawerScreens/edi/EdiItemApprovalScreen';
+import { EdiItemApprovalScreen } from '../../../screens/ediScreens/EdiItemApprovalScreen';
 
 const Stack = createStackNavigator()
 

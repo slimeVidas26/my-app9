@@ -3,9 +3,9 @@ import { ApplicationProvider, Text, Avatar } from '@ui-kitten/components'
   import { mapping, light as lightTheme } from '@eva-design/eva'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import EDICertificateScreen from '../../../screens/drawerScreens/edi/EDICertificateScreen'
+import EDICertificateScreen from '../../../screens/ediScreens/EDICertificateScreen'
 
-import PopUp from '../../../screens/drawerScreens/edi/PopUpScreen';
+import PopUp from '../../../screens/ediScreens/PopUpScreen';
 
 
 const Stack = createStackNavigator()

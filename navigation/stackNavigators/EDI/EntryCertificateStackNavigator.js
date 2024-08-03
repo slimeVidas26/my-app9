@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import EntryCertificate from '../../../screens/drawerScreens/edi/EntryCertificateScreen';
+import EntryCertificate from '../../../screens/ediScreens/EntryCertificateScreen';
 
 const Stack = createStackNavigator()
 

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View , Button ,
   Image,
   TextInput,TouchableOpacity , Modal } from 'react-native';
 import React, { useState , useEffect } from "react";
-import { translation } from '../../../i18n/supportedLanguages';
+import { translation } from '../../i18n/supportedLanguages';
 import { createStackNavigator } from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
