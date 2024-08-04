@@ -135,6 +135,14 @@ query OpenOrdersQuery {
 export  const EDI_ORDERS_QUERY = gql`
 query EdiOrdersQuery {
     orders {
+        supplier{
+            name
+            number
+        }
+        totalBoxes
+        totalQuantity
+        edi
+        date
       reference
     }
 }`
