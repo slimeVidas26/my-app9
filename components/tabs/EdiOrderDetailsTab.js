@@ -87,8 +87,6 @@ export const EdiOrderDetailsTab  = ()=>{
   )
 }
 
-
-
 const styles = StyleSheet.create({
   tabContainer: {
     position: 'absolute',

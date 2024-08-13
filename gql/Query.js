@@ -114,6 +114,27 @@ query SupplierQuery($supplierId: ID!) {
     }
 }`
 
+export  const OPEN_ORDER_QUERY = gql`
+query Order($orderId: ID!)  {
+    order(id: $orderId)  {
+        date 
+    edi 
+    reference 
+    totalBoxes 
+    totalQuantity 
+    products {
+      product {
+        code 
+        quantityPerBox  
+        quantity 
+        quantityPerBox  
+        
+      } 
+    }
+    }
+}`
+
+
 export  const OPEN_ORDERS_QUERY = gql`
 query OpenOrdersQuery {
     openOrders {

@@ -127,9 +127,6 @@ export function EdiCertificateApprovalScreen({ navigation }) {
             <DepartmentItem department={item} />)}
           //keyExtractor={(item, index) => index}
           keyExtractor={(item) => item.id}
-        //style={styles.container}
-        //numColumns={2}
-        //columnWrapperStyle={styles.column}
         />
       }
       <ApproveButtons />
@@ -141,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     //backgroundColor: "blue",
 
-    display: 'flex',
+    flex: 1,
     //gap: '1rem',
     //flexWrap: "nowrap",
     flexDirection: 'column',
@@ -154,12 +151,8 @@ const styles = StyleSheet.create({
   },
 
   flat: {
-    display: 'flex',
-    //backgroundColor:'red',
-    //width:'100%',
-    //  marginLeft:20
-    //justifyContent:'center'
-    //alignItems:'center'
+    marginTop: 14,
+    alignSelf: "stretch",
   },
   approve: {
     flexDirection: 'row',
