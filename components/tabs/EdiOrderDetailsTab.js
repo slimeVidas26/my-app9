@@ -9,16 +9,23 @@ import { EdiOrderDetailsScreenSearch } from '../../screens/ediScreens/EdiOrderDe
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useQuery } from '@apollo/client';
 import { DEPARTMENTS_QUERY } from '../../gql/Query';
+import { OPEN_ORDER_QUERY } from '../../gql/Query';
 
 const Tab = createMaterialTopTabNavigator();
 
 export const EdiOrderDetailsTab  = ()=>{
-  const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
+  //const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
+
+  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+    variables: { orderId: '66981a21b7e9ed08923a4105' }, // replace '12345' with the actual order ID
+  });
+
+  console.log('data form tab' , data)
   const lens = 11
   ;
 
   if (error) {
-    console.error('DEPARTMENTS_QUERY error', error);
+    console.error('OPEN_ORDER_QUERY error', error);
 }
   return(
     <Tab.Navigator

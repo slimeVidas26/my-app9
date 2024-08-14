@@ -25,14 +25,53 @@ const height = (Dimensions.get('window').height)
 
 export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) {
 
-  
+  console.log('data form  screen' , data)
+ 
 
-const DepartmentItem = ({ department}) => {
-  const { title , id } = department; 
-  console.log( title , id)
+// const DepartmentItem = ({ department}) => {
+//   const { title , id } = department; 
+//   console.log( title , id)
+// return(
+
+
+// <TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
+// <View style = {styles.item}>
+
+// <View style = {styles.top}>
+//   <View style = {styles.left}>
+//      <Text style = {styles.boxes}>12</Text>   
+//      <Feather name="box" size={26} color="black" />
+//   </View>
+
+
+// <View>
+// <Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
+// </View>
+
+// </View>
+
+// <View style = {styles.bottom}>
+// <Text style = {styles.quantity}>quantity : 48</Text>
+// <Text style = {styles.reference}>reference</Text>
+// <Text style = {styles.barcode}>729000111444</Text>
+
+// </View>
+
+
+
+
+// </View>
+
+//    </TouchableOpacity>
+ 
+// )
+
+// };
+
+const OpenOrderQueryItem = ({ openOrderQuery}) => {
+  const { totalQuantity , id } = openOrderQuery; 
+  console.log( totalQuantity , id)
 return(
-
-
 <TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
 <View style = {styles.item}>
 
@@ -50,7 +89,7 @@ return(
 </View>
 
 <View style = {styles.bottom}>
-<Text style = {styles.quantity}>quantity : 48</Text>
+<Text style = {styles.quantity}>quantity : 45</Text>
 <Text style = {styles.reference}>reference</Text>
 <Text style = {styles.barcode}>729000111444</Text>
 
@@ -75,10 +114,10 @@ return(
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        //data={data.departments}
-        data={null}
+        data={data.order}
+        //data={null}
         renderItem={({ item }) => (
-          <DepartmentItem department={item} />)}
+          < OpenOrderQueryItem openOrderQuery={item} />)}
         //keyExtractor={(item, index) => index}
         keyExtractor = {(item) => item.id}
         //style={styles.container}

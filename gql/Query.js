@@ -115,7 +115,7 @@ query SupplierQuery($supplierId: ID!) {
 }`
 
 export  const OPEN_ORDER_QUERY = gql`
-query Order($orderId: ID!)  {
+query OrderQuery($orderId: ID!)  {
     order(id: $orderId)  {
         date 
     edi 
