@@ -114,10 +114,10 @@ return(
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        data={data.order}
+        data={data.order.products}
         //data={null}
         renderItem={({ item }) => (
-          < OpenOrderQueryItem openOrderQuery={item} />)}
+          <OpenOrderQueryItem openOrderQuery={item} />)}
         //keyExtractor={(item, index) => index}
         keyExtractor = {(item) => item.id}
         //style={styles.container}
