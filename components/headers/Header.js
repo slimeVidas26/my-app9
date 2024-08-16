@@ -30,8 +30,8 @@ export const EdiOrderDetailHeader = () => {
     <View style={styles.header}>
 
     <View style = {styles.leftSide} >
-      <Text style = {{fontSize:20,color:'white'}}>edi:{data.order.edi}</Text>
-      <Text  style = {{fontSize:20,color:'white'}}>order Number:{data.order.reference}</Text>
+      <Text style = {{fontSize:20,color:'white'}}>edi:here</Text>
+      <Text  style = {{fontSize:20,color:'white'}}>order Number:here</Text>
     </View>
 
     <View  style = {styles.rightSide}>
