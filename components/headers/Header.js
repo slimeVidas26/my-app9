@@ -8,18 +8,30 @@ import { EdiOrderDetailsScreenClosed } from '../../screens/ediScreens/EdiOrderDe
 import { EdiOrderDetailsScreenSearch } from '../../screens/ediScreens/EdiOrderDetailsScreenSearch'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useQuery } from '@apollo/client';
-import { DEPARTMENTS_QUERY } from '../../gql/Query';
+import { OPEN_ORDER_QUERY } from '../../gql/Query';
 
 const Tab = createMaterialTopTabNavigator();
 
 
 export const EdiOrderDetailHeader = () => {
+
+  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+    variables: { orderId: '66981a21b7e9ed08923a4105' }, // replace '12345' with the actual order ID
+  });
+
+  console.log('data form header' , data)
+  //const lens = 11
+  ;
+
+  if (error) {
+    console.error('OPEN_ORDER_QUERY error', error);
+}
   return (
     <View style={styles.header}>
 
     <View style = {styles.leftSide} >
-      <Text style = {{fontSize:20,color:'white'}}>edi:10000000</Text>
-      <Text  style = {{fontSize:20,color:'white'}}>order Number:8899889</Text>
+      <Text style = {{fontSize:20,color:'white'}}>edi:{data.order.edi}</Text>
+      <Text  style = {{fontSize:20,color:'white'}}>order Number:{data.order.reference}</Text>
     </View>
 
     <View  style = {styles.rightSide}>

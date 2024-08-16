@@ -124,10 +124,12 @@ query OrderQuery($orderId: ID!)  {
     totalQuantity 
     products {
       product {
+        id
+        name
         code 
         quantityPerBox  
         quantity 
-        quantityPerBox  
+        
         
       } 
     }

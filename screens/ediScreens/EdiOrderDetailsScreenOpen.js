@@ -25,7 +25,7 @@ const height = (Dimensions.get('window').height)
 
 export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) {
 
-  console.log('data form  screen' , data)
+  //console.log('data form  screen' , data.order.products[0].product.quantity)
  
 
 // const DepartmentItem = ({ department}) => {
@@ -69,15 +69,18 @@ export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) 
 // };
 
 const OpenOrderQueryItem = ({ openOrderQuery}) => {
-  const { totalQuantity , id } = openOrderQuery; 
-  console.log( totalQuantity , id)
+
+  const { quantity ,code ,name , id , quantityPerBox } = openOrderQuery.product; 
+  console.log( quantity , id)
+  console.log( 'openOrderQuery' , openOrderQuery)
+
 return(
 <TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
 <View style = {styles.item}>
 
 <View style = {styles.top}>
   <View style = {styles.left}>
-     <Text style = {styles.boxes}>12</Text>   
+     <Text style = {styles.boxes}>{quantityPerBox}</Text>   
      <Feather name="box" size={26} color="black" />
   </View>
 
@@ -89,22 +92,18 @@ return(
 </View>
 
 <View style = {styles.bottom}>
-<Text style = {styles.quantity}>quantity : 45</Text>
-<Text style = {styles.reference}>reference</Text>
-<Text style = {styles.barcode}>729000111444</Text>
+<View style = {styles.totalBoxes}>
+     <Text style = {styles.boxes}>{quantity/quantityPerBox}</Text>   
+     <Feather name="box" size={26} color="black" />
+  </View>
+<Text style = {styles.quantity}>quantity : {quantity}</Text>
+<Text style = {styles.reference}>{name}</Text>
+<Text style = {styles.barcode}>{code}</Text>
 
 </View>
-
-
-
-
 </View>
-
    </TouchableOpacity>
- 
-)
-
-};
+)};
 
   return (
     <View style={styles.container}>
@@ -204,9 +203,17 @@ left:{
   justifyContent:'space-between',
   
 },
+
+totalBoxes:{
+  flex:1,
+  flexDirection:'row',
+  justifyContent:'flex-start',
+  
+},
 boxes:{
 //backgroundColor:'yellow',
-fontSize:18
+fontSize:18,
+padding:5
 },
 img:{
   //backgroundColor:'white',

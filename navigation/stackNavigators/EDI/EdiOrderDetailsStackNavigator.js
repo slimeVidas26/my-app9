@@ -12,11 +12,11 @@ const Stack = createStackNavigator()
 
 
 function MyTabBar({ navigation }) {
-
+ 
   
   return (
     <>
-    <EdiOrderDetailHeader/>
+    <  EdiOrderDetailHeader/>
     <EdiOrderDetailsTab/>
    
     

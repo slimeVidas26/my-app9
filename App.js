@@ -12,7 +12,7 @@ import LoginStackNavigator from './navigation/stackNavigators/LoginStackNavigato
 //import { EdiCertificateApprovalScreen } from './screens/ediDcreens/EdiCertificateApprovalScreen';
 //import {EndEdiFormScreen} from './screens/ediDcreens/EndEdiFormScreen';
 //import { EdiCertificateConfirmationScreen } from './screens/ediDcreens/EdiCertificateConfirmationScreen';
-
+// import { EdiOrderDetailsScreenOpen } from './screens/ediScreens/EdiOrderDetailsScreenOpen';
 const RootStack = createStackNavigator()
 
 
@@ -33,7 +33,7 @@ const App = () => {
     <RootStack.Group>
      {/* <RootStack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />  */}
 
-    {/* <RootStack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />  */}
+    {/* { <RootStack.Screen name="EdiOrderDetailsScreenOpen" component={EdiOrderDetailsScreenOpen} />} */}
 
       {/* <RootStack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />  */}
        {/* <RootStack.Screen name="EdiCertificateConfirmationScreen" component={EdiCertificateConfirmationScreen} /> */}
