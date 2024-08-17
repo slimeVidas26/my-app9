@@ -26,12 +26,22 @@ export const EdiOrderDetailHeader = () => {
   if (error) {
     console.error('OPEN_ORDER_QUERY error', error);
 }
+if(loading){
+  <Text>Loading...</Text>
+}
+
+// Safely access data properties
+const { order } = data || {};
+
+if (!order) {
+  return <Text>No order data available</Text>;
+}
   return (
     <View style={styles.header}>
 
     <View style = {styles.leftSide} >
-      <Text style = {{fontSize:20,color:'white'}}>edi:here</Text>
-      <Text  style = {{fontSize:20,color:'white'}}>order Number:here</Text>
+      <Text style = {{fontSize:20,color:'white'}}>edi:{order.edi}</Text>
+      <Text  style = {{fontSize:20,color:'white'}}>order Number:{order.reference}</Text>
     </View>
 
     <View  style = {styles.rightSide}>

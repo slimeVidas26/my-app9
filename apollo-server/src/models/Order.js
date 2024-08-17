@@ -11,7 +11,7 @@ const orderProductSchema = new Schema({
 
 const orderSchema = new Schema({
   supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true },
-  edi: { type: Number, required: false, default: 10000000 },
+  edi: { type: Number, required: false, default: 100 },
   reference: { type: Number, required: true },
   products: [orderProductSchema],
   date: { type: Date, default: Date.now },
