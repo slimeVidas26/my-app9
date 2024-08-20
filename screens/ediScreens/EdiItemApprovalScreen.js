@@ -29,10 +29,10 @@ i18n.locale = 'he';
 
 
 export const EdiItemApprovalScreen = ({ navigation , data }) => {
-  console.log("data from ediItemApprovalScreen" , data)
-
+  //console.log("data from ediItemApprovalScreen" , data)
   const route = useRoute();
-  const { quantity = 0  , name , supplier = "toto"} = route.params || {};
+  console.log("route.params",route.params)
+  const { quantity = 0  , code , name , supplier = "toto"} = route.params || {};
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = 10;
@@ -47,7 +47,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
               <Text style={[styles.productName, { color: counterProp === initialCountProp ? 'blue' : styles.productName.color }]}>
                 Gamadim 100 gl</Text>
               <Text style={styles.productCode}>
-                72900000025487 </Text>
+                {code} </Text>
               <Text style={styles.productQuantityInStock}>
                 Quantity in stock:104</Text>
               <View style={styles.box}>

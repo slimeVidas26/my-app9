@@ -14,7 +14,7 @@ export const OpenModalButtonApproval = ()=>{
     const {data, error, loading} = useQuery(ITEMREASONS_QUERY
       //,{enabled: modalVisible}
     );
-  console.log('data' , data)
+  //console.log('data' , data)
 
   if (error) {
     console.error('ITEMREASONS_QUERY error', error);

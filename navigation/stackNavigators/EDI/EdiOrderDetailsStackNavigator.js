@@ -31,7 +31,7 @@ const EdiOrderDetailsStackNavigator = () => {
   
   return (
      <Stack.Navigator screenOptions={{
-      headerShown: false
+      headerShown: true
     }}>
        <Stack.Screen name="MyTabBar" component={MyTabBar} />
      </Stack.Navigator>

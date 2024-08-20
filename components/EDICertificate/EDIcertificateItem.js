@@ -7,7 +7,7 @@ export const EDIcertificateItem = ({ item }) => {
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('EdiOrderDetailsScreenOpen')}>
+    <TouchableOpacity onPress={() => navigation.navigate('MyTabBar')}>
       <View style={styles.listItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>

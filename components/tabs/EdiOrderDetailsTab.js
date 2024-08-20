@@ -13,7 +13,7 @@ import { OPEN_ORDER_QUERY } from '../../gql/Query';
 
 const Tab = createMaterialTopTabNavigator();
 
-export const EdiOrderDetailsTab  = ()=>{
+export const  EdiOrderDetailsTab  = ()=>{
   //const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {

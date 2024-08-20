@@ -72,11 +72,16 @@ const OpenOrderQueryItem = ({ openOrderQuery}) => {
 
   const { quantity ,code ,name ,  id , quantityPerBox } = openOrderQuery.product; 
 
-  console.log( quantity , id)
+  console.log( "quantity",quantity , "id",id)
   console.log( 'openOrderQuery' , openOrderQuery)
 
 return(
-<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity , name , supplier:"toto"})}>
+
+  // navigation.navigate('Account', {
+  //   screen: 'Settings',
+  //   params: { user: 'jane' },
+  // });
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity ,code ,  name , supplier:"toto"})}>
   
 <View style = {styles.item}>
 
