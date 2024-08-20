@@ -70,15 +70,17 @@ export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) 
 
 const OpenOrderQueryItem = ({ openOrderQuery}) => {
 
-  const { quantity ,code ,name , id , quantityPerBox } = openOrderQuery.product; 
+  const { quantity ,code ,name ,  id , quantityPerBox } = openOrderQuery.product; 
+
   console.log( quantity , id)
   console.log( 'openOrderQuery' , openOrderQuery)
 
 return(
-<TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity , name , supplier:"toto"})}>
+  
 <View style = {styles.item}>
 
-<View style = {styles.top}>
+<View style = {styles.top}> 
   <View style = {styles.left}>
      <Text style = {styles.boxes}>{quantityPerBox}</Text>   
      <Feather name="box" size={26} color="black" />

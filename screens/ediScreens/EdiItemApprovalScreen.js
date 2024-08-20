@@ -8,6 +8,7 @@ import { I18n } from 'i18n-js';
 import Modal from '../../components/modals/Modal';
 import { Feather } from '@expo/vector-icons';
 import { OpenModalButtonApproval } from '../../components/modals/OpenModalButonApproval';
+import { useRoute } from '@react-navigation/native';
 
 
 
@@ -28,6 +29,10 @@ i18n.locale = 'he';
 
 
 export const EdiItemApprovalScreen = ({ navigation , data }) => {
+  console.log("data from ediItemApprovalScreen" , data)
+
+  const route = useRoute();
+  const { quantity = 0  , name , supplier = "toto"} = route.params || {};
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = 10;
@@ -38,7 +43,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
     return(
       <View style={styles.infoProductZone}>
             <View style={styles.detailsContainer}>
-              <Text style={styles.compagny}>Ossem Taassiot Mazon</Text>
+              <Text style={styles.compagny}>{supplier}</Text>
               <Text style={[styles.productName, { color: counterProp === initialCountProp ? 'blue' : styles.productName.color }]}>
                 Gamadim 100 gl</Text>
               <Text style={styles.productCode}>
@@ -122,7 +127,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
       <>
        <TouchableOpacity style={styles.quantityBefore} onPress={handleQuantity}  >
             <Text style={styles.before}>
-              Quantity before:10
+              Quantity before:{quantity}
             </Text>
           </TouchableOpacity>
      
