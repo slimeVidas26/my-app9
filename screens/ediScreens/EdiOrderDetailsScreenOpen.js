@@ -71,6 +71,7 @@ export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) 
 const OpenOrderQueryItem = ({ openOrderQuery}) => {
 
   const { quantity ,code ,name ,  id , quantityPerBox } = openOrderQuery.product; 
+  
 
   //console.log( "quantity",quantity , "id",id)
   //console.log( 'openOrderQuery' , openOrderQuery)

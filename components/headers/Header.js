@@ -19,7 +19,7 @@ export const EdiOrderDetailHeader = () => {
     variables: { orderId: '66981a21b7e9ed08923a4105' }, // replace '12345' with the actual order ID
   });
 
-  // console.log('data form header' , data)
+  //console.log('data form header' , data)
   //const lens = 11
   ;
 

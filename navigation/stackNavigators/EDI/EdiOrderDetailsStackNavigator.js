@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack'
-import MyTabBarScreen from '../../../screens/ediScreens/MyTabBarScreen';
+import MyTabBar from '../../../screens/ediScreens/MyTabBarScreen';
 
 
 
@@ -29,7 +29,7 @@ const EdiOrderDetailsStackNavigator = () => {
      <Stack.Navigator screenOptions={{
       headerShown: true
     }}>
-       <Stack.Screen name="MyTabBarScreen" component={MyTabBarScreen} />
+       <Stack.Screen name="MyTabBar" component={MyTabBar} />
      </Stack.Navigator>
   )
 }

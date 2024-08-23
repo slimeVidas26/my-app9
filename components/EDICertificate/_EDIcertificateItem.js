@@ -9,7 +9,7 @@ export const EDIcertificateItem = ({ item }) => {
   console.log('orderId' ,item.id )
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('MyTabBarScreen' , {orderId:item.id})}>
+    <TouchableOpacity onPress={() => navigation.navigate('MyTabBar' , {orderId:item.id})}>
       <View style={styles.listItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>
