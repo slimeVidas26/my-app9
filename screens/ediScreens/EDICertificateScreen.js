@@ -46,13 +46,13 @@ const EDICertificateScreen = ({navigation}) => {
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 
- const EDIcertificateItem = ({ item }) => {
+ const EDIcertificateItem = ({ item  }) => {
     const navigation = useNavigation()
-  
-    console.log('orderId' ,item.id )
-  
+  const orderId = Object.keys(item)[0].id
+    console.log('orderId' ,item )
+    
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('MyTabBar' , {orderId:item.id})}>
+      <TouchableOpacity onPress={() => navigation.navigate('MyTabBar' , {orderId:orderId})}>
         <View style={styles.listItem}>
           <View style={styles.metaInfo}>
             <Text style={styles.title}></Text>
