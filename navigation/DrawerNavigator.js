@@ -102,20 +102,12 @@ const handleOpenPopup = ()=>(
 const DrawerNavigator = () => {
 
   const navigation = useNavigation();
-
- 
-  
-
-  
-
-  
-
   // return (
   //   <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
   //     <Drawer.Screen name="ModalScreen" component={ModalScreen} />
   //   </Drawer.Navigator>
   // );
- 
+
   return (
     <Drawer.Navigator   screenOptions={({ navigation }) => ({
       drawerStyle: {
@@ -126,15 +118,11 @@ const DrawerNavigator = () => {
     headerTitleStyle: {
         fontWeight: 'bold',
         position :'absolute',
-        right:-300
-        
-
-        
+        right:-300 
       },
       drawerPosition: "right",
         headerStyle: {
           backgroundColor: '#f4511e',
-          
         },
         headerTintColor: '#fff',
         
@@ -146,11 +134,7 @@ const DrawerNavigator = () => {
         headerLeft: () => null
         
       })}>
-
-   
-
-   
-      
+ 
     <Drawer.Screen name="Home" component={HomeStackNavigator}
      options={{ drawerLabel: 'Home Page' ,title: 'Dahan Isaac',
     headerTintColor: '#fff'}}/>

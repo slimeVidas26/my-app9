@@ -8,19 +8,26 @@ import { EdiOrderDetailsScreenClosed } from '../../screens/ediScreens/EdiOrderDe
 import { EdiOrderDetailsScreenSearch } from '../../screens/ediScreens/EdiOrderDetailsScreenSearch'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useQuery } from '@apollo/client';
+import { useRoute } from '@react-navigation/native';
+
 import { DEPARTMENTS_QUERY } from '../../gql/Query';
 import { OPEN_ORDER_QUERY } from '../../gql/Query';
 
 const Tab = createMaterialTopTabNavigator();
 
-export const  EdiOrderDetailsTab  = ()=>{
+export const  EdiOrderDetailsTab  = ({orderId})=>{
   //const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
+  // const route = useRoute();
+  // const { orderId } = route.params;
+  // console.log('orderId from tabs' , orderId)
+
+  
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
-    variables: { orderId: '66981a21b7e9ed08923a4105' }, // replace '12345' with the actual order ID
+    variables: { orderId : "66981a21b7e9ed08923a4105"}, // replace '12345' with the actual order ID
   });
 
-  console.log('data form tab' , data)
+  //console.log('data form tab' , data)
   const lens = 11
   ;
 
@@ -76,7 +83,7 @@ export const  EdiOrderDetailsTab  = ()=>{
           ) 
         }}
          name="EdiOrderDetailsScreenOpen" >
-          {props => <EdiOrderDetailsScreenOpen {...props} data = {data} error={error} loading={loading} lens = {lens} />}
+          {props => <EdiOrderDetailsScreenOpen {...props} data = {data} error={error} loading={loading} orderId = {orderId} />}
           </Tab.Screen>
 
 <Tab.Screen   options={{

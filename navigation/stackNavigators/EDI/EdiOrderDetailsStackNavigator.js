@@ -2,30 +2,26 @@ import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack'
+import MyTabBarScreen from '../../../screens/ediScreens/MyTabBarScreen';
 
-import { EdiOrderDetailHeader } from '../../../components/headers/Header';
-
-import { EdiOrderDetailsTab } from '../../../components/tabs/EdiOrderDetailsTab';
 
 
 const Stack = createStackNavigator()
 
 
-function MyTabBar({ navigation }) {
- 
+// function MyTabBar() {
+//   const route = useRoute();
+//   const { orderId } = route.params || {};  // Default to an empty object if undefined
   
-  return (
-    <>
-    <  EdiOrderDetailHeader/>
-    <EdiOrderDetailsTab/>
-   
-    
-    </>
-  );
-}
-
-
-
+//   console.log('orderId from eodsn', orderId);
+  
+//   return (
+//     <>
+//     <  EdiOrderDetailHeader/>
+//     <EdiOrderDetailsTab/>
+//     </>
+//   );
+// }
 
 const EdiOrderDetailsStackNavigator = () => {
   
@@ -33,11 +29,8 @@ const EdiOrderDetailsStackNavigator = () => {
      <Stack.Navigator screenOptions={{
       headerShown: true
     }}>
-       <Stack.Screen name="MyTabBar" component={MyTabBar} />
+       <Stack.Screen name="MyTabBarScreen" component={MyTabBarScreen} />
      </Stack.Navigator>
-   
-    
-  
   )
 }
 

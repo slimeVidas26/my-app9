@@ -117,7 +117,8 @@ query SupplierQuery($supplierId: ID!) {
 export  const OPEN_ORDER_QUERY = gql`
 query OrderQuery($orderId: ID!)  {
     order(id: $orderId)  {
-        date 
+      id
+    date 
     edi 
     reference 
     totalBoxes 
@@ -158,6 +159,7 @@ query OpenOrdersQuery {
 export  const EDI_ORDERS_QUERY = gql`
 query EdiOrdersQuery {
     orders {
+        id
         supplier{
             name
             number
@@ -167,8 +169,16 @@ query EdiOrdersQuery {
         edi
         date
       reference
+      products {
+        product {
+          name
+          code
+        }
+      }
     }
 }`
+
+
 
 
 

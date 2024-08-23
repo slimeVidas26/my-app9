@@ -14,13 +14,7 @@ import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCer
 import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
 import { EdiCertificateConfirmationScreen } from '../../../screens/ediScreens/EdiCertificateConfirmationScreen';
 
-
-
-
 const Stack = createStackNavigator()
-
-
-
 const EdiStackNavigator = () => {
 
   const route = useRoute();
@@ -29,7 +23,6 @@ const EdiStackNavigator = () => {
     <Stack.Navigator screenOptions={{
       headerShown: true
     }}>
-
       <Stack.Screen name="EDICertificateScreen" component={EDICertificateScreen} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       {/* <Stack.Screen name="PopUp" component={PopUpScreen} /> */}

@@ -6,8 +6,10 @@ import { useNavigation } from '@react-navigation/native'
 export const EDIcertificateItem = ({ item }) => {
   const navigation = useNavigation()
 
+  console.log('orderId' ,item.id )
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('MyTabBar')}>
+    <TouchableOpacity onPress={() => navigation.navigate('MyTabBarScreen' , {orderId:item.id})}>
       <View style={styles.listItem}>
         <View style={styles.metaInfo}>
           <Text style={styles.title}></Text>

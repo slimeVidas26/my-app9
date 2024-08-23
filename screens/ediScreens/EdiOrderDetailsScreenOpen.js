@@ -72,8 +72,8 @@ const OpenOrderQueryItem = ({ openOrderQuery}) => {
 
   const { quantity ,code ,name ,  id , quantityPerBox } = openOrderQuery.product; 
 
-  console.log( "quantity",quantity , "id",id)
-  console.log( 'openOrderQuery' , openOrderQuery)
+  //console.log( "quantity",quantity , "id",id)
+  //console.log( 'openOrderQuery' , openOrderQuery)
 
 return(
 
