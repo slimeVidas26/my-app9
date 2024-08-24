@@ -43,6 +43,8 @@ if (!order) {
       <Text style = {{fontSize:20,color:'white'}}>edi:{order.edi}</Text>
 
       <Text  style = {{fontSize:20,color:'white'}}>order Number:{order.reference}</Text>
+      <Text  style = {{fontSize:20,color:'white'}}>order id:{order.id}</Text>
+
     </View>
 
     <View  style = {styles.rightSide}>

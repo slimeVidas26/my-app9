@@ -49,7 +49,7 @@ const EDICertificateScreen = ({navigation}) => {
  const EDIcertificateItem = ({ item  }) => {
     const navigation = useNavigation()
   const orderId = Object.keys(item)[0].id
-    console.log('orderId' ,item )
+    console.log('orderId' ,orderId )
     
     return (
       <TouchableOpacity onPress={() => navigation.navigate('MyTabBar' , {orderId:orderId})}>
