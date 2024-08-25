@@ -6,6 +6,9 @@ import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
 import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
+import { useQuery } from '@apollo/client';
+import { OPEN_ORDER_QUERY } from "../../gql/Query";
+
 
 
 const i18n = new I18n(translation)
@@ -23,7 +26,23 @@ const height = (Dimensions.get('window').height)
 
 
 
-export function EdiOrderDetailsScreenOpen({navigation ,data , error , loading}) {
+
+
+
+
+export function EdiOrderDetailsScreenOpen({paramData}) {
+
+  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+    variables: { orderId : paramData.id}, // replace '12345' with the actual order ID
+  });
+  
+  //console.log('data form tab' , data)
+  const lens = 11
+  ;
+  
+  if (error) {
+    console.error('OPEN_ORDER_QUERY error', error);
+  }
 
   //console.log('data form  screen' , data.order.products[0].product.quantity)
  
@@ -77,6 +96,10 @@ const OpenOrderQueryItem = ({ openOrderQuery}) => {
   //console.log( 'openOrderQuery' , openOrderQuery)
 
 return(
+
+  
+
+  
 
   // navigation.navigate('Account', {
   //   screen: 'Settings',

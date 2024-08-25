@@ -37,22 +37,24 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 
-const EDICertificateScreen = ({navigation}) => {
+const EDICertificateScreen = () => {
 
-
+  const navigation = useNavigation()
   const [isModalOpen, setModalOpen] = useState(false);
   const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
   console.log("data from ediCertificateScreen",data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error loading data</Text>;
+
  const EDIcertificateItem = ({ item  }) => {
-    const navigation = useNavigation()
-  const orderId = Object.keys(item)[0].id
-    console.log('orderId' ,orderId )
+  //const orderId = Object.keys(item)[0].id
+    //console.log('orderId' ,orderId )
     
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('MyTabBar' , {orderId:orderId})}>
+      <TouchableOpacity onPress={() => navigation.navigate('TabNavigator' , {paramData:item})}>
         <View style={styles.listItem}>
           <View style={styles.metaInfo}>
             <Text style={styles.title}></Text>
@@ -140,7 +142,7 @@ const EDICertificateScreen = ({navigation}) => {
           <FlatList style={styles.flatList}
             ItemSeparatorComponent={<RenderSeparator />}
             data={data.orders}
-            keyExtractor={item => item.id}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => <EDIcertificateItem item={item} />}
             ListEmptyComponent={<MyListEmpty message="No Data Found" />}
           />

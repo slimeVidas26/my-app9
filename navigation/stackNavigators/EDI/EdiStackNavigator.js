@@ -13,6 +13,7 @@ import { useRoute } from '@react-navigation/native';
 import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCertificateApprovalScreen';
 import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
 import { EdiCertificateConfirmationScreen } from '../../../screens/ediScreens/EdiCertificateConfirmationScreen';
+import { TabNavigator } from './TabNavigator';
 
 const Stack = createStackNavigator()
 const EdiStackNavigator = () => {
@@ -26,7 +27,9 @@ const EdiStackNavigator = () => {
       <Stack.Screen name="EDICertificateScreen" component={EDICertificateScreen} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       {/* <Stack.Screen name="PopUp" component={PopUpScreen} /> */}
-      <Stack.Screen name="MyTabBar" component={EdiOrderDetailsStackNavigator} />
+      {/* <Stack.Screen name="MyTabBar" component={EdiOrderDetailsStackNavigator} /> */}
+     <Stack.Screen name="TabNavigator" component={TabNavigator} />
+
       <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalStackNavigator} />
       <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />
       <Stack.Screen name="EdiCertificateConfirmationScreen" component={EdiCertificateConfirmationScreen} />
