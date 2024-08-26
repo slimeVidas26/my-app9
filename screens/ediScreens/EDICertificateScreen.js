@@ -127,8 +127,8 @@ const EDICertificateScreen = () => {
               <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
               data={isModalOpen == true? (query ? fullData : null):data.orders}
-              keyExtractor={item => item.id}
-              renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
+              keyExtractor={(item) => item.id.toString()}   
+               renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}
             />
           </Modal>

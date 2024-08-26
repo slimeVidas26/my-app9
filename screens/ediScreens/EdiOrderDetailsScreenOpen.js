@@ -36,7 +36,7 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
     variables: { orderId : paramData.id}, // replace '12345' with the actual order ID
   });
   
-  //console.log('data form tab' , data)
+  console.log('data form ediOrderDetailsScreenOpen' , data)
   const lens = 11
   ;
   
@@ -87,11 +87,11 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
 // };
 
-const OpenOrderQueryItem = ({ openOrderQuery}) => {
+const OpenOrderQueryItem = ({item}) => {
 
-  const { quantity ,code ,name ,  id , quantityPerBox } = openOrderQuery.product; 
+  const { quantity ,code ,name ,  id , quantityPerBox } = item.product; 
   
-
+console.log("item from OpenOrderQueryItem" , item)
   //console.log( "quantity",quantity , "id",id)
   //console.log( 'openOrderQuery' , openOrderQuery)
 
@@ -147,7 +147,7 @@ return(
         data={data.order.products}
         //data={null}
         renderItem={({ item }) => (
-          <OpenOrderQueryItem openOrderQuery={item} />)}
+          <OpenOrderQueryItem item={item} />)}
         //keyExtractor={(item, index) => index}
         keyExtractor = {(item) => item.id}
         //style={styles.container}
