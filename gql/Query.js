@@ -119,6 +119,7 @@ query OrderQuery($orderId: ID!)  {
     order(id: $orderId)  {
       id
     date 
+    supplier
     edi 
     reference 
     totalBoxes 

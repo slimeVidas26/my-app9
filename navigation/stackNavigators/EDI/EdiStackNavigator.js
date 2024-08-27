@@ -13,6 +13,7 @@ import { useRoute } from '@react-navigation/native';
 import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCertificateApprovalScreen';
 import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
 import { EdiCertificateConfirmationScreen } from '../../../screens/ediScreens/EdiCertificateConfirmationScreen';
+import { EdiItemApprovalScreen } from '../../../screens/ediScreens/EdiItemApprovalScreen';
 import { TabNavigator } from './TabNavigator';
 
 const Stack = createStackNavigator()
@@ -30,7 +31,7 @@ const EdiStackNavigator = () => {
       {/* <Stack.Screen name="MyTabBar" component={EdiOrderDetailsStackNavigator} /> */}
      <Stack.Screen name="TabNavigator" component={TabNavigator} />
 
-      <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalStackNavigator} />
+      <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />
       <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />
       <Stack.Screen name="EdiCertificateConfirmationScreen" component={EdiCertificateConfirmationScreen} />
       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />

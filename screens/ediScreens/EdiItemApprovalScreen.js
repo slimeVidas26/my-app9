@@ -32,7 +32,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
   //console.log("data from ediItemApprovalScreen" , data)
   const route = useRoute();
   console.log("route.params",route.params)
-  const { quantity = 0  , code , name , supplier = "toto"} = route.params || {};
+  const { quantity = 0  , code , name , supplierName } = route.params || {};
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = 10;
@@ -43,7 +43,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
     return(
       <View style={styles.infoProductZone}>
             <View style={styles.detailsContainer}>
-              <Text style={styles.compagny}>{supplier}</Text>
+              <Text style={styles.compagny}>{supplierName}</Text>
               <Text style={[styles.productName, { color: counterProp === initialCountProp ? 'blue' : styles.productName.color }]}>
                 Gamadim 100 gl</Text>
               <Text style={styles.productCode}>

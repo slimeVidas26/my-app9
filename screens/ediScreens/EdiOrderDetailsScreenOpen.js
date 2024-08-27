@@ -8,6 +8,8 @@ import { Feather } from '@expo/vector-icons';
 import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
 import { useQuery } from '@apollo/client';
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
+import { useNavigation } from '@react-navigation/native'
+
 
 
 
@@ -43,6 +45,9 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
   if (error) {
     console.error('OPEN_ORDER_QUERY error', error);
   }
+
+  const navigation = useNavigation()
+
 
   //console.log('data form  screen' , data.order.products[0].product.quantity)
  
@@ -86,26 +91,23 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 // )
 
 // };
+const supplierName = data.order.supplier.name
+
 
 const OpenOrderQueryItem = ({item}) => {
-
   const { quantity ,code ,name ,  id , quantityPerBox } = item.product; 
-  
 console.log("item from OpenOrderQueryItem" , item)
+const supplierName = data.order.supplier.name
+
   //console.log( "quantity",quantity , "id",id)
   //console.log( 'openOrderQuery' , openOrderQuery)
 
 return(
-
-  
-
-  
-
   // navigation.navigate('Account', {
   //   screen: 'Settings',
   //   params: { user: 'jane' },
   // });
-<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity ,code ,  name , supplier:"toto"})}>
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity ,code ,  name , supplierName})}>
   
 <View style = {styles.item}>
 
