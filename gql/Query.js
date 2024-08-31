@@ -114,27 +114,30 @@ query SupplierQuery($supplierId: ID!) {
     }
 }`
 
+
+
 export  const OPEN_ORDER_QUERY = gql`
 query OrderQuery($orderId: ID!)  {
     order(id: $orderId)  {
-      id
-    date 
-    supplier
-    edi 
-    reference 
-    totalBoxes 
-    totalQuantity 
-    products {
-      product {
-        id
-        name
-        code 
-        quantityPerBox  
-        quantity 
-        
-        
-      } 
-    }
+     id
+     date
+     edi
+     reference
+     supplier {
+       name
+       number
+     }
+     totalBoxes
+     totalQuantity
+     products {
+       product {
+         name
+         code
+         picture
+         quantityPerBox
+         quantity
+       }
+     }
     }
 }`
 
@@ -152,8 +155,6 @@ query OpenOrdersQuery {
      quantity
      supplied
      isOpen 
-     
-     
     }
 }`
 

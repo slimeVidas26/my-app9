@@ -31,11 +31,11 @@ i18n.locale = 'he';
 export const EdiItemApprovalScreen = ({ navigation , data }) => {
   //console.log("data from ediItemApprovalScreen" , data)
   const route = useRoute();
-  console.log("route.params",route.params)
-  const { quantity = 0  , code , name , supplierName } = route.params || {};
+  console.log("route.params form ediItemApprovalScreen",route.params)
+  const { paramData , supplier } = route.params || {};
 
   const [isModalOpen, setModalOpen] = useState(true);
-  const initialCount = 10;
+  const initialCount = paramData.quantity;
   const [counter, setCounter] = useState(0);
 
 
@@ -43,11 +43,11 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
     return(
       <View style={styles.infoProductZone}>
             <View style={styles.detailsContainer}>
-              <Text style={styles.compagny}>{supplierName}</Text>
+              <Text style={styles.compagny}>{supplier}</Text>
               <Text style={[styles.productName, { color: counterProp === initialCountProp ? 'blue' : styles.productName.color }]}>
-                Gamadim 100 gl</Text>
+                {paramData.name}</Text>
               <Text style={styles.productCode}>
-                {code} </Text>
+                {paramData.code} </Text>
               <Text style={styles.productQuantityInStock}>
                 Quantity in stock:104</Text>
               <View style={styles.box}>
@@ -127,7 +127,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
       <>
        <TouchableOpacity style={styles.quantityBefore} onPress={handleQuantity}  >
             <Text style={styles.before}>
-              Quantity before:{quantity}
+              Quantity before:{paramData.quantity}
             </Text>
           </TouchableOpacity>
      
@@ -183,7 +183,7 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
     };
     return(
       <View style={styles.approve} >
-      <Pressable onPress={() => navigation.navigate('EdiOrderDetailsScreenOpen')} style={styles.nextButton}>
+      <Pressable onPress={() => navigation.navigate('EdiCertificateApprovalScreen' , {paramData})} style={styles.nextButton}>
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>
       <Pressable style={styles.cancelButton}

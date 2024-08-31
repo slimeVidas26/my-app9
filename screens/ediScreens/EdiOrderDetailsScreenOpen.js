@@ -26,13 +26,9 @@ const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
 
-
-
-
-
-
-
 export function EdiOrderDetailsScreenOpen({paramData}) {
+
+  console.log("paramData from ediscreenOpen" , paramData.id)
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId : paramData.id}, // replace '12345' with the actual order ID
@@ -91,23 +87,16 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 // )
 
 // };
-const supplierName = data.order.supplier.name
 
 
 const OpenOrderQueryItem = ({item}) => {
-  const { quantity ,code ,name ,  id , quantityPerBox } = item.product; 
+  const { quantity ,code ,name , quantityPerBox } = item.product; 
 console.log("item from OpenOrderQueryItem" , item)
 const supplierName = data.order.supplier.name
 
-  //console.log( "quantity",quantity , "id",id)
-  //console.log( 'openOrderQuery' , openOrderQuery)
-
 return(
-  // navigation.navigate('Account', {
-  //   screen: 'Settings',
-  //   params: { user: 'jane' },
-  // });
-<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {quantity ,code ,  name , supplierName})}>
+  
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {paramData:item.product , supplier:supplierName})}>
   
 <View style = {styles.item}>
 
