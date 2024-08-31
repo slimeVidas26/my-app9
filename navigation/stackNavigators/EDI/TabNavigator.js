@@ -31,7 +31,7 @@ export const  TabNavigator  = ({route})=>{
 //   });
 
 //   //console.log('data form tab' , data)
-   const lens = 11
+   const lens = paramData.products.length
 //   ;
 
 //   if (error) {
@@ -82,7 +82,7 @@ export const  TabNavigator  = ({route})=>{
       <Tab.Screen   options={{
           tabBarLabel: ({focused}) => (
             <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{0}</Text></View>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{lens}</Text></View>
             <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Open</Text>
             </View>
           ) 

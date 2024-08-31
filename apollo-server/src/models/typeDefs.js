@@ -87,6 +87,7 @@ export const typeDefs = gql`
     date: Date!
     totalQuantity: Float!
     totalBoxes: Int
+    isOpen: Boolean
   }
 
   type Warehouse {

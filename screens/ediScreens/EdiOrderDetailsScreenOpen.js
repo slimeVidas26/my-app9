@@ -35,7 +35,8 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
   });
   
   console.log('data form ediOrderDetailsScreenOpen' , data)
-  const lens = 11
+  const lens = data.order.products.length
+  console.log("lens from EdiOrderDetailsScreenOpen" , lens)
   ;
   
   if (error) {

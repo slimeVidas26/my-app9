@@ -17,6 +17,7 @@ const orderSchema = new Schema({
   date: { type: Date, default: Date.now },
   totalQuantity: { type: Number, default: 0 },
   totalBoxes: { type: Number, default: 0 },
+  isOpen : {type :Boolean , default : true}
 
 });
 

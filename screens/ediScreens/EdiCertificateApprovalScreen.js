@@ -6,9 +6,7 @@ import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
 import { useQuery } from "@apollo/client";
-import { EDI_ORDERS_QUERY } from "../../gql/Query";
-import { useRoute } from '@react-navigation/native';
-
+import { DEPARTMENTS_QUERY } from "../../gql/Query";
 
 
 const i18n = new I18n(translation)
@@ -27,19 +25,17 @@ const height = (Dimensions.get('window').height)
 
 
 export function EdiCertificateApprovalScreen({ navigation }) {
-  const route = useRoute();
-  console.log("route.params form ediCertificateApprovalScreen" , route.params)
 
-  const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
-  const lens = 11;
-  console.log("data from EdiCertificateApprovalScreen" , data)
+  const { data, error, loading } = useQuery(DEPARTMENTS_QUERY);
+  const lens = 11
+    ;
 
   if (error) {
-    console.error('OPEN_ORDERS_QUERY error', error);
+    console.error('DEPARTMENTS_QUERY error', error);
   }
 
-  const DepartmentItem = ({ item}) => {
-    const { name, code } = item;
+  const DepartmentItem = ({ department }) => {
+    const { title, id } = department;
     console.log(title, id)
     return (
 
@@ -89,7 +85,7 @@ export function EdiCertificateApprovalScreen({ navigation }) {
       <View style={styles.header}>
   
       <View style = {styles.leftSide} >
-        <Text style = {{fontSize:20,color:'white'}}>{data.orders[0].reference}</Text>
+        <Text style = {{fontSize:20,color:'white'}}>6119516</Text>
         <Text  style = {{fontSize:20,color:'white'}}>Edi Certificate Approve</Text>
       </View>
   
@@ -125,7 +121,7 @@ export function EdiCertificateApprovalScreen({ navigation }) {
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data &&
         <FlatList style={styles.flat}
-          data={data.orders.products}
+          data={data.departments}
           //data={null}
           renderItem={({ item }) => (
             <DepartmentItem department={item} />)}
