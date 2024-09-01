@@ -402,6 +402,8 @@ export const resolvers = {
             const product = await Product.findById(productId);
             if (product) {
               console.log(`Found product: ${product}`);
+              // Add isOpen property to the product
+               product.isOpen = true;
               const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
               totalBoxes += numberOfBoxes;
             } else {
@@ -415,6 +417,7 @@ export const resolvers = {
             product: p.productId,
             quantity: p.quantity,
             quantityPerBox: p.quantityPerBox,
+            isOpen: true // Ensure the isOpen property is added to each product in the order
           }));
     
           // Create and save the new order with the correct edi field
@@ -443,6 +446,7 @@ export const resolvers = {
     
               const product = await Product.findById(productId);
               if (product) {
+                product.isOpen = true;
                 console.log(`Found product: ${product}`);
                 const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantity / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
@@ -455,6 +459,7 @@ export const resolvers = {
               const product = await Product.findById(productId);
               if (product) {
                 console.log(`Found product: ${product}`);
+                product.isOpen = true; // Add isOpen property to the product
                 const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
               } else {

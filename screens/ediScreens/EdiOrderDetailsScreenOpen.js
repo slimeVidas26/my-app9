@@ -35,8 +35,8 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
   });
   
   console.log('data form ediOrderDetailsScreenOpen' , data)
-  const lens = data.order.products.length
-  console.log("lens from EdiOrderDetailsScreenOpen" , lens)
+  //const lens = data.order.products.length
+  //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
   ;
   
   if (error) {
@@ -91,8 +91,9 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
 
 const OpenOrderQueryItem = ({item}) => {
-  const { quantity ,code ,name , quantityPerBox } = item.product; 
-console.log("item from OpenOrderQueryItem" , item)
+  const { quantity ,code ,name , quantityPerBox , isOpen } = item.product; 
+console.log("itemProduct from OpenOrderQueryItem" , item.product)
+console.log("isOpen from OpenOrderQueryItem " , isOpen)
 const supplierName = data.order.supplier.name
 
 return(

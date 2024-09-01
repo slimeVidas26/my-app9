@@ -5,6 +5,8 @@ const orderProductSchema = new Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
   quantity: { type: Number, required: true },
   quantityPerBox: { type: Number, required: false },
+  isOpen: { type: Boolean, default: true }
+
 
 
 });
@@ -16,8 +18,7 @@ const orderSchema = new Schema({
   products: [orderProductSchema],
   date: { type: Date, default: Date.now },
   totalQuantity: { type: Number, default: 0 },
-  totalBoxes: { type: Number, default: 0 },
-  isOpen : {type :Boolean , default : true}
+  totalBoxes: { type: Number, default: 0 }
 
 });
 

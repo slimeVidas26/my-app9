@@ -136,6 +136,7 @@ query OrderQuery($orderId: ID!)  {
          picture
          quantityPerBox
          quantity
+         
        }
      }
     }
