@@ -9,6 +9,24 @@ import Modal from '../../components/modals/Modal';
 import { Feather } from '@expo/vector-icons';
 import { OpenModalButtonApproval } from '../../components/modals/OpenModalButonApproval';
 import { useRoute } from '@react-navigation/native';
+import { gql, useMutation } from '@apollo/client';
+
+
+// Define the mutation
+const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
+  mutation UpdateOrderProductStatus($orderId: ID!, $productId: ID!, $isOpen: Boolean!) {
+    updateOrderProductStatus(orderId: $orderId, productId: $productId, isOpen: $isOpen) {
+      id
+      products {
+        product {
+          id
+          isOpen
+        }
+        
+      }
+    }
+  }
+`;
 
 
 
@@ -28,7 +46,20 @@ i18n.locale = 'he';
 
 
 
-export const EdiItemApprovalScreen = ({ navigation , data }) => {
+export const EdiItemApprovalScreen = ({ navigation  ,orderId, productId }) => {
+
+  // Use the useMutation hook
+  const [updateOrderProductStatus, { data, loading, error }] = useMutation(UPDATE_ORDER_PRODUCT_STATUS_MUTATION);
+
+  const handleUpdateStatus = async () => {
+    try {
+      const response = await updateOrderProductStatus({ variables: { orderId, productId, isOpen: false } });
+      console.log('Order product status updated:', response.data.updateOrderProductStatus);
+    } catch (err) {
+      console.error('Error updating order product status:', error);
+    }
+  };
+
   //console.log("data from ediItemApprovalScreen" , data)
   const route = useRoute();
   console.log("route.params form ediItemApprovalScreen",route.params)
@@ -183,7 +214,9 @@ export const EdiItemApprovalScreen = ({ navigation , data }) => {
     };
     return(
       <View style={styles.approve} >
-      <Pressable onPress={() => navigation.navigate('EdiOrderDetailsScreenOpen')} style={styles.nextButton}>
+      {/* <Pressable onPress={() =>{handleUpdateStatus; navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading}> */}
+      <Pressable onPress={handleUpdateStatus} style={styles.nextButton} disabled={loading}>
+
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>
       <Pressable style={styles.cancelButton}

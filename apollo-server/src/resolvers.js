@@ -220,6 +220,35 @@ export const resolvers = {
 
   Mutation: {
 
+    updateOrderProductStatus: async (_, { orderId, productId, isOpen }) => {
+      try {
+        const order = await Order.findById(orderId);
+        if (!order) {
+          throw new Error(`Order with id ${orderId} not found`);
+        }
+  
+        // Find the specific product in the order
+        const productInOrder = order.products.find(
+          (p) => p.product.toString() === productId
+        );
+  
+        if (!productInOrder) {
+          throw new Error(`Product with id ${productId} not found in the order`);
+        }
+  
+        // Update isOpen status
+        productInOrder.isOpen = isOpen;
+  
+        const updatedOrder = await order.save(); // Save the updated order
+        console.log('Order product status updated successfully:', updatedOrder);
+  
+        return updatedOrder;
+      } catch (error) {
+        console.error('Error updating order product status:', error);
+        throw error;
+      }
+    },
+
 
     addSupplier: async (_, { name, number, address, phone, email, products }) => {
       try {
@@ -615,8 +644,9 @@ export const resolvers = {
           console.log("op", op)
           const product = await Product.findById(op.product);
           product.quantity = op.quantity
+          
 
-          return { product, quantity: op.quantity, boxes: op.boxes };
+          return { product, quantity: op.quantity, boxes: op.boxes  };
         }));
         return populatedProducts;
       }

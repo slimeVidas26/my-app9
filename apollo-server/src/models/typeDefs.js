@@ -37,6 +37,7 @@ export const typeDefs = gql`
     addDepartment(title:String!): Department!
     addRedstamp(title:String!): Redstamp!
     addItemReason(title:String!): ItemReason!
+    updateOrderProductStatus(orderId: ID!, productId: ID!, isOpen: Boolean!): Order  # New mutation to update product status
 
   }
   
@@ -64,6 +65,8 @@ export const typeDefs = gql`
     supplier: Supplier!
     
 
+    
+
   }
 
 
@@ -78,6 +81,7 @@ export const typeDefs = gql`
     product: Product
     quantity: Int!
     totalBoxes: Int
+    isOpen: Boolean
   }
 
   type Order {

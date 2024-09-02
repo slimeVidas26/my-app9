@@ -137,6 +137,7 @@ query OrderQuery($orderId: ID!)  {
          quantityPerBox
          quantity
          
+         
        }
      }
     }
