@@ -63,6 +63,7 @@ export const typeDefs = gql`
     inStock:Float
     quantityPerBox:Int!
     supplier: Supplier!
+    isOpen:Boolean
     
 
     
@@ -71,13 +72,14 @@ export const typeDefs = gql`
 
 
   input OrderProductInput {
-    productId: ID!
+    
     quantity: Int!
     boxes:Float
     isOpen: Boolean
   }
 
   type OrderProduct {
+    productId: ID!
     product: Product
     quantity: Int!
     totalBoxes: Int

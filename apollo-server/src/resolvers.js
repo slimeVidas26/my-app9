@@ -276,7 +276,7 @@ export const resolvers = {
       }
     },
 
-    addProduct: async (_, { name, code, quantityPerBox, supplierId }) => {
+    addProduct: async (_, { name, code, quantityPerBox, supplierId  }) => {
       try {
         // Check if product with the given code  already exists
         const existingProduct = await Product.findOne({ code })

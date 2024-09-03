@@ -136,6 +136,7 @@ query OrderQuery($orderId: ID!)  {
          picture
          quantityPerBox
          quantity
+         isOpen
          
          
        }
@@ -172,11 +173,11 @@ query EdiOrdersQuery {
         totalQuantity
         edi
         date
-      reference
-      products {
-        product {
-          name
-          code
+        reference
+        products {
+          product {
+            name
+            code
         }
       }
     }

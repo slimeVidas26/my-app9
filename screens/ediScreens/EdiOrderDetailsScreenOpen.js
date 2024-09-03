@@ -28,7 +28,9 @@ const height = (Dimensions.get('window').height)
 
 export function EdiOrderDetailsScreenOpen({paramData}) {
 
-  console.log("paramData from ediscreenOpen" , paramData.id)
+  console.log("paramData from ediscreenOpen" , paramData)
+
+  const orderId = paramData.id
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId : paramData.id}, // replace '12345' with the actual order ID
@@ -91,14 +93,18 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
 
 const OpenOrderQueryItem = ({item}) => {
-  const { quantity ,code ,name , quantityPerBox , isOpen } = item.product; 
+  const { quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
+  //const {isOpen} = item
 console.log("itemProduct from OpenOrderQueryItem" , item.product)
 console.log("isOpen from OpenOrderQueryItem " , isOpen)
 const supplierName = data.order.supplier.name
+const orderId = data.order.id
+const productId = item.product.id
+
 
 return(
   
-<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {paramData:item.product , supplier:supplierName})}>
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {paramData:item.product , supplier:supplierName , orderId , productId})}>
   
 <View style = {styles.item}>
 

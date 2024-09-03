@@ -20,6 +20,7 @@ const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
       products {
         product {
           id
+          quantity
           isOpen
         }
         
@@ -46,8 +47,14 @@ i18n.locale = 'he';
 
 
 
-export const EdiItemApprovalScreen = ({ navigation  ,orderId, productId }) => {
+export const EdiItemApprovalScreen = ({ navigation }) => {
 
+  const productId = "66bf63dcc7bb1e1e63562683"
+  //console.log("data from ediItemApprovalScreen" , data)
+const route = useRoute();
+console.log("route.params form ediItemApprovalScreen",route.params)
+const { paramData , supplier , orderId  } = route.params || {};
+console.log("paramData from ediItemApprovalScreen ", paramData)
   // Use the useMutation hook
   const [updateOrderProductStatus, { data, loading, error }] = useMutation(UPDATE_ORDER_PRODUCT_STATUS_MUTATION);
 
@@ -60,10 +67,7 @@ export const EdiItemApprovalScreen = ({ navigation  ,orderId, productId }) => {
     }
   };
 
-  //console.log("data from ediItemApprovalScreen" , data)
-  const route = useRoute();
-  console.log("route.params form ediItemApprovalScreen",route.params)
-  const { paramData , supplier } = route.params || {};
+  
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = paramData.quantity;
