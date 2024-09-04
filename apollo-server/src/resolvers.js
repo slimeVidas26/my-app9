@@ -220,7 +220,7 @@ export const resolvers = {
 
   Mutation: {
 
-    updateOrderProductStatus: async (_, { orderId, productId, isOpen }) => {
+    updateOrderProductStatus: async (_, { orderId , quantity ,  productId, isOpen }) => {
       try {
         const order = await Order.findById(orderId);
         if (!order) {
@@ -238,6 +238,7 @@ export const resolvers = {
   
         // Update isOpen status
         productInOrder.isOpen = isOpen;
+        productInOrder.quantity = quantity;
   
         const updatedOrder = await order.save(); // Save the updated order
         console.log('Order product status updated successfully:', updatedOrder);

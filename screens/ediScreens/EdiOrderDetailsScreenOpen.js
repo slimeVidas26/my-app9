@@ -30,10 +30,10 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
   console.log("paramData from ediscreenOpen" , paramData)
 
-  const orderId = paramData.id
+  //const orderId = paramData.id
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
-    variables: { orderId : paramData.id}, // replace '12345' with the actual order ID
+    variables: { orderId : paramData.id }, // replace '12345' with the actual order ID
   });
   
   console.log('data form ediOrderDetailsScreenOpen' , data)
@@ -93,13 +93,14 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
 
 const OpenOrderQueryItem = ({item}) => {
-  const { quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
+  const {  quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
   //const {isOpen} = item
-console.log("itemProduct from OpenOrderQueryItem" , item.product)
+console.log("item from OpenOrderQueryItem" , item)
 console.log("isOpen from OpenOrderQueryItem " , isOpen)
 const supplierName = data.order.supplier.name
 const orderId = data.order.id
 const productId = item.product.id
+
 
 
 return(

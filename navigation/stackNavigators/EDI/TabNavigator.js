@@ -17,7 +17,7 @@ import { OPEN_ORDER_QUERY } from '../../../gql/Query';
 const Tab = createMaterialTopTabNavigator();
 
 export const  TabNavigator  = ({route})=>{
-    const { paramData } = route.params || {};
+    const { paramData} = route.params || {};
     console.log("paramData from TabNavigator ", paramData)
   //const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
   // const route = useRoute();
@@ -88,7 +88,7 @@ export const  TabNavigator  = ({route})=>{
           ) 
         }}
          name="EdiOrderDetailsScreenOpen" >
-          {props => <EdiOrderDetailsScreenOpen {...props}  paramData={paramData} />}
+          {props => <EdiOrderDetailsScreenOpen {...props}  paramData={paramData}  />}
           </Tab.Screen>
 
 <Tab.Screen   options={{

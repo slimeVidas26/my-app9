@@ -48,7 +48,7 @@ export const HomeScreen = ({navigation})=> {
 
 const DepartmentItem = ({ department}) => {
   const { title , id } = department; 
-  console.log( title , id)
+  //console.log( title , id)
 return(
   <TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
   <View style = {styles.container1}>

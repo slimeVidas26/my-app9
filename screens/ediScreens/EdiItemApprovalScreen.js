@@ -14,8 +14,8 @@ import { gql, useMutation } from '@apollo/client';
 
 // Define the mutation
 const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
-  mutation UpdateOrderProductStatus($orderId: ID!, $productId: ID!, $isOpen: Boolean!) {
-    updateOrderProductStatus(orderId: $orderId, productId: $productId, isOpen: $isOpen) {
+  mutation UpdateOrderProductStatus($orderId:ID!, $quantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
+    updateOrderProductStatus(orderId: $orderId , quantity: $quantity ,  productId: $productId, isOpen: $isOpen) {
       id
       products {
         product {
@@ -49,19 +49,26 @@ i18n.locale = 'he';
 
 export const EdiItemApprovalScreen = ({ navigation }) => {
 
-  const productId = "66bf63dcc7bb1e1e63562683"
   //console.log("data from ediItemApprovalScreen" , data)
 const route = useRoute();
 console.log("route.params form ediItemApprovalScreen",route.params)
 const { paramData , supplier , orderId  } = route.params || {};
 console.log("paramData from ediItemApprovalScreen ", paramData)
+const productId = paramData.id
+const quantity = paramData.quantity
+console.log("productId from ediItemApprovalScreen ", productId)
+console.log("quantity from ediItemApprovalScreen ", quantity)
+
+
   // Use the useMutation hook
   const [updateOrderProductStatus, { data, loading, error }] = useMutation(UPDATE_ORDER_PRODUCT_STATUS_MUTATION);
 
   const handleUpdateStatus = async () => {
     try {
-      const response = await updateOrderProductStatus({ variables: { orderId, productId, isOpen: false } });
+      const response = await updateOrderProductStatus({ variables: { orderId , quantity : counter , productId, isOpen: false } });
       console.log('Order product status updated:', response.data.updateOrderProductStatus);
+      
+
     } catch (err) {
       console.error('Error updating order product status:', error);
     }
@@ -219,7 +226,7 @@ console.log("paramData from ediItemApprovalScreen ", paramData)
     return(
       <View style={styles.approve} >
       {/* <Pressable onPress={() =>{handleUpdateStatus; navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading}> */}
-      <Pressable onPress={handleUpdateStatus} style={styles.nextButton} disabled={loading}>
+      <Pressable onPress={() => { handleUpdateStatus(); navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading} >
 
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>

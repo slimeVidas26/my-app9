@@ -131,6 +131,7 @@ query OrderQuery($orderId: ID!)  {
      totalQuantity
      products {
        product {
+        id
          name
          code
          picture
@@ -153,6 +154,17 @@ query OpenOrdersQuery {
      supplier{
      number
      name
+     }
+     products {
+       product {
+        id
+         name
+         code
+         picture
+         quantityPerBox
+         quantity
+         isOpen
+       }
      }
      rows
      quantity

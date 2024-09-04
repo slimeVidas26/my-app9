@@ -37,7 +37,7 @@ export const typeDefs = gql`
     addDepartment(title:String!): Department!
     addRedstamp(title:String!): Redstamp!
     addItemReason(title:String!): ItemReason!
-    updateOrderProductStatus(orderId: ID!, productId: ID!, isOpen: Boolean!): Order  # New mutation to update product status
+    updateOrderProductStatus(orderId: ID!,quantity:Int!, productId: ID!, isOpen: Boolean!): Order  # New mutation to update product status
 
   }
   
