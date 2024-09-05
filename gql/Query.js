@@ -190,6 +190,8 @@ query EdiOrdersQuery {
           product {
             name
             code
+            quantity
+            isOpen
         }
       }
     }

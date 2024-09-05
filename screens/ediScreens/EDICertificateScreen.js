@@ -52,6 +52,7 @@ const EDICertificateScreen = () => {
  const EDIcertificateItem = ({ item  }) => {
   //const orderId = Object.keys(item)[0].id
     //onsole.log('orderId' ,orderId )
+    //console.log("itemProducts from EDIcertificateItem" , item.products)
     
     return (
       <TouchableOpacity onPress={() => navigation.navigate('TabNavigator' , {paramData:item})}>
@@ -67,7 +68,7 @@ const EDICertificateScreen = () => {
           </View>
   
           <View style={styles.metaInfo}>
-            <Text style={styles.blueText}>Quantity:{`${item.totalQuantity}`}</Text>
+            <Text style={styles.blueText}>TQuantity:{`${item.totalQuantity}`}</Text>
             <Text style={styles.title}>Edi:{`${item.edi}`}</Text>
           </View>
   

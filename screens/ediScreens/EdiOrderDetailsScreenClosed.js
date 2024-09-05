@@ -1,17 +1,19 @@
 import React, { useState , useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
-import { SafeAreaView,ImageBackground,View,Pressable,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { I18n } from 'i18n-js';
+import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image,Pressable, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
 import { translation } from "../../i18n/supportedLanguages";
+import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
-import Constants from 'expo-constants';
-import { Card } from '@rneui/themed';
-//import logo from '../assets/warehouse.png'
 import { Feather } from '@expo/vector-icons';
+import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
+import { useQuery } from '@apollo/client';
+import { OPEN_ORDER_QUERY } from "../../gql/Query";
+import { useNavigation } from '@react-navigation/native'
+
+
+
 
 const i18n = new I18n(translation)
-
-
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
 // When a value is missing from a language it'll fallback to another language with the key present.
@@ -23,22 +25,57 @@ const spacing = 5;
 const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
-export function EdiOrderDetailsScreenClosed({navigation , data , error , loading}) {
+
+export function EdiOrderDetailsScreenClosed({paramData}) {
+
+ 
+
+  //const orderId = paramData.id
+
+  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+    variables: { orderId : paramData.id }
+  });
+
+  //console.log('dataOrderProducts form ediOrderDetailsScreenOpen' , data.order.products.product)
+
 
   
+  
+  //const lens = data.order.products.length
+  //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
+  ;
+  
+  if (error) {
+    console.error('OPEN_ORDER_QUERY error', error);
+  }
 
-const DepartmentItem = ({ department}) => {
-  const { title , id } = department; 
-  console.log( title , id)
+  const navigation = useNavigation()
+
+
+
+const OpenOrderQueryItem = ({item}) => {
+  const {  quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
+  //const {isOpen} = item
+//console.log("item from OpenOrderQueryItem" , item)
+//console.log("isOpen from OpenOrderQueryItem " , isOpen)
+const supplierName = data.order.supplier.name
+const orderId = data.order.id
+const productId = item.product.id
+// console.log("paramDataProducts from ediscreenClosed" , paramData.products)
+// let openProducts = paramData.products.filter(item => item.product.isOpen === true);
+// console.log("openProducts",openProducts);
+
+
+
 return(
-
-
-<TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
+  
+<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {paramData:item.product , supplier:supplierName , orderId , productId})}>
+  
 <View style = {styles.item}>
 
-<View style = {styles.top}>
+<View style = {styles.top}> 
   <View style = {styles.left}>
-     <Text style = {styles.boxes}>12</Text>   
+     <Text style = {styles.boxes}>{quantityPerBox}</Text>   
      <Feather name="box" size={26} color="black" />
   </View>
 
@@ -50,49 +87,31 @@ return(
 </View>
 
 <View style = {styles.bottom}>
-<Text style = {styles.quantity}>quantity : 48</Text>
-<Text style = {styles.reference}>reference</Text>
-<Text style = {styles.barcode}>729000111444</Text>
+<View style = {styles.totalBoxes}>
+     <Text style = {styles.boxes}>{quantity/quantityPerBox}</Text>   
+     <Feather name="box" size={26} color="black" />
+  </View>
+<Text style = {styles.quantity}>quantity : {quantity}</Text>
+<Text style = {styles.reference}>{name}</Text>
+<Text style = {styles.barcode}>{code}</Text>
 
 </View>
-
-
-
-
 </View>
-
    </TouchableOpacity>
- 
-)
-
-};
+)};
 
   return (
     <View style={styles.container}>
 
-  {/* <EdiOrderDetailHeader/> */}
-  {/* <EdiTab/> */}
-
-    {/* <View style = {styles.image}>
-    <Image  source={require('../assets/today.jpg')}
-    placeholder={"rami-levi"}
-        contentFit="cover"
-        transition={1000} />
-    </View> */}
-
-    {/* <View style = {styles.placeholder}></View> */}
-
-    {/* <ImageBackground source={logo} resizeMode="cover" style={styles.image}> */}
-      {/* <Text style={styles.logoText}>What We Will Do Today ?</Text> */}
-    {/* </ImageBackground> */}
-
+  
     {loading && <Text>Loading...</Text>}
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        data={data.departments}
+        data={data.order.products}
+        //data={null}
         renderItem={({ item }) => (
-          <DepartmentItem department={item} />)}
+          <OpenOrderQueryItem item={item} />)}
         //keyExtractor={(item, index) => index}
         keyExtractor = {(item) => item.id}
         //style={styles.container}
@@ -101,7 +120,7 @@ return(
       />}
       <Pressable style={styles.closeButton}
         onPress={() =>{navigation.navigate('EdiCertificateApprovalScreen')} }>
-        <Text style={styles.closeButtonText}>Close Certificate from closed</Text>
+        <Text style={styles.closeButtonText}>Close Certificate from Open</Text>
       </Pressable>
     </View>
   );
@@ -126,38 +145,11 @@ const styles = StyleSheet.create({
   flat:{
   display:'flex',
     //backgroundColor:'white',
-   width:'100%',
+   //width:'100%',
   //  marginLeft:20
    //justifyContent:'center'
    //alignItems:'center'
   },
-  closeButton:{ 
-    //height:70,
-    backgroundColor:'blue',
-    borderRadius:15,
-    flexDirection:'row' ,
-    justifyContent:'space-evenly',
-     alignItems:'center',
-     width:'95%' ,
-    borderRadius:10,
-    backgroundColor:'blue',
-    padding:18
-    
-     },
-     closeButtonText:{
-    color :'white',
-    fontSize:22
-     },
-    top:{
-      flex:1,
-    //backgroundColor:'red',
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    padding:5,
-    marginBottom:15
-    
-    },
 
   item: {
     display:'flex',
@@ -172,6 +164,23 @@ const styles = StyleSheet.create({
    
    //marginVertical: 8,
   // marginHorizontal: 16,
+ },
+ closeButton:{ 
+//height:70,
+backgroundColor:'blue',
+borderRadius:15,
+flexDirection:'row' ,
+justifyContent:'space-evenly',
+ alignItems:'center',
+ width:'95%' ,
+borderRadius:10,
+backgroundColor:'blue',
+padding:18
+
+ },
+ closeButtonText:{
+color :'white',
+fontSize:22
  },
 top:{
   flex:1,
@@ -189,16 +198,21 @@ left:{
   justifyContent:'space-between',
   
 },
+
+totalBoxes:{
+  flex:1,
+  flexDirection:'row',
+  justifyContent:'flex-start',
+  
+},
 boxes:{
 //backgroundColor:'yellow',
-fontSize:18
+fontSize:18,
+padding:5
 },
 img:{
   //backgroundColor:'white',
   width: 100, height: 100
-
- 
-
 },
 bottom:{
   flex:1,

@@ -28,15 +28,21 @@ const height = (Dimensions.get('window').height)
 
 export function EdiOrderDetailsScreenOpen({paramData}) {
 
-  console.log("paramData from ediscreenOpen" , paramData)
+ 
 
   //const orderId = paramData.id
 
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
-    variables: { orderId : paramData.id }, // replace '12345' with the actual order ID
+    variables: { orderId : paramData.id }
   });
+
   
-  console.log('data form ediOrderDetailsScreenOpen' , data)
+  //console.log('data form ediOrderDetailsScreenOpen' , data.order.products[0].product.isOpen)
+
+  let filteredUsers = data.order.products.filter(product => product.isOpen  === false);
+  console.log("filteredUsers" , filteredUsers);
+  
+  
   //const lens = data.order.products.length
   //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
   ;
@@ -48,58 +54,18 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
   const navigation = useNavigation()
 
 
-  //console.log('data form  screen' , data.order.products[0].product.quantity)
- 
-
-// const DepartmentItem = ({ department}) => {
-//   const { title , id } = department; 
-//   console.log( title , id)
-// return(
-
-
-// <TouchableOpacity  onPress={() => navigation.navigate('EdiItemApprovalScreen')}>
-// <View style = {styles.item}>
-
-// <View style = {styles.top}>
-//   <View style = {styles.left}>
-//      <Text style = {styles.boxes}>12</Text>   
-//      <Feather name="box" size={26} color="black" />
-//   </View>
-
-
-// <View>
-// <Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
-// </View>
-
-// </View>
-
-// <View style = {styles.bottom}>
-// <Text style = {styles.quantity}>quantity : 48</Text>
-// <Text style = {styles.reference}>reference</Text>
-// <Text style = {styles.barcode}>729000111444</Text>
-
-// </View>
-
-
-
-
-// </View>
-
-//    </TouchableOpacity>
- 
-// )
-
-// };
-
 
 const OpenOrderQueryItem = ({item}) => {
   const {  quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
   //const {isOpen} = item
-console.log("item from OpenOrderQueryItem" , item)
-console.log("isOpen from OpenOrderQueryItem " , isOpen)
+//console.log("item from OpenOrderQueryItem" , item)
+//console.log("isOpen from OpenOrderQueryItem " , isOpen)
 const supplierName = data.order.supplier.name
 const orderId = data.order.id
 const productId = item.product.id
+//console.log("paramDataProducts from ediscreenOpen" , paramData.products)
+// let openProducts = paramData.products.filter(item => item.product.isOpen === true);
+// console.log("openProducts",openProducts);
 
 
 

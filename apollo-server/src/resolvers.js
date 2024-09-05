@@ -645,6 +645,8 @@ export const resolvers = {
           console.log("op", op)
           const product = await Product.findById(op.product);
           product.quantity = op.quantity
+          product.isOpen = op.isOpen
+
           
 
           return { product, quantity: op.quantity, boxes: op.boxes  };
