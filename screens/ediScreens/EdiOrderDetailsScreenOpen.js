@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
 import { useQuery } from '@apollo/client';
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 
 
@@ -32,23 +32,32 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
 
   //const orderId = paramData.id
 
+  
+
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId : paramData.id }
   });
 
   
-  //console.log('data form ediOrderDetailsScreenOpen' , data.order.products[0].product.isOpen)
+  console.log('dataOrder form ediOrderDetailsScreenOpen' , data)
 
-  let filteredUsers = data.order.products.filter(product => product.isOpen  === false);
-  console.log("filteredUsers" , filteredUsers);
+   const openProducts = data.order.products.filter(prod => prod.product.isOpen === true);
+   console.log("openProducts" , openProducts);
   
   
   //const lens = data.order.products.length
   //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
-  ;
+
+  if (loading) return <Text>Loading...</Text>;
   
   if (error) {
     console.error('OPEN_ORDER_QUERY error', error);
+    return <Text>Error loading data.</Text>;
+  }
+  
+  if (!data || !data.order) {
+    console.warn('Data or order is undefined:', data);
+    return <Text>No order found.</Text>;
   }
 
   const navigation = useNavigation()
@@ -110,7 +119,7 @@ return(
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        data={data.order.products}
+        data={openProducts}
         //data={null}
         renderItem={({ item }) => (
           <OpenOrderQueryItem item={item} />)}

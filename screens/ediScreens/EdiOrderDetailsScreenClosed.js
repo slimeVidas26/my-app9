@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
 import { useQuery } from '@apollo/client';
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 
 
@@ -32,21 +32,32 @@ export function EdiOrderDetailsScreenClosed({paramData}) {
 
   //const orderId = paramData.id
 
+  
+
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId : paramData.id }
   });
 
-  //console.log('dataOrderProducts form ediOrderDetailsScreenOpen' , data.order.products.product)
+  
+  console.log('dataOrder form ediOrderDetailsScreenOpen' , data)
 
-
+   const closedProducts = data.order.products.filter(prod => prod.product.isOpen === false);
+   console.log("closedProducts" , closedProducts);
   
   
   //const lens = data.order.products.length
   //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
-  ;
+
+  if (loading) return <Text>Loading...</Text>;
   
   if (error) {
     console.error('OPEN_ORDER_QUERY error', error);
+    return <Text>Error loading data.</Text>;
+  }
+  
+  if (!data || !data.order) {
+    console.warn('Data or order is undefined:', data);
+    return <Text>No order found.</Text>;
   }
 
   const navigation = useNavigation()
@@ -61,9 +72,8 @@ const OpenOrderQueryItem = ({item}) => {
 const supplierName = data.order.supplier.name
 const orderId = data.order.id
 const productId = item.product.id
-// console.log("paramDataProducts from ediscreenClosed" , paramData.products)
-// let openProducts = paramData.products.filter(item => item.product.isOpen === true);
-// console.log("openProducts",openProducts);
+//console.log("paramDataProducts from ediscreenOpen" , paramData.products)
+
 
 
 
@@ -108,7 +118,7 @@ return(
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data && 
       <FlatList style = {styles.flat}
-        data={data.order.products}
+        data={closedProducts}
         //data={null}
         renderItem={({ item }) => (
           <OpenOrderQueryItem item={item} />)}
