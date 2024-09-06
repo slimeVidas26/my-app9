@@ -6,9 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
 
-const height = Dimensions.get('window').height; // Define height correctly here
-const width = Dimensions.get('window').width; // Define height correctly here
-const spacing = 5; // Define spacing here
+
+
+const spacing = 5;
+const width = (Dimensions.get('window').width - 2) / 2;
+const height = (Dimensions.get('window').height)
 
 
 export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChange }) => {
