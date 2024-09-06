@@ -26,7 +26,7 @@ const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
 
-export function EdiOrderDetailsScreenOpen({paramData}) {
+export function EdiOrderDetailsScreenOpen({paramData,onOpenProductsLengthChange }) {
 
  
 
@@ -39,10 +39,25 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
   });
 
   
-  console.log('dataOrder form ediOrderDetailsScreenOpen' , data)
+  //console.log('dataOrder form ediOrderDetailsScreenOpen' , data)
+
+  if (!data || !data.order) {
+    console.warn('Data or order is undefined:', data);
+    return <Text>No order found.</Text>;
+  }
 
    const openProducts = data.order.products.filter(prod => prod.product.isOpen === true);
    console.log("openProducts" , openProducts);
+
+   const openProductsLength = openProducts.length;
+   console.log(openProductsLength);
+
+   useEffect(() => {
+    // Pass the openProductsLength to the parent component whenever it changes
+    onOpenProductsLengthChange(openProductsLength);
+  }, [openProductsLength, onOpenProductsLengthChange]);
+
+  
   
   
   //const lens = data.order.products.length
@@ -55,10 +70,7 @@ export function EdiOrderDetailsScreenOpen({paramData}) {
     return <Text>Error loading data.</Text>;
   }
   
-  if (!data || !data.order) {
-    console.warn('Data or order is undefined:', data);
-    return <Text>No order found.</Text>;
-  }
+  
 
   const navigation = useNavigation()
 

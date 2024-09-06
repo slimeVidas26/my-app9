@@ -26,7 +26,7 @@ const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
 
-export function EdiOrderDetailsScreenClosed({paramData}) {
+export function EdiOrderDetailsScreenClosed({paramData,onClosedProductsLengthChange}) {
 
  
 
@@ -39,14 +39,26 @@ export function EdiOrderDetailsScreenClosed({paramData}) {
   });
 
   
-  console.log('dataOrder form ediOrderDetailsScreenOpen' , data)
+  //console.log('dataOrder form ediOrderDetailsScreenClosed' , data)
+
+  if (!data || !data.order) {
+    console.warn('Data or order is undefined:', data);
+    return <Text>No order found.</Text>;
+  }
+
 
    const closedProducts = data.order.products.filter(prod => prod.product.isOpen === false);
    console.log("closedProducts" , closedProducts);
   
-  
+   const closedProductsLength = closedProducts.length;
+   console.log(closedProductsLength);
   //const lens = data.order.products.length
   //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
+
+  useEffect(() => {
+    // Pass the openProductsLength to the parent component whenever it changes
+    onClosedProductsLengthChange(closedProductsLength);
+  }, [closedProductsLength, onClosedProductsLengthChange]);
 
   if (loading) return <Text>Loading...</Text>;
   

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -31,8 +32,20 @@ export const  TabNavigator  = ({route})=>{
 //   });
 
 //   //console.log('data form tab' , data)
-   const lens = paramData.products.length
+   //const lens = paramData.products.length
 //   ;
+
+const [openProductsLength, setOpenProductsLength] = useState(0);
+const [closedProductsLength, setClosedProductsLength] = useState(0);
+
+
+const handleOpenProductsLengthChange = (length) => {
+  setOpenProductsLength(length);
+};
+
+const handleClosedProductsLengthChange = (length) => {
+  setClosedProductsLength(length);
+};
 
 //   if (error) {
 //     console.error('OPEN_ORDER_QUERY error', error);
@@ -82,25 +95,25 @@ export const  TabNavigator  = ({route})=>{
       <Tab.Screen   options={{
           tabBarLabel: ({focused}) => (
             <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{lens}</Text></View>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{openProductsLength}</Text></View>
             <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Open</Text>
             </View>
           ) 
         }}
          name="EdiOrderDetailsScreenOpen" >
-          {props => <EdiOrderDetailsScreenOpen {...props}  paramData={paramData}  />}
+          {props => <EdiOrderDetailsScreenOpen onOpenProductsLengthChange={handleOpenProductsLengthChange} {...props}  paramData={paramData}  />}
           </Tab.Screen>
 
 <Tab.Screen   options={{
           tabBarLabel: ({focused}) => (
             <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}>
-            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{lens}</Text></View>
+            <View style={[styles.circle , {backgroundColor: focused ? 'white' : styles.circle.backgroundColor , borderRadius:50}]}><Text style={[styles.textCircle,{color: focused ? 'blue' : styles.textCircle.color}]}>{closedProductsLength}</Text></View>
             <Text style={[styles.text , {color: focused ? 'white' : styles.text.color}]}>Closed</Text>
             </View>
           ) 
         }}
      name="EdiOrderDetailsScreenClosed" >
-      {props => <EdiOrderDetailsScreenClosed {...props}   paramData={paramData} />}
+      {props => <EdiOrderDetailsScreenClosed onClosedProductsLengthChange={handleClosedProductsLengthChange} {...props}   paramData={paramData} />}
 </Tab.Screen>
     </Tab.Navigator>
     </>
