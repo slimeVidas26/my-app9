@@ -53,7 +53,9 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
               <Text style={styles.boxes}>{quantityPerBox}</Text>
               <Feather name="box" size={26} color="black" />
             </View>
-            {/* Add your image and other UI components here */}
+            <View>
+<Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
+</View>
           </View>
           <View style={styles.bottom}>
             <Text style={styles.quantity}>quantity : {quantity}</Text>
