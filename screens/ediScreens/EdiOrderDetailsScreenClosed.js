@@ -1,152 +1,84 @@
-import React, { useState , useCallback, useEffect } from "react";
-import { AntDesign } from '@expo/vector-icons';
-import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image,Pressable, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { translation } from "../../i18n/supportedLanguages";
-import { I18n } from 'i18n-js';
-import * as Localization from 'expo-localization';
-import { Feather } from '@expo/vector-icons';
-import { EdiCertificateApprovalScreen } from "./EdiCertificateApprovalScreen";
-import { useQuery } from '@apollo/client';
+import React, { useEffect } from "react";
+import { Text, View, FlatList, Pressable, TouchableOpacity, StyleSheet,Dimensions } from "react-native";
+import { useQuery } from "@apollo/client";
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useNavigation } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
 
 
+const height = Dimensions.get('window').height; // Define height correctly here
+const width = Dimensions.get('window').width; // Define height correctly here
+const spacing = 5; // Define spacing here
 
 
-const i18n = new I18n(translation)
-// Set the locale once at the beginning of your app.
-i18n.locale = Localization.locale;
-// When a value is missing from a language it'll fallback to another language with the key present.
-i18n.enableFallback = true;
-// To see the fallback mechanism uncomment line below to force app to use Japanese language.
-// i18n.locale = 'ja';
-
-const spacing = 5;
-const width = (Dimensions.get('window').width - 2) / 2;
-const height = (Dimensions.get('window').height)
-
-
-export function EdiOrderDetailsScreenClosed({paramData,onClosedProductsLengthChange}) {
-
- 
-
-  //const orderId = paramData.id
-
-  
-
+export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthChange }) => {
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
-    variables: { orderId : paramData.id }
+    variables: { orderId: paramData.id },
   });
 
-  
-  //console.log('dataOrder form ediOrderDetailsScreenClosed' , data)
+  const navigation = useNavigation();
 
-  if (!data || !data.order) {
-    console.warn('Data or order is undefined:', data);
-    return <Text>No order found.</Text>;
-  }
-
-
-   const closedProducts = data.order.products.filter(prod => prod.product.isOpen === false);
-   console.log("closedProducts" , closedProducts);
-  
-   const closedProductsLength = closedProducts.length;
-   console.log(closedProductsLength);
-  //const lens = data.order.products.length
-  //console.log("lens from EdiOrderDetailsScreenOpen" , lens)
+  // Extract closed products and their count
+  const closedProducts = data?.order?.products.filter((prod) => prod.product.isOpen === false) || [];
+  const closedProductsLength = closedProducts.length;
 
   useEffect(() => {
-    // Pass the openProductsLength to the parent component whenever it changes
-    onClosedProductsLengthChange(closedProductsLength);
+    // Pass the closedProductsLength to the parent component whenever it changes
+    if (onClosedProductsLengthChange) {
+      onClosedProductsLengthChange(closedProductsLength);
+    }
   }, [closedProductsLength, onClosedProductsLengthChange]);
 
   if (loading) return <Text>Loading...</Text>;
-  
-  if (error) {
-    console.error('OPEN_ORDER_QUERY error', error);
-    return <Text>Error loading data.</Text>;
-  }
-  
+  if (error) return <Text>Error loading data.</Text>;
+
   if (!data || !data.order) {
-    console.warn('Data or order is undefined:', data);
+    console.warn("Data or order is undefined:", data);
     return <Text>No order found.</Text>;
   }
 
-  const navigation = useNavigation()
+  const OpenOrderQueryItem = ({ item }) => {
+    const { quantity, code, name, quantityPerBox } = item.product;
+    const supplierName = data.order.supplier.name;
+    const orderId = data.order.id;
+    const productId = item.product.id;
 
-
-
-const OpenOrderQueryItem = ({item}) => {
-  const {  quantity ,code ,name , quantityPerBox , isOpen} = item.product; 
-  //const {isOpen} = item
-//console.log("item from OpenOrderQueryItem" , item)
-//console.log("isOpen from OpenOrderQueryItem " , isOpen)
-const supplierName = data.order.supplier.name
-const orderId = data.order.id
-const productId = item.product.id
-//console.log("paramDataProducts from ediscreenOpen" , paramData.products)
-
-
-
-
-return(
-  
-<TouchableOpacity  onPress={() =>navigation.navigate('EdiItemApprovalScreen' , {paramData:item.product , supplier:supplierName , orderId , productId})}>
-  
-<View style = {styles.item}>
-
-<View style = {styles.top}> 
-  <View style = {styles.left}>
-     <Text style = {styles.boxes}>{quantityPerBox}</Text>   
-     <Feather name="box" size={26} color="black" />
-  </View>
-
-
-<View>
-<Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
-</View>
-
-</View>
-
-<View style = {styles.bottom}>
-<View style = {styles.totalBoxes}>
-     <Text style = {styles.boxes}>{quantity/quantityPerBox}</Text>   
-     <Feather name="box" size={26} color="black" />
-  </View>
-<Text style = {styles.quantity}>quantity : {quantity}</Text>
-<Text style = {styles.reference}>{name}</Text>
-<Text style = {styles.barcode}>{code}</Text>
-
-</View>
-</View>
-   </TouchableOpacity>
-)};
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product, supplier: supplierName, orderId, productId })}>
+        <View style={styles.item}>
+          <View style={styles.top}>
+            <View style={styles.left}>
+              <Text style={styles.boxes}>{quantityPerBox}</Text>
+              <Feather name="box" size={26} color="black" />
+            </View>
+            {/* Add your image and other UI components here */}
+          </View>
+          <View style={styles.bottom}>
+            <Text style={styles.quantity}>quantity : {quantity}</Text>
+            <Text style={styles.reference}>{name}</Text>
+            <Text style={styles.barcode}>{code}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
-
-  
-    {loading && <Text>Loading...</Text>}
-      {error && <Text>Check console for error logs</Text>}
-      {!loading && !error && data && 
-      <FlatList style = {styles.flat}
+      <FlatList
+        style={styles.flat}
         data={closedProducts}
-        //data={null}
-        renderItem={({ item }) => (
-          <OpenOrderQueryItem item={item} />)}
-        //keyExtractor={(item, index) => index}
-        keyExtractor = {(item) => item.id}
-        //style={styles.container}
+        renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
+        keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={styles.column}
-      />}
-      <Pressable style={styles.closeButton}
-        onPress={() =>{navigation.navigate('EdiCertificateApprovalScreen')} }>
+      />
+      <Pressable style={styles.closeButton} onPress={() => navigation.navigate("EdiCertificateApprovalScreen")}>
         <Text style={styles.closeButtonText}>Close Certificate from Open</Text>
       </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -416,3 +348,4 @@ barcode:{
     },
   
 });
+

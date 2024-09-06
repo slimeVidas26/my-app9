@@ -78,7 +78,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = paramData.quantity;
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(200);
 
 
   const InfoProduct = ({initialCountProp , counterProp})=>{
@@ -188,7 +188,6 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
         </Pressable>
   
   
-        {/* <View style = {[styles.tabBg,{backgroundColor: focused ? 'blue' :styles.tabBg.backgroundColor , borderRadius:10}]}> */}
         <TextInput style={[styles.TextCounter, { color: initialCountProp === counterProp ? 'blue' : styles.TextCounter.color }]}
           value={String(counterProp)}
           keyboardType="numeric"
