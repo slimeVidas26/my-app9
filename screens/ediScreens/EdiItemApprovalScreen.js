@@ -78,7 +78,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = paramData.quantity;
-  const [counter, setCounter] = useState(200);
+  const [counter, setCounter] = useState(0);
 
 
   const InfoProduct = ({initialCountProp , counterProp})=>{
@@ -156,6 +156,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
   };
 
   const handleChange = (number) => {
+    
     const newValue = parseInt(number, 10);
     if (!isNaN(newValue) && newValue >= minLimit && newValue <= maxLimit) {
       setCounter(newValue);
@@ -189,7 +190,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
   
   
         <TextInput style={[styles.TextCounter, { color: initialCountProp === counterProp ? 'blue' : styles.TextCounter.color }]}
-          value={String(counterProp)}
+          value={paramData.isOpen === true ? String(counterProp) : String(paramData.quantity)}
           keyboardType="numeric"
           onChangeText={handleChange} />
   

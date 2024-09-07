@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View, FlatList, Pressable, TouchableOpacity, StyleSheet,Dimensions } from "react-native";
+import { Text, View, FlatList, Pressable, TouchableOpacity,Image, StyleSheet,Dimensions } from "react-native";
 import { useQuery } from "@apollo/client";
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
 import { useNavigation } from "@react-navigation/native";
