@@ -1,7 +1,7 @@
 //import { Image } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Pressable,Keyboard, Image,Alert ,  TextInput, TouchableOpacity } from 'react-native';
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { translation } from '../../i18n/supportedLanguages';
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
@@ -13,21 +13,21 @@ import { gql, useMutation } from '@apollo/client';
 
 
 // Define the mutation
-const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
-  mutation UpdateOrderProductStatus($orderId:ID!, $quantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
-    updateOrderProductStatus(orderId: $orderId , quantity: $quantity ,  productId: $productId, isOpen: $isOpen) {
-      id
-      products {
-        product {
-          id
-          quantity
-          isOpen
-        }
+ const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
+   mutation UpdateOrderProductStatus($orderId:ID!, $quantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
+     updateOrderProductStatus(orderId: $orderId , quantity: $quantity ,  productId: $productId, isOpen: $isOpen) {
+       id
+       products {
+         product {
+           id
+           quantity
+           isOpen
+         }
         
-      }
-    }
-  }
-`;
+       }
+     }
+   }
+ `;
 
 
 
@@ -60,12 +60,12 @@ console.log("productId from ediItemApprovalScreen ", productId)
 console.log("quantity from ediItemApprovalScreen ", quantity)
 
 
-  // Use the useMutation hook
+  //Use the useMutation hook
   const [updateOrderProductStatus, { data, loading, error }] = useMutation(UPDATE_ORDER_PRODUCT_STATUS_MUTATION);
 
   const handleUpdateStatus = async () => {
     try {
-      const response = await updateOrderProductStatus({ variables: { orderId , quantity : counter , productId, isOpen: false } });
+      const response = await updateOrderProductStatus({ variables: { orderId , quantity , productId, isOpen: false } });
       console.log('Order product status updated:', response.data.updateOrderProductStatus);
       
 
@@ -79,6 +79,12 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = paramData.quantity;
   const [counter, setCounter] = useState(0);
+  // const [isOpen, setIsOpen] = useState(true);
+
+
+ 
+  
+
 
 
   const InfoProduct = ({initialCountProp , counterProp})=>{
@@ -147,6 +153,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
     if (counterProp < maxLimit) {
       setCounter(counterProp + 1);
       changeColor('plus');
+      console.log("counter" , counterProp)
     }
   };
 
@@ -160,6 +167,9 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
     const newValue = parseInt(number, 10);
     if (!isNaN(newValue) && newValue >= minLimit && newValue <= maxLimit) {
       setCounter(newValue);
+      console.log("counter" , counter)
+
+      
     }
       else {
        Alert.alert('Invalid input', `Enter a number between ${minLimit} and ${maxLimit}`);
@@ -190,7 +200,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
   
   
         <TextInput style={[styles.TextCounter, { color: initialCountProp === counterProp ? 'blue' : styles.TextCounter.color }]}
-          value={paramData.isOpen === true ? String(counterProp) : String(paramData.quantity)}
+          value={ paramData.isOpen===true ? String(counterProp):String(counter)}
           keyboardType="numeric"
           onChangeText={handleChange} />
   
@@ -220,13 +230,37 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
 
   const ApproveButtons = ()=>{
 
-    const handleClosePopup = () => {
-      setModalOpen(false);
+    const [isOpen, setIsOpen] = useState(true);
+
+    // Effect to handle navigation after state change
+    useEffect(() => {
+      console.log("isOpen changed:", isOpen); // Logs whenever isOpen changes
+        if (!isOpen) {
+            console.log("isOpen is now ",isOpen);
+            handleUpdateStatus()
+            navigation.navigate('EdiOrderDetailsScreenOpen');
+        }
+    }, [isOpen]); // Dependency array to run the effect when isOpen changes
+
+    const handleIsOpen = () => {
+        // Set isOpen to false
+        setIsOpen(false);  // State will be updated to false
+        
+        // The console log may still show the old state due to React's async state update
+        console.log("Setting isOpen to false", isOpen); 
     };
+
+    // const handleIsOpen = () => {
+    //   // Set isOpen to true only if it is currently false
+    //   if (isOpen===true) {
+    //     setIsOpen(false);
+    //   }
+    //   console.log("isOpen", isOpen);
+    // };
     return(
       <View style={styles.approve} >
       {/* <Pressable onPress={() =>{handleUpdateStatus; navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading}> */}
-      <Pressable onPress={() => { handleUpdateStatus(); navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading} >
+      <Pressable onPress={handleIsOpen} style={styles.nextButton} disabled={loading} >
 
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>

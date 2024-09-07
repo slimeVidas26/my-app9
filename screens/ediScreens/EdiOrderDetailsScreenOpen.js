@@ -40,7 +40,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   }
 
   const OpenOrderQueryItem = ({ item }) => {
-    const { quantity, code, name, quantityPerBox } = item.product;
+    const { quantity, code, name, quantityPerBox  , isOpen} = item.product;
     const supplierName = data.order.supplier.name;
     const orderId = data.order.id;
     const productId = item.product.id;
