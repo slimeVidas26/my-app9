@@ -59,7 +59,9 @@ export const typeDefs = gql`
     category:String
     picture:String
     price: Float
-    quantity:Int!
+    quantityBefore:Int!
+    quantityAfter: Int!
+
     inStock:Float
     quantityPerBox:Int!
     supplier: Supplier!
@@ -73,7 +75,9 @@ export const typeDefs = gql`
 
   input OrderProductInput {
     
-    quantity: Int!
+    quantityBefore: Int!
+    quantityAfter: Int!
+
     boxes:Float
     isOpen: Boolean
   }
@@ -81,7 +85,9 @@ export const typeDefs = gql`
   type OrderProduct {
     productId: ID!
     product: Product
-    quantity: Int!
+    quantityBefore: Int!
+    quantityAfter: Int!
+
     totalBoxes: Int
     isOpen: Boolean
   }

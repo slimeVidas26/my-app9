@@ -644,12 +644,14 @@ export const resolvers = {
         const populatedProducts = await Promise.all(order.products.map(async (op) => {
           console.log("op", op)
           const product = await Product.findById(op.product);
-          product.quantity = op.quantity
+          product.quantityBefore = op.quantityBefore
+          //product.quantityAfter= op.quantity
+
           product.isOpen = op.isOpen
 
           
 
-          return { product, quantity: op.quantity, boxes: op.boxes  };
+          return { product, quantityBefore: op.quantityBefore , boxes: op.boxes  };
         }));
         return populatedProducts;
       }

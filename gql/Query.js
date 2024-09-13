@@ -188,9 +188,9 @@ query EdiOrdersQuery {
         reference
         products {
           product {
-            name
-            code
-            quantity
+            
+            quantityBefore
+           
             isOpen
         }
       }

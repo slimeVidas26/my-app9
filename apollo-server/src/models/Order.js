@@ -3,7 +3,9 @@ const { Schema } = mongoose;
 
 const orderProductSchema = new Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-  quantity: { type: Number, required: true },
+  quantityBefore: { type: Number, required: true },
+  quantityAfter: { type: Number, required: false ,default: 0},
+
   quantityPerBox: { type: Number, required: false },
   isOpen: { type: Boolean, default: true }
 
