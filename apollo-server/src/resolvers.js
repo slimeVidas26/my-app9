@@ -220,7 +220,7 @@ export const resolvers = {
 
   Mutation: {
 
-    updateOrderProductStatus: async (_, { orderId , quantity ,  productId, isOpen }) => {
+    updateOrderProductStatus: async (_, { orderId , quantityAfter ,  productId, isOpen }) => {
       try {
         const order = await Order.findById(orderId);
         if (!order) {
@@ -644,10 +644,12 @@ export const resolvers = {
         const populatedProducts = await Promise.all(order.products.map(async (op) => {
           console.log("op", op)
           const product = await Product.findById(op.product);
-          product.quantityBefore = op.quantityBefore
-          //product.quantityAfter= op.quantity
+          console.log("product before", product)
 
-          product.isOpen = op.isOpen
+          product.quantityBefore = op.quantityBefore
+          product.quantityAfter= op.quantityAfter
+          // product.isOpen = op.isOpen
+          console.log("product after", product)
 
           
 

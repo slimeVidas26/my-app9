@@ -188,11 +188,13 @@ query EdiOrdersQuery {
         reference
         products {
           product {
-            
-            quantityBefore
+            name
+            code
            
-            isOpen
         }
+            quantityBefore
+            quantityAfter
+            isOpen
       }
     }
 }`

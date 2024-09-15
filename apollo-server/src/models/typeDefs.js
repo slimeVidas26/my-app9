@@ -29,7 +29,7 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addProduct(name: String!,code:Int! price:Float, inStock:Float,quantity:Int!, quantityPerBox:Int! , supplierId:ID!): Product
+    addProduct(name: String!,code:Int! price:Float, inStock:Float, quantityPerBox:Int! , supplierId:ID!): Product
     addSupplier(name: String!,number:Int! address: String, phone: String, email: String): Supplier
     addOrder(supplierId: ID!,edi:Int,reference:Int!, products: [OrderProductInput]!,date:Date, totalQuantity: Float): Order
     addWarehouse(title:String!): Warehouse!
@@ -37,7 +37,7 @@ export const typeDefs = gql`
     addDepartment(title:String!): Department!
     addRedstamp(title:String!): Redstamp!
     addItemReason(title:String!): ItemReason!
-    updateOrderProductStatus(orderId: ID!,quantity:Int!, productId: ID!, isOpen: Boolean!): Order  # New mutation to update product status
+    updateOrderProductStatus(orderId: ID!,quantityAfter:Int!, productId: ID!, isOpen: Boolean!): Order  # New mutation to update product status
 
   }
   
@@ -59,35 +59,25 @@ export const typeDefs = gql`
     category:String
     picture:String
     price: Float
-    quantityBefore:Int!
-    quantityAfter: Int!
-
     inStock:Float
     quantityPerBox:Int!
     supplier: Supplier!
-    isOpen:Boolean
     
-
-    
-
   }
 
 
   input OrderProductInput {
-    
+    productId: ID!
     quantityBefore: Int!
-    quantityAfter: Int!
-
+    quantityAfter: Int
     boxes:Float
     isOpen: Boolean
   }
 
   type OrderProduct {
-    productId: ID!
     product: Product
     quantityBefore: Int!
-    quantityAfter: Int!
-
+    quantityAfter: Int
     totalBoxes: Int
     isOpen: Boolean
   }
