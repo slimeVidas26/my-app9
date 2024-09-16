@@ -640,6 +640,8 @@ export const resolvers = {
     },
 
     products: async (order) => {
+      console.log("order", order)
+
       try {
         const populatedProducts = await Promise.all(order.products.map(async (op) => {
           console.log("op", op)
@@ -648,7 +650,7 @@ export const resolvers = {
 
           product.quantityBefore = op.quantityBefore
           product.quantityAfter= op.quantityAfter
-          // product.isOpen = op.isOpen
+           product.isOpen = op.isOpen
           console.log("product after", product)
 
           
