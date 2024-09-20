@@ -9,8 +9,6 @@ const orderProductSchema = new Schema({
   // quantityPerBox: { type: Number, required: false },
   isOpen: { type: Boolean, default: true }
 
-
-
 });
 
 const orderSchema = new Schema({

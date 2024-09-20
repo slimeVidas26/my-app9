@@ -40,10 +40,7 @@ export const typeDefs = gql`
 
     addSupplier(name: String!,
                 number:Int!,
-                address: String, 
-                phone: String, 
-                email: String,
-                
+                extraData: [SupplierExtraDataInput]!
                 ): Supplier
 
     addOrder(supplierId: ID!,
@@ -66,10 +63,50 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     number:Int!
+    extraData: [SupplierExtraData]!
+    products:[Product]!
+  }
+
+  type SupplierExtraData {
+    supplier: Supplier
     address: String
     phone: String
     email: String
-    products:[Product]!
+  }
+
+  input SupplierExtraDataInput {
+    # supplierId: ID!
+    address: String
+    phone: String
+    email: String
+  }
+
+  type Order {
+    id: ID!
+    edi:Int
+    reference:Int!
+    supplier: Supplier!
+    products: [OrderProduct]!
+    date: Date!
+    totalQuantity: Float!
+    totalBoxes: Int
+  
+  }
+
+  type OrderProduct {
+    product: Product
+    quantityBefore: Int!
+    quantityAfter: Int
+    totalBoxes: Int
+    isOpen: Boolean
+  }
+
+  input OrderProductInput {
+    productId: ID!
+    quantityBefore: Int!
+    quantityAfter: Int
+    boxes:Float
+    isOpen: Boolean
   }
 
   type Product {
@@ -86,33 +123,6 @@ export const typeDefs = gql`
   }
 
 
-  input OrderProductInput {
-    productId: ID!
-    quantityBefore: Int!
-    quantityAfter: Int
-    boxes:Float
-    isOpen: Boolean
-  }
-
-  type OrderProduct {
-    product: Product
-    quantityBefore: Int!
-    quantityAfter: Int
-    totalBoxes: Int
-    isOpen: Boolean
-  }
-
-  type Order {
-    id: ID!
-    edi:Int
-    reference:Int!
-    supplier: Supplier!
-    products: [OrderProduct]!
-    date: Date!
-    totalQuantity: Float!
-    totalBoxes: Int
-  
-  }
 
   type Warehouse {
         id: ID

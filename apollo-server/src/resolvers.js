@@ -251,7 +251,7 @@ export const resolvers = {
     },
 
 
-    addSupplier: async (_, { name, number, address, phone, email, products }) => {
+    addSupplier: async (_, { name, number, extraData, products }) => {
       try {
         // Check if supplier with the given  name or number already exists
         const existingSupplier = await Supplier.findOne({
@@ -263,10 +263,18 @@ export const resolvers = {
         })
 
         if (!existingSupplier) {
-          const supplier = new Supplier({ name, number, address, phone, email, products });
-          await supplier.save();
-          console.log('supplier added success', supplier)
-          return supplier;
+          const newSupplier = new Supplier({
+            name,
+            number,
+            extraData,
+            products
+          });
+    
+          await newSupplier.save();
+          console.log('Supplier added successfully:', newSupplier);
+    
+          return newSupplier;
+
         }
         else {
           console.log(`supplier ${existingSupplier.name} with number ${existingSupplier.number}  already exists`)
