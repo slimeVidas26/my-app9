@@ -29,11 +29,31 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addProduct(name: String!,code:Int! price:Float, inStock:Float, quantityPerBox:Int! , supplierId:ID!): Product
-    addSupplier(name: String!,number:Int! address: String, phone: String, email: String): Supplier
-    addOrder(supplierId: ID!,edi:Int,reference:Int!, products: [OrderProductInput]!,date:Date, totalQuantity: Float): Order
-    addWarehouse(title:String!): Warehouse!
+    addProduct(name: String!,
+               code:Int! ,
+               category:String
+               picture:String ,
+               price:Float,
+               inStock:Float,
+               quantityPerBox:Int! , 
+               supplierId:ID!): Product
 
+    addSupplier(name: String!,
+                number:Int!,
+                address: String, 
+                phone: String, 
+                email: String,
+                
+                ): Supplier
+
+    addOrder(supplierId: ID!,
+             edi:Int,
+             reference:Int!, 
+             products: [OrderProductInput]!,
+             date:Date, 
+             totalQuantity: Float): Order
+
+    addWarehouse(title:String!): Warehouse!
     addDepartment(title:String!): Department!
     addRedstamp(title:String!): Redstamp!
     addItemReason(title:String!): ItemReason!

@@ -146,7 +146,7 @@ export const resolvers = {
     departments: async () => {
       try {
         const departments = await Department.find();
-        console.log('listing departments', departments);
+        console.log('listing departments', departments); 
         return departments
 
       } catch (error) {
