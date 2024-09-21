@@ -40,7 +40,7 @@ export const typeDefs = gql`
 
     addSupplier(name: String!,
                 number:Int!,
-                extraData: [SupplierExtraDataInput]!
+                supplierDetails: [SupplierDetailsInput]!
                 ): Supplier
 
     addOrder(supplierId: ID!,
@@ -63,18 +63,18 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     number:Int!
-    extraData: [SupplierExtraData]!
+    supplierDetails: [SupplierDetails]!
     products:[Product]!
   }
 
-  type SupplierExtraData {
-    supplier: Supplier
+  type SupplierDetails {
+    # supplier: Supplier
     address: String
     phone: String
     email: String
   }
 
-  input SupplierExtraDataInput {
+  input SupplierDetailsInput {
     # supplierId: ID!
     address: String
     phone: String

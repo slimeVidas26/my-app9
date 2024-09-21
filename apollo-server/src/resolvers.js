@@ -251,7 +251,7 @@ export const resolvers = {
     },
 
 
-    addSupplier: async (_, { name, number, extraData, products }) => {
+    addSupplier: async (_, { name, number, supplierDetails, products }) => {
       try {
         // Check if supplier with the given  name or number already exists
         const existingSupplier = await Supplier.findOne({
@@ -266,7 +266,7 @@ export const resolvers = {
           const newSupplier = new Supplier({
             name,
             number,
-            extraData,
+            supplierDetails,
             products
           });
     
@@ -301,7 +301,7 @@ export const resolvers = {
             throw new Error('Supplier not found');
           }
 
-          supplier.products.push(product._id);
+          supplier.products.push(product);
           await supplier.save();
           console.log('product added success', product)
           return product;
@@ -599,6 +599,7 @@ export const resolvers = {
       try {
         const product = await Product.find({ supplier: supplier.id })
         console.log("product from Supplier", product)
+        //supplier.products.push(product)
         return product;
       } catch (error) {
         console.error('Error finding product:', error);
