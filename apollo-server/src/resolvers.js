@@ -435,25 +435,25 @@ export const resolvers = {
 
             
           let totalBoxes = 0;
-          for (const { productId, quantity } of products) {
-            console.log(`Processing product with ID: ${productId}, quantity: ${quantity}`);
+          for (const { productId, quantityBefore } of products) {
+            console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
             const product = await Product.findById(productId);
             if (product) {
               console.log(`Found product: ${product}`);
               // Add isOpen property to the product
                product.isOpen = true;
-              const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+              const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
               totalBoxes += numberOfBoxes;
             } else {
               throw new Error(`Product with ID ${productId} not found`);
             }
           }
     
-          const totalQuantity = products.reduce((sum, p) => sum + p.quantity, 0);
+          const totalQuantity = products.reduce((sum, p) => sum + p.quantityBefore, 0);
     
           const orderProducts = products.map(p => ({
             product: p.productId,
-            quantity: p.quantity,
+            quantityBefore: p.quantityBefore,
             quantityPerBox: p.quantityPerBox,
             isOpen: true // Ensure the isOpen property is added to each product in the order
           }));
@@ -475,30 +475,30 @@ export const resolvers = {
           return newOrder;
         } else {
           let totalBoxes = 0;
-          for (const { productId, quantity } of products) {
-            console.log(`Processing product with ID: ${productId}, quantity: ${quantity}`);
+          for (const { productId, quantityBefore } of products) {
+            console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
             const existingProductIndex = existingOrder.products.findIndex(p => p.product && p.product.toString() === productId);
     
             if (existingProductIndex > -1) {
-              existingOrder.products[existingProductIndex].quantity += quantity;
+              existingOrder.products[existingProductIndex].quantityBefore += quantityBefore;
     
               const product = await Product.findById(productId);
               if (product) {
                 product.isOpen = true;
                 console.log(`Found product: ${product}`);
-                const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantity / product.quantityPerBox);
+                const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantityBefore / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
               } else {
                 throw new Error(`Product with ID ${productId} not found`);
               }
             } else {
-              existingOrder.products.push({ product: productId, quantity });
+              existingOrder.products.push({ product: productId, quantityBefore });
     
               const product = await Product.findById(productId);
               if (product) {
                 console.log(`Found product: ${product}`);
                 product.isOpen = true; // Add isOpen property to the product
-                const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
+                const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
               } else {
                 throw new Error(`Product with ID ${productId} not found`);
@@ -506,7 +506,7 @@ export const resolvers = {
             }
           }
     
-          existingOrder.totalQuantity = existingOrder.products.reduce((sum, p) => sum + p.quantity, 0);
+          existingOrder.totalQuantity = existingOrder.products.reduce((sum, p) => sum + p.quantityBefore, 0);
           existingOrder.totalBoxes = totalBoxes;
     
           const updatedOrder = await existingOrder.save();
@@ -599,7 +599,8 @@ export const resolvers = {
       try {
         const product = await Product.find({ supplier: supplier.id })
         console.log("product from Supplier", product)
-        //supplier.products.push(product)
+        
+        // supplier.products.push(product)
         return product;
       } catch (error) {
         console.error('Error finding product:', error);

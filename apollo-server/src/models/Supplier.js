@@ -8,22 +8,24 @@ const supplierDetailsSchema = new Schema({
   email: { type: String, required: true },
 });
 
-const productSchema = new Schema({
-  name: { type: String, required: false },
-  price: { type: Number, required: false },
-  code: { type: Number, required: false },
-  category: { type: String, required: false },
-  inStock: { type: Number, required: false },
-  quantityPerBox: { type: Number, required: false },
-  supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: false }
-});
+// const productSchema = new Schema({
+//   name: { type: String, required: false },
+//   price: { type: Number, required: false },
+//   code: { type: Number, required: false },
+//   category: { type: String, required: false },
+//   inStock: { type: Number, required: false },
+//   quantityPerBox: { type: Number, required: false },
+//   supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: false }
+// });
 
 
 const supplierSchema = new Schema({
   name: { type: String, required: true },
   number: { type: Number, required: true },
   supplierDetails: [supplierDetailsSchema],
-  products: [productSchema]
+  // products: [productSchema]
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }]
+
 });
 
 

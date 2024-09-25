@@ -18,6 +18,8 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
     variables: { orderId: paramData.id },
   });
 
+  console.log("data from OpenOrderQuery" , data)
+
   const navigation = useNavigation();
 
   // Extract open products and their count

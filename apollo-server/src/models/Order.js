@@ -15,10 +15,10 @@ const orderSchema = new Schema({
   supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true },
   edi: { type: Number, required: false, default: 100 },
   reference: { type: Number, required: true },
-  products: [orderProductSchema],
   date: { type: Date, default: Date.now },
   totalQuantity: { type: Number, default: 0 },
-  totalBoxes: { type: Number, default: 0 }
+  totalBoxes: { type: Number, default: 0 },
+  products: [orderProductSchema],
 
 });
 

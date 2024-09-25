@@ -21,6 +21,7 @@ const EdiStackNavigator = () => {
 
   const route = useRoute();
   console.log(route.name);
+
   return (
     <Stack.Navigator screenOptions={{
       headerShown: true
