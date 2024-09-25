@@ -129,17 +129,14 @@ query OrderQuery($orderId: ID!)  {
      }
      totalBoxes
      totalQuantity
+     date
      products {
        product {
         id
          name
          code
-         picture
          quantityPerBox
-         quantity
-         isOpen
-         
-         
+        
        }
      }
     }
