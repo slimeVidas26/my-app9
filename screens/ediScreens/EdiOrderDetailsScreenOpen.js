@@ -19,12 +19,16 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   });
 
   console.log("data from OpenOrderQuery" , data)
+  console.log("data products from OpenOrderQuery" , data)
+
 
   const navigation = useNavigation();
 
   // Extract open products and their count
-  const openProducts = data?.order?.products.filter((prod) => prod.product.isOpen === true) || [];
+  const openProducts = data?.order?.products.filter((prod) => {console.log("prod" , prod);product.isOpen === true}) || [];
   const openProductsLength = openProducts.length;
+
+  console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
 
   useEffect(() => {
     // Pass the openProductsLength to the parent component whenever it changes

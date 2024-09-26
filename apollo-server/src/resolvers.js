@@ -457,6 +457,8 @@ export const resolvers = {
             quantityPerBox: p.quantityPerBox,
             isOpen: true // Ensure the isOpen property is added to each product in the order
           }));
+
+          console.log("orderProducts from addOrder" , orderProducts)
     
           // Create and save the new order with the correct edi field
           const newOrder = new Order({
