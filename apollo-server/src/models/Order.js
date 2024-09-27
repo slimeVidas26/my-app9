@@ -3,11 +3,19 @@ const { Schema } = mongoose;
 
 const orderProductSchema = new Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-  quantityBefore: { type: Number, required: true },
-  // quantityAfter: { type: Number, required: false ,default: 0},
-  quantityAfter: { type: Number, default: function() { return this.quantityBefore; }, required: false },  // Default to quantityBefore if not provided
-  // quantityPerBox: { type: Number, required: false },
-  isOpen: { type: Boolean, default: true }
+  
+  initialQuantity: {
+    type: Number,
+    required: true,
+  },
+  finalQuantity: {
+    type: Number,
+  },
+  isOpen: {
+    type: Boolean,
+    default: true, // Setting the order as open by default
+  }
+  
 
 });
 
@@ -18,7 +26,7 @@ const orderSchema = new Schema({
   date: { type: Date, default: Date.now },
   totalQuantity: { type: Number, default: 0 },
   totalBoxes: { type: Number, default: 0 },
-  products: [orderProductSchema],
+  orderProducts: [orderProductSchema],
 
 });
 

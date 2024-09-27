@@ -49,7 +49,7 @@ export const typeDefs = gql`
              reference:Int!, 
              date:Date, 
              totalQuantity: Float
-             products: [OrderProductInput]!,): Order
+             orderProducts: [OrderProductInput]!,): Order
 
     addWarehouse(title:String!): Warehouse!
     addDepartment(title:String!): Department!
@@ -66,6 +66,7 @@ export const typeDefs = gql`
     number:Int!
     supplierDetails: [SupplierDetails]!
     products:[Product]
+    orders: [Order]
   }
 
   type SupplierDetails {
@@ -87,7 +88,7 @@ export const typeDefs = gql`
     edi:Int
     reference:Int!
     supplier: Supplier!
-    products: [OrderProduct]!
+    orderProducts: [OrderProduct]!
     date: Date!
     totalQuantity: Float!
     totalBoxes: Int
@@ -96,18 +97,18 @@ export const typeDefs = gql`
 
   type OrderProduct {
     product: Product
-    quantityBefore: Int!
-    quantityAfter: Int
+    initialQuantity: Int
+    finalQuantity: Int
+    isOpen: Boolean
     totalBoxes: Int
-    isOpen: Boolean!
   }
 
   input OrderProductInput {
     productId: ID!
-    quantityBefore: Int!
+    initialQuantity: Int!
     quantityAfter: Int
     boxes:Float
-    isOpen: Boolean
+    # isOpen: Boolean
   }
 
   type Product {

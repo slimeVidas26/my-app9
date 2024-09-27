@@ -24,8 +24,11 @@ const supplierSchema = new Schema({
   number: { type: Number, required: true },
   supplierDetails: [supplierDetailsSchema],
   // products: [productSchema]
-  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }]
-
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }],
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order',
+  }],
 });
 
 

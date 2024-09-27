@@ -415,111 +415,133 @@ export const resolvers = {
     //   }
     // },
 
-    addOrder: async (_, { supplierId, edi, reference, date, productId, orderId, products, totalQuantity }) => {
-      try {
-        console.log('Checking for Order with reference:', reference);
+    // addOrder: async (_, { supplierId, edi, reference, date, productId, orderId, products, totalQuantity }) => {
+    //   try {
+    //     console.log('Checking for Order with reference:', reference);
     
-        if (!Array.isArray(products) || products.length === 0) {
-          throw new Error('Products should be a non-empty array');
-        }
+    //     if (!Array.isArray(products) || products.length === 0) {
+    //       throw new Error('Products should be a non-empty array');
+    //     }
     
-        // Check if an order with the given reference already exists
-        const existingOrder = await Order.findOne({ reference });
-        console.log('Existing Order:', existingOrder);
+    //     // Check if an order with the given reference already exists
+    //     const existingOrder = await Order.findOne({ reference });
+    //     console.log('Existing Order:', existingOrder);
     
-        if (!existingOrder) {
-          // Find the order with the highest EDI value and increment it
-          const highestOrder = await Order.findOne().sort({ edi: -1 }).exec();
-          const newEdi = highestOrder ? highestOrder.edi + 1 : 1;
-          console.log('New edi:', newEdi);
+    //     if (!existingOrder) {
+    //       // Find the order with the highest EDI value and increment it
+    //       const highestOrder = await Order.findOne().sort({ edi: -1 }).exec();
+    //       const newEdi = highestOrder ? highestOrder.edi + 1 : 1;
+    //       console.log('New edi:', newEdi);
 
             
-          let totalBoxes = 0;
-          for (const { productId, quantityBefore } of products) {
-            console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
-            const product = await Product.findById(productId);
-            if (product) {
-              console.log(`Found product: ${product}`);
-              // Add isOpen property to the product
-               product.isOpen = true;
-              const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
-              totalBoxes += numberOfBoxes;
-            } else {
-              throw new Error(`Product with ID ${productId} not found`);
-            }
-          }
+    //       let totalBoxes = 0;
+    //       for (const { productId, quantityBefore } of products) {
+    //         console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
+    //         const product = await Product.findById(productId);
+    //         if (product) {
+    //           console.log(`Found product: ${product}`);
+    //           // Add isOpen property to the product
+    //            product.isOpen = true;
+    //           const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
+    //           totalBoxes += numberOfBoxes;
+    //         } else {
+    //           throw new Error(`Product with ID ${productId} not found`);
+    //         }
+    //       }
     
-          const totalQuantity = products.reduce((sum, p) => sum + p.quantityBefore, 0);
+    //       const totalQuantity = products.reduce((sum, p) => sum + p.quantityBefore, 0);
     
-          const orderProducts = products.map(p => ({
-            product: p.productId,
-            quantityBefore: p.quantityBefore,
-            quantityPerBox: p.quantityPerBox,
-            isOpen: true // Ensure the isOpen property is added to each product in the order
-          }));
+    //       const orderProducts = products.map(p => ({
+    //         product: p.productId,
+    //         quantityBefore: p.quantityBefore,
+    //         quantityPerBox: p.quantityPerBox,
+    //         isOpen: true // Ensure the isOpen property is added to each product in the order
+    //       }));
 
-          console.log("orderProducts from addOrder" , orderProducts)
+    //       console.log("orderProducts from addOrder" , orderProducts)
     
-          // Create and save the new order with the correct edi field
-          const newOrder = new Order({
-            supplier: supplierId,
-            products: orderProducts,
-            reference,
-            edi: newEdi, // Ensure the correct field is assigned
-            date,
-            totalQuantity,
-            totalBoxes
-          });
+    //       // Create and save the new order with the correct edi field
+    //       const newOrder = new Order({
+    //         supplier: supplierId,
+    //         products: orderProducts,
+    //         reference,
+    //         edi: newEdi, // Ensure the correct field is assigned
+    //         date,
+    //         totalQuantity,
+    //         totalBoxes
+    //       });
     
-          await newOrder.save();
-          console.log('Order added successfully:', newOrder);
+    //       await newOrder.save();
+    //       console.log('Order added successfully:', newOrder);
     
-          return newOrder;
-        } else {
-          let totalBoxes = 0;
-          for (const { productId, quantityBefore } of products) {
-            console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
-            const existingProductIndex = existingOrder.products.findIndex(p => p.product && p.product.toString() === productId);
+    //       return newOrder;
+    //     } else {
+    //       let totalBoxes = 0;
+    //       for (const { productId, quantityBefore } of products) {
+    //         console.log(`Processing product with ID: ${productId}, quantity: ${quantityBefore}`);
+    //         const existingProductIndex = existingOrder.products.findIndex(p => p.product && p.product.toString() === productId);
     
-            if (existingProductIndex > -1) {
-              existingOrder.products[existingProductIndex].quantityBefore += quantityBefore;
+    //         if (existingProductIndex > -1) {
+    //           existingOrder.products[existingProductIndex].quantityBefore += quantityBefore;
     
-              const product = await Product.findById(productId);
-              if (product) {
-                product.isOpen = true;
-                console.log(`Found product: ${product}`);
-                const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantityBefore / product.quantityPerBox);
-                totalBoxes += numberOfBoxes;
-              } else {
-                throw new Error(`Product with ID ${productId} not found`);
-              }
-            } else {
-              existingOrder.products.push({ product: productId, quantityBefore });
+    //           const product = await Product.findById(productId);
+    //           if (product) {
+    //             product.isOpen = true;
+    //             console.log(`Found product: ${product}`);
+    //             const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantityBefore / product.quantityPerBox);
+    //             totalBoxes += numberOfBoxes;
+    //           } else {
+    //             throw new Error(`Product with ID ${productId} not found`);
+    //           }
+    //         } else {
+    //           existingOrder.products.push({ product: productId, quantityBefore });
     
-              const product = await Product.findById(productId);
-              if (product) {
-                console.log(`Found product: ${product}`);
-                product.isOpen = true; // Add isOpen property to the product
-                const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
-                totalBoxes += numberOfBoxes;
-              } else {
-                throw new Error(`Product with ID ${productId} not found`);
-              }
-            }
-          }
+    //           const product = await Product.findById(productId);
+    //           if (product) {
+    //             console.log(`Found product: ${product}`);
+    //             product.isOpen = true; // Add isOpen property to the product
+    //             const numberOfBoxes = Math.ceil(quantityBefore / product.quantityPerBox);
+    //             totalBoxes += numberOfBoxes;
+    //           } else {
+    //             throw new Error(`Product with ID ${productId} not found`);
+    //           }
+    //         }
+    //       }
     
-          existingOrder.totalQuantity = existingOrder.products.reduce((sum, p) => sum + p.quantityBefore, 0);
-          existingOrder.totalBoxes = totalBoxes;
+    //       existingOrder.totalQuantity = existingOrder.products.reduce((sum, p) => sum + p.quantityBefore, 0);
+    //       existingOrder.totalBoxes = totalBoxes;
     
-          const updatedOrder = await existingOrder.save();
-          console.log('Order updated successfully:', updatedOrder);
+    //       const updatedOrder = await existingOrder.save();
+    //       console.log('Order updated successfully:', updatedOrder);
     
-          return updatedOrder;
-        }
-      } catch (error) {
-        console.error('Error adding order:', error);
-        throw error;
-      }
+    //       return updatedOrder;
+    //     }
+    //   } catch (error) {
+    //     console.error('Error adding order:', error);
+    //     throw error;
+    //   }
+    // },
+    addOrder: async (_, { supplierId, orderProducts , reference }) => {
+      const supplier = await Supplier.findById(supplierId);
+      if (!supplier) throw new Error('Supplier not found');
+
+      const newOrderProducts = await Promise.all(orderProducts.map(async op => {
+        const product = await Product.findById(op.productId);
+        if (!product) throw new Error('Product not found');
+        return { 
+          product, 
+          initialQuantity: op.initialQuantity,  // Use initialQuantity
+          isOpen: true  // Set default to open
+        };
+      }));
+
+      const order = new Order({ supplier,reference ,  orderProducts: newOrderProducts });
+      await order.save();
+
+      supplier.orders.push(order);
+      await supplier.save();
+
+      return order;
     },
     
 
@@ -651,23 +673,21 @@ export const resolvers = {
 
     },
 
-    products: async (order) => {
+    orderProducts: async (order) => {
       console.log("order", order)
 
       try {
-        const populatedProducts = await Promise.all(order.products.map(async (op) => {
+        const populatedProducts = await Promise.all(order.orderProducts.map(async (op) => {
           console.log("op", op)
-          const product = await Product.findById(op.product);
-          console.log("product before", product)
+          const orderProduct = await Product.findById(op.product);
 
-          product.quantityBefore = op.quantityBefore
-          product.quantityAfter= op.quantityAfter
-           product.isOpen = op.isOpen
-          console.log("product after", product)
+          orderProduct.quantityBefore = op.quantityBefore
+          orderProduct.quantityAfter= op.quantityAfter
+          orderProduct.isOpen = op.isOpen
 
           
 
-          return { product, quantityBefore: op.quantityBefore , boxes: op.boxes  };
+          return { orderProduct, quantityBefore: op.quantityBefore , boxes: op.boxes  };
         }));
         return populatedProducts;
       }
