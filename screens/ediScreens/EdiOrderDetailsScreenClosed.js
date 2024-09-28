@@ -6,28 +6,36 @@ import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
 
+
+
 const spacing = 5;
 const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
 
-export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthChange }) => {
+export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthChange }) => {
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId: paramData.id },
   });
 
+  console.log("data from OpenOrderQuery" , data)
+  console.log("data products from OpenOrderQuery" , data)
+
+
   const navigation = useNavigation();
 
-  // Extract closed products and their count
-  const closedProducts = data?.order?.products.filter((prod) => prod.product.isOpen === false) || [];
-  const closedProductsLength = closedProducts.length;
+  // Extract open products and their count
+  const openProducts = data?.order?.orderProducts.filter((prod) => {prod.isOpen === true}) || [];
+  const openProductsLength = openProducts.length;
+
+  console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
 
   useEffect(() => {
-    // Pass the closedProductsLength to the parent component whenever it changes
-    if (onClosedProductsLengthChange) {
-      onClosedProductsLengthChange(closedProductsLength);
+    // Pass the openProductsLength to the parent component whenever it changes
+    if (onOpenProductsLengthChange) {
+      onOpenProductsLengthChange(openProductsLength);
     }
-  }, [closedProductsLength, onClosedProductsLengthChange]);
+  }, [openProductsLength, onOpenProductsLengthChange]);
 
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error loading data.</Text>;
@@ -38,7 +46,7 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthC
   }
 
   const OpenOrderQueryItem = ({ item }) => {
-    const { quantity, code, name, quantityPerBox } = item.product;
+    const { quantity, code, name, quantityPerBox  , isOpen} = item.product;
     const supplierName = data.order.supplier.name;
     const orderId = data.order.id;
     const productId = item.product.id;
@@ -69,7 +77,7 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthC
     <View style={styles.container}>
       <FlatList
         style={styles.flat}
-        data={closedProducts}
+        data={openProducts}
         renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
         keyExtractor={(item) => item.id}
         numColumns={2}

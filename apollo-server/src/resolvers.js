@@ -220,7 +220,7 @@ export const resolvers = {
 
   Mutation: {
 
-    updateOrderProductStatus: async (_, { orderId , quantityAfter ,  productId, isOpen }) => {
+    updateOrderProductStatus: async (_, { orderId , finalQuantity ,  productId, isOpen }) => {
       try {
         const order = await Order.findById(orderId);
         if (!order) {
@@ -535,6 +535,8 @@ export const resolvers = {
         };
       }));
 
+      console.log("newOrderProducts",newOrderProducts)
+
       const order = new Order({ supplier,reference ,  orderProducts: newOrderProducts });
       await order.save();
 
@@ -678,17 +680,22 @@ export const resolvers = {
 
       try {
         const populatedProducts = await Promise.all(order.orderProducts.map(async (op) => {
-          console.log("op", op)
+          
           const orderProduct = await Product.findById(op.product);
+           console.log("orderProduct" , orderProduct)
 
-          orderProduct.quantityBefore = op.quantityBefore
-          orderProduct.quantityAfter= op.quantityAfter
+          orderProduct.initialQuantity = op.initialQuantity
+          orderProduct.finalQuantity= op.finalQuantity
+          orderProduct.boxes = op.boxes
           orderProduct.isOpen = op.isOpen
 
-          
 
-          return { orderProduct, quantityBefore: op.quantityBefore , boxes: op.boxes  };
+          console.log("op", op)
+
+          return { orderProduct, initialQuantity: op.initialQuantity , isOpen: op.isOpen  };
         }));
+        console.log("populatedProducts", populatedProducts)
+
         return populatedProducts;
       }
       catch (error) {
