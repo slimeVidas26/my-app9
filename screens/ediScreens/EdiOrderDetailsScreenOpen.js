@@ -19,7 +19,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   });
 
   console.log("data from OpenOrderQuery" , data)
-  console.log("data order orderProducts  from OpenOrderQuery" , data.order.orderProducts)
+  console.log("data order orderProducts  from OpenOrderQuery" , data)
 
 
   const navigation = useNavigation();

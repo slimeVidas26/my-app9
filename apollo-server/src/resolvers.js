@@ -319,104 +319,6 @@ export const resolvers = {
 
     // addOrder: async (_, { supplierId, edi, reference, date, productId, orderId, products, totalQuantity }) => {
     //   try {
-    //     console.log('Checking for  Order with reference:', reference);
-
-    //     if (!Array.isArray(products) || products.length === 0) {
-    //       throw new Error('products should be a non-empty array');
-    //     }
-
-    //     // Check if an order with the given Reference already exists
-    //     const existingOrder = await Order.findOne({ reference });
-    //     console.log('Existing  Order:', existingOrder);
-
-    //     if (!existingOrder) {
-    //       const highestOrder = await Order.findOne().sort({ edi: -1 }).exec();
-    //       const newEdi = highestOrder ? highestOrder.edi + 1 : 1;
-    //       console.log('New edi:', newEdi);
-        
-
-    //       let totalBoxes = 0;
-    //       for (const { productId, quantity } of products) {
-    //         console.log(`Processing product with ID: ${productId}, quantity: ${quantity}`);
-    //         const product = await Product.findById(productId);
-    //         if (product) {
-    //           console.log(`Found product: ${product}`);
-    //           const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
-    //           totalBoxes += numberOfBoxes;
-    //         } else {
-    //           throw new Error(`Product with ID ${productId} not found`);
-    //         }
-    //       }
-
-    //       const totalQuantity = products.reduce((sum, p) => sum + p.quantity, 0);
-
-    //       const orderProducts = products.map(p => ({
-    //         product: p.productId,
-    //         quantity: p.quantity,
-    //         quantityPerBox: p.quantityPerBox
-    //       }));
-
-    //       const newOrder = new Order({
-    //         supplier: supplierId,
-    //         products: orderProducts,
-    //         reference,
-    //         newEdi,
-    //         date,
-    //         totalQuantity,
-    //         totalBoxes
-    //       });
-
-    //       await newOrder.save();
-    //       console.log(' Order added successfully:', newOrder);
-
-    //       return newOrder;
-    //     } else {
-    //       let totalBoxes = 0;
-    //       for (const { productId, quantity } of products) {
-    //         console.log(`Processing product with ID: ${productId}, quantity: ${quantity}`);
-    //         const existingProductIndex = existingOrder.products.findIndex(p => p.product && p.product.toString() === productId);
-
-    //         if (existingProductIndex > -1) {
-    //           existingOrder.products[existingProductIndex].quantity += quantity;
-
-    //           const product = await Product.findById(productId);
-    //           if (product) {
-    //             console.log(`Found product: ${product}`);
-    //             const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].quantity / product.quantityPerBox);
-    //             totalBoxes += numberOfBoxes;
-    //           } else {
-    //             throw new Error(`Product with ID ${productId} not found`);
-    //           }
-    //         } else {
-    //           existingOrder.products.push({ product: productId, quantity });
-
-    //           const product = await Product.findById(productId);
-    //           if (product) {
-    //             console.log(`Found product: ${product}`);
-    //             const numberOfBoxes = Math.ceil(quantity / product.quantityPerBox);
-    //             totalBoxes += numberOfBoxes;
-    //           } else {
-    //             throw new Error(`Product with ID ${productId} not found`);
-    //           }
-    //         }
-    //       }
-
-    //       existingOrder.totalQuantity = existingOrder.products.reduce((sum, p) => sum + p.quantity, 0);
-    //       existingOrder.totalBoxes = totalBoxes;
-
-    //       const updatedOrder = await existingOrder.save();
-    //       console.log(' Order updated successfully:', updatedOrder);
-
-    //       return updatedOrder;
-    //     }
-    //   } catch (error) {
-    //     console.error('Error adding  order:', error);
-    //     throw error;
-    //   }
-    // },
-
-    // addOrder: async (_, { supplierId, edi, reference, date, productId, orderId, products, totalQuantity }) => {
-    //   try {
     //     console.log('Checking for Order with reference:', reference);
     
     //     if (!Array.isArray(products) || products.length === 0) {
@@ -681,18 +583,18 @@ export const resolvers = {
       try {
         const populatedProducts = await Promise.all(order.orderProducts.map(async (op) => {
           
-          const orderProduct = await Product.findById(op.product);
-           console.log("orderProduct" , orderProduct)
+          const product = await Product.findById(op.product);
+           console.log("product" , product)
 
-          orderProduct.initialQuantity = op.initialQuantity
-          orderProduct.finalQuantity= op.finalQuantity
-          orderProduct.boxes = op.boxes
-          orderProduct.isOpen = op.isOpen
+          product.initialQuantity = op.initialQuantity
+          product.finalQuantity= op.finalQuantity
+          product.boxes = op.boxes
+          product.isOpen = op.isOpen
 
 
           console.log("op", op)
 
-          return { orderProduct, initialQuantity: op.initialQuantity , isOpen: op.isOpen  };
+          return { product, initialQuantity: op.initialQuantity , isOpen: op.isOpen  };
         }));
         console.log("populatedProducts", populatedProducts)
 

@@ -127,6 +127,7 @@ query OrderQuery($orderId: ID!)  {
     orderProducts {
       product {
         name
+        code
       }
       isOpen
     }
@@ -168,12 +169,11 @@ query EdiOrdersQuery {
     id
     edi
     orderProducts {
+      isOpen
       product {
         name
+        code
       }
-      initialQuantity
-      isOpen
-      totalBoxes
     }
     supplier {
       name
