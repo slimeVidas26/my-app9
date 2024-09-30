@@ -10,6 +10,7 @@ const productSchema = new Schema({
   category: { type: String, required: false },
   inStock: { type: Number, required: false },
   quantityPerBox: { type: Number, required: true },
+  toto: { type: String, required: false },
   supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true }
 });
 

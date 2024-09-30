@@ -33,7 +33,8 @@ export const typeDefs = gql`
       price: Float,
       inStock: Float,
       quantityPerBox: Int!,
-      supplierId: ID!
+      supplierId: ID!,
+      toto:String
     ): Product
 
     addSupplier(
@@ -122,6 +123,7 @@ export const typeDefs = gql`
     inStock: Float
     quantityPerBox: Int!
     supplier: Supplier!
+    toto:String
   }
 
   input ProductInput {

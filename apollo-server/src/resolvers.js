@@ -251,7 +251,7 @@ export const resolvers = {
     },
 
 
-    addSupplier: async (_, { name, number, supplierDetails, products }) => {
+    addSupplier: async (_, { name, number, supplierDetails, products  , orders}) => {
       try {
         // Check if supplier with the given  name or number already exists
         const existingSupplier = await Supplier.findOne({
@@ -267,7 +267,8 @@ export const resolvers = {
             name,
             number,
             supplierDetails,
-            products
+            products,
+            orders
           });
     
           await newSupplier.save();
@@ -285,7 +286,7 @@ export const resolvers = {
       }
     },
 
-    addProduct: async (_, { name, code, quantityPerBox, supplierId  }) => {
+    addProduct: async (_, { name,  code, quantityPerBox, supplierId  }) => {
       try {
         // Check if product with the given code  already exists
         const existingProduct = await Product.findOne({ code })
@@ -293,6 +294,8 @@ export const resolvers = {
 
         if (!existingProduct) {
           const product = new Product({ name, code, quantityPerBox, supplier: supplierId });
+          product.toto = "toto"
+          console.log("product from addProduct" , product)
           await product.save();
 
           // Find the supplier and update the products array
@@ -423,6 +426,9 @@ export const resolvers = {
     //     throw error;
     //   }
     // },
+
+
+    
     addOrder: async (_, { supplierId, orderProducts , reference }) => {
       const supplier = await Supplier.findById(supplierId);
       if (!supplier) throw new Error('Supplier not found');

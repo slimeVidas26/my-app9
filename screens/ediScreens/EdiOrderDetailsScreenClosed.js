@@ -19,13 +19,13 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthCha
   });
 
   console.log("data from OpenOrderQuery" , data)
-  console.log("data products from OpenOrderQuery" , data)
+  console.log("data order orderProducts  from OpenOrderQuery" , data)
 
 
   const navigation = useNavigation();
 
   // Extract open products and their count
-  const openProducts = data?.order?.orderProducts.filter((prod) => {prod.isOpen === true}) || [];
+  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === false) || [];
   const openProductsLength = openProducts.length;
 
   console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)

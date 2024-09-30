@@ -168,6 +168,10 @@ query EdiOrdersQuery {
   orders {
     id
     edi
+    date
+    reference
+    totalBoxes
+    totalQuantity
     orderProducts {
       isOpen
       product {
