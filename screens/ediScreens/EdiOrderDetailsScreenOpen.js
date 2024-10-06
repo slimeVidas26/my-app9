@@ -27,7 +27,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   const navigation = useNavigation(); 
 
   // Extract open products and their count
-  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === false) || [];
+  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === true) || [];
   const openProductsLength = openProducts.length;
 
   console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
@@ -48,7 +48,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   }
 
   const OpenOrderQueryItem = ({ item }) => {
-    const { code, name, quantityPerBox  , isOpen} = item.product;
+    const { code, name, quantityPerBox  ,inStock  , isOpen} = item.product;
     const supplierName = data.order.supplier.name;
     const orderId = data.order.id;
     const productId = item.product.id;
@@ -57,7 +57,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
     console.log("item" , item)
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product, supplier: supplierName, orderId, productId })}>
+      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product,initialQuantity ,  supplier: supplierName, orderId, productId })}>
         <View style={styles.item}>
           <View style={styles.top}>
             <View style={styles.left}>

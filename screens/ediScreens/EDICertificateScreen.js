@@ -42,7 +42,7 @@ const EDICertificateScreen = () => {
   const navigation = useNavigation()
   const [isModalOpen, setModalOpen] = useState(false);
   const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
-  console.log("data from ediCertificateScreen",data)
+  // console.log("data from ediCertificateScreen",data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 

@@ -128,6 +128,8 @@ query OrderQuery($orderId: ID!)  {
       product {
         name
         code
+        quantityPerBox
+        inStock
       }
       isOpen
       initialQuantity
@@ -174,11 +176,15 @@ query EdiOrdersQuery {
     totalBoxes
     totalQuantity
     orderProducts {
-      isOpen
+     
       product {
         name
         code
+        quantityPerBox
+        inStock
       }
+      isOpen
+      initialQuantity
     }
     supplier {
       name

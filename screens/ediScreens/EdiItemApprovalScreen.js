@@ -51,13 +51,13 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
 
   //console.log("data from ediItemApprovalScreen" , data)
 const route = useRoute();
-console.log("route.params form ediItemApprovalScreen",route.params)
-const { paramData , supplier , orderId  } = route.params || {};
-console.log("paramData from ediItemApprovalScreen ", paramData)
+// console.log("route.params form ediItemApprovalScreen",route.params)
+const { paramData ,initialQuantity ,  supplier , orderId  } = route.params || {};
+ console.log("paramData from ediItemApprovalScreen ", paramData)
 const productId = paramData.id
-const quantity = paramData.quantity
-console.log("productId from ediItemApprovalScreen ", productId)
-console.log("quantity from ediItemApprovalScreen ", quantity)
+//const quantity = paramData.quantity
+// console.log("productId from ediItemApprovalScreen ", productId)
+// console.log("quantity from ediItemApprovalScreen ", quantity)
 
 
   //Use the useMutation hook
@@ -77,7 +77,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
   
 
   const [isModalOpen, setModalOpen] = useState(true);
-  const initialCount = paramData.quantity;
+  const initialCount = initialQuantity;
   const [counter, setCounter] = useState(0);
   // const [isOpen, setIsOpen] = useState(true);
 
@@ -97,19 +97,19 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
               <Text style={styles.productCode}>
                 {paramData.code} </Text>
               <Text style={styles.productQuantityInStock}>
-                Quantity in stock:104</Text>
+                Quantity in stock:{paramData.inStock}</Text>
               <View style={styles.box}>
                 <View style={styles.oneBox}>
-                  <Text style={styles.boxes}>12</Text>
+                  <Text style={styles.boxes}>0</Text>
                   <Feather name="box" size={26} color="black" />
                 </View>
 
                 <View style={styles.oneBox}>
-                  <Text style={styles.boxes}>12</Text>
+                  <Text style={styles.boxes}>{paramData.quantityPerBox}</Text>
                   <Feather name="box" size={26} color="black" />
                 </View>
                 <View style={styles.oneBox}>
-                  <Text style={styles.boxes}>12</Text>
+                  <Text style={styles.boxes}>0</Text>
                   <Feather name="box" size={26} color="black" />
                 </View>
               </View>
@@ -180,7 +180,7 @@ console.log("quantity from ediItemApprovalScreen ", quantity)
       <>
        <TouchableOpacity style={styles.quantityBefore} onPress={handleQuantity}  >
             <Text style={styles.before}>
-              Quantity before:{paramData.quantity}
+              Initial Quantity:{initialQuantity}
             </Text>
           </TouchableOpacity>
      
