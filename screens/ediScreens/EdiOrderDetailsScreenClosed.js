@@ -13,29 +13,29 @@ const width = (Dimensions.get('window').width - 2) / 2;
 const height = (Dimensions.get('window').height)
 
 
-export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthChange }) => {
+export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthChange }) => {
   const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
     variables: { orderId: paramData.id },
   });
 
-  console.log("data from OpenOrderQuery" , data)
-  console.log("data order orderProducts  from OpenOrderQuery" , data)
+  //console.log("data from OpenOrderQuery" , data)
+  //console.log("data order orderProducts  from OpenOrderQuery" , data)
 
 
   const navigation = useNavigation();
 
   // Extract open products and their count
-  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === false) || [];
-  const openProductsLength = openProducts.length;
+  const closedProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === false) || [];
+  const closedProductsLength = closedProducts.length;
 
-  console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
+  //console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
 
   useEffect(() => {
     // Pass the openProductsLength to the parent component whenever it changes
-    if (onOpenProductsLengthChange) {
-      onOpenProductsLengthChange(openProductsLength);
+    if (onClosedProductsLengthChange) {
+      onClosedProductsLengthChange(closedProductsLength);
     }
-  }, [openProductsLength, onOpenProductsLengthChange]);
+  }, [closedProductsLength, onClosedProductsLengthChange]);
 
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error loading data.</Text>;
@@ -45,11 +45,12 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthCha
     return <Text>No order found.</Text>;
   }
 
-  const OpenOrderQueryItem = ({ item }) => {
+  const ClosedOrderQueryItem = ({ item }) => {
     const { quantity, code, name, quantityPerBox  , isOpen} = item.product;
     const supplierName = data.order.supplier.name;
     const orderId = data.order.id;
     const productId = item.product.id;
+    const {initialQuantity} = item;
 
     return (
       <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product, supplier: supplierName, orderId, productId })}>
@@ -64,7 +65,7 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthCha
 </View>
           </View>
           <View style={styles.bottom}>
-            <Text style={styles.quantity}>quantity : {quantity}</Text>
+          <Text style={styles.quantity}>quantity : {initialQuantity}</Text>
             <Text style={styles.reference}>{name}</Text>
             <Text style={styles.barcode}>{code}</Text>
           </View>
@@ -77,8 +78,8 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onOpenProductsLengthCha
     <View style={styles.container}>
       <FlatList
         style={styles.flat}
-        data={openProducts}
-        renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
+        data={closedProducts}
+        renderItem={({ item }) => <ClosedOrderQueryItem item={item} />}
         keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={styles.column}

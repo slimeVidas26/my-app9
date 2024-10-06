@@ -14,15 +14,19 @@ import { gql, useMutation } from '@apollo/client';
 
 // Define the mutation
  const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
-   mutation UpdateOrderProductStatus($orderId:ID!, $quantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
-     updateOrderProductStatus(orderId: $orderId , quantity: $quantity ,  productId: $productId, isOpen: $isOpen) {
+   mutation UpdateOrderProductStatus($orderId:ID!, $finalQuantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
+     updateOrderProductStatus(orderId: $orderId , finalQuantity: $finalQuantity ,  productId: $productId, isOpen: $isOpen) {
        id
-       products {
+       orderProducts {
          product {
            id
-           quantity
-           isOpen
+           name
+           code
+           quantityPerBox
+            inStock
          }
+         isOpen
+         finalQuantity
         
        }
      }
@@ -53,7 +57,7 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
 const route = useRoute();
 // console.log("route.params form ediItemApprovalScreen",route.params)
 const { paramData ,initialQuantity ,  supplier , orderId  } = route.params || {};
- console.log("paramData from ediItemApprovalScreen ", paramData)
+ //console.log("paramData from ediItemApprovalScreen ", paramData)
 const productId = paramData.id
 //const quantity = paramData.quantity
 // console.log("productId from ediItemApprovalScreen ", productId)
@@ -65,12 +69,12 @@ const productId = paramData.id
 
   const handleUpdateStatus = async () => {
     try {
-      const response = await updateOrderProductStatus({ variables: { orderId , quantity , productId, isOpen: false } });
+      const response = await updateOrderProductStatus({ variables: { orderId , finalQuantity : counter , productId, isOpen: false } });
       console.log('Order product status updated:', response.data.updateOrderProductStatus);
       
 
     } catch (err) {
-      console.error('Error updating order product status:', error);
+      console.error('Error updating orderProduct status:', error);
     }
   };
 
@@ -261,7 +265,6 @@ const productId = paramData.id
       <View style={styles.approve} >
       {/* <Pressable onPress={() =>{handleUpdateStatus; navigation.navigate('EdiOrderDetailsScreenOpen')}} style={styles.nextButton} disabled={loading}> */}
       <Pressable onPress={handleIsOpen} style={styles.nextButton} disabled={loading} >
-
         <Text style={styles.approveButtonText}>Next</Text>
       </Pressable>
       <Pressable style={styles.cancelButton}

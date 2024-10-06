@@ -19,7 +19,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
     variables: { orderId: paramData.id },
   });
 
-  console.log("data from OpenOrderQuery" , data)
+  //console.log("data from OpenOrderQuery" , data)
   //.log("data order orderProducts  from OpenOrderQuery" , data.order)
 
 
@@ -30,7 +30,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === true) || [];
   const openProductsLength = openProducts.length;
 
-  console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
+  //console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
 
   useEffect(() => {
     // Pass the openProductsLength to the parent component whenever it changes
@@ -54,7 +54,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
     const productId = item.product.id;
     const {initialQuantity} = item;
 
-    console.log("item" , item)
+    //console.log("item" , item)
 
     return (
       <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product,initialQuantity ,  supplier: supplierName, orderId, productId })}>

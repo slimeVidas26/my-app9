@@ -228,7 +228,7 @@ export const resolvers = {
         }
   
         // Find the specific product in the order
-        const productInOrder = order.products.find(
+        const productInOrder = order.orderProducts.find(
           (p) => p.product.toString() === productId
         );
   
@@ -238,7 +238,7 @@ export const resolvers = {
   
         // Update isOpen status
         productInOrder.isOpen = isOpen;
-        productInOrder.quantity = quantity;
+        productInOrder.finalQuantity = finalQuantity;
   
         const updatedOrder = await order.save(); // Save the updated order
         console.log('Order product status updated successfully:', updatedOrder);
@@ -701,15 +701,15 @@ export const resolvers = {
           const product = await Product.findById(op.product);
            console.log("product" , product)
 
-          product.initialQuantity = op.initialQuantity
-          product.finalQuantity= op.finalQuantity
-          product.boxes = op.boxes
-          product.isOpen = op.isOpen
+          // initialQuantity = op.initialQuantity
+          // finalQuantity= op.finalQuantity
+          // boxes = op.boxes
+          // isOpen = op.isOpen
 
 
           console.log("op", op)
 
-          return { product, initialQuantity: op.initialQuantity , isOpen: op.isOpen  };
+          return { product, initialQuantity: op.initialQuantity ,finalQuantity: op.finalQuantity, isOpen: op.isOpen  };
         }));
         console.log("populatedProducts", populatedProducts)
 
