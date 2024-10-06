@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { OPEN_ORDER_QUERY } from "../../gql/Query";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
+import { initial } from "lodash";
 
 
 
@@ -19,13 +20,14 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   });
 
   console.log("data from OpenOrderQuery" , data)
-  console.log("data order orderProducts  from OpenOrderQuery" , data)
+  //.log("data order orderProducts  from OpenOrderQuery" , data.order)
 
 
-  const navigation = useNavigation();
+
+  const navigation = useNavigation(); 
 
   // Extract open products and their count
-  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === true) || [];
+  const openProducts = data?.order?.orderProducts.filter(prod => prod.isOpen === false) || [];
   const openProductsLength = openProducts.length;
 
   console.log("openProducts from EdiOrderDetailsScreenOpen" , openProducts)
@@ -46,10 +48,13 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
   }
 
   const OpenOrderQueryItem = ({ item }) => {
-    const { quantity, code, name, quantityPerBox  , isOpen} = item.product;
+    const { code, name, quantityPerBox  , isOpen} = item.product;
     const supplierName = data.order.supplier.name;
     const orderId = data.order.id;
     const productId = item.product.id;
+    const {initialQuantity} = item;
+
+    console.log("item" , item)
 
     return (
       <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product, supplier: supplierName, orderId, productId })}>
@@ -64,7 +69,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
 </View>
           </View>
           <View style={styles.bottom}>
-            <Text style={styles.quantity}>quantity : {quantity}</Text>
+            <Text style={styles.quantity}>quantity : {initialQuantity}</Text>
             <Text style={styles.reference}>{name}</Text>
             <Text style={styles.barcode}>{code}</Text>
           </View>

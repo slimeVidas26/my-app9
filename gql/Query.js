@@ -130,6 +130,7 @@ query OrderQuery($orderId: ID!)  {
         code
       }
       isOpen
+      initialQuantity
     }
    
   }
