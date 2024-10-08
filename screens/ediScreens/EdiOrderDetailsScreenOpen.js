@@ -55,8 +55,8 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
     const {initialQuantity,finalQuantity} = item;
 
 
-    console.log("orderId from open" , orderId)
-    console.log("item" , item)
+    //console.log("orderId from open" , orderId)
+    //console.log("item" , item)
 
     return (
       <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product,initialQuantity ,finalQuantity,  supplier: supplierName, orderId, productId })}>

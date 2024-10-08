@@ -19,7 +19,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export const  TabNavigator  = ({route})=>{
     const { paramData} = route.params || {};
-    console.log("paramData from TabNavigator ", paramData)
+    //console.log("paramData from TabNavigator ", paramData)
   //const {data, error, loading} = useQuery(DEPARTMENTS_QUERY);
   // const route = useRoute();
   // const { orderId } = route.params;

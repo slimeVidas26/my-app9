@@ -55,12 +55,12 @@ i18n.locale = 'he';
 
 
 
-export const EdiItemApprovalScreen = ({ navigation }) => {
+export const EdiItemApprovalScreenClosed = ({ navigation }) => {
 
   //console.log("data from ediItemApprovalScreen" , data)
 const route = useRoute();
 // console.log("route.params form ediItemApprovalScreen",route.params)
-const { paramData ,initialQuantity ,  supplier , orderId  } = route.params || {};
+const { paramData ,initialQuantity , finalQuantity ,  supplier , orderId  } = route.params || {};
 //  console.log("paramData from ediItemApprovalScreen ", paramData)
 //  console.log("orderId from ediItemApprovalScreen ", orderId)
 
@@ -89,11 +89,6 @@ const productId = paramData.id
   const initialCount = initialQuantity;
   const [counter, setCounter] = useState(0);
   // const [isOpen, setIsOpen] = useState(true);
-
-
- 
-  
-
 
 
   const InfoProduct = ({initialCount , counter})=>{
@@ -137,7 +132,7 @@ const productId = paramData.id
   }
 
 
-  const Counter = ({initialCount , counter , finalQuantity})=>{
+  const Counter = ({initialCount , counter })=>{
     console.log("initialCount" ,initialCount )
     console.log("counter", counter)
     //console.log("finalQuantity", finalQuantity)
@@ -220,7 +215,7 @@ const productId = paramData.id
   
   
         <TextInput style={[styles.TextCounter, { color: initialCount === counter ? 'blue' : styles.TextCounter.color }]}
-          value={ String(counter)}
+          value={ String(finalQuantity)}
           keyboardType="numeric"
           onChangeText={handleChange} />
   

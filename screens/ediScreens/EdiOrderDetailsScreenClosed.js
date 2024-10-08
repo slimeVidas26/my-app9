@@ -57,7 +57,7 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthC
     console.log("item" , item)
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product,initialQuantity ,finalQuantity,  supplier: supplierName, orderId, productId })}>
+      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreenClosed", { paramData: item.product,initialQuantity ,finalQuantity,  supplier: supplierName, orderId, productId })}>
         <View style={styles.item}>
           <View style={styles.top}>
             <View style={styles.left}>

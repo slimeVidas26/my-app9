@@ -14,13 +14,15 @@ import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCer
 import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
 import { EdiCertificateConfirmationScreen } from '../../../screens/ediScreens/EdiCertificateConfirmationScreen';
 import { EdiItemApprovalScreen } from '../../../screens/ediScreens/EdiItemApprovalScreen';
+import { EdiItemApprovalScreenClosed } from '../../../screens/ediScreens/EdiItemApprovalScreenClosed';
+
 import { TabNavigator } from './TabNavigator';
 
 const Stack = createStackNavigator()
 const EdiStackNavigator = () => {
 
   const route = useRoute();
-  console.log(route.name);
+  console.log("routeName" , route.name);
 
   return (
     <Stack.Navigator screenOptions={{
@@ -33,6 +35,8 @@ const EdiStackNavigator = () => {
      <Stack.Screen name="TabNavigator" component={TabNavigator} />
 
       <Stack.Screen name="EdiItemApprovalScreen" component={EdiItemApprovalScreen} />
+      <Stack.Screen name="EdiItemApprovalScreenClosed" component={EdiItemApprovalScreenClosed} />
+
       <Stack.Screen name="EdiCertificateApprovalScreen" component={EdiCertificateApprovalScreen} />
       <Stack.Screen name="EdiCertificateConfirmationScreen" component={EdiCertificateConfirmationScreen} />
       <Stack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />
