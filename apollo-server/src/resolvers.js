@@ -474,6 +474,7 @@ export const resolvers = {
            orderProducts = orderProducts.map(p => ({
             product: p.productId,
             initialQuantity: p.initialQuantity,
+            finalQuantity:p.finalQuantity,
             quantityPerBox: p.quantityPerBox,
             isOpen: true // Ensure the isOpen property is added to each product in the order
           }));

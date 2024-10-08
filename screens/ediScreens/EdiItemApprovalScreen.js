@@ -15,7 +15,10 @@ import { gql, useMutation } from '@apollo/client';
 // Define the mutation
  const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
    mutation UpdateOrderProductStatus($orderId:ID!, $finalQuantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
-     updateOrderProductStatus(orderId: $orderId , finalQuantity: $finalQuantity ,  productId: $productId, isOpen: $isOpen) {
+     updateOrderProductStatus(orderId: $orderId ,
+                              finalQuantity: $finalQuantity ,
+                              productId: $productId,
+                               isOpen: $isOpen) {
        id
        orderProducts {
          product {
@@ -27,6 +30,7 @@ import { gql, useMutation } from '@apollo/client';
          }
          isOpen
          finalQuantity
+         initialQuantity
         
        }
      }
@@ -57,11 +61,13 @@ export const EdiItemApprovalScreen = ({ navigation }) => {
 const route = useRoute();
 // console.log("route.params form ediItemApprovalScreen",route.params)
 const { paramData ,initialQuantity ,  supplier , orderId  } = route.params || {};
- //console.log("paramData from ediItemApprovalScreen ", paramData)
+ console.log("paramData from ediItemApprovalScreen ", paramData)
+ console.log("orderId from ediItemApprovalScreen ", orderId)
+
 const productId = paramData.id
 //const quantity = paramData.quantity
-// console.log("productId from ediItemApprovalScreen ", productId)
-// console.log("quantity from ediItemApprovalScreen ", quantity)
+ console.log("productId from ediItemApprovalScreen ", productId)
+ console.log("initialQuantity from ediItemApprovalScreen ", initialQuantity)
 
 
   //Use the useMutation hook
@@ -69,7 +75,8 @@ const productId = paramData.id
 
   const handleUpdateStatus = async () => {
     try {
-      const response = await updateOrderProductStatus({ variables: { orderId , finalQuantity : counter , productId, isOpen: false } });
+      const response = await updateOrderProductStatus({ variables: { orderId , finalQuantity : 900 , productId, isOpen:false } });
+      console.log("response" , response)
       console.log('Order product status updated:', response.data.updateOrderProductStatus);
       
 
@@ -248,7 +255,8 @@ const productId = paramData.id
 
     const handleIsOpen = () => {
         // Set isOpen to false
-        setIsOpen(false);  // State will be updated to false
+        setIsOpen(!isOpen);  // State will be updated to false
+        console.log('isOpen from handleIsOpen' , isOpen)
         
         // The console log may still show the old state due to React's async state update
         console.log("Setting isOpen to false", isOpen); 

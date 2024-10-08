@@ -51,7 +51,7 @@ const EDICertificateScreen = () => {
 
  const EDIcertificateItem = ({ item  }) => {
   //const orderId = Object.keys(item)[0].id
-    //onsole.log('orderId' ,orderId )
+    //console.log('orderId' ,orderId )
     //console.log("itemProducts from EDIcertificateItem" , item.products)
     
     return (

@@ -119,6 +119,7 @@ query SupplierQuery($supplierId: ID!) {
 export  const OPEN_ORDER_QUERY = gql`
 query OrderQuery($orderId: ID!)  {
   order(id: $orderId) {
+    id
     edi
     reference
     supplier {
@@ -126,6 +127,7 @@ query OrderQuery($orderId: ID!)  {
     }
     orderProducts {
       product {
+        id
         name
         code
         quantityPerBox
@@ -133,38 +135,14 @@ query OrderQuery($orderId: ID!)  {
       }
       isOpen
       initialQuantity
+      finalQuantity
     }
    
   }
 }`
 
 
-export  const OPEN_ORDERS_QUERY = gql`
-query OpenOrdersQuery {
-    openOrders {
-    reference
-    date
-     supplier{
-     number
-     name
-     }
-     products {
-       product {
-        id
-         name
-         code
-         picture
-         quantityPerBox
-         quantity
-         isOpen
-       }
-     }
-     rows
-     quantity
-     supplied
-     isOpen 
-    }
-}`
+
 
 export  const EDI_ORDERS_QUERY = gql`
 query EdiOrdersQuery {
@@ -185,6 +163,7 @@ query EdiOrdersQuery {
       }
       isOpen
       initialQuantity
+      finalQuantity
     }
     supplier {
       name
