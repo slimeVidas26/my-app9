@@ -10,6 +10,7 @@ const orderProductSchema = new Schema({
   },
   finalQuantity: {
     type: Number,
+    required: false,
     
   },
   isOpen: {

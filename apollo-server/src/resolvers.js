@@ -473,7 +473,7 @@ export const resolvers = {
    
            orderProducts = orderProducts.map(p => ({
             product: p.productId,
-            initialQuantity: p.initialQuantity,
+             initialQuantity: p.initialQuantity,
             finalQuantity:p.finalQuantity,
             quantityPerBox: p.quantityPerBox,
             isOpen: true // Ensure the isOpen property is added to each product in the order
@@ -484,7 +484,7 @@ export const resolvers = {
           // Create and save the new order with the correct edi field
          const newOrder = new Order({
            supplier: supplierId,
-           orderProducts: orderProducts,
+           orderProducts,
            reference,
            edi: newEdi, // Ensure the correct field is assigned
            date,

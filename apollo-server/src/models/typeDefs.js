@@ -57,7 +57,7 @@ export const typeDefs = gql`
     addDepartment(title: String!): Department!
     addRedstamp(title: String!): Redstamp!
     addItemReason(title: String!): ItemReason!
-    
+
     updateOrderProductStatus(
       orderId: ID!,
       finalQuantity: Int!,
@@ -100,7 +100,7 @@ export const typeDefs = gql`
 
   type OrderProduct {
     product: Product
-    initialQuantity: Int
+    initialQuantity: Int!
     finalQuantity: Int
     isOpen: Boolean
     totalBoxes: Int

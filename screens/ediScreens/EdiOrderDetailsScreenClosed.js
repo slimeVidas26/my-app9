@@ -69,8 +69,8 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthC
 </View>
           </View>
           <View style={styles.bottom}>
-          <Text style={styles.quantity}>quantity : {initialQuantity}</Text>
-            <Text style={styles.reference}>{name}</Text>
+          <Text style={[styles.quantity, { color: initialQuantity === finalQuantity ? 'blue' : 'red' }]}>quantity : {finalQuantity}</Text>
+            <Text style={[styles.reference , { color: initialQuantity === finalQuantity ? 'blue' : 'red' }]}>{name}</Text>
             <Text style={styles.barcode}>{code}</Text>
           </View>
         </View>
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
    //marginVertical: 8,
   // marginHorizontal: 16,
  },
+
  closeButton:{ 
 //height:70,
 backgroundColor:'blue',
