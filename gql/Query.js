@@ -116,11 +116,12 @@ query SupplierQuery($supplierId: ID!) {
 
 
 
-export  const OPEN_ORDER_QUERY = gql`
+export  const EDI_ORDER_QUERY = gql`
 query OrderQuery($orderId: ID!)  {
   order(id: $orderId) {
     id
     edi
+    totalBoxes
     reference
     supplier {
       name

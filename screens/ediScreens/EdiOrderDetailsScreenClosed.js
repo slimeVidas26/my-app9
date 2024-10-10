@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, View, FlatList, Pressable, TouchableOpacity,Image, StyleSheet,Dimensions } from "react-native";
 import { useQuery } from "@apollo/client";
-import { OPEN_ORDER_QUERY } from "../../gql/Query";
+import { EDI_ORDER_QUERY } from "../../gql/Query";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
@@ -14,7 +14,7 @@ const height = (Dimensions.get('window').height)
 
 
 export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthChange }) => {
-  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+  const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
     variables: { orderId: paramData.id },
   });
 

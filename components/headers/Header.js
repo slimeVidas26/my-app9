@@ -8,14 +8,14 @@ import { EdiOrderDetailsScreenClosed } from '../../screens/ediScreens/EdiOrderDe
 import { EdiOrderDetailsScreenSearch } from '../../screens/ediScreens/EdiOrderDetailsScreenSearch'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useQuery } from '@apollo/client';
-import { OPEN_ORDER_QUERY } from '../../gql/Query';
+import { EDI_ORDER_QUERY } from '../../gql/Query';
 
 const Tab = createMaterialTopTabNavigator();
 
 
 export const EdiOrderDetailHeader = ({paramData}) => {
 
-  const { data, loading, error } = useQuery(OPEN_ORDER_QUERY, {
+  const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
     variables: { orderId: paramData.id }, // replace '12345' with the actual order ID
   });
 

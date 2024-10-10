@@ -7,6 +7,7 @@ import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
 import { useQuery } from "@apollo/client";
 import { DEPARTMENTS_QUERY } from "../../gql/Query";
+import { EDI_ORDER_QUERY } from "../../gql/Query";
 
 
 const i18n = new I18n(translation)
@@ -26,23 +27,32 @@ const height = (Dimensions.get('window').height)
 
 export function EdiCertificateApprovalScreen({ navigation }) {
 
-  const { data, error, loading } = useQuery(DEPARTMENTS_QUERY);
+  const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
+    //variables: { orderId: paramData.id },
+    variables: { orderId: "6707b3ba08fa8470e10c0699" },
+  });
   const lens = 11
+  console.log("data from EdiCertificateApprovalScreen" , data.order.totalBoxes)
     ;
 
   if (error) {
-    console.error('DEPARTMENTS_QUERY error', error);
+    console.error('EDI_ORDER_QUERY error', error);
   }
 
-  const DepartmentItem = ({ department }) => {
-    const { title, id } = department;
-    console.log(title, id)
+  const ediProducts = data?.order?.orderProducts || [];
+  //const openProductsLength = openProducts.length;
+  const { totalBoxes } = data.order;
+
+
+  const EdiOrderQueryItem = ({ ediOrderQuery }) => {
+    console.log("ediOrderQuery" , ediOrderQuery)
+    console.log(totalBoxes)
     return (
 
 
         <View style={styles.item}>
           <View style = {{flex:1.5 , flexDirection:'row' , justifyContent:'space-evenly'  ,alignItems:'center'}}> 
-            <Text style={styles.boxes}>1299</Text>
+            <Text style={styles.boxes}>{totalBoxes}</Text>
               <Feather name="box" size={26} color="blue" />
               </View>
 
@@ -121,10 +131,10 @@ export function EdiCertificateApprovalScreen({ navigation }) {
       {error && <Text>Check console for error logs</Text>}
       {!loading && !error && data &&
         <FlatList style={styles.flat}
-          data={data.departments}
+          data={ediProducts}
           //data={null}
           renderItem={({ item }) => (
-            <DepartmentItem department={item} />)}
+            <EdiOrderQueryItem ediOrderQuery={item} />)}
           //keyExtractor={(item, index) => index}
           keyExtractor={(item) => item.id}
         />
