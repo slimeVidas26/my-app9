@@ -104,14 +104,14 @@ export const typeDefs = gql`
     finalQuantity: Int
     isOpen: Boolean
     totalBoxes: Int
+    
   }
 
   input OrderProductInput {
     productId: ID!
     initialQuantity: Int!
-    finalQuantity: Int  
     boxes: Float
-    isOpen: Boolean
+
   }
 
   type Product {

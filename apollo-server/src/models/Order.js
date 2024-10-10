@@ -16,7 +16,9 @@ const orderProductSchema = new Schema({
   isOpen: {
     type: Boolean,
     default: true, // Setting the order as open by default
-  }
+  },
+  toto: { type: String, required: false },
+
   
 
 });

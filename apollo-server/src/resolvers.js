@@ -461,7 +461,7 @@ export const resolvers = {
             if (product) {
               console.log(`Found product: ${product}`);
                //Add isOpen property to the product
-               product.isOpen = true;
+               // product.isOpen = true;
               const numberOfBoxes = Math.ceil(initialQuantity / product.quantityPerBox);
               totalBoxes += numberOfBoxes;
             } else {
@@ -476,7 +476,9 @@ export const resolvers = {
              initialQuantity: p.initialQuantity,
             finalQuantity:p.finalQuantity,
             quantityPerBox: p.quantityPerBox,
-            isOpen: true // Ensure the isOpen property is added to each product in the order
+            //isOpen: true ,// Ensure the isOpen property is added to each product in the order
+            toto:"toto",
+            isOpen:true
           }));
 
           console.log("orderProducts from addOrder" , orderProducts)
@@ -507,7 +509,7 @@ export const resolvers = {
    
              const product = await Product.findById(productId);
              if (product) {
-               product.isOpen = true;
+               //product.isOpen = true;
                console.log(`Found product: ${product}`);
                const numberOfBoxes = Math.ceil(existingOrder.products[existingProductIndex].initialQuantity / product.quantityPerBox);
                totalBoxes += numberOfBoxes;
@@ -520,7 +522,7 @@ export const resolvers = {
              const product = await Product.findById(productId);
              if (product) {
                console.log(`Found product: ${product}`);
-               product.isOpen = true; // Add isOpen property to the product
+               //product.isOpen = true; // Add isOpen property to the product
                 const numberOfBoxes = Math.ceil(initialQuantity / product.quantityPerBox);
                 totalBoxes += numberOfBoxes;
               } else {
