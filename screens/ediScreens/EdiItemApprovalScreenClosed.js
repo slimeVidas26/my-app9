@@ -87,7 +87,7 @@ const productId = paramData.id
 
   const [isModalOpen, setModalOpen] = useState(true);
   const initialCount = initialQuantity;
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(finalQuantity);
   // const [isOpen, setIsOpen] = useState(true);
 
 
@@ -215,7 +215,7 @@ const productId = paramData.id
   
   
         <TextInput style={[styles.TextCounter, { color: initialCount === counter ? 'blue' : styles.TextCounter.color }]}
-          value={ String(finalQuantity)}
+          value={ String(counter)}
           keyboardType="numeric"
           onChangeText={handleChange} />
   
@@ -268,6 +268,7 @@ const productId = paramData.id
         // Set isOpen to false
         setIsOpen(!isOpen);  // State will be updated to false
         console.log('isOpen from handleIsOpen' , isOpen)
+        console.log("toto")
         
         // The console log may still show the old state due to React's async state update
         console.log("Setting isOpen to false", isOpen); 

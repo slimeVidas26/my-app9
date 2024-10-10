@@ -32,7 +32,7 @@ export function EdiCertificateApprovalScreen({ navigation }) {
     variables: { orderId: "6707b3ba08fa8470e10c0699" },
   });
   const lens = 11
-  console.log("data from EdiCertificateApprovalScreen" , data.order.totalBoxes)
+  console.log("data from EdiCertificateApprovalScreen" , data)
     ;
 
   if (error) {
@@ -40,25 +40,26 @@ export function EdiCertificateApprovalScreen({ navigation }) {
   }
 
   const ediProducts = data?.order?.orderProducts || [];
+  console.log("ediProducts",ediProducts)
   //const openProductsLength = openProducts.length;
   const { totalBoxes } = data.order;
+  console.log(totalBoxes)
 
 
-  const EdiOrderQueryItem = ({ ediOrderQuery }) => {
-    console.log("ediOrderQuery" , ediOrderQuery)
-    console.log(totalBoxes)
+  const EdiOrderQueryItem = ({ item }) => {
+    console.log("item" , item)
     return (
 
 
         <View style={styles.item}>
           <View style = {{flex:1.5 , flexDirection:'row' , justifyContent:'space-evenly'  ,alignItems:'center'}}> 
-            <Text style={styles.boxes}>{totalBoxes}</Text>
+            <Text style={styles.boxes}>{item.finalQuantity}</Text>
               <Feather name="box" size={26} color="blue" />
               </View>
 
               <View style = {{flex:3  , justifyContent:'center' , alignItems:'flex-end' , paddingRight:15}}> 
-            <Text style = {{fontSize:20}}>Orange Juice one liter</Text>
-            <Text style = {{fontSize:16}}>729000111444</Text>
+            <Text style = {{fontSize:20}}>{item.product.name}</Text>
+            <Text style = {{fontSize:16}}>{item.product.code}</Text>
 
           </View>
           <View style = {{flex:1 , alignItems:'flex-end'}}> 
@@ -95,7 +96,7 @@ export function EdiCertificateApprovalScreen({ navigation }) {
       <View style={styles.header}>
   
       <View style = {styles.leftSide} >
-        <Text style = {{fontSize:20,color:'white'}}>6119516</Text>
+        <Text style = {{fontSize:20,color:'white'}}>{data.order.reference}</Text>
         <Text  style = {{fontSize:20,color:'white'}}>Edi Certificate Approve</Text>
       </View>
   
@@ -134,7 +135,7 @@ export function EdiCertificateApprovalScreen({ navigation }) {
           data={ediProducts}
           //data={null}
           renderItem={({ item }) => (
-            <EdiOrderQueryItem ediOrderQuery={item} />)}
+            <EdiOrderQueryItem item={item} />)}
           //keyExtractor={(item, index) => index}
           keyExtractor={(item) => item.id}
         />

@@ -34,7 +34,7 @@ export function EdiCertificateConfirmationScreen({ navigation }) {
       
       <View style={styles.approve}>
       
-        <Pressable style={styles.nextButton} onPress={()=>navigation.navigate('EDICertificateScreen')} >
+        <Pressable style={styles.nextButton} onPress={()=>navigation.navigate('DocumentReview')} >
           <Text style={styles.approveButtonText}>Close</Text>
         </Pressable>
 

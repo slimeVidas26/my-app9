@@ -51,6 +51,7 @@ export const EdiOrderDetailsScreenClosed = ({ paramData, onClosedProductsLengthC
     const orderId = data.order.id;
     const productId = item.product.id;
     const {initialQuantity,finalQuantity} = item;
+    
 
 
     console.log("orderId from open" , orderId)
