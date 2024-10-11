@@ -154,8 +154,8 @@ query EdiOrdersQuery {
     reference
     totalBoxes
     totalQuantity
+    openOrder
     orderProducts {
-     
       product {
         name
         code

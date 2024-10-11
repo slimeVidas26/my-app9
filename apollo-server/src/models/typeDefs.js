@@ -51,6 +51,7 @@ export const typeDefs = gql`
       date: Date,
       totalQuantity: Float,
       orderProducts: [OrderProductInput]!
+      openOrder:Boolean
     ): Order
 
     addWarehouse(title: String!): Warehouse!
@@ -96,6 +97,7 @@ export const typeDefs = gql`
     date: Date!
     totalQuantity: Float!
     totalBoxes: Int
+    openOrder:Boolean
   }
 
   type OrderProduct {

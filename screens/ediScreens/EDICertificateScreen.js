@@ -1,23 +1,3 @@
-//const [title, setTitle] = useState('')
-//const [info, setInfo] = useState('')
-// useEffect(() => {
-// }, [query , info , title]) 
-//ImageBackground, Keyboard,Button,TouchableOpacity,Image,ScrollView
-//import Icon from 'react-native-vector-icons/FontAwesome'
-//import Constants from 'expo-constants';
-//import { StatusBar } from 'expo-status-bar';
-//import { Entypo } from '@expo/vector-icons';
-//import notFound from '../../assets/data-not-found.jpg'
-//const screenHeight = Dimensions.get('window').height;
-//const screenWidth = Dimensions.get('window').width;
-//console.log(screenWidth)
-//const { first, last } = name;
-// Dimensions
-// setTitle('Edi Certificate')
-
-
-
-
 
 
 import React, { useState } from 'react'
@@ -42,12 +22,14 @@ const EDICertificateScreen = () => {
   const navigation = useNavigation()
   const [isModalOpen, setModalOpen] = useState(false);
   const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
-  // console.log("data from ediCertificateScreen",data)
+  console.log("data from ediCertificateScreen",data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error loading data</Text>;
+
+  const openOrders = data?.orders?.filter(order => order.openOrder === true) || [];
 
  const EDIcertificateItem = ({ item  }) => {
   //const orderId = Object.keys(item)[0].id
@@ -142,7 +124,7 @@ const EDICertificateScreen = () => {
 
           <FlatList style={styles.flatList}
             ItemSeparatorComponent={<RenderSeparator />}
-            data={data.orders}
+            data={openOrders}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => <EDIcertificateItem item={item} />}
             ListEmptyComponent={<MyListEmpty message="No Data Found" />}

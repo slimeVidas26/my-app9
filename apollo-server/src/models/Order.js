@@ -13,6 +13,7 @@ const orderProductSchema = new Schema({
     required: false,
     
   },
+  
   isOpen: {
     type: Boolean,
     default: true, // Setting the order as open by default
@@ -30,6 +31,7 @@ const orderSchema = new Schema({
   date: { type: Date, default: Date.now },
   totalQuantity: { type: Number, default: 0 },
   totalBoxes: { type: Number, default: 0 },
+  openOrder: {type: Boolean,default: true },
   orderProducts: [orderProductSchema],
 
 });

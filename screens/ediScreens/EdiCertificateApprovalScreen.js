@@ -25,11 +25,11 @@ const height = (Dimensions.get('window').height)
 
 
 
-export function EdiCertificateApprovalScreen({ navigation }) {
+export function EdiCertificateApprovalScreen({paramData ,  navigation }) {
 
   const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
     //variables: { orderId: paramData.id },
-    variables: { orderId: "6707b3ba08fa8470e10c0699" },
+    variables: { orderId: "6708d57dbcf3010fc7711561" },
   });
   const lens = 11
   console.log("data from EdiCertificateApprovalScreen" , data)
