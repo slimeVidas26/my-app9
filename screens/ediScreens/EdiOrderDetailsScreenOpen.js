@@ -90,7 +90,7 @@ export const EdiOrderDetailsScreenOpen = ({ paramData, onOpenProductsLengthChang
         numColumns={2}
         columnWrapperStyle={styles.column}
       />
-      <Pressable style={styles.closeButton} onPress={() => navigation.navigate("EdiCertificateApprovalScreen")}>
+      <Pressable style={styles.closeButton} onPress={() => navigation.navigate("EdiCertificateApprovalScreen" , {paramData})}>
         <Text style={styles.closeButtonText}>Close Certificate from Open</Text>
       </Pressable>
     </View>

@@ -150,7 +150,7 @@ const DrawerNavigator = () => {
     <Drawer.Screen name="Inventory" component={InventoryStackNavigator} />
     <Drawer.Screen name="Bottles" component={BottlesStackNavigator} />
     <Drawer.Screen name="Transfert" component={TransfertStackNavigator} />
-    <Drawer.Screen name="Document Review" component={DocumentReviewStackNavigator} />
+    <Drawer.Screen name="DocumentReview" component={DocumentReviewStackNavigator} />
     <Drawer.Screen name="Suppliers" component={SuppliersStackNavigator}
     options={{headerLeft: () => (
       <TouchableOpacity onPress={()=>navigation.navigate('AddSupplier')} style={styles.headerLeft}>

@@ -8,6 +8,35 @@ import { Feather } from '@expo/vector-icons';
 import { useQuery } from "@apollo/client";
 import { DEPARTMENTS_QUERY } from "../../gql/Query";
 import { EDI_ORDER_QUERY } from "../../gql/Query";
+import { useRoute } from '@react-navigation/native';
+import { gql, useMutation } from '@apollo/client';
+
+// Define the mutation
+const UPDATE_ORDER_STATUS_MUTATION = gql`
+mutation UpdateOrderStatus($orderId:ID!, $finalQuantity:Int! ,$openOrder:Boolean,  $productId: ID!, $isOpen: Boolean!) {
+  updateOrderStatus(orderId: $orderId ,
+                           finalQuantity: $finalQuantity ,
+                           openOrder:$openOrder
+                           productId: $productId,
+                            isOpen: $isOpen) {
+    id
+    openOrder
+    orderProducts {
+      product {
+        id
+        name
+        code
+        quantityPerBox
+         inStock
+      }
+      isOpen
+      finalQuantity
+      initialQuantity
+     
+    }
+  }
+}
+`;
 
 
 const i18n = new I18n(translation)
@@ -25,19 +54,37 @@ const height = (Dimensions.get('window').height)
 
 
 
-export function EdiCertificateApprovalScreen({paramData ,  navigation }) {
+export function EdiCertificateApprovalScreen({  navigation }) {
+
+  const route = useRoute();
+  //finalQuantity , product.name , product.code
+  const {paramData} = route.params
+  console.log('paramData from EdiCertificateApprovalScreen' , paramData)
 
   const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
     //variables: { orderId: paramData.id },
-    variables: { orderId: "6708d57dbcf3010fc7711561" },
+    variables: { orderId: paramData.id },
   });
-  const lens = 11
   console.log("data from EdiCertificateApprovalScreen" , data)
     ;
 
   if (error) {
     console.error('EDI_ORDER_QUERY error', error);
   }
+
+
+   //Use the useMutation hook
+   const [updateOrderStatus, { upData, upLoading, upError }] = useMutation(UPDATE_ORDER_STATUS_MUTATION);
+
+   const handleUpdateStatus = async () => {
+     try {
+       const response = await updateOrderStatus({ variables: { orderId , finalQuantity:counter ,openOrder:false, productId, isOpen:false } });
+       console.log('Order  status updated:', response.upData.updateOrderStatus);
+ 
+     } catch (err) {
+       console.error('Error updating order status:', error);
+     }
+   };
 
   const ediProducts = data?.order?.orderProducts || [];
   console.log("ediProducts",ediProducts)
@@ -110,20 +157,60 @@ export function EdiCertificateApprovalScreen({paramData ,  navigation }) {
     )
   }
 
-  const ApproveButtons = () => {
-    return (
+  const ApproveButtons = ()=>{
+
+    const [openOrder, setOpenOrder] = useState(true);
+
+    // Effect to handle navigation after state change
+    useEffect(() => {
+      console.log("openOrder changed:", openOrder); 
+        if (!openOrder) {
+            console.log("openOrder is now ",openOrder);
+            handleUpdateStatus()
+            navigation.navigate('EndEdiFormScreen', {
+              paramData,
+              //initialQuantity,
+              //finalQuantity, 
+              //supplier,
+              //orderId,
+              //productId,
+              openOrder
+            });
+        }
+    }, [openOrder]); // Dependency array to run the effect when isOpen changes
+
+    const handleOpenOrder = () => {
+        // Set openOrder to false
+        setOpenOrder(!openOrder);  // State will be updated to false
+        console.log('openOrder from handleIsOpen' , openOrder)
+        
+        // The console log may still show the old state due to React's async state update
+        console.log("Setting openOrder to false", openOrder); 
+    };
+
+    // const handleIsOpen = () => {
+    //   // Set isOpen to true only if it is currently false
+    //   if (isOpen===true) {
+    //     setIsOpen(false);
+    //   }
+    //   console.log("isOpen", isOpen);
+    // };
+    return(
       <View style={styles.approve} >
-        <Pressable onPress={() =>navigation.navigate('EndEdiFormScreen')} style={styles.nextButton}>
+          <Pressable onPress={handleOpenOrder} style={styles.nextButton} disabled={loading}>
           <Text style={styles.approveButtonText}>Next</Text>
         </Pressable>
         <Pressable style={styles.cancelButton}
-          onPress={() => { navigation.goBack() }}>
+          onPress={() => { setModalOpen(false); navigation.goBack() }}>
           <Text style={styles.approveButtonText}>Cancel</Text>
         </Pressable>
-
-      </View>
+      
+   
+    </View>
     )
   }
+
+ 
 
   return (
     <View style={styles.container}>
