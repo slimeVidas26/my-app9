@@ -250,6 +250,25 @@ export const resolvers = {
       }
     },
 
+    updateOrderStatus: async (_, { orderId  }) => {
+      try {
+        const order = await Order.findById(orderId);
+        if (!order) {
+          throw new Error(`Order with id ${orderId} not found`);
+        }
+        // Update openOrder status
+        order.openOrder = false;
+  
+        const updatedOrder = await order.save(); // Save the updated order
+        console.log('Order  status updated successfully:', updatedOrder);
+  
+        return updatedOrder;
+      } catch (error) {
+        console.error('Error updating order  status:', error);
+        throw error;
+      }
+    },
+
 
     addSupplier: async (_, { name, number, supplierDetails, products  , orders}) => {
       try {

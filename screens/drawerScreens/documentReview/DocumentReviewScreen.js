@@ -51,6 +51,9 @@ export const DocumentReviewScreen = () => {
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error loading data</Text>;
 
+  const openOrders = data?.orders?.filter(order => order.openOrder === false) || [];
+
+
  const EDIcertificateItem = ({ item  }) => {
   //const orderId = Object.keys(item)[0].id
     //console.log('orderId' ,orderId )
@@ -144,7 +147,7 @@ export const DocumentReviewScreen = () => {
 
           <FlatList style={styles.flatList}
             ItemSeparatorComponent={<RenderSeparator />}
-            data={data.orders}
+            data={openOrders}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => <EDIcertificateItem item={item} />}
             ListEmptyComponent={<MyListEmpty message="No Data Found" />}

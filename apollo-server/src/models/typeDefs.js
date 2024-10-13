@@ -65,6 +65,11 @@ export const typeDefs = gql`
       productId: ID!,
       isOpen: Boolean!
     ): Order
+
+    updateOrderStatus(
+      orderId: ID!,
+      openOrder: Boolean
+    ): Order
   }
 
   type Supplier {

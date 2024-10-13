@@ -12,31 +12,22 @@ import { useRoute } from '@react-navigation/native';
 import { gql, useMutation } from '@apollo/client';
 
 // Define the mutation
+
+// mutation Mutation($orderId: ID!) {
+//   updateOrderStatus(orderId: $orderId) {
+//     id
+//     openOrder
+//   }
+// }
 const UPDATE_ORDER_STATUS_MUTATION = gql`
-mutation UpdateOrderStatus($orderId:ID!, $finalQuantity:Int! ,$openOrder:Boolean,  $productId: ID!, $isOpen: Boolean!) {
+mutation UpdateOrderStatus($orderId:ID!, $openOrder:Boolean!) {
   updateOrderStatus(orderId: $orderId ,
-                           finalQuantity: $finalQuantity ,
-                           openOrder:$openOrder
-                           productId: $productId,
-                            isOpen: $isOpen) {
-    id
-    openOrder
-    orderProducts {
-      product {
-        id
-        name
-        code
-        quantityPerBox
-         inStock
-      }
-      isOpen
-      finalQuantity
-      initialQuantity
-     
-    }
-  }
+                    openOrder: $openOrder) {
+                    id
+                    openOrder
+    
 }
-`;
+}`;
 
 
 const i18n = new I18n(translation)
@@ -60,36 +51,51 @@ export function EdiCertificateApprovalScreen({  navigation }) {
   //finalQuantity , product.name , product.code
   const {paramData} = route.params
   console.log('paramData from EdiCertificateApprovalScreen' , paramData)
+  const orderId = paramData.id;  // Make sure orderId is defined
 
-  const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
+  const { data:queryData, loading:queryLoading, error:queryError } = useQuery(EDI_ORDER_QUERY, {
     //variables: { orderId: paramData.id },
     variables: { orderId: paramData.id },
   });
-  console.log("data from EdiCertificateApprovalScreen" , data)
+  console.log("data from EdiCertificateApprovalScreen" , queryData)
     ;
 
-  if (error) {
-    console.error('EDI_ORDER_QUERY error', error);
+  if (queryError) {
+    console.error('EDI_ORDER_QUERY error', queryError);
   }
 
 
    //Use the useMutation hook
-   const [updateOrderStatus, { upData, upLoading, upError }] = useMutation(UPDATE_ORDER_STATUS_MUTATION);
+   const [updateOrderStatus, { data, loading, error }] = useMutation(UPDATE_ORDER_STATUS_MUTATION);
 
    const handleUpdateStatus = async () => {
      try {
-       const response = await updateOrderStatus({ variables: { orderId , finalQuantity:counter ,openOrder:false, productId, isOpen:false } });
-       console.log('Order  status updated:', response.upData.updateOrderStatus);
+       const response = await updateOrderStatus({ variables: { orderId ,openOrder:false } });
+       console.log('Order  status updated:', response.data.updateOrderStatus);
  
-     } catch (err) {
+     } catch (error) {
        console.error('Error updating order status:', error);
+
+        // Log GraphQL-specific errors if present
+    if (error.graphQLErrors) {
+      err.graphQLErrors.forEach(({ message, locations, path }) =>
+        console.error(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+        )
+      );
+    }
+
+    // Log network errors if present
+    if (error.networkError) {
+      console.error(`[Network error]: ${error.networkError}`);
+    }
      }
    };
 
-  const ediProducts = data?.order?.orderProducts || [];
+  const ediProducts = queryData?.order?.orderProducts || [];
   console.log("ediProducts",ediProducts)
   //const openProductsLength = openProducts.length;
-  const { totalBoxes } = data.order;
+  const { totalBoxes } = queryData.order;
   console.log(totalBoxes)
 
 
@@ -143,7 +149,7 @@ export function EdiCertificateApprovalScreen({  navigation }) {
       <View style={styles.header}>
   
       <View style = {styles.leftSide} >
-        <Text style = {{fontSize:20,color:'white'}}>{data.order.reference}</Text>
+        <Text style = {{fontSize:20,color:'white'}}>{queryData.order.reference}</Text>
         <Text  style = {{fontSize:20,color:'white'}}>Edi Certificate Approve</Text>
       </View>
   
@@ -215,9 +221,9 @@ export function EdiCertificateApprovalScreen({  navigation }) {
   return (
     <View style={styles.container}>
       <EdiCertificateApprovalScreenHeader/>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>Check console for error logs</Text>}
-      {!loading && !error && data &&
+      {queryLoading && <Text>Loading...</Text>}
+      {queryError && <Text>Check console for error logs</Text>}
+      {!queryLoading && !queryError && queryData &&
         <FlatList style={styles.flat}
           data={ediProducts}
           //data={null}
