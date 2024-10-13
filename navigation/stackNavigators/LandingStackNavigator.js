@@ -23,7 +23,7 @@ i18n.enableFallback = true;
  const Stack = createStackNavigator()
 
 
- const Landing = ({navigation})=>{
+ const LandingScreen = ({navigation})=>{
       return (
         <View style={styles.container}>
         <Text style={styles.text}>
@@ -33,7 +33,7 @@ i18n.enableFallback = true;
           <Text style={styles.text}>Device locale: {Localization.locale}</Text>
           <StatusBar style="auto" />
           <Button
-            title="Go to Login"
+            title="Login"
             onPress={() => navigation.navigate('Login')}
           />
          
@@ -48,7 +48,7 @@ i18n.enableFallback = true;
         <Stack.Navigator screenOptions={{
           headerShown: false,
         }}>
-          <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Screen name="Landing" component={LandingScreen} />
         </Stack.Navigator>
       )
     }

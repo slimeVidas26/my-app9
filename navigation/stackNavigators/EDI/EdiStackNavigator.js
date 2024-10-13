@@ -1,12 +1,15 @@
 import React from 'react'
+import {  Button  } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 //import EDICertificateStackNavigator from './EDICertificateStackNavigator';
 import EdiOrderDetailsStackNavigator from './EdiOrderDetailsStackNavigator';
 import EntryCertificateStackNavigator from './EntryCertificateStackNavigator';
 import EdiItemApprovalStackNavigator from './EdiItemApprovalStackNavigator';
+import HomeStackNavigator from '../HomeStackNavigator';
 //import EdiCertificateApprovalStackNavigator from './_EdiCertificateApprovalStackNavigator';
 //import EdiCertificateConfirmationStackNavigator from './EdiCertificateConfirmationStackNavigator';
 //import EndEdiFormStackNavigator from './_EndEdiFormStackNavigator';
+import { HomeScreen } from '../../../screens/drawerScreens/home/HomeScreen';
 import EDICertificateScreen from '../../../screens/ediScreens/EDICertificateScreen';
 // import PopUpScreen from '../../../screens/ediDcreens/PopUpScreen1';
 import { useRoute } from '@react-navigation/native';
@@ -25,10 +28,19 @@ const EdiStackNavigator = () => {
   console.log("routeName" , route.name);
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerShown: true
-    }}>
-      <Stack.Screen name="EDICertificateScreen" component={EDICertificateScreen} />
+    <Stack.Navigator
+    //  screenOptions={{
+    //   headerShown: false
+    // }}
+    >
+
+{/* <Stack.Screen   options={{
+          headerShown: true,
+         }} name="homeScreen" component={EdiStackNavigator} /> */}
+       
+      <Stack.Screen   options={{
+          headerShown: true,
+         }} name="EDICertificateScreen" component={EDICertificateScreen} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       {/* <Stack.Screen name="PopUp" component={PopUpScreen} /> */}
       {/* <Stack.Screen name="MyTabBar" component={EdiOrderDetailsStackNavigator} /> */}

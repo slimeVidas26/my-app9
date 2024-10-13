@@ -28,7 +28,7 @@ const App = () => {
           {/* <LoginStackNavigator /> */}
           
           <RootStack.Navigator screenOptions={{
-      headerShown: true,
+      headerShown: false,
     }}>
     <RootStack.Group>
      {/* <RootStack.Screen name="EndEdiFormScreen" component={EndEdiFormScreen} />  */}

@@ -9,9 +9,9 @@ const Stack = createStackNavigator()
 const TransfertStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{
-      headerShown: false,
+      headerShown: true,
     }}>
-      <Stack.Screen name="Transfert" component={TransfertScreen} />
+      <Stack.Screen name="TransfertCertificate" component={TransfertScreen} />
     </Stack.Navigator>
   )
 }

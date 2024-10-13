@@ -10,32 +10,10 @@ import { Feather } from '@expo/vector-icons';
 import { OpenModalButtonApproval } from '../../components/modals/OpenModalButonApproval';
 import { useRoute } from '@react-navigation/native';
 import { gql, useMutation } from '@apollo/client';
+import { UPDATE_ORDER_PRODUCT_STATUS_MUTATION } from '../../gql/Query';
 
 
-// Define the mutation
- const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
-   mutation UpdateOrderProductStatus($orderId:ID!, $finalQuantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
-     updateOrderProductStatus(orderId: $orderId ,
-                              finalQuantity: $finalQuantity ,
-                              productId: $productId,
-                               isOpen: $isOpen) {
-       id
-       orderProducts {
-         product {
-           id
-           name
-           code
-           quantityPerBox
-            inStock
-         }
-         isOpen
-         finalQuantity
-         initialQuantity
-        
-       }
-     }
-   }
- `;
+
 
 
 

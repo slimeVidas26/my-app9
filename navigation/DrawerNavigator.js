@@ -9,7 +9,7 @@ import HomeStackNavigator from './stackNavigators/HomeStackNavigator'
 import EdiStackNavigator from './stackNavigators/EDI/EdiStackNavigator'
 import MarlogStackNavigator from './stackNavigators/MarlogStackNavigator'
 import InventoryStackNavigator from './stackNavigators/InventoryStackNavigator'
-import BottlesStackNavigator from './stackNavigators/BottlesStackNavigator'
+import DepositReturnStackNavigator from './stackNavigators/DepositReturnStackNavigator'
 import TransfertStackNavigator from './stackNavigators/TransfertStackNavigator'
 import DocumentReviewStackNavigator from './stackNavigators/DocumentReviewStackNavigator'
 import LandingStackNavigator from './stackNavigators/LandingStackNavigator'
@@ -26,7 +26,7 @@ import SuppliersStackNavigator from './stackNavigators/SuppliersStackNavigator'
 
 const Drawer = createDrawerNavigator()
 const height = (Dimensions.get('window').width - 2 * 10);
-
+const navigation = useNavigation
 
 
 // const DrawerContent = ({ navigation }) => {
@@ -148,8 +148,8 @@ const DrawerNavigator = () => {
     />
     <Drawer.Screen name="Marlog" component={MarlogStackNavigator} />
     <Drawer.Screen name="Inventory" component={InventoryStackNavigator} />
-    <Drawer.Screen name="Bottles" component={BottlesStackNavigator} />
-    <Drawer.Screen name="Transfert" component={TransfertStackNavigator} />
+    <Drawer.Screen name="DepositReturn" component={DepositReturnStackNavigator} />
+    <Drawer.Screen name="TransfertCertificate" component={TransfertStackNavigator} />
     <Drawer.Screen name="DocumentReview" component={DocumentReviewStackNavigator} />
     <Drawer.Screen name="Suppliers" component={SuppliersStackNavigator}
     options={{headerLeft: () => (

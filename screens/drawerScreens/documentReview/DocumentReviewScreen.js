@@ -1,27 +1,4 @@
 
-
-//const [title, setTitle] = useState('')
-//const [info, setInfo] = useState('')
-// useEffect(() => {
-// }, [query , info , title]) 
-//ImageBackground, Keyboard,Button,TouchableOpacity,Image,ScrollView
-//import Icon from 'react-native-vector-icons/FontAwesome'
-//import Constants from 'expo-constants';
-//import { StatusBar } from 'expo-status-bar';
-//import { Entypo } from '@expo/vector-icons';
-//import notFound from '../../assets/data-not-found.jpg'
-//const screenHeight = Dimensions.get('window').height;
-//const screenWidth = Dimensions.get('window').width;
-//console.log(screenWidth)
-//const { first, last } = name;
-// Dimensions
-// setTitle('Edi Certificate')
-
-
-
-
-
-
 import React, { useState } from 'react'
 import Modal from '../../../components/modals/Modal';
 import { ModalHeader, EdiHeader } from '../../../components/headers/Header';

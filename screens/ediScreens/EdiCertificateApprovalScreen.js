@@ -6,7 +6,7 @@ import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { Feather } from '@expo/vector-icons';
 import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from "../../gql/Query";
+import { UPDATE_ORDER_STATUS_MUTATION} from "../../gql/Query";
 import { EDI_ORDER_QUERY } from "../../gql/Query";
 import { useRoute } from '@react-navigation/native';
 import { gql, useMutation } from '@apollo/client';
@@ -19,15 +19,7 @@ import { gql, useMutation } from '@apollo/client';
 //     openOrder
 //   }
 // }
-const UPDATE_ORDER_STATUS_MUTATION = gql`
-mutation UpdateOrderStatus($orderId:ID!, $openOrder:Boolean!) {
-  updateOrderStatus(orderId: $orderId ,
-                    openOrder: $openOrder) {
-                    id
-                    openOrder
-    
-}
-}`;
+
 
 
 const i18n = new I18n(translation)

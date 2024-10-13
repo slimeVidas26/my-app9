@@ -174,6 +174,40 @@ query EdiOrdersQuery {
 
 }`
 
+export // Define the mutation to update orderPrtoduct status
+const UPDATE_ORDER_PRODUCT_STATUS_MUTATION = gql`
+  mutation UpdateOrderProductStatus($orderId:ID!, $finalQuantity:Int! ,  $productId: ID!, $isOpen: Boolean!) {
+    updateOrderProductStatus(orderId: $orderId ,
+                             finalQuantity: $finalQuantity ,
+                             productId: $productId,
+                              isOpen: $isOpen) {
+      id
+      orderProducts {
+        product {
+          id
+          name
+          code
+          quantityPerBox
+           inStock
+        }
+        isOpen
+        finalQuantity
+        initialQuantity
+       
+      }
+    }
+  }
+`
+
+export const UPDATE_ORDER_STATUS_MUTATION = gql`
+mutation UpdateOrderStatus($orderId:ID!, $openOrder:Boolean!) {
+  updateOrderStatus(orderId: $orderId ,
+                    openOrder: $openOrder) {
+                    id
+                    openOrder  
+}
+}`;
+
 
 
 
