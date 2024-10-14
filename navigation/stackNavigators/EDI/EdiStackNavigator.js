@@ -1,5 +1,6 @@
 import React from 'react'
-import {  Button  } from 'react-native';
+import {  Button  , View , Text , TouchableOpacity } from 'react-native';
+import { HeaderBackButton } from '@react-navigation/elements'; // Import the back button
 import { createStackNavigator } from '@react-navigation/stack'
 //import EDICertificateStackNavigator from './EDICertificateStackNavigator';
 import EdiOrderDetailsStackNavigator from './EdiOrderDetailsStackNavigator';
@@ -34,13 +35,23 @@ const EdiStackNavigator = () => {
     // }}
     >
 
-{/* <Stack.Screen   options={{
+ {/* <Stack.Screen   options={{
           headerShown: true,
-         }} name="homeScreen" component={EdiStackNavigator} /> */}
-       
-      <Stack.Screen   options={{
-          headerShown: true,
-         }} name="EDICertificateScreen" component={EDICertificateScreen} />
+         }} name="homeScreen" component={EdiStackNavigator} />  */}
+
+      <Stack.Screen    options={({ navigation }) => ({
+             header: () => (
+              <View style={{backgroundColor:"white" ,flexDirection: 'row', alignItems: 'center', padding: 10 }}>
+                {/* Render the back button */}
+                <HeaderBackButton onPress={() => navigation.goBack()} />
+                
+                <Text style={{ flex: 1, marginLeft: 10 , fontSize:19 }}>EDICertificateScreen</Text>
+
+              
+              </View>
+            ),
+          })}
+         name="EDICertificateScreen" component={EDICertificateScreen} />
       <Stack.Screen name="EntryCertificate" component={EntryCertificateStackNavigator} />
       {/* <Stack.Screen name="PopUp" component={PopUpScreen} /> */}
       {/* <Stack.Screen name="MyTabBar" component={EdiOrderDetailsStackNavigator} /> */}

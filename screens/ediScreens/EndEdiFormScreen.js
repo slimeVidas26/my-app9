@@ -20,31 +20,7 @@ i18n.enableFallback = true;
 // To see the fallback mechanism uncomment line below to force app to use Japanese language.
 // i18n.locale = 'ja';
 
-
-// const MyForm = ()=> {
-//   const [myCar, setMyCar] = useState("Volvo");
-
-//   return (
-//     // <View style={styles.container}>
-//       <Picker
-//         selectedValue={myCar}
-//         onValueChange={(itemValue) => setMyCar(itemValue)}
-//       >
-//         <Picker.Item label="Ford" value="Ford" />
-//         <Picker.Item label="Volvo" value="Volvo" />
-//         <Picker.Item label="Fiat" value="Fiat" />
-//       </Picker>
-//     // </View>
-//   );
-// }
-
-
-
 export function EndEdiFormScreen({navigation , data}) { 
-
-
-  
-
 
   const [reason, setReason] = useState('Choose Reason');
   const [lastName, setLastName] = useState('');
@@ -59,74 +35,20 @@ export function EndEdiFormScreen({navigation , data}) {
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState({}); 
   const [isFormValid, setIsFormValid] = useState(false); 
+  const [isScrollEnabled, setIsScrollEnabled] = useState(true);
 
   const signRef = useRef(null);
-
-  // const DATA = [
-  //   {
-  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-  //     title: 'Lack',
-  //   },
-  //   {
-  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-  //     title: 'Excess',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-  //     title: 'Missing EDI',
-  //   },
-  //   {
-  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
-  //     title: 'Invalid code',
-  //   },
-  //   {
-  //     id: '3ac68afc-c605-48d3-a4f8-fvv91aa97f63',
-  //     title: 'Item not ordered',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-555f-bd96-145571e29d72',
-  //     title: 'Supplier left goods uninspected',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd74-145571e29d72',
-  //     title: 'Choose reason',
-  //   },
-  // ];
-  
-  
-  //  const renderItem = ({item}) =>{
-  //   //const backgroundColor = item.id === selectedId ? '#696969' : '#696969';
-  //   const color = item.id === selectedId ? 'red' : 'white';
-
-  //   return (
-  //   <TouchableOpacity onPress = {
-  //     ()=>{console.log(item.title);
-  //          setSelectedId(item.id);
-  //          setModalVisible(false);setReason(item.title)}} style={styles.item}>
-       
-  //      <Text style={styles.itemTitle}>{item.title}</Text>
-  //      <Text style={[styles.itemCircle , {color}]}>{`\u29BF`}</Text>
-       
-     
-  //    </TouchableOpacity>
-  //  )
-  // };
 
 
   const ApproveButtons = () => {
     return (
       
-    //   <View style={[styles.approve , { opacity: isFormValid ? 1 : 0.5 }]} disabled={!isFormValid} >
     <View style={styles.approve } >
 
       
-        {/* <Pressable style={styles.nextButton} onPress={()=>{validateForm,navigation.navigate('EdiCertificateConfirmationScreen')}} > */}
         <Pressable style={styles.nextButton} onPress={handleSubmit} >
-
           <Text style={styles.approveButtonText}>Next</Text>
         </Pressable>
-
-
         <Pressable style={styles.cancelButton}
           onPress={() => { navigation.goBack() }}>
           <Text style={styles.approveButtonText}>Cancel</Text>
@@ -159,25 +81,10 @@ export function EndEdiFormScreen({navigation , data}) {
         if (!signature) { 
 			errors.signature = 'Signature is required.'; 
 		 } 
-        //  else if (.length < 6) { 
-		// 	errors.car = 'Car must be at least 6 characters.'; 
-		// } 
-
-    //     if (!reason) { 
-		// 	errors.reason = 'Reason is required.'; 
-		// } else if (reason.length < 6) { 
-		// 	errors.reason = 'Reason must be at least 6 characters.'; 
-		// } 
-
-    //     if (!comment) { 
-		// 	errors.comment = 'Comment is required.'; 
-		// } else if (comment.length < 6) { 
-		// 	errors.comment = 'comment must be at least 6 characters.'; 
-		// } 
+ 
     setErrors(errors); 
 		setIsFormValid(Object.keys(errors).length === 0); 
-    // setErrors('');
-    // Alert.alert('Submitted', `First Name: ${name}, Last Name: ${phone}, Signature: ${signature}`);
+    
   };
 
   const handleSubmit = () => { 
@@ -214,16 +121,12 @@ export function EndEdiFormScreen({navigation , data}) {
   };
 
   return (
-    // <SafeAreaView style={styles.container}>
-    //     <ScrollView style={styles.scrollView}>
-    <KeyboardAwareScrollView>
+    
+    <KeyboardAwareScrollView scrollEnabled={isScrollEnabled}>
     <View style={styles.inner}>
 
         <Text style={styles.title}>Edi Certificate Confirmation</Text>
         <Text style={styles.ref}>Reference : 4707342</Text>
-
-       
-
            <Text style = {styles.sidePlaceholder}>{name ? "Name*" : " "}</Text>
         	<TextInput 
 				style={[styles.input , { borderBottomColor: errors.name ? 'red' : styles.input.borderBottomColor } ] } 
@@ -261,13 +164,16 @@ export function EndEdiFormScreen({navigation , data}) {
 
 
 
-        {/* <Text style={styles.label}>Signature</Text> */}
         <View style={[styles.signatureContainer , { borderBottomColor: errors.signature ? 'red' : styles.signatureContainer.borderBottomColor }]}>
           <Signature
             ref={signRef}
-            onEnd={handleEnd}
-            onOK={handleSignature}
-            onEmpty={() => setSignature('')}
+            //onEnd={handleEnd}
+            onEnd={() => { handleEnd(); setIsScrollEnabled(true); }} 
+            //onOK={handleSignature}
+            onOK={(sig) => { handleSignature(sig); setIsScrollEnabled(true); }}
+            onBegin={() => setIsScrollEnabled(false)} 
+            onEmpty={() => {setSignature('');setIsScrollEnabled(false)}}
+            //onEmpty={() => setIsScrollEnabled(true)} 
             descriptionText="Sign"
             clearText="Clear"
             confirmText="Save"
@@ -280,22 +186,11 @@ export function EndEdiFormScreen({navigation , data}) {
                 </Text>
 
 
-                
-
-        
         <View style={styles.formGroup}>
         <Text style = {styles.redStamp}>
           Red Stamp
         </Text>
         <OpenModalButtonEndEdi data = {data}/>
-        {/* <Pressable style ={styles.input} onPress={() => setModalVisible(!modalVisible)} > 
-        <Text style = {styles.chooseReasonText}>{reason}</Text>
-        </Pressable> */}
-
-     
-
-      
-       
       </View>
 
       <Text style = {styles.sidePlaceholder}>{comment ? "Comment*" : " "}</Text>
@@ -309,13 +204,7 @@ export function EndEdiFormScreen({navigation , data}) {
        <Text style = {styles.error}>
              {comment ? errors.comment ==='' : errors.comment}
                 </Text>
-       
-
-        {/* {signature ? (
-          <Button title="Clear Signature" onPress={handleClear} />
-        ) : null} */}
-     
-      {/* {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null} */}
+      
       <ApproveButtons/>
       </View>
       </KeyboardAwareScrollView>
