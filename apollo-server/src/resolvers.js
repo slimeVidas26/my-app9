@@ -6,6 +6,9 @@ import { Arrival } from './models/Arrival.js';
 import { Supplier } from './models/Supplier.js';
 import { Product } from './models/Product.js';
 import { Order } from './models/Order.js';
+import {User} from './models/User.js';
+
+import bcrypt from 'bcrypt';
 
 
 
@@ -53,6 +56,17 @@ export const resolvers = {
   Date: dateScalar,
 
   Query: {
+     // Query to get all users
+     users: async () => {
+      return await User.find();
+    },
+    login:  async(_, { password }) =>{
+      const user = await User.findOne();  // Assume one user for simplicity
+      if (user && bcrypt.compareSync(password, user.password)) {
+        return true;
+      }
+      return false;
+    },
     suppliers: async () => {
       try {
         const suppliers = await Supplier.find();
@@ -219,6 +233,23 @@ export const resolvers = {
   },
 
   Mutation: {
+
+     // Mutation to add a user
+     addUser: async (_, { username, password }) => {
+      // Hash the password before storing it
+      const hashedPassword = await bcrypt.hash(password, 10);
+      
+      // Create a new user instance
+      const newUser = new User({
+        username,
+        password: hashedPassword,
+      });
+
+      // Save the new user to the database
+      await newUser.save();
+
+      return newUser;
+    },
 
     updateOrderProductStatus: async (_, { orderId , finalQuantity ,  productId, isOpen }) => {
       try {

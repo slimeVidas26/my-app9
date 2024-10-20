@@ -1,11 +1,16 @@
 //import { Image } from 'expo-image';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , Button ,
   Image,
   TextInput,TouchableOpacity } from 'react-native';
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { translation } from '../../i18n/supportedLanguages';
 import { createStackNavigator } from '@react-navigation/stack'
+import { useQuery } from "@apollo/client";
+
+import { gql } from '@apollo/client';
+
 
 const Stack = createStackNavigator()
 
@@ -25,57 +30,81 @@ i18n.enableFallback = true;
 // To see the fallback mechanism uncomment line below to force app to use Japanese language.
  i18n.locale = 'he';
 
-
+// GraphQL query for login
+const LOGIN_QUERY = gql`
+  query Login($password: String!) {
+    login(password: $password)
+  }
+`;
 
   const Login = ({navigation})=> {
   
-  const [email, setEmail] = useState("toto");
-  const [password, setPassword] = useState("");
- 
+  //const [email, setEmail] = useState("toto");
+  const [password, setPassword] = useState(''); 
+
+  const { data } = useQuery(LOGIN_QUERY, {
+    variables: { password },
+    skip: password.length === 0,
+  });
+  useEffect(() => {
+    if (data?.login) {
+      navigation.replace('DrawerNavigator');
+    }
+  }, [data]);
   return (
+
     <View style={styles.container}>
+    <Text style={styles.title}>Enter Password:</Text>
+    <TextInput
+      style={styles.input}
+      secureTextEntry={true}
+      value={password}
+      onChangeText={setPassword}
+      placeholder="Password"
+    />
+  </View>
 
+    // <View style={styles.container}>
+    //  <View style = {styles.image}>
+    // <Image  source={require('../../assets/rami-levy.png')}
+    // placeholder={"rami-levi"}
+    //     contentFit="cover"
+    //     transition={1000} />
+    // </View>
 
-     <View style = {styles.image}>
-    <Image  source={require('../../assets/rami-levy.png')}
-    placeholder={"rami-levi"}
-        contentFit="cover"
-        transition={1000} />
-    </View>
-
-    {/* <Image
-        style={styles.expoImage}
-        source="https://picsum.photos/seed/696/3000/2000"
-        placeholder={blurhash}
-        contentFit="cover"
-        transition={1000}
-      /> */}
+    // {/* <Image
+    //     style={styles.expoImage}
+    //     source="https://picsum.photos/seed/696/3000/2000"
+    //     placeholder={blurhash}
+    //     contentFit="cover"
+    //     transition={1000}
+    //   /> */}
  
-      <StatusBar style="auto" />
-      <View>
-        <Text style = {styles.text}>
-          Entrance
-          </Text>
-      </View>
+    //   <StatusBar style="auto" />
+    //   <View>
+    //     <Text style = {styles.text}>
+    //       Entrance
+    //       </Text>
+    //   </View>
  
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="*Number"
-          placeholderTextColor="#808080"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)} 
-          keyboardType="numeric" 
-        />
-      </View>
+    //   <View style={styles.inputView}>
+    //     <TextInput
+    //       style={styles.TextInput}
+    //       placeholder="*Number"
+    //       placeholderTextColor="#808080"
+    //       secureTextEntry={true}
+    //       onChangeText={(password) => setPassword(password)} 
+    //       keyboardType="numeric" 
+    //     />
+    //   </View>
  
      
  
-      <TouchableOpacity style={styles.loginBtn}
-        onPress={() => navigation.navigate('DrawerNavigator')}>
-        <Text style={styles.loginText}>Login</Text> 
-      </TouchableOpacity>
-    </View>
+    //   <TouchableOpacity style={styles.loginBtn}
+    //     onPress={() => navigation.navigate('DrawerNavigator')}>
+    //     <Text style={styles.loginText}>Login</Text> 
+    //   </TouchableOpacity>
+    // </View>
   );
 }
 

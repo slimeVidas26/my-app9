@@ -22,6 +22,8 @@ export const typeDefs = gql`
     itemReasons: [ItemReason!]
     itemReason(id: ID!): ItemReason
     arrivals: [Arrival!]
+    users: [User!]!
+    login(password: String!): Boolean
   }
 
   type Mutation {
@@ -58,6 +60,8 @@ export const typeDefs = gql`
     addDepartment(title: String!): Department!
     addRedstamp(title: String!): Redstamp!
     addItemReason(title: String!): ItemReason!
+    addUser(username: String!, password: String!): User!
+
 
     updateOrderProductStatus(
       orderId: ID!,
@@ -70,6 +74,12 @@ export const typeDefs = gql`
       orderId: ID!,
       openOrder: Boolean
     ): Order
+  }
+
+  type User {
+    id: ID!
+    username: String!
+    password: String!
   }
 
   type Supplier {
