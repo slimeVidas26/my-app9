@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react'
 import Modal from "../../components/modals/Modal";
 import { ModalHeader, EdiHeader } from '../../components/headers/Header';
@@ -81,7 +80,7 @@ const EDICertificateScreen = () => {
     
     if ( supplier.toLowerCase().includes(query) ||
           supplierNumber.includes(query) ||
-          //edi.includes(query) ||
+          edi.includes(query) ||
           orderNumber.includes(query)) {
       return true;
     }

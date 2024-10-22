@@ -24,6 +24,7 @@ export const typeDefs = gql`
     arrivals: [Arrival!]
     users: [User!]!
     login(password: String!): Boolean
+    
   }
 
   type Mutation {
@@ -81,6 +82,13 @@ export const typeDefs = gql`
     username: String!
     password: String!
     
+  }
+
+  type GoogleEmailUser {
+    id: ID!
+    email: String!
+    phone: String
+    token: String
   }
 
   type Supplier {

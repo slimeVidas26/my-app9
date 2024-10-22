@@ -1,9 +1,7 @@
 import { Image } from 'expo-image';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , Button ,
-  Image,
-  TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , Button ,TextInput,TouchableOpacity } from 'react-native';
 import React, { useState,useEffect } from "react";
 
 
@@ -34,10 +32,38 @@ export const PasswordLoginScreen = ({navigation})=> {
     return (
   
       <View style={styles.container}>
-  <Text style={styles.title}>Enter Password</Text>
 
+  <View style = {styles.image}>
+       <Image  source={require('../assets/rami-levy.png')}
+       placeholder={"rami-levi"}
+           contentFit="cover"
+           transition={1000} />
+       </View>
+       {/* <Image
+           style={styles.expoImage}
+           source="https:picsum.photos/seed/696/3000/2000"
+           placeholder={blurhash}
+           contentFit="cover"
+           transition={1000}
+         /> */}
 
-
+         {/* <StatusBar style="auto" />
+        <View>
+          <Text style = {styles.text}>
+            Entrance
+            </Text>
+        </View> */}
+        
+      <Text style={styles.title}>Enter Password</Text>
+      <View style={styles.inputView}>
+      <TextInput
+         style={styles.TextInput}
+        secureTextEntry={true}
+        value={password}
+        onChangeText={(password) => setPassword(password)} 
+        placeholder="Password"
+      />
+       </View>
   
   
   

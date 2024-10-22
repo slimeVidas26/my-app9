@@ -34,7 +34,7 @@ i18n.enableFallback = true;
           <StatusBar style="auto" />
           <Button
             title="Login"
-            onPress={() => navigation.navigate('PasswordLoginScreen')}
+            onPress={() => navigation.navigate('PasswordLogin')}
           />
          
         </View>
