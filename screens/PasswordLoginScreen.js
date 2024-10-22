@@ -18,7 +18,7 @@ const LOGIN_QUERY = gql`
 
 
 
-const PasswordLoginScreen = ({navigation})=> {
+export const PasswordLoginScreen = ({navigation})=> {
   
     const [password, setPassword] = useState(''); 
   
@@ -34,63 +34,13 @@ const PasswordLoginScreen = ({navigation})=> {
     return (
   
       <View style={styles.container}>
+  <Text style={styles.title}>Enter Password</Text>
 
-  <View style = {styles.image}>
-       <Image  source={require('../assets/rami-levy.png')}
-       placeholder={"rami-levi"}
-           contentFit="cover"
-           transition={1000} />
-       </View>
-
-       <Image
-           style={styles.expoImage}
-           source="https:picsum.photos/seed/696/3000/2000"
-           placeholder={blurhash}
-           contentFit="cover"
-           transition={1000}
-         />
-        
-      <Text style={styles.title}>Enter Password</Text>
-      <View style={styles.inputView}>
-      <TextInput
-         style={styles.TextInput}
-        secureTextEntry={true}
-        value={password}
-        onChangeText={(password) => setPassword(password)} 
-        placeholder="Password"
-      />
-       </View>
   
   
   
     </View>
   
-      // <View style={styles.container}>
-      //  <View style = {styles.image}>
-      // <Image  source={require('../../assets/rami-levy.png')}
-      // placeholder={"rami-levi"}
-      //     contentFit="cover"
-      //     transition={1000} />
-      // </View>
-  
-      // {/* <Image
-      //     style={styles.expoImage}
-      //     source="https://picsum.photos/seed/696/3000/2000"
-      //     placeholder={blurhash}
-      //     contentFit="cover"
-      //     transition={1000}
-      //   /> */}
-   
-      //   <StatusBar style="auto" />
-      //   <View>
-      //     <Text style = {styles.text}>
-      //       Entrance
-      //       </Text>
-      //   </View>
-   
-        
-   
-       
    
       //   <TouchableOpacity style={styles.loginBtn}
       //     onPress={() => navigation.navigate('DrawerNavigator')}>
@@ -176,4 +126,3 @@ const PasswordLoginScreen = ({navigation})=> {
    
   });
 
-  export default PasswordLoginScreen;

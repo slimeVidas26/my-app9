@@ -2,7 +2,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , Button ,Image,TextInput,TouchableOpacity } from 'react-native';
 import React, { useState } from "react";
-import { translation } from './i18n/supportedLanguages';
+import { translation } from '../i18n/supportedLanguages';
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 
@@ -30,7 +30,7 @@ i18n.enableFallback = true;
 
 
      <View style = {styles.image}>
-    <Image  source={require('./assets/rami-levy.png')}
+    <Image  source={require('../assets/rami-levy.png')}
     placeholder={"rami-levi"}
         contentFit="cover"
         transition={1000} />
