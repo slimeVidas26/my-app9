@@ -36,6 +36,8 @@ export const PasswordLoginScreen = ({navigation})=> {
       <View style={styles.container}>
   <Text style={styles.title}>Enter Password</Text>
 
+
+
   
   
   

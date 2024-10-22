@@ -1,7 +1,7 @@
 
 import { translation } from '../../i18n/supportedLanguages';
 import { createStackNavigator } from '@react-navigation/stack'
-import PasswordLoginScreen from '../../screens/passwordLoginScreen';
+import { PasswordLoginScreen } from '../../screens/PasswordLoginScreen';
 import { LoginScreen } from '../../screens/LoginScreen';
 
 const Stack = createStackNavigator()
@@ -29,7 +29,7 @@ const LoginStackNavigator = () => {
     }}>
             {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
 
-      <Stack.Screen name="PasswordLogin" component={PasswordLoginScreen} />
+      <Stack.Screen name="PasswordLoginScreen" component={PasswordLoginScreen} />
 
     </Stack.Navigator>
   )
