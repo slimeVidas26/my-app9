@@ -40,7 +40,6 @@ export const DocumentReviewScreen = () => {
       <TouchableOpacity onPress={() => navigation.navigate('TabNavigator' , {paramData:item})}>
         <View style={styles.listItem}>
           <View style={styles.metaInfo}>
-            <Text style={styles.title}></Text>
             <Text style={styles.blueText}>{`${item.supplier.name}`}</Text>
           </View>
   
@@ -65,29 +64,46 @@ export const DocumentReviewScreen = () => {
     )
   }
 
-
-  const handleSearch = text => {
-    const formattedQuery = text.toLowerCase();
-    console.log('formattedQuery' , formattedQuery)
-    const filteredData = filter(data.ediOrders, order => {
-      return contains(order, formattedQuery);
+  const filterOrders = (orders, query) => {
+    const formattedQuery = query.toLowerCase();
+    return filter(orders, order => {
+      const { supplier, edi, reference } = order;
+      return supplier.name.toLowerCase().includes(formattedQuery) ||
+             supplier.number.toString().includes(formattedQuery) ||
+             edi.toString().includes(formattedQuery) ||
+             reference.toString().includes(formattedQuery);
     });
-    setModalOpen(true)
+  };
+  
+  
+  const handleSearch = text => {
+    setModalOpen(true);
     setQuery(text);
-    setFullData(filteredData)
+    setFullData(filterOrders(openOrders, text));
   };
 
-  const contains = ({  supplier ,supplierNumber , orderNumber  }, query) => {
+  // const handleSearch = text => {
+  //   const formattedQuery = text.toLowerCase();
+  //   console.log('formattedQuery' , formattedQuery)
+  //   const filteredData = filter(data.ediOrders, order => {
+  //     return contains(order, formattedQuery);
+  //   });
+  //   setModalOpen(true)
+  //   setQuery(text);
+  //   setFullData(filteredData)
+  // };
+
+  // const contains = ({  supplier ,supplierNumber , orderNumber  }, query) => {
     
-    if ( supplier.toLowerCase().includes(query) ||
-          supplierNumber.includes(query) ||
-          //edi.includes(query) ||
-          orderNumber.includes(query)) {
-      return true;
-    }
+  //   if ( supplier.toLowerCase().includes(query) ||
+  //         supplierNumber.includes(query) ||
+  //         //edi.includes(query) ||
+  //         orderNumber.includes(query)) {
+  //     return true;
+  //   }
 
-    return false;
-  };
+  //   return false;
+  // };
 
   return (
     
@@ -109,7 +125,7 @@ export const DocumentReviewScreen = () => {
                 
               <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
-              data={isModalOpen == true? (query ? fullData : null):data.orders}
+              data={isModalOpen == true? (query ? fullData : null):openOrders}
               keyExtractor={(item) => item.id.toString()}   
                renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}

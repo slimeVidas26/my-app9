@@ -2,6 +2,7 @@ const translation = {
   en: {
     //home
 welcome: 'Hello' ,
+login : 'login',
 name: 'Isaac' ,
 Form:"Form" ,
      //warehouse
