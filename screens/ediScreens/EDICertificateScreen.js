@@ -21,7 +21,6 @@ const EDICertificateScreen = () => {
   const navigation = useNavigation()
   const [isModalOpen, setModalOpen] = useState(false);
   const { data, error, loading } = useQuery(EDI_ORDERS_QUERY);
-  console.log("data from ediCertificateScreen",data)
   const [query, setQuery] = useState('');
   const [fullData, setFullData] = useState([]);
 
@@ -31,15 +30,12 @@ const EDICertificateScreen = () => {
   const openOrders = data?.orders?.filter(order => order.openOrder === true) || [];
 
  const EDIcertificateItem = ({ item  }) => {
-  //const orderId = Object.keys(item)[0].id
-    //console.log('orderId' ,orderId )
-    //console.log("itemProducts from EDIcertificateItem" , item.products)
+  
     
     return (
       <TouchableOpacity onPress={() => navigation.navigate('TabNavigator' , {paramData:item})}>
         <View style={styles.listItem}>
           <View style={styles.metaInfo}>
-            <Text style={styles.title}></Text>
             <Text style={styles.blueText}>{`${item.supplier.name}`}</Text>
           </View>
   
@@ -57,36 +53,59 @@ const EDICertificateScreen = () => {
             <Text style={styles.title}>{`${item.date}`}</Text>
             <Text style={styles.title}>Order Number: {`${item.reference}`}</Text>
           </View> 
-  
-         
         </View>
       </TouchableOpacity>
     )
   }
 
+  const filterOrders = (orders, query) => {
+  const formattedQuery = query.toLowerCase();
+  return filter(orders, order => {
+    const { supplier, edi, reference } = order;
+    return supplier.name.toLowerCase().includes(formattedQuery) ||
+           supplier.number.toString().includes(formattedQuery) ||
+           edi.toString().includes(formattedQuery) ||
+           reference.toString().includes(formattedQuery);
+  });
+};
 
-  const handleSearch = text => {
-    const formattedQuery = text.toLowerCase();
-    console.log('formattedQuery' , formattedQuery)
-    const filteredData = filter(data.ediOrders, order => {
-      return contains(order, formattedQuery);
-    });
-    setModalOpen(true)
-    setQuery(text);
-    setFullData(filteredData)
-  };
 
-  const contains = ({  supplier ,supplierNumber , orderNumber  }, query) => {
+const handleSearch = text => {
+  setModalOpen(true);
+  setQuery(text);
+  setFullData(filterOrders(openOrders, text));
+};
+
+
+  // const handleSearch = text => {
+  //   const formattedQuery = text.toLowerCase();
+  //   console.log('formattedQuery' , formattedQuery)
+  //   const filteredData = filter(openOrders, order => {
+  //     console.log("order" , order.edi)
+  //     return contains(order, formattedQuery);
+  //   });
+  //   setModalOpen(true)
+  //   setQuery(text);
+  //   setFullData(filteredData)
+  // };
+
+  // const contains = ({  supplier  , edi    , reference }, query) => {
     
-    if ( supplier.toLowerCase().includes(query) ||
-          supplierNumber.includes(query) ||
-          edi.includes(query) ||
-          orderNumber.includes(query)) {
-      return true;
-    }
+  //   if ( supplier.name.toLowerCase().includes(query) ||
+  //         supplier.number.toString().includes(query) ||
+  //         edi.toString().includes(query) ||
+  //         reference.toString().includes(query)) {
+  //           console.log("name" , supplier.name)
+  //           console.log("number" , supplier.number)
+  //           console.log("edi" , edi)
+  //           console.log("reference" , reference)
 
-    return false;
-  };
+
+  //     return true
+  //   }
+
+  //   return false;
+  // };
 
   return (
     
@@ -108,7 +127,7 @@ const EDICertificateScreen = () => {
                 
               <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
-              data={isModalOpen == true? (query ? fullData : null):data.orders}
+              data={isModalOpen == true? (query ? fullData : null):openOrders}
               keyExtractor={(item) => item.id.toString()}   
                renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}

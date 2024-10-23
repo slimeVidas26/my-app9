@@ -115,7 +115,7 @@ export const ModalHeader = ({ setModalOpen, isModalOpen, query, handleSearch }) 
 const styles = StyleSheet.create({
  
   header: {
-    backgroundColor: "red",
+    backgroundColor: "orange",
     display: 'flex',
     //width: '100%',
     height: 60,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 1,
     borderColor: 'white',
-    width:350
+    width:340
   },
 
   notification: {
