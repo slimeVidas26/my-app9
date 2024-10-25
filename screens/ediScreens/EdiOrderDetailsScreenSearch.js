@@ -1,89 +1,179 @@
-import React, { useState , useCallback, useEffect } from "react";
-import { AntDesign } from '@expo/vector-icons';
-import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { I18n } from 'i18n-js';
-import { translation } from "../../i18n/supportedLanguages";
-import * as Localization from 'expo-localization';
-import { Feather } from '@expo/vector-icons';
+import React, { useEffect , useState } from "react";
+import { Text, View, FlatList, Pressable, TouchableOpacity,Image, StyleSheet,Dimensions } from "react-native";
+import { useQuery } from "@apollo/client";
+import { EDI_ORDER_QUERY } from "../../gql/Query";
+import { useNavigation } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
+import { initial } from "lodash";
+import { ModalHeader, EdiHeader } from '../../components/headers/Header';
+import filter from 'lodash.filter';
+import { MyListEmpty } from '../../components/EDICertificate/MyListEmpty';
+import { RenderSeparator } from '../../components/EDICertificate/RenderSeparator';
+import { Loading } from '../../components/EDICertificate/Loading';
+import { Error } from '../../components/EDICertificate/Error';
+import Modal from "../../components/modals/Modal";
 
-const i18n = new I18n(translation)
 
 
-// Set the locale once at the beginning of your app.
-i18n.locale = Localization.locale;
-// When a value is missing from a language it'll fallback to another language with the key present.
-i18n.enableFallback = true;
-// To see the fallback mechanism uncomment line below to force app to use Japanese language.
-// i18n.locale = 'ja';
 
-const width = (Dimensions.get('window').width - 2) / 2;
+
+
 const spacing = 5;
+const width = (Dimensions.get('window').width - 2) / 2;
+const height = (Dimensions.get('window').height)
 
 
-export function EdiOrderDetailsScreenSearch({data , error , loading}) {
-
+export const EdiOrderDetailsScreenSearch = ({ paramData, onOpenProductsLengthChange }) => {
   
+  const { data, loading, error } = useQuery(EDI_ORDER_QUERY, {
+    variables: { orderId: paramData.id },
+  });
 
-const DepartmentItem = ({ department}) => {
-  const { title , id } = department; 
-  console.log( title , id)
-return(
-
-
-<TouchableOpacity  onPress={() => navigation.navigate( i18n.t(title))}>
-<View style = {styles.item}>
-
-<View style = {styles.top}>
-  <View style = {styles.left}>
-     <Text style = {styles.boxes}>12</Text>   
-     <Feather name="box" size={26} color="black" />
-  </View>
+  //console.log("data from OpenOrderQuery" , data)
+  //.log("data order orderProducts  from OpenOrderQuery" , data.order)
 
 
-<View>
+
+  const navigation = useNavigation(); 
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [fullData, setFullData] = useState([]);
+
+
+  // Extract open products and their count
+  const openProducts = data?.order?.orderProducts || [];
+  const openProductsLength = openProducts.length;
+
+  console.log("openProducts from EdiOrderDetailsScreenSearch" , openProducts)
+
+  useEffect(() => {
+    // Pass the openProductsLength to the parent component whenever it changes
+    if (onOpenProductsLengthChange) {
+      onOpenProductsLengthChange(openProductsLength);
+    }
+  }, [openProductsLength, onOpenProductsLengthChange]);
+
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error loading data.</Text>;
+
+  if (!data || !data.order) {
+    console.warn("Data or order is undefined:", data);
+    return <Text>No order found.</Text>;
+  }
+
+  const OpenOrderQueryItem = ({ item }) => {
+    const { code, name, quantityPerBox  ,inStock  , isOpen} = item.product;
+    const supplierName = data.order.supplier.name;
+    const orderId = data.order.id;
+    const productId = item.product.id;
+    const {initialQuantity,finalQuantity} = item;
+
+
+    //console.log("orderId from open" , orderId)
+    //console.log("item" , item)
+
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate("EdiItemApprovalScreen", { paramData: item.product,initialQuantity ,finalQuantity,  supplier: supplierName, orderId, productId })}>
+        <View style={styles.item}>
+          <View style={styles.top}>
+            <View style={styles.left}>
+              <Text style={styles.boxes}>{quantityPerBox}</Text>
+              <Feather name="box" size={26} color="black" />
+            </View>
+            <View>
 <Image   style={styles.img} source={require('../../assets/gamadim.png')}/>
 </View>
+          </View>
+          <View style={styles.bottom}>
+          <Text style={[styles.quantity, { color: initialQuantity === finalQuantity ? 'blue' : 'red' }]}>quantity : {finalQuantity}</Text>
+            <Text style={[styles.reference , { color: initialQuantity === finalQuantity ? 'blue' : 'red' }]}>{name}</Text>
+            <Text style={styles.barcode}>{code}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
-</View>
+  const filterProducts = (prods, query) => {
+    // console.log("openProducts" , openProducts)
 
-<View style = {styles.bottom}>
-<Text style = {styles.quantity}>quantity : 48</Text>
-<Text style = {styles.reference}>reference</Text>
-<Text style = {styles.barcode}>729000111444</Text>
+    const formattedQuery = query.toLowerCase();
+    return filter(prods, prod => {
+      const { product} = prod;
+      return product.name.toLowerCase().includes(formattedQuery) ||
+             product.code.toString().includes(formattedQuery) 
+            
+    });
+  };
 
-</View>
-
-
-
-
-</View>
-
-   </TouchableOpacity>
- 
-)
-
-};
+  const handleSearch = text => {
+    setModalOpen(true);
+    setQuery(text);
+    setFullData(filterProducts(openProducts, text));
+  };
 
   return (
+    // <View style={styles.container}>
+    //   <FlatList
+    //     style={styles.flat}
+    //     data={openProducts}
+    //     renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
+    //     keyExtractor={(item) => item.id}
+    //     numColumns={2}
+    //     columnWrapperStyle={styles.column}
+    //   />
+    //   <Pressable style={styles.closeButton} onPress={() => navigation.navigate("EdiCertificateApprovalScreen" , {paramData})}>
+    //     <Text style={styles.closeButtonText}>Close Certificate from Open</Text>
+    //   </Pressable>
+    // </View>
+
     <View style={styles.container}>
+    {loading && <Loading/>}
+    {error && <Error/>}
 
+    {isModalOpen == true ?
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isModalOpen}
+      >
+          <ModalHeader
+            setModalOpen={setModalOpen}
+            isModalOpen={isModalOpen}
+            query={query}
+            handleSearch={handleSearch} />
+            
+          <FlatList style={styles.flat}
+          ItemSeparatorComponent={<RenderSeparator />}
+          data={isModalOpen == true? (query ? fullData : null):openProducts}
+          keyExtractor={(item) => item.id}  
+          numColumns={2} 
+          columnWrapperStyle={styles.column}
+          renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
+          ListEmptyComponent={<MyListEmpty message="No Data Found" />}
+        />
+      </Modal>
+      :
+      !loading && !error && data &&
+        <>
+        <EdiHeader setModalOpen={setModalOpen}
+                   setQuery={setQuery}
+                   setFullData={setFullData} />
 
-    {loading && <Text>Loading...</Text>}
-      {error && <Text>Check console for error logs</Text>}
-      {!loading && !error && data && 
-      <FlatList style = {styles.flat}
-        data={data.departments}
-        renderItem={({ item }) => (
-          <DepartmentItem department={item} />)}
-        //keyExtractor={(item, index) => index}
-        keyExtractor = {(item) => item.id}
-        //style={styles.container}
+      <FlatList style={styles.flat}
+        ItemSeparatorComponent={<RenderSeparator />}
+        data={openProducts}
+        keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={styles.column}
-      />}
-    </View>
+        renderItem={({ item }) => <OpenOrderQueryItem item={item} />}
+        ListEmptyComponent={<MyListEmpty message="No Data Found" />}
+      />
+     </>
+    }
+  </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -92,8 +182,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     //gap: '1rem',
     //flexWrap: "nowrap",
-    //flexDirection: 'row',  
-    //height:height,
+    flexDirection: 'column',  
+    height:height-300,
     //marginTop: 14,
     //alignSelf: "stretch",
     alignItems:'center',
@@ -103,8 +193,8 @@ const styles = StyleSheet.create({
 
   flat:{
   display:'flex',
-    //backgroundColor:'white',
-   width:'100%',
+  backgroundColor: "#7CA1B4",
+  //width:'100%',
   //  marginLeft:20
    //justifyContent:'center'
    //alignItems:'center'
@@ -124,6 +214,23 @@ const styles = StyleSheet.create({
    //marginVertical: 8,
   // marginHorizontal: 16,
  },
+ closeButton:{ 
+//height:70,
+backgroundColor:'blue',
+borderRadius:15,
+flexDirection:'row' ,
+justifyContent:'space-evenly',
+ alignItems:'center',
+ width:'95%' ,
+borderRadius:10,
+backgroundColor:'blue',
+padding:18
+
+ },
+ closeButtonText:{
+color :'white',
+fontSize:22
+ },
 top:{
   flex:1,
 //backgroundColor:'red',
@@ -140,16 +247,21 @@ left:{
   justifyContent:'space-between',
   
 },
+
+totalBoxes:{
+  flex:1,
+  flexDirection:'row',
+  justifyContent:'flex-start',
+  
+},
 boxes:{
 //backgroundColor:'yellow',
-fontSize:18
+fontSize:18,
+padding:5
 },
 img:{
   //backgroundColor:'white',
   width: 100, height: 100
-
- 
-
 },
 bottom:{
   flex:1,
@@ -331,3 +443,4 @@ barcode:{
     },
   
 });
+

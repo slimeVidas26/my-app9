@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useMemo , useState } from 'react'
 import Modal from "../../components/modals/Modal";
 import { ModalHeader, EdiHeader } from '../../components/headers/Header';
 import { View, StyleSheet, FlatList  , Text } from 'react-native'
@@ -27,7 +27,8 @@ const EDICertificateScreen = () => {
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error loading data</Text>;
 
-  const openOrders = data?.orders?.filter(order => order.openOrder === true) || [];
+  // const openOrders = data?.orders?.filter(order => order.openOrder === true) || [];
+  const openOrders = useMemo(() => data?.orders?.filter(order => order.openOrder) || [], [data]);
 
  const EDIcertificateItem = ({ item  }) => {
   
@@ -36,6 +37,7 @@ const EDICertificateScreen = () => {
       <TouchableOpacity onPress={() => navigation.navigate('TabNavigator' , {paramData:item})}>
         <View style={styles.listItem}>
           <View style={styles.metaInfo}>
+          <Text style={styles.blueText}></Text>
             <Text style={styles.blueText}>{`${item.supplier.name}`}</Text>
           </View>
   
@@ -69,50 +71,28 @@ const EDICertificateScreen = () => {
   });
 };
 
+const filteredData = useMemo(() => filterOrders(openOrders, query), [openOrders, query]);
+
+
+// const handleSearch = text => {
+//   setModalOpen(true);
+//   setQuery(text);
+//   setFullData(filterOrders(openOrders, text));
+// };
 
 const handleSearch = text => {
   setModalOpen(true);
   setQuery(text);
-  setFullData(filterOrders(openOrders, text));
 };
 
 
-  // const handleSearch = text => {
-  //   const formattedQuery = text.toLowerCase();
-  //   console.log('formattedQuery' , formattedQuery)
-  //   const filteredData = filter(openOrders, order => {
-  //     console.log("order" , order.edi)
-  //     return contains(order, formattedQuery);
-  //   });
-  //   setModalOpen(true)
-  //   setQuery(text);
-  //   setFullData(filteredData)
-  // };
-
-  // const contains = ({  supplier  , edi    , reference }, query) => {
-    
-  //   if ( supplier.name.toLowerCase().includes(query) ||
-  //         supplier.number.toString().includes(query) ||
-  //         edi.toString().includes(query) ||
-  //         reference.toString().includes(query)) {
-  //           console.log("name" , supplier.name)
-  //           console.log("number" , supplier.number)
-  //           console.log("edi" , edi)
-  //           console.log("reference" , reference)
-
-
-  //     return true
-  //   }
-
-  //   return false;
-  // };
+if (loading) return <Loading />;
+  if (error) return <Error />;
+  
 
   return (
     
       <View style={styles.container}>
-        {loading && <Loading/>}
-        {error && <Error/>}
-
         {isModalOpen == true ?
           <Modal
             animationType="fade"
@@ -127,7 +107,8 @@ const handleSearch = text => {
                 
               <FlatList style={styles.flatList}
               ItemSeparatorComponent={<RenderSeparator />}
-              data={isModalOpen == true? (query ? fullData : null):openOrders}
+              //data={isModalOpen == true? (query ? fullData : null):openOrders}
+              data = {filteredData}
               keyExtractor={(item) => item.id.toString()}   
                renderItem={({ item }) => <EDIcertificateItem item={item} navigation = {navigation} />}
               ListEmptyComponent={<MyListEmpty message="No Data Found" />}
@@ -158,52 +139,33 @@ const handleSearch = text => {
 export default EDICertificateScreen
 
 const styles = StyleSheet.create({
-  
-  
   container: {
     flex: 1,
     padding: 8,
-    flexDirection: "column", // main axis
-    justifyContent: "center", // main axis
-    alignItems: "center", // cross axis
-    //backgroundColor: colors.background_dark
+    alignItems: "center",
   },
-
   flatList: {
-    //width: '100%',
     marginTop: 14,
     alignSelf: "stretch",
   },
-
-  //ediItem
   listItem: {
     marginTop: 10,
-    paddingVertical: 0,
+    padding: 10,
     backgroundColor: '#fff',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
     borderRadius: 10,
   },
   metaInfo: {
-    borderRadius: 2,
-    flex: 1,
-    flexDirection: "row", // main axis
-    justifyContent: "space-between", // main axis
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 0,
-    marginBottom: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
   },
-
   title: {
     fontSize: 20,
-    marginBottom: 20,
   },
-
   blueText: {
     fontSize: 20,
     color: 'blue',
-  }
+  },
 });
 
 
