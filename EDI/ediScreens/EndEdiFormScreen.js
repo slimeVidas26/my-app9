@@ -24,9 +24,9 @@ export function EndEdiFormScreen({navigation , data}) {
 
   const [reason, setReason] = useState('Choose Reason');
   const [lastName, setLastName] = useState('');
-  const [name, setName] = useState(''); 
-  const [phone , setPhone] = useState('');
-  const [car, setCar] = useState(''); 
+  const [name, setName] = useState('isaac'); 
+  const [phone , setPhone] = useState('0502822879');
+  const [car, setCar] = useState('5544239'); 
   const [signature, setSignature] = useState('');
   const [comment, setComment] = useState(''); 
 
@@ -127,7 +127,7 @@ export function EndEdiFormScreen({navigation , data}) {
 
         <Text style={styles.title}>Edi Certificate Confirmation</Text>
         <Text style={styles.ref}>Reference : 4707342</Text>
-           <Text style = {styles.sidePlaceholder}>{name ? "Name*" : " "}</Text>
+           <Text style = {styles.sidePlaceholder}>{name ? "Name*" : ""}</Text>
         	<TextInput 
 				style={[styles.input , { borderBottomColor: errors.name ? 'red' : styles.input.borderBottomColor } ] } 
 				placeholder="Name*"

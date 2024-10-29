@@ -5,11 +5,11 @@
 
 
 import { ApolloProvider } from '@apollo/client';
-import {client} from './Client';
+import {client} from '../../Client';
 import { NativeBaseProvider, Box } from "native-base";
 import React  , {useEffect , useState , useLayoutEffect} from "react";
-import OrderInfoState from "./screens/Foods/Grid/arrival/EntryCertificateEDI/store/OrderInfoState";
-import EDIContext from "./screens/Foods/Grid/arrival/EntryCertificateEDI/store/EDIContext";
+import OrderInfoState from "../Foods/Grid/arrival/EntryCertificateEDI/store/OrderInfoState";
+import EDIContext from "../Foods/Grid/arrival/EntryCertificateEDI/store/EDIContext";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet, Text, View , Button ,Image,
@@ -27,16 +27,16 @@ import { StyleSheet, Text, View , Button ,Image,
 import { HomeScreen } from './screens/HomeScreen';
 import {GridScreen  } from './screens/GridScreen';
 import { LoginScreen } from './LoginScreen';
-import {HelloScreen} from './HelloScreen';
-import {ArrivalScreen} from './screens/Foods/Grid/arrival/ArrivalScreen';
-   import {ExpressPurchaseScreen} from './screens/Foods/Grid/arrival/ExpressPurchase/ExpressPurchaseScreen' 
-   import {EntryCertificateEDIScreen} from './screens/Foods/Grid/arrival/EntryCertificateEDI/EntryCertificateEDIScreen' 
-   import {AuthorsEDIScreen} from './screens/Foods/Grid/arrival/AuthorsEDIScreen' 
+import {HelloScreen} from '../../HelloScreen';
+import {ArrivalScreen} from '../Foods/Grid/arrival/ArrivalScreen';
+   import {ExpressPurchaseScreen} from '../Foods/Grid/arrival/ExpressPurchase/ExpressPurchaseScreen' 
+   import {EntryCertificateEDIScreen} from '../Foods/Grid/arrival/EntryCertificateEDI/EntryCertificateEDIScreen' 
+   import {AuthorsEDIScreen} from '../Foods/Grid/arrival/AuthorsEDIScreen' 
 
-  import { DocumentReview } from "./screens/Foods/Grid/arrival/DocumentReview";
-   import {Open} from './screens/Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/Open'
-   import {All} from './screens/Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/All'
-   import {Closed} from './screens/Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/Closed'
+  import { DocumentReview } from "../Foods/Grid/arrival/DocumentReview";
+   import {Open} from '../Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/Open'
+   import {All} from '../Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/All'
+   import {Closed} from '../Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/Closed'
 
   //  import {Screen1} from './screens/Screen1';
   //  import {Screen2} from './screens/Screen2' ;
@@ -49,16 +49,16 @@ import {ArrivalScreen} from './screens/Foods/Grid/arrival/ArrivalScreen';
   //  import {Screen8} from './screens/Screen8';
 
 
-import {StockScreen} from './screens/Foods/StockScreen'
+import {StockScreen} from '../Foods/StockScreen'
 import {WarehousesScreen} from './screens/WarehousesScreen';
-import {FormScreen} from './screens/Foods/FormScreen'
-import {SignFormScreen} from './screens/Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/SignFormScreen'
+import {FormScreen} from '../Foods/FormScreen'
+import {SignFormScreen} from '../Foods/Grid/arrival/EntryCertificateEDI/OrderDetail/SignFormScreen'
 
 
 
 
 
- import { translation } from './i18n/supportedLanguages';
+ import { translation } from '../../i18n/supportedLanguages';
  import * as Localization from 'expo-localization';
  import { I18n } from 'i18n-js';
 // // Set the key-value pairs for the different languages you want to support.

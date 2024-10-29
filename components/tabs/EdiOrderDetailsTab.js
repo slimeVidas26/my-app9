@@ -3,9 +3,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 import EdiButton from '../EDICertificate/EdiButton';
-import { EdiOrderDetailsScreenOpen } from '../../screens/ediScreens/EdiOrderDetailsScreenOpen'
-import { EdiOrderDetailsScreenClosed } from '../../screens/ediScreens/EdiOrderDetailsScreenClosed'
-import { EdiOrderDetailsScreenSearch } from '../../screens/ediScreens/EdiOrderDetailsScreenSearch'
+import { EdiOrderDetailsScreenOpen } from '../../EDI/ediScreens/EdiOrderDetailsScreenOpen';
+import { EdiOrderDetailsScreenClosed } from '../../EDI/ediScreens/EdiOrderDetailsScreenClosed'
+import { EdiOrderDetailsScreenSearch } from '../../EDI/ediScreens/EdiOrderDetailsScreenSearch'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useQuery } from '@apollo/client';
 import { useRoute } from '@react-navigation/native';

@@ -1,7 +1,7 @@
 import React, { useState , useCallback, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView,ImageBackground,View,FlatList,Dimensions,Image, StyleSheet,Text,StatusBar,Button,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
-import { translation } from "../i18n/supportedLanguages";
+import { translation } from "../../i18n/supportedLanguages";
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 import Constants from 'expo-constants';
@@ -11,7 +11,7 @@ import logo from '../assets/warehouse.png'
 
 
 import { useQuery } from "@apollo/client";
-import { DEPARTMENTS_QUERY } from "../gql/Query";
+import { DEPARTMENTS_QUERY } from "../../gql/Query";
 const i18n = new I18n(translation)
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;

@@ -6,19 +6,19 @@ import { createStackNavigator } from '@react-navigation/stack'
 import EdiOrderDetailsStackNavigator from './EdiOrderDetailsStackNavigator';
 import EntryCertificateStackNavigator from './EntryCertificateStackNavigator';
 import EdiItemApprovalStackNavigator from './EdiItemApprovalStackNavigator';
-import HomeStackNavigator from '../HomeStackNavigator';
+import HomeStackNavigator from '../../navigation/stackNavigators/HomeStackNavigator';
 //import EdiCertificateApprovalStackNavigator from './_EdiCertificateApprovalStackNavigator';
 //import EdiCertificateConfirmationStackNavigator from './EdiCertificateConfirmationStackNavigator';
 //import EndEdiFormStackNavigator from './_EndEdiFormStackNavigator';
-import { HomeScreen } from '../../../screens/drawerScreens/home/HomeScreen';
-import EDICertificateScreen from '../../../screens/ediScreens/EDICertificateScreen';
+import { HomeScreen } from '../../screens/drawerScreens/home/HomeScreen';
+import EDICertificateScreen from '../ediScreens/EDICertificateScreen';
 // import PopUpScreen from '../../../screens/ediDcreens/PopUpScreen1';
 import { useRoute } from '@react-navigation/native';
-import { EdiCertificateApprovalScreen } from '../../../screens/ediScreens/EdiCertificateApprovalScreen';
-import { EndEdiFormScreen } from '../../../screens/ediScreens/EndEdiFormScreen';
-import { EdiCertificateConfirmationScreen } from '../../../screens/ediScreens/EdiCertificateConfirmationScreen';
-import { EdiItemApprovalScreen } from '../../../screens/ediScreens/EdiItemApprovalScreen';
-import { EdiItemApprovalScreenClosed } from '../../../screens/ediScreens/EdiItemApprovalScreenClosed';
+import { EdiCertificateApprovalScreen } from '../ediScreens/EdiCertificateApprovalScreen';
+import { EndEdiFormScreen } from '../ediScreens/EndEdiFormScreen';
+import { EdiCertificateConfirmationScreen } from '../ediScreens/EdiCertificateConfirmationScreen';
+import { EdiItemApprovalScreen } from '../ediScreens/EdiItemApprovalScreen';
+import { EdiItemApprovalScreenClosed } from '../ediScreens/EdiItemApprovalScreenClosed';
 
 import { TabNavigator } from './TabNavigator';
 

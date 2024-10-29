@@ -2,10 +2,10 @@ import React from "react";
 import { SafeAreaView, View ,  FlatList, StyleSheet, Text, StatusBar,TouchableOpacity } from 'react-native';
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
-import { translation } from "../i18n/supportedLanguages";
+import { translation } from "../../i18n/supportedLanguages";
 import { useQuery } from "@apollo/client";
-import { WAREHOUSES_QUERY } from "../gql/Query";
-import { HELLO_QUERY } from "../gql/Query";
+import { WAREHOUSES_QUERY } from "../../gql/Query";
+import { HELLO_QUERY } from "../../gql/Query";
 //import { EDI_ORDER_ITEMS_BY_NUMBER_QUERY } from "../gql/Query";
 
 // Set the key-value pairs for the different languages you want to support.

@@ -6,14 +6,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {useNavigation} from '@react-navigation/native';
 
 import HomeStackNavigator from './stackNavigators/HomeStackNavigator'
-import EdiStackNavigator from './stackNavigators/EDI/EdiStackNavigator'
+import EdiStackNavigator from '../EDI/EdiNavigation/EdiStackNavigator'
 import MarlogStackNavigator from './stackNavigators/MarlogStackNavigator'
 import InventoryStackNavigator from './stackNavigators/InventoryStackNavigator'
 import DepositReturnStackNavigator from './stackNavigators/DepositReturnStackNavigator'
 import TransfertStackNavigator from './stackNavigators/TransfertStackNavigator'
 import DocumentReviewStackNavigator from './stackNavigators/DocumentReviewStackNavigator'
 import LandingStackNavigator from './stackNavigators/LandingStackNavigator'
-import EntryCertificateStackNavigator from './stackNavigators/EDI/EntryCertificateStackNavigator';
+import EntryCertificateStackNavigator from '../EDI/EdiNavigation/EntryCertificateStackNavigator'
 //import PopupScreen from '../screens/ediDcreens/PopUpScreen1'
 import SuppliersStackNavigator from './stackNavigators/SuppliersStackNavigator'
 

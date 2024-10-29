@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import EdiItems from '../../../screens/ediDcreens/EdiItemsScreen';
+import EdiItems from '../ediDcreens/EdiItemsScreen';
 const Stack = createStackNavigator()
 
 const EdiItemsStackNavigator = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack'
-import MyTabBar from '../../../screens/ediScreens/MyTabBarScreen';
+import MyTabBar from '../ediScreens/MyTabBarScreen';
 
 
 
