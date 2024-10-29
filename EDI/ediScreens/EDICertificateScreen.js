@@ -197,6 +197,7 @@ const EDICertificateScreen = () => {
   const [fullData, setFullData] = useState([]);
 
   if (loading) return <Text>Loading...</Text>;
+  
   if (error) return <Text>Error loading data</Text>;
 
   const openOrders = data?.orders?.filter(order => order.openOrder === true) || [];
