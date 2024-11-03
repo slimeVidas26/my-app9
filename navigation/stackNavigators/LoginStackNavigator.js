@@ -1,7 +1,8 @@
 
 import { translation } from '../../i18n/supportedLanguages';
 import { createStackNavigator } from '@react-navigation/stack';
-import { PasswordLoginScreen } from '../../screens/passwordLoginScreen';
+// import { PasswordLoginScreen } from '../../screens/passwordLoginScreen';
+import { PasswordLoginScreen } from '../../screens/PasswordLoginScreen';
 
 const Stack = createStackNavigator()
 

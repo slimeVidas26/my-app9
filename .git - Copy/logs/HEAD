@@ -1,0 +1,556 @@
+0000000000000000000000000000000000000000 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1712498431 +0300	commit (initial): first-commit
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 0000000000000000000000000000000000000000 slimeVidas26 <dahan.isaac@gmail.com> 1712498447 +0300	Branch: renamed refs/heads/master to refs/heads/master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1712498447 +0300	Branch: renamed refs/heads/master to refs/heads/master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1712498526 +0300	checkout: moving from master to 07/04/23
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 7a371d882dbb5058e37a43be4f7f758fbc9a02b9 slimeVidas26 <dahan.isaac@gmail.com> 1712502453 +0300	commit: home-menu
+7a371d882dbb5058e37a43be4f7f758fbc9a02b9 9353eed98d689960bea6dadad43a66c7fe113874 slimeVidas26 <dahan.isaac@gmail.com> 1712513599 +0300	commit: modal-css
+9353eed98d689960bea6dadad43a66c7fe113874 d3c2f0197d49df1acaad98aa516d12381dbb9932 slimeVidas26 <dahan.isaac@gmail.com> 1712599401 +0300	commit: style
+d3c2f0197d49df1acaad98aa516d12381dbb9932 d3c2f0197d49df1acaad98aa516d12381dbb9932 slimeVidas26 <dahan.isaac@gmail.com> 1712599411 +0300	checkout: moving from 07/04/23 to 08/04/24
+d3c2f0197d49df1acaad98aa516d12381dbb9932 d3c2f0197d49df1acaad98aa516d12381dbb9932 slimeVidas26 <dahan.isaac@gmail.com> 1712675158 +0300	checkout: moving from 08/04/24 to 09/04/24
+d3c2f0197d49df1acaad98aa516d12381dbb9932 d68824de7ad05639f826d80fe77fad54d93391b8 slimeVidas26 <dahan.isaac@gmail.com> 1712692332 +0300	commit: input
+d68824de7ad05639f826d80fe77fad54d93391b8 2cfb84f779b271ab2e93c32db2fa409267ae6846 slimeVidas26 <dahan.isaac@gmail.com> 1712693418 +0300	commit: ok
+2cfb84f779b271ab2e93c32db2fa409267ae6846 2cfb84f779b271ab2e93c32db2fa409267ae6846 slimeVidas26 <dahan.isaac@gmail.com> 1712768463 +0300	checkout: moving from 09/04/24 to 10/04/24
+2cfb84f779b271ab2e93c32db2fa409267ae6846 a8853f59c7990802289f40be1c94ad26956425e4 slimeVidas26 <dahan.isaac@gmail.com> 1712770782 +0300	commit: test
+a8853f59c7990802289f40be1c94ad26956425e4 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1712770788 +0300	checkout: moving from 10/04/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 2cfb84f779b271ab2e93c32db2fa409267ae6846 slimeVidas26 <dahan.isaac@gmail.com> 1712770811 +0300	checkout: moving from master to 09/04/24
+2cfb84f779b271ab2e93c32db2fa409267ae6846 2cfb84f779b271ab2e93c32db2fa409267ae6846 slimeVidas26 <dahan.isaac@gmail.com> 1712770822 +0300	checkout: moving from 09/04/24 to 10/04/24
+2cfb84f779b271ab2e93c32db2fa409267ae6846 19974aa85033e8ac0e2ff96d631a4345ff747dc0 slimeVidas26 <dahan.isaac@gmail.com> 1712775810 +0300	commit: shadow
+19974aa85033e8ac0e2ff96d631a4345ff747dc0 19974aa85033e8ac0e2ff96d631a4345ff747dc0 slimeVidas26 <dahan.isaac@gmail.com> 1712846277 +0300	checkout: moving from 10/04/24 to 11/04/24
+19974aa85033e8ac0e2ff96d631a4345ff747dc0 3f8219b58facfff36e533d961f507cec24f5c90e slimeVidas26 <dahan.isaac@gmail.com> 1712850898 +0300	commit: test
+3f8219b58facfff36e533d961f507cec24f5c90e d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1712850904 +0300	checkout: moving from 11/04/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 19974aa85033e8ac0e2ff96d631a4345ff747dc0 slimeVidas26 <dahan.isaac@gmail.com> 1712850924 +0300	checkout: moving from master to 10/04/24
+19974aa85033e8ac0e2ff96d631a4345ff747dc0 19974aa85033e8ac0e2ff96d631a4345ff747dc0 slimeVidas26 <dahan.isaac@gmail.com> 1712850934 +0300	checkout: moving from 10/04/24 to 11/04/24
+19974aa85033e8ac0e2ff96d631a4345ff747dc0 81aa6cb7c2594a12f3dbdcf62ebcfc28d270971e slimeVidas26 <dahan.isaac@gmail.com> 1712865333 +0300	commit: flatlist-header
+81aa6cb7c2594a12f3dbdcf62ebcfc28d270971e 81aa6cb7c2594a12f3dbdcf62ebcfc28d270971e slimeVidas26 <dahan.isaac@gmail.com> 1712905087 +0300	checkout: moving from 11/04/24 to 12/04/24
+81aa6cb7c2594a12f3dbdcf62ebcfc28d270971e 99db75081dc7fc054185ba155608a3a0090ffdda slimeVidas26 <dahan.isaac@gmail.com> 1712924201 +0300	commit: test2
+99db75081dc7fc054185ba155608a3a0090ffdda 99db75081dc7fc054185ba155608a3a0090ffdda slimeVidas26 <dahan.isaac@gmail.com> 1713032644 +0300	checkout: moving from 12/04/24 to 13/04/24
+99db75081dc7fc054185ba155608a3a0090ffdda 1062b561b9c4f4af1972460969b4378b123c9140 slimeVidas26 <dahan.isaac@gmail.com> 1713041342 +0300	commit: modals
+1062b561b9c4f4af1972460969b4378b123c9140 1062b561b9c4f4af1972460969b4378b123c9140 slimeVidas26 <dahan.isaac@gmail.com> 1713114413 +0300	checkout: moving from 13/04/24 to 14/04/24
+1062b561b9c4f4af1972460969b4378b123c9140 5ed5b7656dc2f40f14436819324d806d5a80e03b slimeVidas26 <dahan.isaac@gmail.com> 1713193155 +0300	commit: test
+5ed5b7656dc2f40f14436819324d806d5a80e03b 5ed5b7656dc2f40f14436819324d806d5a80e03b slimeVidas26 <dahan.isaac@gmail.com> 1713193165 +0300	checkout: moving from 14/04/24 to 15/04/24
+5ed5b7656dc2f40f14436819324d806d5a80e03b f65028892dbdb028f69394d356e3c00d53a8d7c5 slimeVidas26 <dahan.isaac@gmail.com> 1713197253 +0300	commit: test
+f65028892dbdb028f69394d356e3c00d53a8d7c5 5d3e198cdd00367108a6d24f5b40ba57e37ef909 slimeVidas26 <dahan.isaac@gmail.com> 1713209070 +0300	commit: modal
+5d3e198cdd00367108a6d24f5b40ba57e37ef909 5d3e198cdd00367108a6d24f5b40ba57e37ef909 slimeVidas26 <dahan.isaac@gmail.com> 1713295420 +0300	checkout: moving from 15/04/24 to 16/04/24
+5d3e198cdd00367108a6d24f5b40ba57e37ef909 de39f9635330123ca18210cea9899c875a0fde1f slimeVidas26 <dahan.isaac@gmail.com> 1713299225 +0300	commit: 160424
+de39f9635330123ca18210cea9899c875a0fde1f 70fd613d1bb3db90024cd2afcbb3173ecf322389 slimeVidas26 <dahan.isaac@gmail.com> 1713299318 +0300	commit: 11111
+70fd613d1bb3db90024cd2afcbb3173ecf322389 70fd613d1bb3db90024cd2afcbb3173ecf322389 slimeVidas26 <dahan.isaac@gmail.com> 1713367441 +0300	checkout: moving from 16/04/24 to 17/04/24
+70fd613d1bb3db90024cd2afcbb3173ecf322389 5f4b6804a54433275c19173de107e65552f32a02 slimeVidas26 <dahan.isaac@gmail.com> 1713380253 +0300	commit: cloum
+5f4b6804a54433275c19173de107e65552f32a02 5f4b6804a54433275c19173de107e65552f32a02 slimeVidas26 <dahan.isaac@gmail.com> 1713455063 +0300	checkout: moving from 17/04/24 to 18/04/24
+5f4b6804a54433275c19173de107e65552f32a02 eb2059a41ae7b4e307500e4d3baa5105142a3e82 slimeVidas26 <dahan.isaac@gmail.com> 1713470028 +0300	commit: test
+eb2059a41ae7b4e307500e4d3baa5105142a3e82 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1713470054 +0300	checkout: moving from 18/04/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 5f4b6804a54433275c19173de107e65552f32a02 slimeVidas26 <dahan.isaac@gmail.com> 1713470078 +0300	checkout: moving from master to 17/04/24
+5f4b6804a54433275c19173de107e65552f32a02 5f4b6804a54433275c19173de107e65552f32a02 slimeVidas26 <dahan.isaac@gmail.com> 1713536915 +0300	checkout: moving from 17/04/24 to 19/04/24
+5f4b6804a54433275c19173de107e65552f32a02 2aee282915a06aa99c0a708cf5e119924af719ea slimeVidas26 <dahan.isaac@gmail.com> 1713539906 +0300	commit: modalHeader-ok
+2aee282915a06aa99c0a708cf5e119924af719ea 2aee282915a06aa99c0a708cf5e119924af719ea slimeVidas26 <dahan.isaac@gmail.com> 1713638541 +0300	checkout: moving from 19/04/24 to 20/04/24
+2aee282915a06aa99c0a708cf5e119924af719ea a4bf9d0eed70caf902577025161ff2852e38e6c0 slimeVidas26 <dahan.isaac@gmail.com> 1713645656 +0300	commit: query-flatlist
+a4bf9d0eed70caf902577025161ff2852e38e6c0 a4bf9d0eed70caf902577025161ff2852e38e6c0 slimeVidas26 <dahan.isaac@gmail.com> 1713781603 +0300	checkout: moving from 20/04/24 to 22/04/24
+a4bf9d0eed70caf902577025161ff2852e38e6c0 6657d7f7c83c7652f10b8f624607b0b1f29b5bc5 slimeVidas26 <dahan.isaac@gmail.com> 1713793263 +0300	commit: ok
+6657d7f7c83c7652f10b8f624607b0b1f29b5bc5 6657d7f7c83c7652f10b8f624607b0b1f29b5bc5 slimeVidas26 <dahan.isaac@gmail.com> 1713897442 +0300	checkout: moving from 22/04/24 to 23/04/24
+6657d7f7c83c7652f10b8f624607b0b1f29b5bc5 f42f9989e6f8712989c3c992c4c8da30774ca966 slimeVidas26 <dahan.isaac@gmail.com> 1713907198 +0300	commit: includes
+f42f9989e6f8712989c3c992c4c8da30774ca966 f42f9989e6f8712989c3c992c4c8da30774ca966 slimeVidas26 <dahan.isaac@gmail.com> 1713980396 +0300	checkout: moving from 23/04/24 to 24/04/24
+f42f9989e6f8712989c3c992c4c8da30774ca966 3793b1245a47946dfe2d2de9bff5bf69648c6dbf slimeVidas26 <dahan.isaac@gmail.com> 1713988425 +0300	commit: citron
+3793b1245a47946dfe2d2de9bff5bf69648c6dbf 3793b1245a47946dfe2d2de9bff5bf69648c6dbf slimeVidas26 <dahan.isaac@gmail.com> 1714065228 +0300	checkout: moving from 24/04/24 to 25/04/24
+3793b1245a47946dfe2d2de9bff5bf69648c6dbf 86a86296921ffe2ddcf8cd35434c4ca365863e4f slimeVidas26 <dahan.isaac@gmail.com> 1714072182 +0300	commit: test
+86a86296921ffe2ddcf8cd35434c4ca365863e4f 86a86296921ffe2ddcf8cd35434c4ca365863e4f slimeVidas26 <dahan.isaac@gmail.com> 1714126974 +0300	checkout: moving from 25/04/24 to 26/04/24
+86a86296921ffe2ddcf8cd35434c4ca365863e4f ce56f8c2ff8d7e2359cac76510ed49cd27dd2676 slimeVidas26 <dahan.isaac@gmail.com> 1714145342 +0300	commit: css
+ce56f8c2ff8d7e2359cac76510ed49cd27dd2676 ce56f8c2ff8d7e2359cac76510ed49cd27dd2676 slimeVidas26 <dahan.isaac@gmail.com> 1714241321 +0300	checkout: moving from 26/04/24 to 27/04/24
+ce56f8c2ff8d7e2359cac76510ed49cd27dd2676 61e530abb71e5898a964a696d40ad82e87f0c1c1 slimeVidas26 <dahan.isaac@gmail.com> 1714251740 +0300	commit: ediOrderDetails
+61e530abb71e5898a964a696d40ad82e87f0c1c1 61e530abb71e5898a964a696d40ad82e87f0c1c1 slimeVidas26 <dahan.isaac@gmail.com> 1714301303 +0300	checkout: moving from 27/04/24 to 28/04/24
+61e530abb71e5898a964a696d40ad82e87f0c1c1 db63e2aeb733e7d41d37addd93615e3ca0ce805c slimeVidas26 <dahan.isaac@gmail.com> 1714314274 +0300	commit: image
+db63e2aeb733e7d41d37addd93615e3ca0ce805c db63e2aeb733e7d41d37addd93615e3ca0ce805c slimeVidas26 <dahan.isaac@gmail.com> 1714496817 +0300	checkout: moving from 28/04/24 to 30/04/24
+db63e2aeb733e7d41d37addd93615e3ca0ce805c f2825f15f257a8f099949d2966b59db6de21ae9f slimeVidas26 <dahan.isaac@gmail.com> 1714498879 +0300	commit: styling-card
+f2825f15f257a8f099949d2966b59db6de21ae9f 0e8740f9da46ac31728e36f2073a88f6a041f12b slimeVidas26 <dahan.isaac@gmail.com> 1714505246 +0300	commit: item-styling
+0e8740f9da46ac31728e36f2073a88f6a041f12b 0e8740f9da46ac31728e36f2073a88f6a041f12b slimeVidas26 <dahan.isaac@gmail.com> 1714575474 +0300	checkout: moving from 30/04/24 to 01/05/24
+0e8740f9da46ac31728e36f2073a88f6a041f12b d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714591136 +0300	commit: test
+d12e53cdd4fc06021fb28012de619551d7a060c2 d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714675173 +0300	checkout: moving from 01/05/24 to 02/05/24
+d12e53cdd4fc06021fb28012de619551d7a060c2 0fdf8e57d7aefb9cea626c17fd19fcb7bf7e530c slimeVidas26 <dahan.isaac@gmail.com> 1714677692 +0300	commit: error
+0fdf8e57d7aefb9cea626c17fd19fcb7bf7e530c d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1714677699 +0300	checkout: moving from 02/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714677721 +0300	checkout: moving from master to 01/05/24
+d12e53cdd4fc06021fb28012de619551d7a060c2 d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714718066 +0300	checkout: moving from 01/05/24 to 03/05/24
+d12e53cdd4fc06021fb28012de619551d7a060c2 1cd31a70fa694a28c074dcd8e0415440ae20ae7b slimeVidas26 <dahan.isaac@gmail.com> 1714723788 +0300	commit: error
+1cd31a70fa694a28c074dcd8e0415440ae20ae7b d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1714723795 +0300	checkout: moving from 03/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714723910 +0300	checkout: moving from master to 01/05/24
+d12e53cdd4fc06021fb28012de619551d7a060c2 d12e53cdd4fc06021fb28012de619551d7a060c2 slimeVidas26 <dahan.isaac@gmail.com> 1714724303 +0300	checkout: moving from 01/05/24 to 03/05/24
+d12e53cdd4fc06021fb28012de619551d7a060c2 7cd748ac3e933a5fedec4ab574ead6169624f38d slimeVidas26 <dahan.isaac@gmail.com> 1714750102 +0300	commit: fjfj
+7cd748ac3e933a5fedec4ab574ead6169624f38d 7cd748ac3e933a5fedec4ab574ead6169624f38d slimeVidas26 <dahan.isaac@gmail.com> 1714847093 +0300	checkout: moving from 03/05/24 to 04/05/24
+7cd748ac3e933a5fedec4ab574ead6169624f38d 8b71bb34c84acec502a381ee5bfd214191b09cde slimeVidas26 <dahan.isaac@gmail.com> 1714853879 +0300	commit: onPress
+8b71bb34c84acec502a381ee5bfd214191b09cde 8b71bb34c84acec502a381ee5bfd214191b09cde slimeVidas26 <dahan.isaac@gmail.com> 1714922488 +0300	checkout: moving from 04/05/24 to 05/05/24
+8b71bb34c84acec502a381ee5bfd214191b09cde b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1714936190 +0300	commit: colors
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715011995 +0300	checkout: moving from 05/05/24 to 06/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 bd26285d1b5e74afd14b77224891908948ddc50c slimeVidas26 <dahan.isaac@gmail.com> 1715019745 +0300	commit: error
+bd26285d1b5e74afd14b77224891908948ddc50c d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715019752 +0300	checkout: moving from 06/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715019777 +0300	checkout: moving from master to 05/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715020028 +0300	checkout: moving from 05/05/24 to 06/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 2fb4f86a230dd37a70b5245cc1d6e6b3476812a5 slimeVidas26 <dahan.isaac@gmail.com> 1715090552 +0300	commit: update
+2fb4f86a230dd37a70b5245cc1d6e6b3476812a5 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715090561 +0300	checkout: moving from 06/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715090590 +0300	checkout: moving from master to 07/05/24
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715090738 +0300	checkout: moving from 07/05/24 to 05/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715090752 +0300	checkout: moving from 05/05/24 to 08/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 b5cef363c1c06df50f151338e5f7e696114b2bb6 slimeVidas26 <dahan.isaac@gmail.com> 1715091120 +0300	commit: test
+b5cef363c1c06df50f151338e5f7e696114b2bb6 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715091128 +0300	checkout: moving from 08/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 slimeVidas26 <dahan.isaac@gmail.com> 1715091154 +0300	checkout: moving from master to 05/05/24
+b4db2cfddebe56aa9cfa312528d6ed48b829bcf7 9a981da8d8e201f150479f8310f8c2ecdf80b2d1 slimeVidas26 <dahan.isaac@gmail.com> 1715091370 +0300	commit: tt
+9a981da8d8e201f150479f8310f8c2ecdf80b2d1 9a981da8d8e201f150479f8310f8c2ecdf80b2d1 slimeVidas26 <dahan.isaac@gmail.com> 1715091397 +0300	checkout: moving from 05/05/24 to 08/05/24
+9a981da8d8e201f150479f8310f8c2ecdf80b2d1 8b71bb34c84acec502a381ee5bfd214191b09cde slimeVidas26 <dahan.isaac@gmail.com> 1715091722 +0300	checkout: moving from 08/05/24 to 04/05/24
+8b71bb34c84acec502a381ee5bfd214191b09cde 9a981da8d8e201f150479f8310f8c2ecdf80b2d1 slimeVidas26 <dahan.isaac@gmail.com> 1715091746 +0300	checkout: moving from 04/05/24 to 05/05/24
+9a981da8d8e201f150479f8310f8c2ecdf80b2d1 8b71bb34c84acec502a381ee5bfd214191b09cde slimeVidas26 <dahan.isaac@gmail.com> 1715092340 +0300	checkout: moving from 05/05/24 to 04/05/24
+8b71bb34c84acec502a381ee5bfd214191b09cde 9a981da8d8e201f150479f8310f8c2ecdf80b2d1 slimeVidas26 <dahan.isaac@gmail.com> 1715092375 +0300	checkout: moving from 04/05/24 to 05/05/24
+9a981da8d8e201f150479f8310f8c2ecdf80b2d1 0c7ee943a630626e44d11b411b0fc994f2b0414a slimeVidas26 <dahan.isaac@gmail.com> 1715103769 +0300	commit: test
+0c7ee943a630626e44d11b411b0fc994f2b0414a 8b71bb34c84acec502a381ee5bfd214191b09cde slimeVidas26 <dahan.isaac@gmail.com> 1715103780 +0300	checkout: moving from 05/05/24 to 04/05/24
+8b71bb34c84acec502a381ee5bfd214191b09cde d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715103859 +0300	checkout: moving from 04/05/24 to 07/05/24
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715188472 +0300	checkout: moving from 07/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1715188501 +0300	checkout: moving from master to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 0c7ee943a630626e44d11b411b0fc994f2b0414a slimeVidas26 <dahan.isaac@gmail.com> 1715189592 +0300	checkout: moving from master to 05/05/24
+0c7ee943a630626e44d11b411b0fc994f2b0414a 0c7ee943a630626e44d11b411b0fc994f2b0414a slimeVidas26 <dahan.isaac@gmail.com> 1715191113 +0300	checkout: moving from 05/05/24 to 08/05/24
+0c7ee943a630626e44d11b411b0fc994f2b0414a 988c46ad406f276beef7fd64d55fa731b9fe2669 slimeVidas26 <dahan.isaac@gmail.com> 1715280697 +0300	commit: updates
+988c46ad406f276beef7fd64d55fa731b9fe2669 988c46ad406f276beef7fd64d55fa731b9fe2669 slimeVidas26 <dahan.isaac@gmail.com> 1715335512 +0300	checkout: moving from 08/05/24 to 10/05/24
+988c46ad406f276beef7fd64d55fa731b9fe2669 8fddbedf3819921bb61832e720257ed564eff6a0 slimeVidas26 <dahan.isaac@gmail.com> 1715349687 +0300	commit: tab
+8fddbedf3819921bb61832e720257ed564eff6a0 bfec6968f61d4e0b70b249c4c36ac663637ba023 slimeVidas26 <dahan.isaac@gmail.com> 1715355018 +0300	commit: tab2
+bfec6968f61d4e0b70b249c4c36ac663637ba023 bfec6968f61d4e0b70b249c4c36ac663637ba023 slimeVidas26 <dahan.isaac@gmail.com> 1715451686 +0300	checkout: moving from 10/05/24 to 11/05/24
+bfec6968f61d4e0b70b249c4c36ac663637ba023 bf5238406a956709371f6b75f0c5fb5c99e04e6f slimeVidas26 <dahan.isaac@gmail.com> 1715459106 +0300	commit: tabs
+bf5238406a956709371f6b75f0c5fb5c99e04e6f bf5238406a956709371f6b75f0c5fb5c99e04e6f slimeVidas26 <dahan.isaac@gmail.com> 1715529777 +0300	checkout: moving from 11/05/24 to 12/05/24
+bf5238406a956709371f6b75f0c5fb5c99e04e6f 6fafc18fa89cb60170f51db3a7b0844c86f06e3c slimeVidas26 <dahan.isaac@gmail.com> 1715540767 +0300	commit: tab2
+6fafc18fa89cb60170f51db3a7b0844c86f06e3c 6fafc18fa89cb60170f51db3a7b0844c86f06e3c slimeVidas26 <dahan.isaac@gmail.com> 1715674615 +0300	checkout: moving from 12/05/24 to 14/05/24
+6fafc18fa89cb60170f51db3a7b0844c86f06e3c 7b9ea7ad801fcfe31312caadd0199657cb55e8a3 slimeVidas26 <dahan.isaac@gmail.com> 1715694956 +0300	commit: db
+7b9ea7ad801fcfe31312caadd0199657cb55e8a3 46dffa7b7fafa1d3a8c27bc342afe3d72b7169ca slimeVidas26 <dahan.isaac@gmail.com> 1715699858 +0300	commit: suppliers
+46dffa7b7fafa1d3a8c27bc342afe3d72b7169ca 9d2b4ddcb7f5a212f88ea08ba009b4da87fc5464 slimeVidas26 <dahan.isaac@gmail.com> 1715712737 +0300	commit: test
+9d2b4ddcb7f5a212f88ea08ba009b4da87fc5464 9d2b4ddcb7f5a212f88ea08ba009b4da87fc5464 slimeVidas26 <dahan.isaac@gmail.com> 1715787626 +0300	checkout: moving from 14/05/24 to 15/05/24
+9d2b4ddcb7f5a212f88ea08ba009b4da87fc5464 10f5bba2951b88d0b473fefc80f5c67b21221fec slimeVidas26 <dahan.isaac@gmail.com> 1715799923 +0300	commit: EdiItemApprovalScren
+10f5bba2951b88d0b473fefc80f5c67b21221fec 10f5bba2951b88d0b473fefc80f5c67b21221fec slimeVidas26 <dahan.isaac@gmail.com> 1715874153 +0300	checkout: moving from 15/05/24 to 16/05/24
+10f5bba2951b88d0b473fefc80f5c67b21221fec fc21a419b893f8d026738b202c9310fb53e484da slimeVidas26 <dahan.isaac@gmail.com> 1715891988 +0300	commit: approvalScreen
+fc21a419b893f8d026738b202c9310fb53e484da fc21a419b893f8d026738b202c9310fb53e484da slimeVidas26 <dahan.isaac@gmail.com> 1715941886 +0300	checkout: moving from 16/05/24 to 17/05/24
+fc21a419b893f8d026738b202c9310fb53e484da dac39d56d947435ce421e1045ec9099748d780c6 slimeVidas26 <dahan.isaac@gmail.com> 1715959880 +0300	commit: units
+dac39d56d947435ce421e1045ec9099748d780c6 dac39d56d947435ce421e1045ec9099748d780c6 slimeVidas26 <dahan.isaac@gmail.com> 1716056937 +0300	checkout: moving from 17/05/24 to 18/05/24
+dac39d56d947435ce421e1045ec9099748d780c6 dc011d6e7656102a5a62ff38b11c4e51c0ee65b8 slimeVidas26 <dahan.isaac@gmail.com> 1716068142 +0300	commit: counter
+dc011d6e7656102a5a62ff38b11c4e51c0ee65b8 dc011d6e7656102a5a62ff38b11c4e51c0ee65b8 slimeVidas26 <dahan.isaac@gmail.com> 1716128831 +0300	checkout: moving from 18/05/24 to 19/05/24
+dc011d6e7656102a5a62ff38b11c4e51c0ee65b8 efd86db71d61d007b947e14a5ea6db5cacf96ce1 slimeVidas26 <dahan.isaac@gmail.com> 1716150318 +0300	commit: increment
+efd86db71d61d007b947e14a5ea6db5cacf96ce1 efd86db71d61d007b947e14a5ea6db5cacf96ce1 slimeVidas26 <dahan.isaac@gmail.com> 1716215714 +0300	checkout: moving from 19/05/24 to 20/05/24
+efd86db71d61d007b947e14a5ea6db5cacf96ce1 ea933ed3f8703e7432d861d5b0fd7744249595d6 slimeVidas26 <dahan.isaac@gmail.com> 1716232782 +0300	commit: counter
+ea933ed3f8703e7432d861d5b0fd7744249595d6 75e2d3f0c45246879fe55f7e13ec0d448cb6b331 slimeVidas26 <dahan.isaac@gmail.com> 1716234051 +0300	commit: counter2
+75e2d3f0c45246879fe55f7e13ec0d448cb6b331 75e2d3f0c45246879fe55f7e13ec0d448cb6b331 slimeVidas26 <dahan.isaac@gmail.com> 1716300074 +0300	checkout: moving from 20/05/24 to 21/05/24
+75e2d3f0c45246879fe55f7e13ec0d448cb6b331 e8cc882b917842995d68419210b63431e1ad7715 slimeVidas26 <dahan.isaac@gmail.com> 1716303555 +0300	commit: number
+e8cc882b917842995d68419210b63431e1ad7715 4adb976b82694e5ae36aa49b971b91469db24f5f slimeVidas26 <dahan.isaac@gmail.com> 1716319716 +0300	commit: css
+4adb976b82694e5ae36aa49b971b91469db24f5f 87c518b7d0c46ad919abe7f1fd85fb60e63ab8c0 slimeVidas26 <dahan.isaac@gmail.com> 1716319874 +0300	commit: test
+87c518b7d0c46ad919abe7f1fd85fb60e63ab8c0 87c518b7d0c46ad919abe7f1fd85fb60e63ab8c0 slimeVidas26 <dahan.isaac@gmail.com> 1716386052 +0300	checkout: moving from 21/05/24 to 22/05/24
+87c518b7d0c46ad919abe7f1fd85fb60e63ab8c0 a5181667d41d26d50bd419adafd02933c15831a7 slimeVidas26 <dahan.isaac@gmail.com> 1716404955 +0300	commit: functions
+a5181667d41d26d50bd419adafd02933c15831a7 a5181667d41d26d50bd419adafd02933c15831a7 slimeVidas26 <dahan.isaac@gmail.com> 1716481995 +0300	checkout: moving from 22/05/24 to 23/05/24
+a5181667d41d26d50bd419adafd02933c15831a7 674da04114f33b6ddec961ccaac0140f75e06788 slimeVidas26 <dahan.isaac@gmail.com> 1716499217 +0300	commit: kk
+674da04114f33b6ddec961ccaac0140f75e06788 3e5c446017333a0e1b641ffeabd984a25bdd1772 slimeVidas26 <dahan.isaac@gmail.com> 1716502234 +0300	commit: dadadada
+3e5c446017333a0e1b641ffeabd984a25bdd1772 3e5c446017333a0e1b641ffeabd984a25bdd1772 slimeVidas26 <dahan.isaac@gmail.com> 1716534141 +0300	checkout: moving from 23/05/24 to 24/05/24
+3e5c446017333a0e1b641ffeabd984a25bdd1772 6b3eb58015e5fd0158b86dba49edaed3b2712887 slimeVidas26 <dahan.isaac@gmail.com> 1716564968 +0300	commit: totoScreen
+6b3eb58015e5fd0158b86dba49edaed3b2712887 6b3eb58015e5fd0158b86dba49edaed3b2712887 slimeVidas26 <dahan.isaac@gmail.com> 1716662202 +0300	checkout: moving from 24/05/24 to 25/05/24
+6b3eb58015e5fd0158b86dba49edaed3b2712887 34f9eefffd7a90ab2ebdb30f5dc4653acccdf997 slimeVidas26 <dahan.isaac@gmail.com> 1716674142 +0300	commit: phase1
+34f9eefffd7a90ab2ebdb30f5dc4653acccdf997 34f9eefffd7a90ab2ebdb30f5dc4653acccdf997 slimeVidas26 <dahan.isaac@gmail.com> 1716734764 +0300	checkout: moving from 25/05/24 to 26/05/24
+34f9eefffd7a90ab2ebdb30f5dc4653acccdf997 0c27e370c71361d860fe59e25fcebe8af97517f1 slimeVidas26 <dahan.isaac@gmail.com> 1716753141 +0300	commit: empty
+0c27e370c71361d860fe59e25fcebe8af97517f1 0c27e370c71361d860fe59e25fcebe8af97517f1 slimeVidas26 <dahan.isaac@gmail.com> 1716828261 +0300	checkout: moving from 26/05/24 to 27/05/24
+0c27e370c71361d860fe59e25fcebe8af97517f1 589348b7de83d1c52f3cf7ae66299eda5c22014f slimeVidas26 <dahan.isaac@gmail.com> 1716840888 +0300	commit: props
+589348b7de83d1c52f3cf7ae66299eda5c22014f 589348b7de83d1c52f3cf7ae66299eda5c22014f slimeVidas26 <dahan.isaac@gmail.com> 1716917466 +0300	checkout: moving from 27/05/24 to 28/05/24
+589348b7de83d1c52f3cf7ae66299eda5c22014f a06e2e13ea5e2753ea9b5efb5f5c7ad4984e8fe0 slimeVidas26 <dahan.isaac@gmail.com> 1716925907 +0300	commit: error
+a06e2e13ea5e2753ea9b5efb5f5c7ad4984e8fe0 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1716925915 +0300	checkout: moving from 28/05/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 589348b7de83d1c52f3cf7ae66299eda5c22014f slimeVidas26 <dahan.isaac@gmail.com> 1716925934 +0300	checkout: moving from master to 27/05/24
+589348b7de83d1c52f3cf7ae66299eda5c22014f 589348b7de83d1c52f3cf7ae66299eda5c22014f slimeVidas26 <dahan.isaac@gmail.com> 1717000564 +0300	checkout: moving from 27/05/24 to 29/05/24
+589348b7de83d1c52f3cf7ae66299eda5c22014f 2eea2f4798a0107bc9ff3af997cf6b1a4827628b slimeVidas26 <dahan.isaac@gmail.com> 1717092585 +0300	commit: form
+2eea2f4798a0107bc9ff3af997cf6b1a4827628b 2eea2f4798a0107bc9ff3af997cf6b1a4827628b slimeVidas26 <dahan.isaac@gmail.com> 1717092596 +0300	checkout: moving from 29/05/24 to 30/05/24
+2eea2f4798a0107bc9ff3af997cf6b1a4827628b 740c00e587a8aa3a6697ee60f07224c20736a2e9 slimeVidas26 <dahan.isaac@gmail.com> 1717098980 +0300	commit: form-ok
+740c00e587a8aa3a6697ee60f07224c20736a2e9 740c00e587a8aa3a6697ee60f07224c20736a2e9 slimeVidas26 <dahan.isaac@gmail.com> 1717165417 +0300	checkout: moving from 30/05/24 to 31/05/24
+740c00e587a8aa3a6697ee60f07224c20736a2e9 ca70684ba043fe6ce34572d8ecadef01abfb96cc slimeVidas26 <dahan.isaac@gmail.com> 1717169710 +0300	commit: placeholder-canvas
+ca70684ba043fe6ce34572d8ecadef01abfb96cc ca70684ba043fe6ce34572d8ecadef01abfb96cc slimeVidas26 <dahan.isaac@gmail.com> 1717266958 +0300	checkout: moving from 31/05/24 to 01/06/24
+ca70684ba043fe6ce34572d8ecadef01abfb96cc fa9423e5490476347e5f09874a3e40b9afc775a1 slimeVidas26 <dahan.isaac@gmail.com> 1717277058 +0300	commit: keyboardAvoidingView
+fa9423e5490476347e5f09874a3e40b9afc775a1 fa9423e5490476347e5f09874a3e40b9afc775a1 slimeVidas26 <dahan.isaac@gmail.com> 1717338339 +0300	checkout: moving from 01/06/24 to 02/06/24
+fa9423e5490476347e5f09874a3e40b9afc775a1 5e8c6c9c74aa0793ded89dd4ad8f79f8d7a7c122 slimeVidas26 <dahan.isaac@gmail.com> 1717425441 +0300	commit: data
+5e8c6c9c74aa0793ded89dd4ad8f79f8d7a7c122 58013c74eddda662a26df1cf89510ae8ecaba07b slimeVidas26 <dahan.isaac@gmail.com> 1717440872 +0300	commit: Reason
+58013c74eddda662a26df1cf89510ae8ecaba07b 58013c74eddda662a26df1cf89510ae8ecaba07b slimeVidas26 <dahan.isaac@gmail.com> 1717610113 +0300	checkout: moving from 02/06/24 to 05/06/24
+58013c74eddda662a26df1cf89510ae8ecaba07b bf5c3728216a8bf42112f87b9876dd27596f20bb slimeVidas26 <dahan.isaac@gmail.com> 1717616129 +0300	commit: circle
+bf5c3728216a8bf42112f87b9876dd27596f20bb bf5c3728216a8bf42112f87b9876dd27596f20bb slimeVidas26 <dahan.isaac@gmail.com> 1717697289 +0300	checkout: moving from 05/06/24 to 06/06/24
+bf5c3728216a8bf42112f87b9876dd27596f20bb 18fe3b1b4e114655d6cd026799bea8b305226949 slimeVidas26 <dahan.isaac@gmail.com> 1717703380 +0300	commit: openMODALbutton
+18fe3b1b4e114655d6cd026799bea8b305226949 18fe3b1b4e114655d6cd026799bea8b305226949 slimeVidas26 <dahan.isaac@gmail.com> 1717745847 +0300	checkout: moving from 06/06/24 to 07/06/24
+18fe3b1b4e114655d6cd026799bea8b305226949 289c0def06f0e9c6c4ca9121d529606437713728 slimeVidas26 <dahan.isaac@gmail.com> 1717774616 +0300	commit: error
+289c0def06f0e9c6c4ca9121d529606437713728 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1717774655 +0300	checkout: moving from 07/06/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 18fe3b1b4e114655d6cd026799bea8b305226949 slimeVidas26 <dahan.isaac@gmail.com> 1717774685 +0300	checkout: moving from master to 06/06/24
+18fe3b1b4e114655d6cd026799bea8b305226949 18fe3b1b4e114655d6cd026799bea8b305226949 slimeVidas26 <dahan.isaac@gmail.com> 1717774696 +0300	checkout: moving from 06/06/24 to 07/06/24
+18fe3b1b4e114655d6cd026799bea8b305226949 6caf7c4a0bee0070e197c8c7795a51c9ef880098 slimeVidas26 <dahan.isaac@gmail.com> 1717776132 +0300	commit: redstamp
+6caf7c4a0bee0070e197c8c7795a51c9ef880098 6caf7c4a0bee0070e197c8c7795a51c9ef880098 slimeVidas26 <dahan.isaac@gmail.com> 1717873273 +0300	checkout: moving from 07/06/24 to 08/06/24
+6caf7c4a0bee0070e197c8c7795a51c9ef880098 059ba3ee39c32fdbd44e17e701f7696e07255a6f slimeVidas26 <dahan.isaac@gmail.com> 1717948304 +0300	commit: test
+059ba3ee39c32fdbd44e17e701f7696e07255a6f 059ba3ee39c32fdbd44e17e701f7696e07255a6f slimeVidas26 <dahan.isaac@gmail.com> 1717948509 +0300	checkout: moving from 08/06/24 to 09/06/24
+059ba3ee39c32fdbd44e17e701f7696e07255a6f d2b8156143406a3f4f34de7397b55ef10e8176a1 slimeVidas26 <dahan.isaac@gmail.com> 1717959637 +0300	commit: AAAAAAAAA
+d2b8156143406a3f4f34de7397b55ef10e8176a1 d2b8156143406a3f4f34de7397b55ef10e8176a1 slimeVidas26 <dahan.isaac@gmail.com> 1718037123 +0300	checkout: moving from 09/06/24 to 10/06/24
+d2b8156143406a3f4f34de7397b55ef10e8176a1 da249909002bbccf62986471939a85363fb6a4a6 slimeVidas26 <dahan.isaac@gmail.com> 1718112046 +0300	commit: tototto
+da249909002bbccf62986471939a85363fb6a4a6 da249909002bbccf62986471939a85363fb6a4a6 slimeVidas26 <dahan.isaac@gmail.com> 1718112054 +0300	checkout: moving from 10/06/24 to 11/06/24
+da249909002bbccf62986471939a85363fb6a4a6 da249909002bbccf62986471939a85363fb6a4a6 slimeVidas26 <dahan.isaac@gmail.com> 1718221459 +0300	checkout: moving from 11/06/24 to 12/06/24
+da249909002bbccf62986471939a85363fb6a4a6 f06847817127eb7fc6fa63627f8cc5991a327d0b slimeVidas26 <dahan.isaac@gmail.com> 1718226679 +0300	commit: query
+f06847817127eb7fc6fa63627f8cc5991a327d0b f06847817127eb7fc6fa63627f8cc5991a327d0b slimeVidas26 <dahan.isaac@gmail.com> 1718303031 +0300	checkout: moving from 12/06/24 to 13/06/24
+f06847817127eb7fc6fa63627f8cc5991a327d0b 00af8d6d1caff528fece68972a5dc4b2b096f10f slimeVidas26 <dahan.isaac@gmail.com> 1718309992 +0300	commit: resolvers
+00af8d6d1caff528fece68972a5dc4b2b096f10f 00af8d6d1caff528fece68972a5dc4b2b096f10f slimeVidas26 <dahan.isaac@gmail.com> 1718349766 +0300	checkout: moving from 13/06/24 to 14/06/24
+00af8d6d1caff528fece68972a5dc4b2b096f10f f2a5afd2659120f55af76884a360e2eed72fe140 slimeVidas26 <dahan.isaac@gmail.com> 1718365850 +0300	commit: toto
+f2a5afd2659120f55af76884a360e2eed72fe140 be42e37810faebcb6b92e6a08e33c6f0f5f14d86 slimeVidas26 <dahan.isaac@gmail.com> 1718376736 +0300	commit: add-order
+be42e37810faebcb6b92e6a08e33c6f0f5f14d86 e0a5b7dbf2cc61b6bd907e9168989d42c6885c2f slimeVidas26 <dahan.isaac@gmail.com> 1718378929 +0300	commit: error
+e0a5b7dbf2cc61b6bd907e9168989d42c6885c2f be42e37810faebcb6b92e6a08e33c6f0f5f14d86 slimeVidas26 <dahan.isaac@gmail.com> 1718378932 +0300	reset: moving to HEAD^
+be42e37810faebcb6b92e6a08e33c6f0f5f14d86 be42e37810faebcb6b92e6a08e33c6f0f5f14d86 slimeVidas26 <dahan.isaac@gmail.com> 1718476427 +0300	checkout: moving from 14/06/24 to 15/06/24
+be42e37810faebcb6b92e6a08e33c6f0f5f14d86 501f48140da6ddbfd20a08b4f16e94eaea156b06 slimeVidas26 <dahan.isaac@gmail.com> 1718485652 +0300	commit: order
+501f48140da6ddbfd20a08b4f16e94eaea156b06 501f48140da6ddbfd20a08b4f16e94eaea156b06 slimeVidas26 <dahan.isaac@gmail.com> 1718634061 +0300	checkout: moving from 15/06/24 to 17/06/24
+501f48140da6ddbfd20a08b4f16e94eaea156b06 a522b09e49d31fda4f83f3e325b223e4ab8bd17f slimeVidas26 <dahan.isaac@gmail.com> 1718648927 +0300	commit: error
+a522b09e49d31fda4f83f3e325b223e4ab8bd17f d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1718648934 +0300	checkout: moving from 17/06/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 501f48140da6ddbfd20a08b4f16e94eaea156b06 slimeVidas26 <dahan.isaac@gmail.com> 1718648965 +0300	checkout: moving from master to 15/06/24
+501f48140da6ddbfd20a08b4f16e94eaea156b06 501f48140da6ddbfd20a08b4f16e94eaea156b06 slimeVidas26 <dahan.isaac@gmail.com> 1718767509 +0300	checkout: moving from 15/06/24 to 19/06/24
+501f48140da6ddbfd20a08b4f16e94eaea156b06 47b38c4315a06dd8090a7b579be2d0a10da8ed3e slimeVidas26 <dahan.isaac@gmail.com> 1718915323 +0300	commit: ririri
+47b38c4315a06dd8090a7b579be2d0a10da8ed3e 47b38c4315a06dd8090a7b579be2d0a10da8ed3e slimeVidas26 <dahan.isaac@gmail.com> 1718915337 +0300	checkout: moving from 19/06/24 to 20/06/24
+47b38c4315a06dd8090a7b579be2d0a10da8ed3e ae4377e5f04e4f1f5f34270a618cd9cf3c2abf75 slimeVidas26 <dahan.isaac@gmail.com> 1718917748 +0300	commit: supplier
+ae4377e5f04e4f1f5f34270a618cd9cf3c2abf75 ae4377e5f04e4f1f5f34270a618cd9cf3c2abf75 slimeVidas26 <dahan.isaac@gmail.com> 1718951991 +0300	checkout: moving from 20/06/24 to 21/06/24
+ae4377e5f04e4f1f5f34270a618cd9cf3c2abf75 7e270c83f62b78633d080764bf11a469d5d4e396 slimeVidas26 <dahan.isaac@gmail.com> 1718981935 +0300	commit: addaparoductataoaoarder
+7e270c83f62b78633d080764bf11a469d5d4e396 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1718982806 +0300	checkout: moving from 21/06/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 7e270c83f62b78633d080764bf11a469d5d4e396 slimeVidas26 <dahan.isaac@gmail.com> 1718982819 +0300	checkout: moving from master to 21/06/24
+7e270c83f62b78633d080764bf11a469d5d4e396 7e270c83f62b78633d080764bf11a469d5d4e396 slimeVidas26 <dahan.isaac@gmail.com> 1718983543 +0300	checkout: moving from 21/06/24 to 21bis/06/24
+7e270c83f62b78633d080764bf11a469d5d4e396 6fc78c0079d4bd4750c79e65cd9c0bf9d181a4dd slimeVidas26 <dahan.isaac@gmail.com> 1718985341 +0300	commit: error
+6fc78c0079d4bd4750c79e65cd9c0bf9d181a4dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1718985374 +0300	checkout: moving from 21bis/06/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 7e270c83f62b78633d080764bf11a469d5d4e396 slimeVidas26 <dahan.isaac@gmail.com> 1718985397 +0300	checkout: moving from master to 21/06/24
+7e270c83f62b78633d080764bf11a469d5d4e396 7e270c83f62b78633d080764bf11a469d5d4e396 slimeVidas26 <dahan.isaac@gmail.com> 1719082649 +0300	checkout: moving from 21/06/24 to 22/06/24
+7e270c83f62b78633d080764bf11a469d5d4e396 65f720244f626432344ec7f190dc07e2db324c01 slimeVidas26 <dahan.isaac@gmail.com> 1719091421 +0300	commit: ok
+65f720244f626432344ec7f190dc07e2db324c01 65f720244f626432344ec7f190dc07e2db324c01 slimeVidas26 <dahan.isaac@gmail.com> 1719559166 +0300	checkout: moving from 22/06/24 to 28/06/24
+65f720244f626432344ec7f190dc07e2db324c01 48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 slimeVidas26 <dahan.isaac@gmail.com> 1719572139 +0300	commit: agregation
+48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 3a7b8a751db52c32a2a6ec1e6bcfa543083d6372 slimeVidas26 <dahan.isaac@gmail.com> 1719573722 +0300	commit: error
+3a7b8a751db52c32a2a6ec1e6bcfa543083d6372 48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 slimeVidas26 <dahan.isaac@gmail.com> 1719573805 +0300	reset: moving to HEAD^
+48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 efd22d1d7acc6509663f50dcacb76737eaa7df50 slimeVidas26 <dahan.isaac@gmail.com> 1719577375 +0300	commit: err
+efd22d1d7acc6509663f50dcacb76737eaa7df50 48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 slimeVidas26 <dahan.isaac@gmail.com> 1719577382 +0300	reset: moving to HEAD^
+48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 3dc7c60f4b5269f8813eac431140c74a883ee144 slimeVidas26 <dahan.isaac@gmail.com> 1719577803 +0300	commit: test
+3dc7c60f4b5269f8813eac431140c74a883ee144 48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 slimeVidas26 <dahan.isaac@gmail.com> 1719577807 +0300	reset: moving to HEAD^
+48fc547b7f7e335746a16fc9c00dc3d3bbbe5df6 9a46e8770615870a5fed997ae36f36acb32fbe61 slimeVidas26 <dahan.isaac@gmail.com> 1719590960 +0300	commit: alphaOrder
+9a46e8770615870a5fed997ae36f36acb32fbe61 9a46e8770615870a5fed997ae36f36acb32fbe61 slimeVidas26 <dahan.isaac@gmail.com> 1719688754 +0300	checkout: moving from 28/06/24 to 29/06/24
+9a46e8770615870a5fed997ae36f36acb32fbe61 76cbe10ab1a83320c144c8545e20632dcde500d5 slimeVidas26 <dahan.isaac@gmail.com> 1719694591 +0300	commit: addOrder
+76cbe10ab1a83320c144c8545e20632dcde500d5 76cbe10ab1a83320c144c8545e20632dcde500d5 slimeVidas26 <dahan.isaac@gmail.com> 1720021937 +0300	checkout: moving from 29/06/24 to 03/07/24
+76cbe10ab1a83320c144c8545e20632dcde500d5 76cbe10ab1a83320c144c8545e20632dcde500d5 slimeVidas26 <dahan.isaac@gmail.com> 1720103618 +0300	checkout: moving from 03/07/24 to 04/07/24
+76cbe10ab1a83320c144c8545e20632dcde500d5 55f2adea3cffc8d9d038df536eac1533e187cf86 slimeVidas26 <dahan.isaac@gmail.com> 1720189691 +0300	commit: agg
+55f2adea3cffc8d9d038df536eac1533e187cf86 55f2adea3cffc8d9d038df536eac1533e187cf86 slimeVidas26 <dahan.isaac@gmail.com> 1720189701 +0300	checkout: moving from 04/07/24 to 05/07/24
+55f2adea3cffc8d9d038df536eac1533e187cf86 d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 slimeVidas26 <dahan.isaac@gmail.com> 1720293596 +0300	commit: agg2
+d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 slimeVidas26 <dahan.isaac@gmail.com> 1720293608 +0300	checkout: moving from 05/07/24 to 06/07/24
+d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 53a47b27982cb64da5a0527bd3cad4907da39a23 slimeVidas26 <dahan.isaac@gmail.com> 1720299501 +0300	commit: error
+53a47b27982cb64da5a0527bd3cad4907da39a23 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1720299508 +0300	checkout: moving from 06/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 slimeVidas26 <dahan.isaac@gmail.com> 1720299559 +0300	checkout: moving from master to 05/07/24
+d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 slimeVidas26 <dahan.isaac@gmail.com> 1720366334 +0300	checkout: moving from 05/07/24 to 07/07/24
+d3d0ab5e9e692b1264260bb9fe6eda4582f74b52 dbeef8b2bf820fe30ed45dce1566d98bf31c512f slimeVidas26 <dahan.isaac@gmail.com> 1720383025 +0300	commit: quantity
+dbeef8b2bf820fe30ed45dce1566d98bf31c512f dbeef8b2bf820fe30ed45dce1566d98bf31c512f slimeVidas26 <dahan.isaac@gmail.com> 1720462068 +0300	checkout: moving from 07/07/24 to 08/07/24
+dbeef8b2bf820fe30ed45dce1566d98bf31c512f 1c6e70382f91c8109a0b427165a68658569946ec slimeVidas26 <dahan.isaac@gmail.com> 1720468674 +0300	commit: perBox
+1c6e70382f91c8109a0b427165a68658569946ec 1c6e70382f91c8109a0b427165a68658569946ec slimeVidas26 <dahan.isaac@gmail.com> 1720548283 +0300	checkout: moving from 08/07/24 to 09/07/24
+1c6e70382f91c8109a0b427165a68658569946ec f9e598eac1044bc54191fa4191e5125abfa0d839 slimeVidas26 <dahan.isaac@gmail.com> 1720555506 +0300	commit: error
+f9e598eac1044bc54191fa4191e5125abfa0d839 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1720555518 +0300	checkout: moving from 09/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 1c6e70382f91c8109a0b427165a68658569946ec slimeVidas26 <dahan.isaac@gmail.com> 1720555547 +0300	checkout: moving from master to 08/07/24
+1c6e70382f91c8109a0b427165a68658569946ec b9efe07261df527ee1c148a08cec855b8f259124 slimeVidas26 <dahan.isaac@gmail.com> 1720556800 +0300	commit: er
+b9efe07261df527ee1c148a08cec855b8f259124 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1720556807 +0300	checkout: moving from 08/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd b9efe07261df527ee1c148a08cec855b8f259124 slimeVidas26 <dahan.isaac@gmail.com> 1720556842 +0300	checkout: moving from master to 08/07/24
+b9efe07261df527ee1c148a08cec855b8f259124 66d5246801a7395334fa5d6e20724d4a327534ae slimeVidas26 <dahan.isaac@gmail.com> 1720557703 +0300	commit: totalBox
+66d5246801a7395334fa5d6e20724d4a327534ae 66d5246801a7395334fa5d6e20724d4a327534ae slimeVidas26 <dahan.isaac@gmail.com> 1720622304 +0300	checkout: moving from 08/07/24 to 10/07/24
+66d5246801a7395334fa5d6e20724d4a327534ae 587b53997c6317bf3bb8f44fb3dc1800345866cc slimeVidas26 <dahan.isaac@gmail.com> 1720719454 +0300	commit: product
+587b53997c6317bf3bb8f44fb3dc1800345866cc 587b53997c6317bf3bb8f44fb3dc1800345866cc slimeVidas26 <dahan.isaac@gmail.com> 1720719507 +0300	checkout: moving from 10/07/24 to 11/07/24
+587b53997c6317bf3bb8f44fb3dc1800345866cc ddca3221f464791504f768dd49833db21903309c slimeVidas26 <dahan.isaac@gmail.com> 1720729297 +0300	commit: error
+ddca3221f464791504f768dd49833db21903309c d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1720729318 +0300	checkout: moving from 11/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 587b53997c6317bf3bb8f44fb3dc1800345866cc slimeVidas26 <dahan.isaac@gmail.com> 1720729342 +0300	checkout: moving from master to 10/07/24
+587b53997c6317bf3bb8f44fb3dc1800345866cc 101b2b9c653e40b169ba90abb8f1020099b6edfb slimeVidas26 <dahan.isaac@gmail.com> 1720732317 +0300	commit: addProduct
+101b2b9c653e40b169ba90abb8f1020099b6edfb 101b2b9c653e40b169ba90abb8f1020099b6edfb slimeVidas26 <dahan.isaac@gmail.com> 1720899130 +0300	checkout: moving from 10/07/24 to 13/07/24
+101b2b9c653e40b169ba90abb8f1020099b6edfb 3f411f6cd6491a79b38a579b095bcab5a6c573e8 slimeVidas26 <dahan.isaac@gmail.com> 1720970550 +0300	commit: order
+3f411f6cd6491a79b38a579b095bcab5a6c573e8 3f411f6cd6491a79b38a579b095bcab5a6c573e8 slimeVidas26 <dahan.isaac@gmail.com> 1720970575 +0300	checkout: moving from 13/07/24 to 14/07/24
+3f411f6cd6491a79b38a579b095bcab5a6c573e8 9c662e5e6ebed5f728c5da78cc80792ed80e7038 slimeVidas26 <dahan.isaac@gmail.com> 1720974529 +0300	commit: before cleaning
+9c662e5e6ebed5f728c5da78cc80792ed80e7038 d3523b60b84f9e0bf3011484219e501516bd1335 slimeVidas26 <dahan.isaac@gmail.com> 1720986022 +0300	commit: clean orderSupplierProduct
+d3523b60b84f9e0bf3011484219e501516bd1335 d3523b60b84f9e0bf3011484219e501516bd1335 slimeVidas26 <dahan.isaac@gmail.com> 1721073807 +0300	checkout: moving from 14/07/24 to 15/07/24
+d3523b60b84f9e0bf3011484219e501516bd1335 acafd2138481b97161654f14571ba3f8ea4b4c53 slimeVidas26 <dahan.isaac@gmail.com> 1721077801 +0300	commit: arrange
+acafd2138481b97161654f14571ba3f8ea4b4c53 acafd2138481b97161654f14571ba3f8ea4b4c53 slimeVidas26 <dahan.isaac@gmail.com> 1721153367 +0300	checkout: moving from 15/07/24 to 16/07/24
+acafd2138481b97161654f14571ba3f8ea4b4c53 ee4548d420ca0115a3f7d20b2e66ab322af6655d slimeVidas26 <dahan.isaac@gmail.com> 1721162355 +0300	commit: supplierError
+ee4548d420ca0115a3f7d20b2e66ab322af6655d ee4548d420ca0115a3f7d20b2e66ab322af6655d slimeVidas26 <dahan.isaac@gmail.com> 1721229405 +0300	checkout: moving from 16/07/24 to 17/07/24
+ee4548d420ca0115a3f7d20b2e66ab322af6655d 51d12683e30de4071824565c18fa6b9048d84679 slimeVidas26 <dahan.isaac@gmail.com> 1721232892 +0300	commit: supplier-products
+51d12683e30de4071824565c18fa6b9048d84679 acafd2138481b97161654f14571ba3f8ea4b4c53 slimeVidas26 <dahan.isaac@gmail.com> 1721232901 +0300	checkout: moving from 17/07/24 to 15/07/24
+acafd2138481b97161654f14571ba3f8ea4b4c53 d3523b60b84f9e0bf3011484219e501516bd1335 slimeVidas26 <dahan.isaac@gmail.com> 1721232913 +0300	checkout: moving from 15/07/24 to 14/07/24
+d3523b60b84f9e0bf3011484219e501516bd1335 3f411f6cd6491a79b38a579b095bcab5a6c573e8 slimeVidas26 <dahan.isaac@gmail.com> 1721232927 +0300	checkout: moving from 14/07/24 to 13/07/24
+3f411f6cd6491a79b38a579b095bcab5a6c573e8 51d12683e30de4071824565c18fa6b9048d84679 slimeVidas26 <dahan.isaac@gmail.com> 1721232956 +0300	checkout: moving from 13/07/24 to 17/07/24
+51d12683e30de4071824565c18fa6b9048d84679 3f411f6cd6491a79b38a579b095bcab5a6c573e8 slimeVidas26 <dahan.isaac@gmail.com> 1721232986 +0300	checkout: moving from 17/07/24 to 13/07/24
+3f411f6cd6491a79b38a579b095bcab5a6c573e8 101b2b9c653e40b169ba90abb8f1020099b6edfb slimeVidas26 <dahan.isaac@gmail.com> 1721233030 +0300	checkout: moving from 13/07/24 to 10/07/24
+101b2b9c653e40b169ba90abb8f1020099b6edfb 66d5246801a7395334fa5d6e20724d4a327534ae slimeVidas26 <dahan.isaac@gmail.com> 1721233070 +0300	checkout: moving from 10/07/24 to 08/07/24
+66d5246801a7395334fa5d6e20724d4a327534ae dbeef8b2bf820fe30ed45dce1566d98bf31c512f slimeVidas26 <dahan.isaac@gmail.com> 1721233097 +0300	checkout: moving from 08/07/24 to 07/07/24
+dbeef8b2bf820fe30ed45dce1566d98bf31c512f 51d12683e30de4071824565c18fa6b9048d84679 slimeVidas26 <dahan.isaac@gmail.com> 1721238312 +0300	checkout: moving from 07/07/24 to 17/07/24
+51d12683e30de4071824565c18fa6b9048d84679 ee4548d420ca0115a3f7d20b2e66ab322af6655d slimeVidas26 <dahan.isaac@gmail.com> 1721238621 +0300	checkout: moving from 17/07/24 to 16/07/24
+ee4548d420ca0115a3f7d20b2e66ab322af6655d 51d12683e30de4071824565c18fa6b9048d84679 slimeVidas26 <dahan.isaac@gmail.com> 1721238641 +0300	checkout: moving from 16/07/24 to 17/07/24
+51d12683e30de4071824565c18fa6b9048d84679 3f73105e3cb2df56f5d77968ae0a25d803e03cbd slimeVidas26 <dahan.isaac@gmail.com> 1721241302 +0300	commit: products in supp
+3f73105e3cb2df56f5d77968ae0a25d803e03cbd 8e678be841504f7d0065a464b9b1d3915b0f0f01 slimeVidas26 <dahan.isaac@gmail.com> 1721246927 +0300	commit: errorDepartment
+8e678be841504f7d0065a464b9b1d3915b0f0f01 8e678be841504f7d0065a464b9b1d3915b0f0f01 slimeVidas26 <dahan.isaac@gmail.com> 1721505976 +0300	checkout: moving from 17/07/24 to 20/07/24
+8e678be841504f7d0065a464b9b1d3915b0f0f01 cf392cf4e2fba80d33805a9a7b7e7317c1ea5b84 slimeVidas26 <dahan.isaac@gmail.com> 1721510968 +0300	commit: suppliers
+cf392cf4e2fba80d33805a9a7b7e7317c1ea5b84 cf392cf4e2fba80d33805a9a7b7e7317c1ea5b84 slimeVidas26 <dahan.isaac@gmail.com> 1721577708 +0300	checkout: moving from 20/07/24 to 21/07/24
+cf392cf4e2fba80d33805a9a7b7e7317c1ea5b84 a42910186f6d9223e954c0b295aeff18dda97a6c slimeVidas26 <dahan.isaac@gmail.com> 1721591502 +0300	commit: supplierFrontEnd
+a42910186f6d9223e954c0b295aeff18dda97a6c a42910186f6d9223e954c0b295aeff18dda97a6c slimeVidas26 <dahan.isaac@gmail.com> 1721763985 +0300	checkout: moving from 21/07/24 to 23/07/24
+a42910186f6d9223e954c0b295aeff18dda97a6c d35a40f076ba9ce9b95c06f99183112c93cb3231 slimeVidas26 <dahan.isaac@gmail.com> 1721767452 +0300	commit: refetchQuery
+d35a40f076ba9ce9b95c06f99183112c93cb3231 d35a40f076ba9ce9b95c06f99183112c93cb3231 slimeVidas26 <dahan.isaac@gmail.com> 1721930727 +0300	checkout: moving from 23/07/24 to 25/07/24
+d35a40f076ba9ce9b95c06f99183112c93cb3231 1f5592782319a27540e1b5812f49bf819d4c71e9 slimeVidas26 <dahan.isaac@gmail.com> 1721936338 +0300	commit: error
+1f5592782319a27540e1b5812f49bf819d4c71e9 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1721936346 +0300	checkout: moving from 25/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d35a40f076ba9ce9b95c06f99183112c93cb3231 slimeVidas26 <dahan.isaac@gmail.com> 1721936366 +0300	checkout: moving from master to 23/07/24
+d35a40f076ba9ce9b95c06f99183112c93cb3231 d35a40f076ba9ce9b95c06f99183112c93cb3231 slimeVidas26 <dahan.isaac@gmail.com> 1721987604 +0300	checkout: moving from 23/07/24 to 26/07/24
+d35a40f076ba9ce9b95c06f99183112c93cb3231 cf000d87862016aa4e491c1258ab4fea9562c104 slimeVidas26 <dahan.isaac@gmail.com> 1721989244 +0300	commit: addSupp
+cf000d87862016aa4e491c1258ab4fea9562c104 cf000d87862016aa4e491c1258ab4fea9562c104 slimeVidas26 <dahan.isaac@gmail.com> 1722111379 +0300	checkout: moving from 26/07/24 to 27/07/24
+cf000d87862016aa4e491c1258ab4fea9562c104 fac89a2011cbd1d607d9e330de607fec8501a498 slimeVidas26 <dahan.isaac@gmail.com> 1722113958 +0300	commit: archive
+fac89a2011cbd1d607d9e330de607fec8501a498 c7eb7b358f1940d8cb837b1bce1bd3023a93c8cb slimeVidas26 <dahan.isaac@gmail.com> 1722114751 +0300	commit: renameFiles
+c7eb7b358f1940d8cb837b1bce1bd3023a93c8cb 1aaa68e8b36a1ad3bb3eea9887b0f3209e7c719f slimeVidas26 <dahan.isaac@gmail.com> 1722115767 +0300	commit: orderStacks
+1aaa68e8b36a1ad3bb3eea9887b0f3209e7c719f 8976984136bd16b9d429f856613abae82ff3f231 slimeVidas26 <dahan.isaac@gmail.com> 1722717863 +0300	commit: error
+8976984136bd16b9d429f856613abae82ff3f231 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1722717870 +0300	checkout: moving from 27/07/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 8976984136bd16b9d429f856613abae82ff3f231 slimeVidas26 <dahan.isaac@gmail.com> 1722718011 +0300	checkout: moving from master to 27/07/24
+8976984136bd16b9d429f856613abae82ff3f231 25047f0c00708e579e8f5695a6f4f52db76ad557 slimeVidas26 <dahan.isaac@gmail.com> 1722719707 +0300	commit: ediScreen
+25047f0c00708e579e8f5695a6f4f52db76ad557 25047f0c00708e579e8f5695a6f4f52db76ad557 slimeVidas26 <dahan.isaac@gmail.com> 1722789736 +0300	checkout: moving from 27/07/24 to 04/08/24
+25047f0c00708e579e8f5695a6f4f52db76ad557 fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1722799711 +0300	commit: toto
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1722884719 +0300	checkout: moving from 04/08/24 to 05/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1722887460 +0300	commit: test
+9ecbc7ac891741b22cf8f082161380342c378dfe 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1723043264 +0300	checkout: moving from 05/08/24 to 07/08/24
+9ecbc7ac891741b22cf8f082161380342c378dfe d526928701c5898f056d4b61029cc60ea6ab566b slimeVidas26 <dahan.isaac@gmail.com> 1723045744 +0300	commit: stackToScreen
+d526928701c5898f056d4b61029cc60ea6ab566b 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1723060608 +0300	checkout: moving from 07/08/24 to 05/08/24
+9ecbc7ac891741b22cf8f082161380342c378dfe d526928701c5898f056d4b61029cc60ea6ab566b slimeVidas26 <dahan.isaac@gmail.com> 1723060642 +0300	checkout: moving from 05/08/24 to 07/08/24
+d526928701c5898f056d4b61029cc60ea6ab566b c20e76b7f0e3e4232a6ac912776f3c18962eb394 slimeVidas26 <dahan.isaac@gmail.com> 1723062013 +0300	commit: test
+c20e76b7f0e3e4232a6ac912776f3c18962eb394 c20e76b7f0e3e4232a6ac912776f3c18962eb394 slimeVidas26 <dahan.isaac@gmail.com> 1723143046 +0300	checkout: moving from 07/08/24 to 08/08/24
+c20e76b7f0e3e4232a6ac912776f3c18962eb394 fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723143859 +0300	checkout: moving from 08/08/24 to 04/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 c20e76b7f0e3e4232a6ac912776f3c18962eb394 slimeVidas26 <dahan.isaac@gmail.com> 1723144005 +0300	checkout: moving from 04/08/24 to 08/08/24
+c20e76b7f0e3e4232a6ac912776f3c18962eb394 0a057458d5f2d04d2f5bdaaede5db36c16cc60f2 slimeVidas26 <dahan.isaac@gmail.com> 1723144767 +0300	commit: test
+0a057458d5f2d04d2f5bdaaede5db36c16cc60f2 7604a8502bbc8fdac0bd985284b42399c875984d slimeVidas26 <dahan.isaac@gmail.com> 1723213479 +0300	commit: test
+7604a8502bbc8fdac0bd985284b42399c875984d fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723213515 +0300	checkout: moving from 08/08/24 to 04/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1723213558 +0300	checkout: moving from 04/08/24 to 05/08/24
+9ecbc7ac891741b22cf8f082161380342c378dfe d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1723213687 +0300	checkout: moving from 05/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1723213715 +0300	checkout: moving from master to 05/08/24
+9ecbc7ac891741b22cf8f082161380342c378dfe 9ecbc7ac891741b22cf8f082161380342c378dfe slimeVidas26 <dahan.isaac@gmail.com> 1723213726 +0300	checkout: moving from 05/08/24 to 09/08/24
+9ecbc7ac891741b22cf8f082161380342c378dfe 5727dd2199fc9c54d9adf860538b33fd33a8ca17 slimeVidas26 <dahan.isaac@gmail.com> 1723214291 +0300	commit: tetete
+5727dd2199fc9c54d9adf860538b33fd33a8ca17 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1723214302 +0300	checkout: moving from 09/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723214322 +0300	checkout: moving from master to 04/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1723214415 +0300	checkout: moving from 04/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723214432 +0300	checkout: moving from master to 04/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723214848 +0300	checkout: moving from 04/08/24 to 09/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 fb946b471a9ec9b6c0cd52491df8bd785bfad679 slimeVidas26 <dahan.isaac@gmail.com> 1723319614 +0300	checkout: moving from 09/08/24 to 10/08/24
+fb946b471a9ec9b6c0cd52491df8bd785bfad679 2ab9614b87fc617334c0c121c78989bb682325d3 slimeVidas26 <dahan.isaac@gmail.com> 1723581758 +0300	commit: ediOrderScreenOpen
+2ab9614b87fc617334c0c121c78989bb682325d3 2ab9614b87fc617334c0c121c78989bb682325d3 slimeVidas26 <dahan.isaac@gmail.com> 1723664848 +0300	checkout: moving from 10/08/24 to 14/08/24
+2ab9614b87fc617334c0c121c78989bb682325d3 db1c6ffdc557e7b70f73a74220655d9676d9ed32 slimeVidas26 <dahan.isaac@gmail.com> 1723668900 +0300	commit: nada
+db1c6ffdc557e7b70f73a74220655d9676d9ed32 db1c6ffdc557e7b70f73a74220655d9676d9ed32 slimeVidas26 <dahan.isaac@gmail.com> 1723751784 +0300	checkout: moving from 14/08/24 to 15/08/24
+db1c6ffdc557e7b70f73a74220655d9676d9ed32 37108e8d5493e2650476028a5eda23f13c501b24 slimeVidas26 <dahan.isaac@gmail.com> 1723753937 +0300	commit: double
+37108e8d5493e2650476028a5eda23f13c501b24 37108e8d5493e2650476028a5eda23f13c501b24 slimeVidas26 <dahan.isaac@gmail.com> 1723798489 +0300	checkout: moving from 15/08/24 to 16/08/24
+37108e8d5493e2650476028a5eda23f13c501b24 4eb3130833b724952b413f8f915c07c781ebf660 slimeVidas26 <dahan.isaac@gmail.com> 1723815102 +0300	commit: header
+4eb3130833b724952b413f8f915c07c781ebf660 e077dc9641cf2897d1e1dc7a03b1084a51c16daa slimeVidas26 <dahan.isaac@gmail.com> 1723821653 +0300	commit: error
+e077dc9641cf2897d1e1dc7a03b1084a51c16daa 4eb3130833b724952b413f8f915c07c781ebf660 slimeVidas26 <dahan.isaac@gmail.com> 1723821686 +0300	reset: moving to HEAD^
+4eb3130833b724952b413f8f915c07c781ebf660 864ab43b66679d8306c172a35566be7f011c68a0 slimeVidas26 <dahan.isaac@gmail.com> 1723822078 +0300	commit: test
+864ab43b66679d8306c172a35566be7f011c68a0 864ab43b66679d8306c172a35566be7f011c68a0 slimeVidas26 <dahan.isaac@gmail.com> 1723920988 +0300	checkout: moving from 16/08/24 to 17/08/24
+864ab43b66679d8306c172a35566be7f011c68a0 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1723928703 +0300	commit: rororo
+619590f30fb30df49f06246e65d73515bdf2d10b 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724000955 +0300	checkout: moving from 17/08/24 to 18/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b 0af5b2da9d2452c2040f8492c7b86092d8eac2f7 slimeVidas26 <dahan.isaac@gmail.com> 1724006627 +0300	commit: error
+0af5b2da9d2452c2040f8492c7b86092d8eac2f7 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724006634 +0300	checkout: moving from 18/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724006663 +0300	checkout: moving from master to 17/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724006673 +0300	checkout: moving from 17/08/24 to 18/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b de5b04f9ca2fcff439a720246d35927a8b0fc994 slimeVidas26 <dahan.isaac@gmail.com> 1724009248 +0300	commit: route.param
+de5b04f9ca2fcff439a720246d35927a8b0fc994 de5b04f9ca2fcff439a720246d35927a8b0fc994 slimeVidas26 <dahan.isaac@gmail.com> 1724079597 +0300	checkout: moving from 18/08/24 to 19/08/24
+de5b04f9ca2fcff439a720246d35927a8b0fc994 6d105cce17916fdfb22201f0e4ea8c482724d8a6 slimeVidas26 <dahan.isaac@gmail.com> 1724081496 +0300	commit: error
+6d105cce17916fdfb22201f0e4ea8c482724d8a6 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724081503 +0300	checkout: moving from 19/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd de5b04f9ca2fcff439a720246d35927a8b0fc994 slimeVidas26 <dahan.isaac@gmail.com> 1724081520 +0300	checkout: moving from master to 18/08/24
+de5b04f9ca2fcff439a720246d35927a8b0fc994 de5b04f9ca2fcff439a720246d35927a8b0fc994 slimeVidas26 <dahan.isaac@gmail.com> 1724084737 +0300	checkout: moving from 18/08/24 to 19/08/24
+de5b04f9ca2fcff439a720246d35927a8b0fc994 fb7bc31561b6217e3f2f5c98f89cf982a272f656 slimeVidas26 <dahan.isaac@gmail.com> 1724091786 +0300	commit: eooro
+fb7bc31561b6217e3f2f5c98f89cf982a272f656 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724091794 +0300	checkout: moving from 19/08/24 to 17/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724091816 +0300	checkout: moving from 17/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724091847 +0300	checkout: moving from master to 17/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b 619590f30fb30df49f06246e65d73515bdf2d10b slimeVidas26 <dahan.isaac@gmail.com> 1724091857 +0300	checkout: moving from 17/08/24 to 19/08/24
+619590f30fb30df49f06246e65d73515bdf2d10b 5419af51c46782f9ba82b42d33055b9c8fcc9d98 slimeVidas26 <dahan.isaac@gmail.com> 1724175333 +0300	commit: params
+5419af51c46782f9ba82b42d33055b9c8fcc9d98 5419af51c46782f9ba82b42d33055b9c8fcc9d98 slimeVidas26 <dahan.isaac@gmail.com> 1724175343 +0300	checkout: moving from 19/08/24 to 20/08/24
+5419af51c46782f9ba82b42d33055b9c8fcc9d98 2102586a37877d445a888e3d2eb7baadf7220a7c slimeVidas26 <dahan.isaac@gmail.com> 1724181254 +0300	commit: 0
+2102586a37877d445a888e3d2eb7baadf7220a7c 2102586a37877d445a888e3d2eb7baadf7220a7c slimeVidas26 <dahan.isaac@gmail.com> 1724260875 +0300	checkout: moving from 20/08/24 to 21/08/24
+2102586a37877d445a888e3d2eb7baadf7220a7c 2102586a37877d445a888e3d2eb7baadf7220a7c slimeVidas26 <dahan.isaac@gmail.com> 1724396587 +0300	checkout: moving from 21/08/24 to 23/08/24
+2102586a37877d445a888e3d2eb7baadf7220a7c df5d4169ca19d481f1db1434870767f83f06f054 slimeVidas26 <dahan.isaac@gmail.com> 1724414518 +0300	commit: untracked
+df5d4169ca19d481f1db1434870767f83f06f054 690a7d27cc4893a26e85e8d172126bd2f7c3c088 slimeVidas26 <dahan.isaac@gmail.com> 1724419667 +0300	commit: orderId
+690a7d27cc4893a26e85e8d172126bd2f7c3c088 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724421560 +0300	commit: index
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e 9919e468e67d3a48f445555c50ea4e4aead93912 slimeVidas26 <dahan.isaac@gmail.com> 1724427341 +0300	commit: err
+9919e468e67d3a48f445555c50ea4e4aead93912 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724427363 +0300	reset: moving to HEAD^
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724523747 +0300	checkout: moving from 23/08/24 to 24/08/24
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e 52c082957be9a8a80acb5a1ec81673bd77a076b4 slimeVidas26 <dahan.isaac@gmail.com> 1724524528 +0300	commit: error
+52c082957be9a8a80acb5a1ec81673bd77a076b4 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724524539 +0300	checkout: moving from 24/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724524572 +0300	checkout: moving from master to 23/08/24
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724524622 +0300	checkout: moving from 23/08/24 to 24/08/24
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e 4ec64191d5915e20a46abed8dce48d1d3ac5c544 slimeVidas26 <dahan.isaac@gmail.com> 1724530256 +0300	commit: test
+4ec64191d5915e20a46abed8dce48d1d3ac5c544 d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724530264 +0300	checkout: moving from 24/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 9a1e2c692ab0af6a8bece019dfd096bef9a9b31e slimeVidas26 <dahan.isaac@gmail.com> 1724530294 +0300	checkout: moving from master to 23/08/24
+9a1e2c692ab0af6a8bece019dfd096bef9a9b31e cbe0749e280ab4537aa1dc2ed35482c02ff953d3 slimeVidas26 <dahan.isaac@gmail.com> 1724530779 +0300	commit: trtrt
+cbe0749e280ab4537aa1dc2ed35482c02ff953d3 cbe0749e280ab4537aa1dc2ed35482c02ff953d3 slimeVidas26 <dahan.isaac@gmail.com> 1724600162 +0300	checkout: moving from 23/08/24 to 25/08/24
+cbe0749e280ab4537aa1dc2ed35482c02ff953d3 abd8b83a774bd3bc0b33b9fa4f3be0b95721ffde slimeVidas26 <dahan.isaac@gmail.com> 1724603284 +0300	commit: test
+abd8b83a774bd3bc0b33b9fa4f3be0b95721ffde d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724603292 +0300	checkout: moving from 25/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724603310 +0300	checkout: moving from master to 24/08/24
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd d8d957be4586f4d1ca130fcef65feca5eee2e9dd slimeVidas26 <dahan.isaac@gmail.com> 1724603527 +0300	checkout: moving from 24/08/24 to master
+d8d957be4586f4d1ca130fcef65feca5eee2e9dd 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1724603603 +0300	commit: test
+531e7c8437fd9b45e32c85791bef34a8e45406c5 cbe0749e280ab4537aa1dc2ed35482c02ff953d3 slimeVidas26 <dahan.isaac@gmail.com> 1724603610 +0300	checkout: moving from master to 23/08/24
+cbe0749e280ab4537aa1dc2ed35482c02ff953d3 cbe0749e280ab4537aa1dc2ed35482c02ff953d3 slimeVidas26 <dahan.isaac@gmail.com> 1724603628 +0300	checkout: moving from 23/08/24 to 25/08/24
+cbe0749e280ab4537aa1dc2ed35482c02ff953d3 b6691236ec5d4b36bdb64eb32c972846d9db7136 slimeVidas26 <dahan.isaac@gmail.com> 1724609317 +0300	commit: paramData
+b6691236ec5d4b36bdb64eb32c972846d9db7136 b6691236ec5d4b36bdb64eb32c972846d9db7136 slimeVidas26 <dahan.isaac@gmail.com> 1724694245 +0300	checkout: moving from 25/08/24 to 26/08/24
+b6691236ec5d4b36bdb64eb32c972846d9db7136 9a811ea6498983d36847d0928928563ab9097141 slimeVidas26 <dahan.isaac@gmail.com> 1724698812 +0300	commit: OpenOrderQueryItem
+9a811ea6498983d36847d0928928563ab9097141 9a811ea6498983d36847d0928928563ab9097141 slimeVidas26 <dahan.isaac@gmail.com> 1724778703 +0300	checkout: moving from 26/08/24 to 27/08/24
+9a811ea6498983d36847d0928928563ab9097141 236e8b6c2322f5a03f5eecce99c758839ba10c35 slimeVidas26 <dahan.isaac@gmail.com> 1724782182 +0300	commit: test
+236e8b6c2322f5a03f5eecce99c758839ba10c35 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1724782194 +0300	checkout: moving from 27/08/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 9a811ea6498983d36847d0928928563ab9097141 slimeVidas26 <dahan.isaac@gmail.com> 1724782225 +0300	checkout: moving from master to 26/08/24
+9a811ea6498983d36847d0928928563ab9097141 9a811ea6498983d36847d0928928563ab9097141 slimeVidas26 <dahan.isaac@gmail.com> 1724782237 +0300	checkout: moving from 26/08/24 to 27/08/24
+9a811ea6498983d36847d0928928563ab9097141 a6653937580ce5f271a0168841c0bca8fcfde1e6 slimeVidas26 <dahan.isaac@gmail.com> 1724786526 +0300	commit: supplier
+a6653937580ce5f271a0168841c0bca8fcfde1e6 a6653937580ce5f271a0168841c0bca8fcfde1e6 slimeVidas26 <dahan.isaac@gmail.com> 1725025522 +0300	checkout: moving from 27/08/24 to 30/08/24
+a6653937580ce5f271a0168841c0bca8fcfde1e6 020610f64484783ea0d602de83f99c75aef512a2 slimeVidas26 <dahan.isaac@gmail.com> 1725137357 +0300	commit: edi
+020610f64484783ea0d602de83f99c75aef512a2 29e9d256d92dcd3e2facb7e47b97d801b93f77ff slimeVidas26 <dahan.isaac@gmail.com> 1725140457 +0300	commit: length
+29e9d256d92dcd3e2facb7e47b97d801b93f77ff 29e9d256d92dcd3e2facb7e47b97d801b93f77ff slimeVidas26 <dahan.isaac@gmail.com> 1725205849 +0300	checkout: moving from 30/08/24 to 01/09/24
+29e9d256d92dcd3e2facb7e47b97d801b93f77ff 5779d73d89daefd0fd641004992fd5a60e368b5e slimeVidas26 <dahan.isaac@gmail.com> 1725210822 +0300	commit: error
+5779d73d89daefd0fd641004992fd5a60e368b5e 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725210829 +0300	checkout: moving from 01/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 29e9d256d92dcd3e2facb7e47b97d801b93f77ff slimeVidas26 <dahan.isaac@gmail.com> 1725210850 +0300	checkout: moving from master to 30/08/24
+29e9d256d92dcd3e2facb7e47b97d801b93f77ff 29e9d256d92dcd3e2facb7e47b97d801b93f77ff slimeVidas26 <dahan.isaac@gmail.com> 1725210862 +0300	checkout: moving from 30/08/24 to 01/09/24
+29e9d256d92dcd3e2facb7e47b97d801b93f77ff cf74c169bae3fcaf222fb9eedb29b567ca2ad12d slimeVidas26 <dahan.isaac@gmail.com> 1725216353 +0300	commit: isOpen
+cf74c169bae3fcaf222fb9eedb29b567ca2ad12d cf74c169bae3fcaf222fb9eedb29b567ca2ad12d slimeVidas26 <dahan.isaac@gmail.com> 1725296039 +0300	checkout: moving from 01/09/24 to 02/09/24
+cf74c169bae3fcaf222fb9eedb29b567ca2ad12d ea4010dabb2d276952cccbd0ce11cd9dd193355e slimeVidas26 <dahan.isaac@gmail.com> 1725304223 +0300	commit: error
+ea4010dabb2d276952cccbd0ce11cd9dd193355e 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725304231 +0300	checkout: moving from 02/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 cf74c169bae3fcaf222fb9eedb29b567ca2ad12d slimeVidas26 <dahan.isaac@gmail.com> 1725304251 +0300	checkout: moving from master to 01/09/24
+cf74c169bae3fcaf222fb9eedb29b567ca2ad12d cf74c169bae3fcaf222fb9eedb29b567ca2ad12d slimeVidas26 <dahan.isaac@gmail.com> 1725304266 +0300	checkout: moving from 01/09/24 to 02/09/24
+cf74c169bae3fcaf222fb9eedb29b567ca2ad12d 3cfcbdfc214ac900e3e406a48dd183782749059f slimeVidas26 <dahan.isaac@gmail.com> 1725308240 +0300	commit: orderId-productId
+3cfcbdfc214ac900e3e406a48dd183782749059f 3cfcbdfc214ac900e3e406a48dd183782749059f slimeVidas26 <dahan.isaac@gmail.com> 1725334115 +0300	checkout: moving from 02/09/24 to 03/09/24
+3cfcbdfc214ac900e3e406a48dd183782749059f 2056b7b2aefa093890be42d8bb547cf0f017e981 slimeVidas26 <dahan.isaac@gmail.com> 1725390886 +0300	commit: productId
+2056b7b2aefa093890be42d8bb547cf0f017e981 2056b7b2aefa093890be42d8bb547cf0f017e981 slimeVidas26 <dahan.isaac@gmail.com> 1725460607 +0300	checkout: moving from 03/09/24 to 04/09/24
+2056b7b2aefa093890be42d8bb547cf0f017e981 165912cf19acf100837e2d049beacf1e3175af17 slimeVidas26 <dahan.isaac@gmail.com> 1725476287 +0300	commit: isOpen
+165912cf19acf100837e2d049beacf1e3175af17 165912cf19acf100837e2d049beacf1e3175af17 slimeVidas26 <dahan.isaac@gmail.com> 1725546393 +0300	checkout: moving from 04/09/24 to 05/09/24
+165912cf19acf100837e2d049beacf1e3175af17 7f68f0de34ea29249568ea72d9e0b08c3e7b3a70 slimeVidas26 <dahan.isaac@gmail.com> 1725564662 +0300	commit: filteredUser
+7f68f0de34ea29249568ea72d9e0b08c3e7b3a70 2f1b5dcd5b69dfe982632ca792d34eff9719ed77 slimeVidas26 <dahan.isaac@gmail.com> 1725569244 +0300	commit: lens
+2f1b5dcd5b69dfe982632ca792d34eff9719ed77 2f1b5dcd5b69dfe982632ca792d34eff9719ed77 slimeVidas26 <dahan.isaac@gmail.com> 1725602453 +0300	checkout: moving from 05/09/24 to 06/09/24
+2f1b5dcd5b69dfe982632ca792d34eff9719ed77 0dcd4b4ac12bdca790c5ff917a1cea1a2e41b407 slimeVidas26 <dahan.isaac@gmail.com> 1725608490 +0300	commit: productLength
+0dcd4b4ac12bdca790c5ff917a1cea1a2e41b407 e1f108092ae04abd12649963da4b326e6c062c9b slimeVidas26 <dahan.isaac@gmail.com> 1725623753 +0300	commit: spacing
+e1f108092ae04abd12649963da4b326e6c062c9b 2f1b5dcd5b69dfe982632ca792d34eff9719ed77 slimeVidas26 <dahan.isaac@gmail.com> 1725623766 +0300	checkout: moving from 06/09/24 to 05/09/24
+2f1b5dcd5b69dfe982632ca792d34eff9719ed77 e1f108092ae04abd12649963da4b326e6c062c9b slimeVidas26 <dahan.isaac@gmail.com> 1725623793 +0300	checkout: moving from 05/09/24 to 06/09/24
+e1f108092ae04abd12649963da4b326e6c062c9b e04d700861c887e7e5c16fb4333d62af875d23fa slimeVidas26 <dahan.isaac@gmail.com> 1725623943 +0300	commit: image
+e04d700861c887e7e5c16fb4333d62af875d23fa 2f1b5dcd5b69dfe982632ca792d34eff9719ed77 slimeVidas26 <dahan.isaac@gmail.com> 1725623949 +0300	checkout: moving from 06/09/24 to 05/09/24
+2f1b5dcd5b69dfe982632ca792d34eff9719ed77 e04d700861c887e7e5c16fb4333d62af875d23fa slimeVidas26 <dahan.isaac@gmail.com> 1725623979 +0300	checkout: moving from 05/09/24 to 06/09/24
+e04d700861c887e7e5c16fb4333d62af875d23fa b6827a134e8589377e7b40aa2c4d2692e398f975 slimeVidas26 <dahan.isaac@gmail.com> 1725624038 +0300	commit: ik
+b6827a134e8589377e7b40aa2c4d2692e398f975 2f1b5dcd5b69dfe982632ca792d34eff9719ed77 slimeVidas26 <dahan.isaac@gmail.com> 1725624041 +0300	checkout: moving from 06/09/24 to 05/09/24
+2f1b5dcd5b69dfe982632ca792d34eff9719ed77 b6827a134e8589377e7b40aa2c4d2692e398f975 slimeVidas26 <dahan.isaac@gmail.com> 1725624057 +0300	checkout: moving from 05/09/24 to 06/09/24
+b6827a134e8589377e7b40aa2c4d2692e398f975 1eacaed8d912c4aa83c2cd20aebc79667ab63c48 slimeVidas26 <dahan.isaac@gmail.com> 1725732033 +0300	commit: isOpen
+1eacaed8d912c4aa83c2cd20aebc79667ab63c48 1eacaed8d912c4aa83c2cd20aebc79667ab63c48 slimeVidas26 <dahan.isaac@gmail.com> 1725732043 +0300	checkout: moving from 06/09/24 to 07/09/24
+1eacaed8d912c4aa83c2cd20aebc79667ab63c48 b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725745945 +0300	commit: counter
+b757ecea2d55594277ee2992a965e8b8343b942a b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725808138 +0300	checkout: moving from 07/09/24 to 08/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a fab3d83a75176470d09a5d957dffeac71cd27ee4 slimeVidas26 <dahan.isaac@gmail.com> 1725821116 +0300	commit: counter
+fab3d83a75176470d09a5d957dffeac71cd27ee4 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725821123 +0300	checkout: moving from 08/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725821143 +0300	checkout: moving from master to 07/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725821154 +0300	checkout: moving from 07/09/24 to 08/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a c68150a471383ccdbb37b62e20de541e27486ace slimeVidas26 <dahan.isaac@gmail.com> 1725824447 +0300	commit: toto
+c68150a471383ccdbb37b62e20de541e27486ace 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725824453 +0300	checkout: moving from 08/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725824481 +0300	checkout: moving from master to 07/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725899399 +0300	checkout: moving from 07/09/24 to 09/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a 8c5736408171ba41ee28c248e51937d55a000424 slimeVidas26 <dahan.isaac@gmail.com> 1725905845 +0300	commit: test
+8c5736408171ba41ee28c248e51937d55a000424 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725905853 +0300	checkout: moving from 09/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725905998 +0300	checkout: moving from master to 07/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725906008 +0300	checkout: moving from 07/09/24 to 09/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a 07dcdfab4c7ee91b953674e309db9907ddc9fba9 slimeVidas26 <dahan.isaac@gmail.com> 1725908964 +0300	commit: tedt
+07dcdfab4c7ee91b953674e309db9907ddc9fba9 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1725908973 +0300	checkout: moving from 09/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 b757ecea2d55594277ee2992a965e8b8343b942a slimeVidas26 <dahan.isaac@gmail.com> 1725908996 +0300	checkout: moving from master to 07/09/24
+b757ecea2d55594277ee2992a965e8b8343b942a fc50501a338e05342d1de6b20c3fd38618f11109 slimeVidas26 <dahan.isaac@gmail.com> 1726162021 +0300	commit: webp
+fc50501a338e05342d1de6b20c3fd38618f11109 fc50501a338e05342d1de6b20c3fd38618f11109 slimeVidas26 <dahan.isaac@gmail.com> 1726162100 +0300	checkout: moving from 07/09/24 to 12/09/24
+fc50501a338e05342d1de6b20c3fd38618f11109 c7681754f55ec785883b40bf258851bb5f44f049 slimeVidas26 <dahan.isaac@gmail.com> 1726166391 +0300	commit: quantityAfter
+c7681754f55ec785883b40bf258851bb5f44f049 e0bec18241f0d20159fddf8ab93c85710d98cdc2 slimeVidas26 <dahan.isaac@gmail.com> 1726172558 +0300	commit: name
+e0bec18241f0d20159fddf8ab93c85710d98cdc2 e0bec18241f0d20159fddf8ab93c85710d98cdc2 slimeVidas26 <dahan.isaac@gmail.com> 1726218438 +0300	checkout: moving from 12/09/24 to 13/09/24
+e0bec18241f0d20159fddf8ab93c85710d98cdc2 8ce069e01c81a0eb3a9372320199ddf3980cc83f slimeVidas26 <dahan.isaac@gmail.com> 1726218814 +0300	commit: test
+8ce069e01c81a0eb3a9372320199ddf3980cc83f 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1726218827 +0300	checkout: moving from 13/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 fc50501a338e05342d1de6b20c3fd38618f11109 slimeVidas26 <dahan.isaac@gmail.com> 1726218867 +0300	checkout: moving from master to 07/09/24
+fc50501a338e05342d1de6b20c3fd38618f11109 fc50501a338e05342d1de6b20c3fd38618f11109 slimeVidas26 <dahan.isaac@gmail.com> 1726218880 +0300	checkout: moving from 07/09/24 to 13/09/24
+fc50501a338e05342d1de6b20c3fd38618f11109 a9d00271030afaf67a5af34e64d458272c5c739c slimeVidas26 <dahan.isaac@gmail.com> 1726220969 +0300	commit: product
+a9d00271030afaf67a5af34e64d458272c5c739c db0f94cdaa150466803b985b2e62262f387c1583 slimeVidas26 <dahan.isaac@gmail.com> 1726221808 +0300	commit: tututu
+db0f94cdaa150466803b985b2e62262f387c1583 a9d00271030afaf67a5af34e64d458272c5c739c slimeVidas26 <dahan.isaac@gmail.com> 1726222897 +0300	reset: moving to HEAD^
+a9d00271030afaf67a5af34e64d458272c5c739c af19506ebfa5a48201aa5bb0fe319e80a4f3e2e9 slimeVidas26 <dahan.isaac@gmail.com> 1726428771 +0300	commit: orders
+af19506ebfa5a48201aa5bb0fe319e80a4f3e2e9 af19506ebfa5a48201aa5bb0fe319e80a4f3e2e9 slimeVidas26 <dahan.isaac@gmail.com> 1726429493 +0300	checkout: moving from 13/09/24 to 15/09/24
+af19506ebfa5a48201aa5bb0fe319e80a4f3e2e9 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726503763 +0300	commit: test
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726503773 +0300	checkout: moving from 15/09/24 to 16/09/24
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 3ca041c62f6aa4a8dde1b214c548d61dd5d4fb70 slimeVidas26 <dahan.isaac@gmail.com> 1726511516 +0300	commit: error
+3ca041c62f6aa4a8dde1b214c548d61dd5d4fb70 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1726511523 +0300	checkout: moving from 16/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726511544 +0300	checkout: moving from master to 15/09/24
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726590531 +0300	checkout: moving from 15/09/24 to 17/09/24
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 37e5341b379edeffbcac27e66e987066c96508d4 slimeVidas26 <dahan.isaac@gmail.com> 1726602455 +0300	commit: AlphaProduct validation failed: supplier: Path supplier is required
+37e5341b379edeffbcac27e66e987066c96508d4 37e5341b379edeffbcac27e66e987066c96508d4 slimeVidas26 <dahan.isaac@gmail.com> 1726678259 +0300	checkout: moving from 17/09/24 to 18/09/24
+37e5341b379edeffbcac27e66e987066c96508d4 0c7f26da3bd44f09c04e3cf548c2a551d68505ba slimeVidas26 <dahan.isaac@gmail.com> 1726684222 +0300	commit: toto
+0c7f26da3bd44f09c04e3cf548c2a551d68505ba 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1726684233 +0300	checkout: moving from 18/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726684317 +0300	checkout: moving from master to 15/09/24
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 c992a00c3ccd1e7bcf1644c713c75d6b744213c5 slimeVidas26 <dahan.isaac@gmail.com> 1726820386 +0300	checkout: moving from 15/09/24 to 20/09/24
+c992a00c3ccd1e7bcf1644c713c75d6b744213c5 99f1714299bf79637991fd3a59cd8b1a1256dd25 slimeVidas26 <dahan.isaac@gmail.com> 1726826615 +0300	commit: test
+99f1714299bf79637991fd3a59cd8b1a1256dd25 9ac4e881b4dc48d4dc4f25e11b7472571bfad682 slimeVidas26 <dahan.isaac@gmail.com> 1726827788 +0300	commit: eror
+9ac4e881b4dc48d4dc4f25e11b7472571bfad682 99f1714299bf79637991fd3a59cd8b1a1256dd25 slimeVidas26 <dahan.isaac@gmail.com> 1726827804 +0300	reset: moving to HEAD^
+99f1714299bf79637991fd3a59cd8b1a1256dd25 f3838668a1537c18fd07a3e725c9e8cd18d6d29f slimeVidas26 <dahan.isaac@gmail.com> 1726843073 +0300	commit: supplierExtraData
+f3838668a1537c18fd07a3e725c9e8cd18d6d29f f3838668a1537c18fd07a3e725c9e8cd18d6d29f slimeVidas26 <dahan.isaac@gmail.com> 1726940943 +0300	checkout: moving from 20/09/24 to 21/09/24
+f3838668a1537c18fd07a3e725c9e8cd18d6d29f 4c55a55eb9a5173c4e368ee387b5a3288e55d1cb slimeVidas26 <dahan.isaac@gmail.com> 1726948999 +0300	commit: prod-supp
+4c55a55eb9a5173c4e368ee387b5a3288e55d1cb 4c55a55eb9a5173c4e368ee387b5a3288e55d1cb slimeVidas26 <dahan.isaac@gmail.com> 1727018364 +0300	checkout: moving from 21/09/24 to 22/09/24
+4c55a55eb9a5173c4e368ee387b5a3288e55d1cb 4c55a55eb9a5173c4e368ee387b5a3288e55d1cb slimeVidas26 <dahan.isaac@gmail.com> 1727108235 +0300	checkout: moving from 22/09/24 to 23/09/24
+4c55a55eb9a5173c4e368ee387b5a3288e55d1cb 2dd84fe6bd0aae21af9a88291b83f7294798a21a slimeVidas26 <dahan.isaac@gmail.com> 1727287903 +0300	commit: test
+2dd84fe6bd0aae21af9a88291b83f7294798a21a 2dd84fe6bd0aae21af9a88291b83f7294798a21a slimeVidas26 <dahan.isaac@gmail.com> 1727287915 +0300	checkout: moving from 23/09/24 to 25/09/24
+2dd84fe6bd0aae21af9a88291b83f7294798a21a a514e1f364205494add5acc1ebccbe075252eac8 slimeVidas26 <dahan.isaac@gmail.com> 1727291474 +0300	commit: test
+a514e1f364205494add5acc1ebccbe075252eac8 f3838668a1537c18fd07a3e725c9e8cd18d6d29f slimeVidas26 <dahan.isaac@gmail.com> 1727291486 +0300	checkout: moving from 25/09/24 to 20/09/24
+f3838668a1537c18fd07a3e725c9e8cd18d6d29f 4c55a55eb9a5173c4e368ee387b5a3288e55d1cb slimeVidas26 <dahan.isaac@gmail.com> 1727291560 +0300	checkout: moving from 20/09/24 to 21/09/24
+4c55a55eb9a5173c4e368ee387b5a3288e55d1cb fc50501a338e05342d1de6b20c3fd38618f11109 slimeVidas26 <dahan.isaac@gmail.com> 1727291636 +0300	checkout: moving from 21/09/24 to 07/09/24
+fc50501a338e05342d1de6b20c3fd38618f11109 1eacaed8d912c4aa83c2cd20aebc79667ab63c48 slimeVidas26 <dahan.isaac@gmail.com> 1727291754 +0300	checkout: moving from 07/09/24 to 06/09/24
+1eacaed8d912c4aa83c2cd20aebc79667ab63c48 a514e1f364205494add5acc1ebccbe075252eac8 slimeVidas26 <dahan.isaac@gmail.com> 1727291779 +0300	checkout: moving from 06/09/24 to 25/09/24
+a514e1f364205494add5acc1ebccbe075252eac8 4a7d3f7ca4a7fb44a00d9728677344379495584f slimeVidas26 <dahan.isaac@gmail.com> 1727294074 +0300	commit: test
+4a7d3f7ca4a7fb44a00d9728677344379495584f 2056b7b2aefa093890be42d8bb547cf0f017e981 slimeVidas26 <dahan.isaac@gmail.com> 1727294081 +0300	checkout: moving from 25/09/24 to 03/09/24
+2056b7b2aefa093890be42d8bb547cf0f017e981 29e9d256d92dcd3e2facb7e47b97d801b93f77ff slimeVidas26 <dahan.isaac@gmail.com> 1727294211 +0300	checkout: moving from 03/09/24 to 30/08/24
+29e9d256d92dcd3e2facb7e47b97d801b93f77ff e320c9864fe169a965d502ff778a973c26170bc6 slimeVidas26 <dahan.isaac@gmail.com> 1727294507 +0300	commit: error
+e320c9864fe169a965d502ff778a973c26170bc6 2dd84fe6bd0aae21af9a88291b83f7294798a21a slimeVidas26 <dahan.isaac@gmail.com> 1727294552 +0300	checkout: moving from 30/08/24 to 23/09/24
+2dd84fe6bd0aae21af9a88291b83f7294798a21a 625d5b6a40493b99971d4e112d91d02f1403525a slimeVidas26 <dahan.isaac@gmail.com> 1727295496 +0300	commit: test
+625d5b6a40493b99971d4e112d91d02f1403525a 625d5b6a40493b99971d4e112d91d02f1403525a slimeVidas26 <dahan.isaac@gmail.com> 1727371376 +0300	checkout: moving from 23/09/24 to 26/09/24
+625d5b6a40493b99971d4e112d91d02f1403525a ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 slimeVidas26 <dahan.isaac@gmail.com> 1727377385 +0300	commit: isaoapen
+ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 slimeVidas26 <dahan.isaac@gmail.com> 1727426915 +0300	checkout: moving from 26/09/24 to 27/09/24
+ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 73721200db4ec357fca33abc9278f68ef2cf8d68 slimeVidas26 <dahan.isaac@gmail.com> 1727441914 +0300	commit: rrr
+73721200db4ec357fca33abc9278f68ef2cf8d68 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1727441924 +0300	checkout: moving from 27/09/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 slimeVidas26 <dahan.isaac@gmail.com> 1727441988 +0300	checkout: moving from master to 26/09/24
+ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 slimeVidas26 <dahan.isaac@gmail.com> 1727441999 +0300	checkout: moving from 26/09/24 to 27/09/24
+ac52a4f7d96d0958ba05078c2a6d12b91b2c8701 283962536121a347dd9dcea8d4ac4e6493c8b85a slimeVidas26 <dahan.isaac@gmail.com> 1727446679 +0300	commit: filter
+283962536121a347dd9dcea8d4ac4e6493c8b85a 283962536121a347dd9dcea8d4ac4e6493c8b85a slimeVidas26 <dahan.isaac@gmail.com> 1727543020 +0300	checkout: moving from 27/09/24 to 28/09/24
+283962536121a347dd9dcea8d4ac4e6493c8b85a d8a3c21e027eca434aab18767bb56bca34eb955b slimeVidas26 <dahan.isaac@gmail.com> 1727556097 +0300	commit: nada
+d8a3c21e027eca434aab18767bb56bca34eb955b d8a3c21e027eca434aab18767bb56bca34eb955b slimeVidas26 <dahan.isaac@gmail.com> 1727580052 +0300	checkout: moving from 28/09/24 to 29/09/24
+d8a3c21e027eca434aab18767bb56bca34eb955b cf08c2c46c856ac0576a4fa1863006dc4446131a slimeVidas26 <dahan.isaac@gmail.com> 1727631438 +0300	commit: orderProduct
+cf08c2c46c856ac0576a4fa1863006dc4446131a cf08c2c46c856ac0576a4fa1863006dc4446131a slimeVidas26 <dahan.isaac@gmail.com> 1727713971 +0300	checkout: moving from 29/09/24 to 30/09/24
+cf08c2c46c856ac0576a4fa1863006dc4446131a d30085adb98ed82639eff37b165f20209663a132 slimeVidas26 <dahan.isaac@gmail.com> 1727722917 +0300	commit: prod
+d30085adb98ed82639eff37b165f20209663a132 d30085adb98ed82639eff37b165f20209663a132 slimeVidas26 <dahan.isaac@gmail.com> 1727803021 +0300	checkout: moving from 30/09/24 to 01/10/24
+d30085adb98ed82639eff37b165f20209663a132 49dc3ddcf65a0c49db38548b9ee40a04928301a6 slimeVidas26 <dahan.isaac@gmail.com> 1728151002 +0300	commit: test
+49dc3ddcf65a0c49db38548b9ee40a04928301a6 49dc3ddcf65a0c49db38548b9ee40a04928301a6 slimeVidas26 <dahan.isaac@gmail.com> 1728151016 +0300	checkout: moving from 01/10/24 to 05/10/24
+49dc3ddcf65a0c49db38548b9ee40a04928301a6 010db575a85e9c9377b95af9b325b11695d81ed9 slimeVidas26 <dahan.isaac@gmail.com> 1728207371 +0300	commit: openProducts
+010db575a85e9c9377b95af9b325b11695d81ed9 010db575a85e9c9377b95af9b325b11695d81ed9 slimeVidas26 <dahan.isaac@gmail.com> 1728209551 +0300	checkout: moving from 05/10/24 to 06/10/24
+010db575a85e9c9377b95af9b325b11695d81ed9 4cc5c2d8e757c4816ac3b5c53ae2b46381115b6f slimeVidas26 <dahan.isaac@gmail.com> 1728239460 +0300	commit: initQuantity
+4cc5c2d8e757c4816ac3b5c53ae2b46381115b6f 22270f445ae53a235017fe22c0e78046cc1a95d3 slimeVidas26 <dahan.isaac@gmail.com> 1728243532 +0300	commit: closed
+22270f445ae53a235017fe22c0e78046cc1a95d3 22270f445ae53a235017fe22c0e78046cc1a95d3 slimeVidas26 <dahan.isaac@gmail.com> 1728292088 +0300	checkout: moving from 06/10/24 to 07/10/24
+22270f445ae53a235017fe22c0e78046cc1a95d3 279609fac43ee99d99fbb82e75620a324c03adbf slimeVidas26 <dahan.isaac@gmail.com> 1728398922 +0300	commit: toto
+279609fac43ee99d99fbb82e75620a324c03adbf 279609fac43ee99d99fbb82e75620a324c03adbf slimeVidas26 <dahan.isaac@gmail.com> 1728398934 +0300	checkout: moving from 07/10/24 to 08/10/24
+279609fac43ee99d99fbb82e75620a324c03adbf d187760f067dd35cf32503a1faea6c8fde980f32 slimeVidas26 <dahan.isaac@gmail.com> 1728415196 +0300	commit: finalQuantity
+d187760f067dd35cf32503a1faea6c8fde980f32 d187760f067dd35cf32503a1faea6c8fde980f32 slimeVidas26 <dahan.isaac@gmail.com> 1728496429 +0300	checkout: moving from 08/10/24 to 09/10/24
+d187760f067dd35cf32503a1faea6c8fde980f32 652d3f84a33020cc0c9f5a8d56e05812afeb2be5 slimeVidas26 <dahan.isaac@gmail.com> 1728501826 +0300	commit: edi
+652d3f84a33020cc0c9f5a8d56e05812afeb2be5 652d3f84a33020cc0c9f5a8d56e05812afeb2be5 slimeVidas26 <dahan.isaac@gmail.com> 1728556244 +0300	checkout: moving from 09/10/24 to 10/10/24
+652d3f84a33020cc0c9f5a8d56e05812afeb2be5 0b6154f1873bef64ee6504c0110508b4412573ef slimeVidas26 <dahan.isaac@gmail.com> 1728558107 +0300	commit: fq
+0b6154f1873bef64ee6504c0110508b4412573ef a82d71d9d9854218c82fa24395e302b1cbcf6214 slimeVidas26 <dahan.isaac@gmail.com> 1728562971 +0300	commit: totalBoxes
+a82d71d9d9854218c82fa24395e302b1cbcf6214 eda5675634da5eebfa3ed7c97bc9aaa42c46f924 slimeVidas26 <dahan.isaac@gmail.com> 1728581600 +0300	commit: docReview
+eda5675634da5eebfa3ed7c97bc9aaa42c46f924 eda5675634da5eebfa3ed7c97bc9aaa42c46f924 slimeVidas26 <dahan.isaac@gmail.com> 1728631411 +0300	checkout: moving from 10/10/24 to 11/10/24
+eda5675634da5eebfa3ed7c97bc9aaa42c46f924 4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 slimeVidas26 <dahan.isaac@gmail.com> 1728635011 +0300	commit: paramData
+4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 a67c612714cd85d94806aef63167e29c26b6f1a0 slimeVidas26 <dahan.isaac@gmail.com> 1728653525 +0300	commit: D
+a67c612714cd85d94806aef63167e29c26b6f1a0 4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 slimeVidas26 <dahan.isaac@gmail.com> 1728653559 +0300	reset: moving to HEAD^
+4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 slimeVidas26 <dahan.isaac@gmail.com> 1728760796 +0300	checkout: moving from 11/10/24 to 12/10/23
+4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1728760841 +0300	checkout: moving from 12/10/23 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 slimeVidas26 <dahan.isaac@gmail.com> 1728760887 +0300	checkout: moving from master to 11/10/24
+4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 slimeVidas26 <dahan.isaac@gmail.com> 1728760897 +0300	checkout: moving from 11/10/24 to 12/10/24
+4ab1b67b06d076c0e2c662fd0a1358c68e3937e4 3b4ab0a3847105f13dfbd146b44153cb7b764caa slimeVidas26 <dahan.isaac@gmail.com> 1728769300 +0300	commit: openOrder
+3b4ab0a3847105f13dfbd146b44153cb7b764caa 3b4ab0a3847105f13dfbd146b44153cb7b764caa slimeVidas26 <dahan.isaac@gmail.com> 1728798413 +0300	checkout: moving from 12/10/24 to 13/10/24
+3b4ab0a3847105f13dfbd146b44153cb7b764caa 39f13b0dba7c8c8ba77e26f57f8e80173772ac95 slimeVidas26 <dahan.isaac@gmail.com> 1728813468 +0300	commit: finalBeforeOptimizing
+39f13b0dba7c8c8ba77e26f57f8e80173772ac95 73af92e2fea63bd19cd6d456f2f12aef6181ffc1 slimeVidas26 <dahan.isaac@gmail.com> 1728846275 +0300	commit: screensNav
+73af92e2fea63bd19cd6d456f2f12aef6181ffc1 73af92e2fea63bd19cd6d456f2f12aef6181ffc1 slimeVidas26 <dahan.isaac@gmail.com> 1728932004 +0300	checkout: moving from 13/10/24 to 14/10/24
+73af92e2fea63bd19cd6d456f2f12aef6181ffc1 d8eabb2164433be4f961b31f8ba566084568a6ad slimeVidas26 <dahan.isaac@gmail.com> 1728935945 +0300	commit: signature
+d8eabb2164433be4f961b31f8ba566084568a6ad d8eabb2164433be4f961b31f8ba566084568a6ad slimeVidas26 <dahan.isaac@gmail.com> 1729424838 +0300	checkout: moving from 14/10/24 to 20/10/24
+d8eabb2164433be4f961b31f8ba566084568a6ad 80e2e47b3ac80fb8561f1a997e15b1eeec494e7a slimeVidas26 <dahan.isaac@gmail.com> 1729440440 +0300	commit: login
+80e2e47b3ac80fb8561f1a997e15b1eeec494e7a 80e2e47b3ac80fb8561f1a997e15b1eeec494e7a slimeVidas26 <dahan.isaac@gmail.com> 1729604322 +0300	checkout: moving from 20/10/24 to 22/10/24
+80e2e47b3ac80fb8561f1a997e15b1eeec494e7a e5ba938cd401b3d70dd4d618f007b049e3763609 slimeVidas26 <dahan.isaac@gmail.com> 1729606659 +0300	commit: passwordLoginScreen
+e5ba938cd401b3d70dd4d618f007b049e3763609 7e3e5d5c9006dca46aa45a06b951f77d1e25b502 slimeVidas26 <dahan.isaac@gmail.com> 1729609759 +0300	commit: test
+7e3e5d5c9006dca46aa45a06b951f77d1e25b502 bac7c26b44863126d605d5a5f11d49636e46fa88 slimeVidas26 <dahan.isaac@gmail.com> 1729613160 +0300	commit: test
+bac7c26b44863126d605d5a5f11d49636e46fa88 bea8f4d734c254492ceda0f8552fbeefae28e417 slimeVidas26 <dahan.isaac@gmail.com> 1729618939 +0300	commit: lodash
+bea8f4d734c254492ceda0f8552fbeefae28e417 bea8f4d734c254492ceda0f8552fbeefae28e417 slimeVidas26 <dahan.isaac@gmail.com> 1729669922 +0300	checkout: moving from 22/10/24 to 23/10/24
+bea8f4d734c254492ceda0f8552fbeefae28e417 f2a7c6fc2194f54c1671c0d2f3280874755fa708 slimeVidas26 <dahan.isaac@gmail.com> 1729691260 +0300	commit: doc
+f2a7c6fc2194f54c1671c0d2f3280874755fa708 92d80e62b0bcde23637c8dd366077f8838a22091 slimeVidas26 <dahan.isaac@gmail.com> 1729693371 +0300	commit: login
+92d80e62b0bcde23637c8dd366077f8838a22091 92d80e62b0bcde23637c8dd366077f8838a22091 slimeVidas26 <dahan.isaac@gmail.com> 1729836980 +0300	checkout: moving from 23/10/24 to 25/01/24
+92d80e62b0bcde23637c8dd366077f8838a22091 0f7925bf99e13856de85337bb69e77fe78840127 slimeVidas26 <dahan.isaac@gmail.com> 1729863665 +0300	commit: hoho
+0f7925bf99e13856de85337bb69e77fe78840127 0f7925bf99e13856de85337bb69e77fe78840127 slimeVidas26 <dahan.isaac@gmail.com> 1730017961 +0200	checkout: moving from 25/01/24 to 27/10/24
+0f7925bf99e13856de85337bb69e77fe78840127 0f7925bf99e13856de85337bb69e77fe78840127 slimeVidas26 <dahan.isaac@gmail.com> 1730186770 +0200	checkout: moving from 27/10/24 to 27/10/24
+0f7925bf99e13856de85337bb69e77fe78840127 7298e17a8689398e057ec1f482d95a8d97040f26 slimeVidas26 <dahan.isaac@gmail.com> 1730204713 +0200	commit: step1
+7298e17a8689398e057ec1f482d95a8d97040f26 749fd91fbd6ba9ded043bbf61b667c64850b5a1d slimeVidas26 <dahan.isaac@gmail.com> 1730204793 +0200	commit: oo
+749fd91fbd6ba9ded043bbf61b667c64850b5a1d 749fd91fbd6ba9ded043bbf61b667c64850b5a1d slimeVidas26 <dahan.isaac@gmail.com> 1730204803 +0200	checkout: moving from 27/10/24 to 29/10/24
+749fd91fbd6ba9ded043bbf61b667c64850b5a1d cb90cf37e86f7f43e65cd2f612b73e378e0f235f slimeVidas26 <dahan.isaac@gmail.com> 1730208034 +0200	commit: vv
+cb90cf37e86f7f43e65cd2f612b73e378e0f235f 92d80e62b0bcde23637c8dd366077f8838a22091 slimeVidas26 <dahan.isaac@gmail.com> 1730220409 +0200	checkout: moving from 29/10/24 to 23/10/24
+92d80e62b0bcde23637c8dd366077f8838a22091 cb90cf37e86f7f43e65cd2f612b73e378e0f235f slimeVidas26 <dahan.isaac@gmail.com> 1730220585 +0200	checkout: moving from 23/10/24 to 29/10/24
+cb90cf37e86f7f43e65cd2f612b73e378e0f235f d61843217c145018498890756e71748334ba60c0 slimeVidas26 <dahan.isaac@gmail.com> 1730225646 +0200	commit: test
+d61843217c145018498890756e71748334ba60c0 3d2d50dfa0fbb345417f4d28ca229a53983e9ee3 slimeVidas26 <dahan.isaac@gmail.com> 1730225828 +0200	commit: rr
+3d2d50dfa0fbb345417f4d28ca229a53983e9ee3 972f01d55952c4d8cb3538f8593f09db6eb47664 slimeVidas26 <dahan.isaac@gmail.com> 1730236586 +0200	commit: errors
+972f01d55952c4d8cb3538f8593f09db6eb47664 972f01d55952c4d8cb3538f8593f09db6eb47664 slimeVidas26 <dahan.isaac@gmail.com> 1730270850 +0200	checkout: moving from 29/10/24 to 30/10/24
+972f01d55952c4d8cb3538f8593f09db6eb47664 83869162257f463cec7764269c1acba7b5f479f6 slimeVidas26 <dahan.isaac@gmail.com> 1730283591 +0200	commit: tedt
+83869162257f463cec7764269c1acba7b5f479f6 972f01d55952c4d8cb3538f8593f09db6eb47664 slimeVidas26 <dahan.isaac@gmail.com> 1730283754 +0200	checkout: moving from 30/10/24 to 29/10/24
+972f01d55952c4d8cb3538f8593f09db6eb47664 83869162257f463cec7764269c1acba7b5f479f6 slimeVidas26 <dahan.isaac@gmail.com> 1730283888 +0200	checkout: moving from 29/10/24 to 30/10/24
+83869162257f463cec7764269c1acba7b5f479f6 531e7c8437fd9b45e32c85791bef34a8e45406c5 slimeVidas26 <dahan.isaac@gmail.com> 1730284917 +0200	checkout: moving from 30/10/24 to master
+531e7c8437fd9b45e32c85791bef34a8e45406c5 972f01d55952c4d8cb3538f8593f09db6eb47664 slimeVidas26 <dahan.isaac@gmail.com> 1730284935 +0200	checkout: moving from master to 29/10/24
+972f01d55952c4d8cb3538f8593f09db6eb47664 551c1b5faf27006b2e5afe0727016aa36e8d6824 slimeVidas26 <dahan.isaac@gmail.com> 1730287442 +0200	commit: upgrade
+551c1b5faf27006b2e5afe0727016aa36e8d6824 749fd91fbd6ba9ded043bbf61b667c64850b5a1d slimeVidas26 <dahan.isaac@gmail.com> 1730288013 +0200	checkout: moving from 29/10/24 to 27/10/24
